@@ -1,0 +1,1 @@
+            h += '<div style="background:var(--surface);border:2px solid ' + borderColor + ';border-radius:12px;padding:1rem;cursor:pointer;transition:all 0.15s;" onclick="window.location.href='/work?book=' + encodeURIComponent(bookName) + '&kp_id=' + kpId + '\">';

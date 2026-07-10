@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="/" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">{{ book_name }}</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">{{ book_name }}</h1>
+      <div class="kp-meta-row">
+        <span class="kp-meta-item">
+          <span class="kp-meta-label">状态</span>
+          <span class="kp-file-badge {{ 'kp-file-ok' if summary.has_plan else 'kp-file-missing' }}" style="font-size:0.75rem;">
+            {{ '大纲已生成' if summary.has_plan else '无大纲' }}
+          </span>
+        </span>
+        <span class="kp-meta-item">
+          <span class="kp-meta-label">知识点</span>
+          {{ summary.kp_count }} 个
+        </span>
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="/work?book={{ book_name | urlencode }}" class="v0-btn v0-btn-primary">
+        ▶ 进入工作台
+      </a>
+    </div>
+  </div>
+
+  {% if summary.kps %}
+  <!-- KP 列表 -->
+  <div class="kp-project-grid">
+    {% for kp in summary.kps %}
+    {% set file_count = (1 if kp.files.script else 0) +
+                        (1 if kp.files.quality_check else 0) +
+                        (1 if kp.files.safety_check else 0) +
+                        (1 if kp.files.content_units else 0) +
+                        (1 if kp.files.visual_beats else 0) +
+                        (1 if kp.files.image_prompts else 0) %}
+    {% set pct = (file_count / 6 * 100) | int %}
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-id">#{{ kp.kp_id }}</div>
+        <div class="kp-project-title">{{ kp.kp_title }}</div>
+        <div class="kp-project-progress">
+          <div class="kp-project-bar-track">
+            <div class="kp-project-bar-fill {% if pct >= 80 %}fill-good{% elif pct >= 40 %}fill-warn{% else %}fill-low{% endif %}" style="width:{{ pct }}%;"></div>
+          </div>
+          <span class="kp-project-bar-label">{{ file_count }}/6</span>
+        </div>
+      </div>
+
+      <div class="kp-project-files">
+        {% set file_labels = {
+          'script': '脚本',
+          'quality_check': '质量审核',
+          'safety_check': '安全审核',
+          'content_units': '内容单元',
+          'visual_beats': '画面点',
+          'image_prompts': '图片提示词'
+        } %}
+        {% for fname, exists in kp.files.items() %}
+        {% if fname in file_labels %}
+        <span class="kp-project-file-badge {{ 'exists' if exists else 'missing' }}">
+          {{ '✓' if exists else '○' }} {{ file_labels[fname] }}
+        </span>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="kp-project-actions">
+        <a href="/project/{{ book_name }}/kp/{{ kp.kp_id }}" class="v0-btn">
+          详情
+        </a>
+        <a href="/work?book={{ book_name | urlencode }}&kp_id={{ kp.kp_id }}" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <!-- Empty state -->
+  <div class="kp-empty">
+    <div class="kp-empty-icon">◎</div>
+    <h2 style="font-size:1.125rem;font-weight:600;margin:0 0 0.5rem;color:var(--foreground);">暂无知识点目录</h2>
+    <p style="font-size:0.875rem;margin:0 0 1.25rem;">请先生成选题大纲。</p>
+    <a href="/work?book={{ book_name | urlencode }}" class="v0-btn v0-btn-primary">去生成大纲</a>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

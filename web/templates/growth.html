@@ -1,0 +1,405 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="v0-container" style="max-width:90rem;">
+    <!-- Header -->
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;">
+        <div>
+            <h1 style="margin:0 0 0.25rem;">🧠 Agent 学习中心</h1>
+            <p style="margin:0; color:var(--ink-muted); font-size:0.875rem;">
+                分析数据 → 学习结构规律 → 验证策略 → 自动优化内容
+            </p>
+        </div>
+        <button class="v0-btn v0-btn-secondary" onclick="location.reload()">🔄 刷新</button>
+    </div>
+
+    {% if data.total_videos_analyzed == 0 %}
+    <!-- Empty State -->
+    <div class="lc-empty">
+        <div class="lc-empty-icon">📊</div>
+        <h2>还没有学习数据</h2>
+        <p>在「数据分析」页面上传抖音视频数据，Agent 自动学习内容结构规律。</p>
+        <a href="/dashboard" class="v0-btn v0-btn-primary">📈 前往数据分析</a>
+    </div>
+    {% else %}
+
+    <!-- ============================================================ -->
+    <!-- Section 1: Stats Overview -->
+    <!-- ============================================================ -->
+    <div class="lc-stats" id="lc-stats">
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">{{ data.total_videos_analyzed }}</div>
+            <div class="lc-stat-label">视频分析总数</div>
+        </div>
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">{{ data.strategy_pool.validated_count | default(0) }}</div>
+            <div class="lc-stat-label">已验证规则</div>
+        </div>
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">{{ data.strategy_pool.testing_count | default(0) }}</div>
+            <div class="lc-stat-label">测试中规则</div>
+        </div>
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">{{ data.strategy_pool.rejected_count | default(0) }}</div>
+            <div class="lc-stat-label">已淘汰规则</div>
+        </div>
+    </div>
+
+    <div class="lc-grid">
+        <!-- ============================================================ -->
+        <!-- Section 2: 内容结构排行榜 (Left Column) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">🏆 内容结构排行榜</h2>
+            {% set structures = data.content_structures.rankings %}
+            {% if structures %}
+            <div class="lc-chart">
+                {% for s in structures %}
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#{{ loop.index }}</span>
+                        {{ s.structure }}
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:{{ [s.pct_better_than_average + 100, 200] | min }}%; background:{% if s.pct_better_than_average > 0 %}var(--brand, #0a7c42){% else %}oklch(0.6 0.15 25){% endif %};"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">{{ s.avg_metric }}</span>
+                        <span class="lc-bar-pct {% if s.pct_better_than_average > 0 %}up{% else %}down{% endif %}">
+                            {% if s.pct_better_than_average > 0 %}+{% endif %}{{ s.pct_better_than_average }}%
+                        </span>
+                        <span class="lc-bar-n">n={{ s.sample_count }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if structures[0] %}
+            <div class="lc-insight">
+                💡 最佳结构: <strong>{{ structures[0].structure }}</strong> —
+                平均播放 {{ structures[0].avg_metric }}，较均值提升 {{ structures[0].pct_better_than_average }}%
+            </div>
+            {% endif %}
+            {% else %}
+            <p class="lc-empty-text">暂无数据，上传视频后自动生成</p>
+            {% endif %}
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 3: 开场排行榜 (Right Column) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">🎬 开场排行榜</h2>
+            {% set openings = data.openings.rankings %}
+            {% if openings %}
+            <div class="lc-chart">
+                {% for o in openings %}
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#{{ loop.index }}</span>
+                        {{ o.opening }}
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:{{ [o.pct_better_than_average + 100, 200] | min }}%; background:oklch(0.55 0.13 245);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">{{ o.avg_metric }}</span>
+                        <span class="lc-bar-pct {% if o.pct_better_than_average > 0 %}up{% else %}down{% endif %}">
+                            {% if o.pct_better_than_average > 0 %}+{% endif %}{{ o.pct_better_than_average }}%
+                        </span>
+                        <span class="lc-bar-n">n={{ o.sample_count }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="lc-empty-text">暂无数据</p>
+            {% endif %}
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 4: 内容模型排行榜 (Left) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">🧩 内容模型排行榜</h2>
+            {% set models = data.content_models.self %}
+            {% if models %}
+            <div class="lc-chart">
+                {% for m in models %}
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#{{ loop.index }}</span>
+                        {{ m.model }}
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:{{ [m.pct_better_than_average + 100, 200] | min }}%; background:oklch(0.5 0.15 325);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">{{ m.avg_metric }}</span>
+                        <span class="lc-bar-pct {% if m.pct_better_than_average > 0 %}up{% else %}down{% endif %}">
+                            {% if m.pct_better_than_average > 0 %}+{% endif %}{{ m.pct_better_than_average }}%
+                        </span>
+                        <span class="lc-bar-n">n={{ m.sample_count }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="lc-empty-text">暂无数据</p>
+            {% endif %}
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 5: 主题排行榜 (Right) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">📌 主题排行榜</h2>
+            {% set topics = data.topics.rankings %}
+            {% if topics %}
+            <div class="lc-chart">
+                {% for t in topics %}
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#{{ loop.index }}</span>
+                        {{ t.topic }}
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:{{ [(t.avg_metric / 5000) * 100, 200] | min }}%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">{{ t.avg_metric }}</span>
+                        <span class="lc-bar-n">n={{ t.sample_count }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="lc-empty-text">暂无数据</p>
+            {% endif %}
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 7: Strategy Memory (Left - Full Width on Mobile) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel lc-panel-full" id="lc-strategy-panel">
+            <h2 class="lc-panel-title">📋 Strategy Memory — 全部规则</h2>
+            <div id="lc-strategy-placeholder">
+                {% set validated_rules = data.learning_center.structures + data.learning_center.openings + data.learning_center.content_models + data.learning_center.topics %}
+                {% if validated_rules %}
+                <table class="lc-table">
+                    <thead>
+                        <tr>
+                            <th>规则</th>
+                            <th>类别</th>
+                            <th>状态</th>
+                            <th>平均提升</th>
+                            <th>样本</th>
+                            <th>置信度</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in validated_rules[:10] %}
+                        <tr>
+                            <td><strong>{{ r.rule }}</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-{{ r.category }}">{{ r.category }}</span></td>
+                            <td><span class="lc-status-tag lc-status-{{ r.status }}">{{ r.status }}</span></td>
+                            <td class="{% if r.avg_play_increase > 0 %}lc-num-up{% else %}lc-num-down{% endif %}">
+                                {% if r.avg_play_increase > 0 %}+{% endif %}{{ r.avg_play_increase }}%
+                            </td>
+                            <td>{{ r.sample_count }}</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:{{ (r.confidence * 100) | int }}%;"></div>
+                                    <span>{{ (r.confidence * 100) | int }}%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% if validated_rules|length > 10 %}
+                <p style="text-align:center; margin-top:0.75rem;">
+                    <button class="v0-btn v0-btn-link" onclick="loadAllRules()">查看全部 {{ validated_rules|length }} 条规则 →</button>
+                </p>
+                {% endif %}
+                {% else %}
+                <p class="lc-empty-text">暂无规则，分析数据后自动生成</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- Section 8 & 9: 最近学到 / 最近淘汰 / 下次测试 (Bottom Row) -->
+    <!-- ============================================================ -->
+    <div class="lc-bottom-row">
+        <!-- 最近学到什么 -->
+        <div class="lc-bottom-card">
+            <h3 class="lc-bottom-title">📘 最近学到</h3>
+            {% set recent = data.learning_center.recent_rules %}
+            {% if recent %}
+            <ul class="lc-timeline">
+                {% for r in recent %}
+                <li>
+                    <span class="lc-status-tag lc-status-{{ r.status }}">{{ r.status }}</span>
+                    <strong>{{ r.rule }}</strong>
+                    <span class="lc-tl-meta">{{ (r.avg_play_increase * 100) | round }} · n={{ r.sample_count }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="lc-empty-text">暂无</p>
+            {% endif %}
+        </div>
+
+        <!-- 最近淘汰 -->
+        <div class="lc-bottom-card">
+            <h3 class="lc-bottom-title">🗑️ 最近淘汰</h3>
+            {% set rejected = data.learning_center.recent_rejected %}
+            {% if rejected %}
+            <ul class="lc-timeline">
+                {% for r in rejected %}
+                <li>
+                    <span class="lc-status-tag lc-status-rejected">rejected</span>
+                    <strong>{{ r.rule }}</strong>
+                    <span class="lc-tl-meta">n={{ r.sample_count }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="lc-empty-text">暂无淘汰规则</p>
+            {% endif %}
+        </div>
+
+        <!-- 下次测试什么 -->
+        <div class="lc-bottom-card">
+            <h3 class="lc-bottom-title">🧪 下次测试</h3>
+            {% set next = data.learning_center.next_to_test %}
+            {% if next %}
+            <ul class="lc-timeline">
+                {% for r in next %}
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>{{ r.rule }}</strong>
+                    <span class="lc-tl-meta">置信度 {{ (r.confidence * 100) | int }}%</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="lc-empty-text">暂无待测试规则</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div style="text-align:center; margin-top:2rem; padding:1rem 0; border-top:1px solid var(--border); color:var(--ink-muted); font-size:0.8rem;">
+        Agent 已学习 {{ data.total_videos_analyzed }} 条视频，
+        {{ data.strategy_pool.validated_count | default(0) }} 条规则已验证，
+        {{ data.strategy_pool.rejected_count | default(0) }} 条规则已淘汰。
+        {% if data.last_updated %}
+        <br>上次学习: {{ data.last_updated[:19] }}
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<style>
+/* ================================================================
+   Learning Center Styles
+   ================================================================ */
+.lc-stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.75rem; margin-bottom:1.25rem; }
+.lc-stat-card { background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; padding:1rem; text-align:center; }
+.lc-stat-value { font-size:1.75rem; font-weight:700; color:var(--ink); line-height:1.2; }
+.lc-stat-label { font-size:0.75rem; color:var(--ink-muted); margin-top:0.2rem; }
+
+.lc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+@media (max-width:768px) { .lc-grid { grid-template-columns:1fr; } }
+.lc-panel { background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; padding:1.25rem; }
+.lc-panel-full { grid-column:1 / -1; }
+.lc-panel-title { font-size:1rem; font-weight:600; margin:0 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border); }
+
+.lc-chart { display:flex; flex-direction:column; gap:0.5rem; }
+.lc-bar-row { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; }
+.lc-bar-label { width:9rem; flex-shrink:0; display:flex; align-items:center; gap:0.3rem; }
+.lc-rank { display:inline-flex; align-items:center; justify-content:center; width:1.4rem; height:1.4rem; border-radius:50%; background:var(--brand); color:#fff; font-size:0.65rem; font-weight:700; flex-shrink:0; }
+.lc-bar-track { flex:1; height:1.2rem; background:var(--border); border-radius:0.3rem; overflow:hidden; }
+.lc-bar-fill { height:100%; border-radius:0.3rem; transition:width 0.4s; min-width:2%; }
+.lc-bar-meta { display:flex; align-items:center; gap:0.4rem; width:10rem; flex-shrink:0; justify-content:flex-end; }
+.lc-bar-value { font-weight:600; }
+.lc-bar-pct { font-size:0.7rem; font-weight:600; padding:0.1rem 0.3rem; border-radius:0.2rem; }
+.lc-bar-pct.up { background:color-mix(in srgb,var(--brand) 15%,transparent); color:var(--brand); }
+.lc-bar-pct.down { background:color-mix(in srgb,oklch(0.6 0.15 25) 15%,transparent); color:oklch(0.5 0.15 25); }
+.lc-bar-n { font-size:0.7rem; color:var(--ink-muted); }
+.lc-insight { margin-top:0.75rem; padding:0.5rem 0.75rem; background:color-mix(in srgb,var(--brand) 8%,transparent); border-radius:0.5rem; font-size:0.8rem; }
+
+.lc-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+.lc-table th { text-align:left; padding:0.4rem 0.5rem; color:var(--ink-muted); font-weight:500; border-bottom:1px solid var(--border); font-size:0.75rem; }
+.lc-table td { padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-light,#f0f0f0); vertical-align:middle; }
+.lc-table tbody tr:hover { background:var(--surface-hover,#f8f8f8); }
+.lc-cat-tag { display:inline-block; padding:0.1rem 0.4rem; border-radius:999px; font-size:0.65rem; font-weight:500; }
+.lc-cat-content_structure { background:#e3f2fd; color:#1565c0; }
+.lc-cat-opening { background:#fce4ec; color:#c62828; }
+.lc-cat-content_model { background:#f3e5f5; color:#6a1b9a; }
+.lc-cat-topic { background:#e8f5e9; color:#2e7d32; }
+.lc-status-tag { display:inline-block; padding:0.1rem 0.4rem; border-radius:999px; font-size:0.65rem; font-weight:600; }
+.lc-status-validated { background:#e8f5e9; color:#2e7d32; }
+.lc-status-testing { background:#fff8e1; color:#f57f17; }
+.lc-status-rejected { background:#fbe9e7; color:#bf360c; }
+.lc-num-up { color:var(--brand,#0a7c42); font-weight:600; }
+.lc-num-down { color:oklch(0.5 0.15 25); font-weight:600; }
+.lc-conf-bar { display:flex; align-items:center; gap:0.3rem; width:6rem; }
+.lc-conf-fill { height:5px; background:var(--brand); border-radius:3px; transition:width 0.3s; max-width:100%; }
+
+.lc-bottom-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-bottom:1.5rem; }
+@media (max-width:768px) { .lc-bottom-row { grid-template-columns:1fr; } }
+.lc-bottom-card { background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; padding:1rem; }
+.lc-bottom-title { font-size:0.9rem; font-weight:600; margin:0 0 0.75rem; padding-bottom:0.4rem; border-bottom:1px solid var(--border); }
+.lc-timeline { list-style:none; padding:0; margin:0; }
+.lc-timeline li { display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0; border-bottom:1px solid var(--border-light,#f0f0f0); font-size:0.8rem; }
+.lc-timeline li:last-child { border-bottom:none; }
+.lc-tl-meta { color:var(--ink-muted); font-size:0.7rem; margin-left:auto; }
+.lc-empty-text { color:var(--ink-muted); font-size:0.8rem; text-align:center; padding:1rem; }
+.lc-empty { text-align:center; padding:3rem 1.5rem; background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; margin-bottom:1.5rem; }
+.lc-empty-icon { font-size:3rem; margin-bottom:0.5rem; }
+.lc-empty h2 { margin:0 0 0.5rem; }
+.lc-empty p { color:var(--ink-muted); max-width:400px; margin:0 auto 1rem; }
+</style>
+
+<script>
+/* Load full strategy rules */
+function loadAllRules() {
+    var panel = document.getElementById('lc-strategy-placeholder');
+    if (!panel || panel.dataset.loaded) return;
+    panel.dataset.loaded = '1';
+    panel.innerHTML = '<p style="text-align:center;color:var(--ink-muted);padding:1rem;">加载中...</p>';
+
+    fetch('/api/strategies/rules')
+        .then(function(r){return r.json()})
+        .then(function(j) {
+            if (!j.success) { panel.innerHTML = '<p style="text-align:center;color:var(--ink-muted);">加载失败</p>'; return; }
+            var rules = j.data.rules;
+            if (!rules || !rules.length) { panel.innerHTML = '<p class="lc-empty-text">暂无规则</p>'; return; }
+            var h = '<table class="lc-table"><thead><tr><th>规则</th><th>类别</th><th>状态</th><th>提升</th><th>样本</th><th>置信度</th></tr></thead><tbody>';
+            rules.forEach(function(r) {
+                var pct = (r.avg_play_increase > 0 ? '+' : '') + r.avg_play_increase + '%';
+                var conf = Math.round((r.confidence || 0) * 100) + '%';
+                h += '<tr>' +
+                    '<td><strong>' + esc(r.rule) + '</strong></td>' +
+                    '<td><span class="lc-cat-tag lc-cat-' + (r.category || 'content_structure') + '">' + (r.category||'') + '</span></td>' +
+                    '<td><span class="lc-status-tag lc-status-' + (r.status||'testing') + '">' + (r.status||'testing') + '</span></td>' +
+                    '<td class="' + (r.avg_play_increase > 0 ? 'lc-num-up' : 'lc-num-down') + '">' + pct + '</td>' +
+                    '<td>' + (r.sample_count||0) + '</td>' +
+                    '<td><div class="lc-conf-bar"><div class="lc-conf-fill" style="width:' + Math.min(100, (r.confidence||0)*100) + '%;"></div><span>' + conf + '</span></div></td>' +
+                    '</tr>';
+            });
+            h += '</tbody></table><p style="text-align:center;margin-top:0.75rem;font-size:0.75rem;color:var(--ink-muted);">共 ' + rules.length + ' 条规则</p>';
+            panel.innerHTML = h;
+        })
+        .catch(function() { panel.innerHTML = '<p style="text-align:center;color:var(--ink-muted);">网络错误</p>'; });
+}
+
+function esc(s) {
+    var d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+}
+</script>
+{% endblock %}

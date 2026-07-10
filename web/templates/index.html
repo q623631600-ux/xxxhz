@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Header -->
+  <div class="kp-header" style="margin-bottom:2rem;">
+    <div>
+      <h1 class="kp-title" style="font-size:1.75rem;">项目列表</h1>
+      <p class="kp-meta-row" style="margin-top:0.5rem;max-width:36rem;line-height:1.6;">
+        管理讲书项目，查看大纲状态，进入工作台继续生成脚本、画面点和配音素材。
+      </p>
+    </div>
+    <div class="kp-header-actions">
+      <a href="/work" class="v0-btn v0-btn-primary" style="font-size:0.9375rem;padding:0.625rem 1.25rem;">
+        ＋ 新建任务
+      </a>
+    </div>
+  </div>
+
+  {% if not has_output %}
+  <div class="kp-empty" style="border:1px solid var(--border);border-radius:0.875rem;padding:3rem 2rem;">
+    <div class="kp-empty-icon">◎</div>
+    <p style="font-size:0.9375rem;font-weight:500;margin:0 0 0.75rem;color:var(--foreground);">未找到 output 目录</p>
+    <p style="font-size:0.8125rem;margin:0 0 1rem;">请先运行内容生成流程，或进入工作台创建新任务。</p>
+    <pre style="background:var(--secondary);padding:0.75rem 1rem;border-radius:0.5rem;font-size:0.75rem;max-width:32rem;margin:0 auto;text-align:left;line-height:1.6;overflow-x:auto;">python main.py --book "毛选" --plan-only
+python main.py --book "毛选" --kp-id 7 --script-only
+python visual_workflow.py --book "毛选" --kp-id 7</pre>
+    <a href="/work" class="v0-btn v0-btn-primary" style="margin-top:1.25rem;">进入工作台</a>
+  </div>
+
+  {% elif not books %}
+  <div class="kp-empty" style="border:1px solid var(--border);border-radius:0.875rem;padding:3rem 2rem;">
+    <div class="kp-empty-icon">◎</div>
+    <h2 style="font-size:1.125rem;font-weight:600;margin:0 0 0.5rem;color:var(--foreground);">还没有项目</h2>
+    <p style="font-size:0.875rem;margin:0 0 1.25rem;color:var(--muted-foreground);">output 目录为空。创建任务后，这里会显示每本书的知识点进度。</p>
+    <a href="/work" class="v0-btn v0-btn-primary">进入工作台</a>
+  </div>
+
+  {% else %}
+  <!-- Stats -->
+  <div class="v0-analytics-grid" style="margin-bottom:2rem;">
+    <div class="kp-project-card" style="gap:0.25rem;">
+      <div style="font-size:0.6875rem;font-weight:500;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.06em;">项目总数</div>
+      <div style="font-family:monospace;font-size:1.75rem;font-weight:650;color:var(--foreground);line-height:1.2;">{{ books | length }}</div>
+    </div>
+    <div class="kp-project-card" style="gap:0.25rem;">
+      <div style="font-size:0.6875rem;font-weight:500;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.06em;">已规划大纲</div>
+      <div style="font-family:monospace;font-size:1.75rem;font-weight:650;color:var(--foreground);line-height:1.2;">{{ books | selectattr('has_plan') | list | length }}</div>
+    </div>
+    <div class="kp-project-card" style="gap:0.25rem;">
+      <div style="font-size:0.6875rem;font-weight:500;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.06em;">总知识节点</div>
+      <div style="font-family:monospace;font-size:1.75rem;font-weight:650;color:var(--foreground);line-height:1.2;">{{ books | sum(attribute='kp_count') }}</div>
+    </div>
+  </div>
+
+  <!-- Book Grid -->
+  <div class="kp-project-grid">
+    {% for book in books %}
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">{{ book.name[:1] }}</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">{{ book.name }}</div>
+        <span class="kp-project-plan-badge {{ 'planned' if book.has_plan else 'unplanned' }}">
+          {{ '大纲已生成' if book.has_plan else '无大纲' }}
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        {% set pct = (book.kp_count / book.total_kps * 100) | int if book.total_kps else 0 %}
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill {{ 'fill-good' if pct >= 80 else 'fill-warn' if pct >= 40 else 'fill-low' }}" style="width:{{ pct }}%;"></div>
+        </div>
+        <span class="kp-project-bar-label">{{ book.kp_count }} / {{ book.total_kps }} 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="/work?book={{ book.name | urlencode }}" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="/project/{{ book.name }}" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}

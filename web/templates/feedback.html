@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="feedback-page" style="max-width:800px;margin:0 auto;padding:2rem;">
+    <header style="margin-bottom:2rem;">
+        <h1 style="font-size:1.6rem;margin:0;">反馈中心</h1>
+        <p style="color:var(--text-dim);margin-top:0.3rem;">Agent 从你的反馈中学到了什么</p>
+    </header>
+
+    <div id="feedback-content">
+        <div style="text-align:center;padding:3rem;color:var(--text-dim);">加载中...</div>
+    </div>
+</div>
+
+<script>
+async function loadFeedback() {
+    var el = document.getElementById('feedback-content');
+    try {
+        var r = await fetch('/api/feedback/memory');
+        var j = await r.json();
+        if (!j.success) { el.innerHTML = '<p style="color:var(--red);">加载失败</p>'; return; }
+        var d = j.data;
+        var p = d.preferences || {};
+        var html = '';
+
+        // 用户偏好总结
+        html += '<section style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;">';
+        html += '<h2 style="font-size:1rem;margin:0 0 0.8rem;">用户偏好总结</h2>';
+        if (p.liked_styles && p.liked_styles.length) {
+            html += '<div style="margin-bottom:0.5rem;"><span style="font-size:0.8rem;font-weight:600;color:var(--text-dim);">喜欢的风格</span><br>';
+            p.liked_styles.forEach(function(s) { html += '<span style="display:inline-block;background:#dcfce7;color:#16a34a;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.8rem;margin-right:0.3rem;margin-top:0.2rem;">' + esc(s) + '</span>'; });
+            html += '</div>';
+        }
+        if (p.disliked_styles && p.disliked_styles.length) {
+            html += '<div style="margin-bottom:0.5rem;"><span style="font-size:0.8rem;font-weight:600;color:var(--text-dim);">不喜欢的风格</span><br>';
+            p.disliked_styles.forEach(function(s) { html += '<span style="display:inline-block;background:#fee2e2;color:#dc2626;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.8rem;margin-right:0.3rem;margin-top:0.2rem;">' + esc(s) + '</span>'; });
+            html += '</div>';
+        }
+        if (!p.liked_styles || !p.liked_styles.length) {
+            html += '<p style="color:var(--text-dim);font-size:0.85rem;">暂无反馈数据。在选题卡片上点击「喜欢/不喜欢」并填写原因，Agent 会从中学习。</p>';
+        }
+        html += '</section>';
+
+        // 反馈记录
+        html += '<section style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem;">';
+        html += '<h2 style="font-size:1rem;margin:0 0 0.8rem;">反馈记录（共 ' + d.total_feedback + ' 条）</h2>';
+        if (d.recent_feedback && d.recent_feedback.length) {
+            d.recent_feedback.slice().reverse().forEach(function(f) {
+                var icon = f.feedback === 'like' ? '👍' : '👎';
+                var color = f.feedback === 'like' ? 'var(--green)' : 'var(--red)';
+                html += '<div style="padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.85rem;display:flex;align-items:flex-start;gap:0.5rem;">';
+                html += '<span style="font-size:1rem;">' + icon + '</span>';
+                html += '<div><div><strong>' + esc(f.topic_title || '') + '</strong> <span style="color:' + color + ';font-size:0.75rem;">' + (f.feedback === 'like' ? '喜欢' : '不喜欢') + '</span></div>';
+                if (f.reason) html += '<div style="color:var(--text-dim);font-size:0.8rem;">原因：' + esc(f.reason) + '</div>';
+                html += '<div style="color:var(--text-dim);font-size:0.72rem;">' + (f.created_at ? f.created_at.slice(0, 10) : '') + '</div></div></div>';
+            });
+        } else {
+            html += '<p style="color:var(--text-dim);font-size:0.85rem;">暂无反馈记录。</p>';
+        }
+        html += '</section>';
+
+        // 清空按钮
+        if (d.total_feedback > 0) {
+            html += '<div style="text-align:right;"><button class="btn btn-outline" onclick="if(confirm(\'确定清空所有反馈？\')){fetch(\'/api/feedback/clear\',{method:\'POST\'}).then(function(){location.reload();});}" style="color:var(--red);border-color:var(--red);font-size:0.8rem;">清空反馈</button></div>';
+        }
+
+        el.innerHTML = html;
+    } catch(e) {
+        el.innerHTML = '<p style="color:var(--red);">加载失败: ' + e.message + '</p>';
+    }
+}
+loadFeedback();
+</script>
+{% endblock %}

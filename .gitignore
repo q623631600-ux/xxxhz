@@ -1,0 +1,50 @@
+# ========== 敏感信息 ==========
+.env
+!.env.example
+
+# ========== 输出产物 ==========
+output/
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# ========== Agent 记忆 ==========
+memory/
+
+# ========== 数据仓库 ==========
+data_warehouse/
+
+# ========== Python 缓存 ==========
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# ========== 日志 ==========
+*.log
+server.log
+web_server.log
+
+# ========== 临时文件 =========_
+temp/
+*.tmp
+._*
+
+# ========== 操作系统 ==========
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ========== IDE ==========
+.idea/
+.vscode/
+*.sublime-workspace
+
+# ========== 启动脚本（可选保留） ==========
+# 取消注释以下行可排除 .bat 和 .vbs
+# *.bat
+# *.vbs

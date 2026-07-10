@@ -1,0 +1,407 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="v0-console">
+    <div class="v0-pill">
+        <span class="v0-pill-icon">*</span>
+        AI 内容操作系统
+    </div>
+    <h1>把一本书，变成会增长的内容</h1>
+    <p class="subtitle">告诉 Agent 你想分析的书或想创作的内容，它会完成从洞察、选题到成片的全过程，并持续优化表现。</p>
+
+    <form onsubmit="event.preventDefault();window._agentProduce(document.getElementById('ai-input').value)" style="width:100%;">
+        <div class="v0-input-wrap">
+            <textarea id="ai-input" rows="2" placeholder="输入书名，或告诉 Agent 你想创作什么…">{{ book_name if book_name and book_name != '__new__' else '' }}</textarea>
+            <div class="v0-input-footer">
+                <span class="hint">支持中文书籍 · 短视频脚本</span>
+                <button type="submit" class="v0-send-btn">^</button>
+            </div>
+        </div>
+    </form>
+
+    <div style="display:flex;align-items:center;gap:0.5rem;width:100%;margin-top:0.5rem;">
+      <input id="topic-focus-input" type="text" placeholder="选题要求（可选）— 如：聚焦房地产、不要学术化、适合年轻人" style="flex:1;padding:0.5rem 0.75rem;border:1px solid var(--border);border-radius:0.5rem;background:var(--bg);font-size:0.85rem;color:var(--ink);outline:none;">
+      <span style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">📌 选题方向</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.35rem;width:100%;">
+      <button type="button" onclick="setTopicFocus('标题用反问句，如「为什么你越努力钱却越不值钱？」风格要扎心、有共鸣')" class="v0-example-chip" style="font-size:0.7rem;">🔥 扎心反问</button>
+      <button type="button" onclick="setTopicFocus('用「你不是不努力，你只是…」句式，揭示认知盲区')" class="v0-example-chip" style="font-size:0.7rem;">🧠 认知揭示</button>
+      <button type="button" onclick="setTopicFocus('聚焦贫穷、普通人、底层视角，有社会观察感')" class="v0-example-chip" style="font-size:0.7rem;">📊 社会观察</button>
+      <button type="button" onclick="setTopicFocus('用具体案例开头，讲普通人能用的方法')" class="v0-example-chip" style="font-size:0.7rem;">📖 案例+方法</button>
+    </div>
+
+    <div class="v0-examples">
+        <button type="button" onclick="document.getElementById('ai-input').value='分析书籍《置身事内》';window._agentProduce('置身事内')" class="v0-example-chip">分析书籍《置身事内》</button>
+        <button type="button" onclick="document.getElementById('ai-input').value='从这本书生成视频选题';window._agentProduce('置身事内')" class="v0-example-chip">从这本书生成视频选题</button>
+        <button type="button" onclick="window.location.href='/dashboard'" class="v0-example-chip">分析视频表现</button>
+    </div>
+</div>
+
+<section id="agent-response-area" style="display:none;"></section>
+
+{% if book_name and book_name != '__new__' %}
+
+<div class="work-page-layout">
+
+  <!-- =============================================================== -->
+  <!-- ① 操作栏 + 推理过程 -->
+  <!-- =============================================================== -->
+  <div class="work-section">
+    <div class="work-section-row">
+      <button class="v0-btn v0-btn-primary" onclick="window._agentProduce()" id="btn-produce">生成选题池</button>
+      <span id="produce-status" style="font-size:0.85rem;color:var(--muted-foreground);margin-left:0.8rem;"></span>
+    </div>
+    <div id="feedback-prefs" style="margin-top:0.5rem;font-size:0.75rem;color:var(--muted-foreground);display:none;">
+      <span>📋 你的偏好：</span><span id="feedback-prefs-list"></span>
+    </div>
+  </div>
+
+  <div id="agent-reasoning" style="display:none;margin-bottom:1.5rem;"></div>
+  <div id="agent-script-workspace" style="display:none;margin-bottom:1.5rem;"></div>
+  <div id="agent-result" style="display:none;margin-bottom:1.5rem;"></div>
+
+  <!-- =============================================================== -->
+  <!-- ② 选题池 — 完整展示所有已保存选题 -->
+  <!-- =============================================================== -->
+  <div class="work-section" id="topic-pool-section">
+    <div class="work-section-header">
+      <div class="work-section-header-left">
+        <span class="work-section-icon">◎</span>
+        <div>
+          <div class="work-section-title">选题池</div>
+          <div class="work-section-subtitle" id="topic-pool-subtitle">加载中…</div>
+        </div>
+      </div>
+      <div class="work-section-header-right">
+        <button class="v0-btn v0-btn-sm" onclick="loadAgentDrafts()">刷新列表</button>
+      </div>
+    </div>
+    <div class="topic-pool-wrapper" id="agent-topics">
+      <!-- 由 loadAgentDrafts() 动态渲染 -->
+      <div class="topic-pool-empty">加载中…</div>
+    </div>
+  </div>
+
+  <!-- =============================================================== -->
+  <!-- ③ 生产流水线 -->
+  <!-- =============================================================== -->
+  <div class="work-section" style="margin-top:0.5rem;">
+
+    {% set pb = initial_status.get('plan_book', {}) %}
+    {% set pb_done = pb.get('status') == 'completed' %}
+    {% set gs = initial_status.get('generate_script', {}) %}
+    {% set cu = initial_status.get('content_units', {}) %}
+    {% set vb = initial_status.get('visual_beats', {}) %}
+    {% set ip = initial_status.get('image_prompts', {}) %}
+
+    {% set has_script = gs.get('status') == 'completed' %}
+
+    <section class="workflow-layout">
+      <aside class="workflow-summary">
+        <div class="summary-card">
+          <span class="summary-label">当前项目</span>
+          <strong>{{ book_name }}</strong>
+          {% if kp_id > 0 %}
+          <span class="badge badge-blue">KP #{{ kp_id }}</span>
+          {% else %}
+          <span class="badge badge-yellow">等待选择知识点</span>
+          {% endif %}
+        </div>
+
+        <div class="summary-card">
+          <span class="summary-label">生产链路</span>
+          <ol class="mini-steps">
+            <li class="{{ 'done' if pb_done else '' }}">大纲</li>
+            <li class="{{ 'done' if gs.get('status') == 'completed' else '' }}">脚本</li>
+            <li class="{{ 'done' if cu.get('status') == 'completed' else '' }}">内容单元</li>
+            <li class="{{ 'done' if vb.get('status') == 'completed' else '' }}">画面点</li>
+            <li class="{{ 'done' if ip.get('status') == 'completed' else '' }}">图片提示词</li>
+            <li class="{{ 'done' if initial_status.get('generate_images', {}).get('status') == 'completed' else '' }}">图片</li>
+            <li class="{{ 'done' if initial_status.get('generate_audio', {}).get('status') == 'completed' else '' }}">配音</li>
+            <li class="{{ 'done' if initial_status.get('timeline_assembly', {}).get('status') == 'completed' else '' }}">时间线</li>
+            <li class="{{ 'done' if initial_status.get('generate_subtitles', {}).get('status') == 'completed' else '' }}">字幕</li>
+            <li class="{{ 'done' if initial_status.get('compose_final_video', {}).get('status') == 'completed' else '' }}">成品</li>
+          </ol>
+        </div>
+
+        {% if all_kps %}
+        <div class="summary-card">
+          <span class="summary-label">知识点列表（共 {{ all_kps|length }} 个）</span>
+          <div class="kp-sidebar-list">
+            {% for kp in all_kps %}
+            <div class="kp-sidebar-item {{ 'kp-sidebar-active' if kp.id == kp_id else '' }}"
+                 onclick="selectKp('{{ book_name | urlencode }}', {{ kp.id }})">
+              <span class="kp-sidebar-num">[{{ kp.id }}]</span>
+              <div>
+                <div class="kp-sidebar-title">{{ kp.title }}</div>
+                <div class="kp-sidebar-chapter">{% if kp.get('has_script') %}<span style="color:var(--green);">已生成讲稿</span>{% else %}<span style="color:var(--yellow);">草稿</span>{% endif %} | {{ kp.chapter }} | {{ kp.length }}</div>
+              </div>
+              {% if kp.id == kp_id %}<span class="kp-sidebar-check">✓</span>{% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if kp_id > 0 %}
+        {% set selected_kp = all_kps | selectattr("id", "equalto", kp_id) | list | first %}
+        <div class="summary-card">
+          <span class="summary-label">批量运行</span>
+          <p class="kp-run-target">目标：<strong>[{{ kp_id }}] {% if selected_kp %}{{ selected_kp.title }}{% endif %}</strong></p>
+          <button class="btn btn-primary full-width" onclick="runFullPipeline('{{ book_name }}', {{ kp_id }})">一键生成全部</button>
+          <span id="full-status" class="run-status"></span>
+        </div>
+        {% elif all_kps %}
+        <div class="summary-card">
+          <span class="summary-label">批量运行</span>
+          <p class="kp-run-target hint">请先从上方列表选择一个知识点</p>
+        </div>
+        {% endif %}
+      </aside>
+
+      <div>
+        {% set gi = initial_status.get("generate_images", {}) %}
+        {% set ga = initial_status.get("generate_audio", {}) %}
+        {% set tl = initial_status.get("timeline_assembly", {}) %}
+        {% set gs2 = initial_status.get("generate_subtitles", {}) %}
+        {% set cfv = initial_status.get("compose_final_video", {}) %}
+        {% if not has_script and kp_id > 0 and kp_id >= 100 %}
+        <div class="v0-card" style="text-align:center;padding:2.5rem;margin-bottom:1.25rem;">
+          <div style="font-size:1.25rem;font-weight:600;color:var(--foreground);margin-bottom:0.5rem;">当前选题还未生成讲稿</div>
+          <p style="color:var(--muted-foreground);font-size:0.875rem;margin-bottom:1.25rem;">先生成讲稿后，才能进入内容单元切分等后续步骤。</p>
+          <button class="v0-btn v0-btn-primary" onclick="window._agentGenScript({{ kp_id - 100 }})">生成讲稿</button>
+        </div>
+        {% endif %}
+
+        <!-- 讲稿预览区（仅 Agent 选题显示） -->
+        {% if kp_id and kp_id >= 100 %}
+        <div class="v0-card" style="margin-bottom:1.25rem;padding:1.25rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <h3 style="margin:0;font-size:1rem;font-weight:600;">📝 讲稿预览</h3>
+              <span id="script-preview-meta" style="font-size:0.75rem;color:var(--ink-muted);">加载中...</span>
+            </div>
+            <div style="display:flex;gap:0.5rem;">
+              <button class="v0-btn v0-btn-secondary v0-btn-sm" onclick="viewScriptPreview('{{ book_name }}', {{ kp_id - 100 if kp_id >= 100 else 0 }})" style="font-size:0.75rem;">全屏查看</button>
+              <button class="v0-btn v0-btn-secondary v0-btn-sm" onclick="if(confirm('重新生成脚本将重置后续所有步骤，确定？')){window._agentGenScript({{ kp_id - 100 }})}" style="font-size:0.75rem;">🔄 重新生成</button>
+            </div>
+          </div>
+          <div id="script-preview-body" style="font-size:0.85rem;line-height:1.7;max-height:300px;overflow-y:auto;padding:0.75rem;background:var(--bg);border-radius:0.5rem;white-space:pre-wrap;color:var(--ink);">加载中...</div>
+        </div>
+        {% endif %}
+
+        <div class="v0-pipeline-card">
+          <div class="v0-pipeline-top">
+            <p class="v0-pipeline-progress-text">生产流水线</p>
+            <div class="v0-pipeline-bar"><div class="v0-pipeline-fill" style="width:{{ '100' if cfv.get('status') == 'completed' else '80' if gs2.get('status') == 'completed' else '70' if tl.get('status') == 'completed' else '60' if ga.get('status') == 'completed' else '50' if gi.get('status') == 'completed' else '40' if ip.get('status') == 'completed' else '30' if vb.get('status') == 'completed' else '20' if cu.get('status') == 'completed' else '10' if gs.get('status') == 'completed' else '0' }}%"></div></div>
+            {% if has_script and kp_id >= 100 %}
+            <div style="text-align:right;margin-top:0.5rem;">
+              <button class="v0-btn v0-btn-secondary v0-btn-sm" onclick="if(confirm('重新生成脚本将重置后续所有步骤，确定？')){window._agentGenScript({{ kp_id - 100 }})}" style="font-size:0.75rem;">🔄 重新生成讲稿</button>
+            </div>
+            {% endif %}
+          </div>
+
+          {% macro step_circle(num, step_status) %}
+            {%- if step_status == 'completed' -%}
+            <span class="v0-pstep-circle done">✓</span>
+            {%- elif step_status == 'pending' and kp_id > 0 -%}
+            <span class="v0-pstep-circle pending">{{ num }}</span>
+            {%- else -%}
+            <span class="v0-pstep-circle pending">{{ num }}</span>
+            {%- endif -%}
+          {% endmacro %}
+
+          {% macro step_progress(step_id) %}
+            <div class="step-progress" id="progress-{{ step_id }}" style="display:none;height:4px;border-radius:999px;background:var(--secondary);overflow:hidden;margin:6px 0;">
+              <div class="step-progress-fill" style="height:100%;width:0%;border-radius:999px;background:var(--brand);transition:width 0.4s;"></div>
+            </div>
+            <div class="step-progress-text" id="progress-text-{{ step_id }}" style="display:none;font-size:0.75rem;color:var(--muted-foreground);margin-bottom:4px;"></div>
+          {% endmacro %}
+
+          <!-- Steps bar -->
+          <div class="v0-pipeline-steps">
+            <div class="v0-pstep">{{ step_circle(1, cu.get('status')) }}<span class="v0-pstep-name {{ 'done' if cu.get('status') == 'completed' else 'pending' }}">内容单元</span></div>
+            <span class="v0-pstep-connector {{ 'done' if cu.get('status') == 'completed' else 'pending' }}"></span>
+            <div class="v0-pstep">{{ step_circle(2, vb.get('status')) }}<span class="v0-pstep-name {{ 'done' if vb.get('status') == 'completed' else 'pending' }}">画面点</span></div>
+            <span class="v0-pstep-connector {{ 'done' if vb.get('status') == 'completed' else 'pending' }}"></span>
+            <div class="v0-pstep">{{ step_circle(3, ip.get('status')) }}<span class="v0-pstep-name {{ 'done' if ip.get('status') == 'completed' else 'pending' }}">提示词</span></div>
+            <span class="v0-pstep-connector {{ 'done' if ip.get('status') == 'completed' else 'pending' }}"></span>
+            <div class="v0-pstep">{{ step_circle(4, gi.get('status')) }}<span class="v0-pstep-name {{ 'done' if gi.get('status') == 'completed' else 'pending' }}">图片</span></div>
+            <span class="v0-pstep-connector {{ 'done' if gi.get('status') == 'completed' else 'pending' }}"></span>
+            <div class="v0-pstep">{{ step_circle(5, ga.get('status')) }}<span class="v0-pstep-name {{ 'done' if ga.get('status') == 'completed' else 'pending' }}">配音</span></div>
+            <span class="v0-pstep-connector {{ 'done' if ga.get('status') == 'completed' else 'pending' }}"></span>
+            <div class="v0-pstep">{{ step_circle(6, tl.get('status')) }}<span class="v0-pstep-name {{ 'done' if tl.get('status') == 'completed' else 'pending' }}">时间线</span></div>
+            <span class="v0-pstep-connector {{ 'done' if tl.get('status') == 'completed' else 'pending' }}"></span>
+            <div class="v0-pstep">{{ step_circle(7, gs2.get('status')) }}<span class="v0-pstep-name {{ 'done' if gs2.get('status') == 'completed' else 'pending' }}">字幕</span></div>
+            <span class="v0-pstep-connector {{ 'done' if gs2.get('status') == 'completed' else 'pending' }}"></span>
+            <div class="v0-pstep">{{ step_circle(8, cfv.get('status')) }}<span class="v0-pstep-name {{ 'done' if cfv.get('status') == 'completed' else 'pending' }}">视频</span></div>
+          </div>
+
+          <!-- Step details -->
+          <div class="task-step" id="step-content_units">
+            <div class="ts-header"><span class="ts-num">1</span><span class="ts-name">内容单元切分</span><span class="step-status {{ 'status-completed' if cu.get('status') == 'completed' else 'status-pending' }}" id="status-content_units">{{ '已完成' if cu.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">{% if cu.get('status') == 'completed' %}<button class="btn btn-outline" id="btn-content_units" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'content_units')">重新运行</button>{% else %}<button class="btn btn-primary" id="btn-content_units" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'content_units')">运行</button>{% endif %}</div>
+              <div class="step-output" id="output-content_units" style="display:{{ 'block' if cu.get('status') == 'completed' else 'none' }};">{% if cu.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div><div class="step-error" id="error-content_units" style="display:none;"></div>{{ step_progress('content_units') }}<div class="step-spinner" id="spinner-content_units" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="task-step" id="step-visual_beats">
+            <div class="ts-header"><span class="ts-num">2</span><span class="ts-name">画面点提取</span><span class="step-status {{ 'status-completed' if vb.get('status') == 'completed' else 'status-pending' }}" id="status-visual_beats">{{ '已完成' if vb.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">{% if vb.get('status') == 'completed' %}<button class="btn btn-outline" id="btn-visual_beats" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'visual_beats')">重新运行</button>{% else %}<button class="btn btn-primary" id="btn-visual_beats" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'visual_beats')">运行</button>{% endif %}</div>
+              <div class="step-output" id="output-visual_beats" style="display:{{ 'block' if vb.get('status') == 'completed' else 'none' }};">{% if vb.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div><div class="step-error" id="error-visual_beats" style="display:none;"></div>{{ step_progress('visual_beats') }}<div class="step-spinner" id="spinner-visual_beats" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="task-step" id="step-image_prompts">
+            <div class="ts-header"><span class="ts-num">3</span><span class="ts-name">图片提示词生成</span><span class="step-status {{ 'status-completed' if ip.get('status') == 'completed' else 'status-pending' }}" id="status-image_prompts">{{ '已完成' if ip.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">{% if ip.get('status') == 'completed' %}<button class="btn btn-outline" id="btn-image_prompts" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'image_prompts')">重新运行</button>{% else %}<button class="btn btn-primary" id="btn-image_prompts" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'image_prompts')">运行</button>{% endif %}</div>
+              <div class="step-output" id="output-image_prompts" style="display:{{ 'block' if ip.get('status') == 'completed' else 'none' }};">{% if ip.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div><div class="step-error" id="error-image_prompts" style="display:none;"></div>{{ step_progress('image_prompts') }}<div class="step-spinner" id="spinner-image_prompts" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="task-step" id="step-generate_images">
+            <div class="ts-header"><span class="ts-num">4</span><span class="ts-name">生成图片</span><span class="step-status {{ 'status-completed' if gi.get('status') == 'completed' else 'status-pending' }}" id="status-generate_images">{{ '已完成' if gi.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">
+                {% if gi.get('status') == 'completed' %}
+                <button class="btn btn-outline" id="btn-generate_images" onclick="runImageGen('{{ book_name }}', {{ kp_id }}, false)">重新生成</button>
+                {% else %}
+                <button class="btn btn-primary" id="btn-generate_images" onclick="runImageGen('{{ book_name }}', {{ kp_id }}, false)">运行</button>
+                {% endif %}
+              </div>
+              <!-- 进度显示 -->
+              <div id="img-progress-area" style="display:none;">
+                <div style="margin:8px 0;display:flex;align-items:center;gap:10px;">
+                  <div style="flex:1;height:6px;border-radius:999px;background:var(--secondary);overflow:hidden;">
+                    <div id="img-progress-bar" style="height:100%;width:0%;border-radius:999px;background:var(--brand);transition:width 0.3s;"></div>
+                  </div>
+                  <span id="img-progress-text" style="font-size:0.75rem;color:var(--muted-foreground);white-space:nowrap;">0/0</span>
+                </div>
+                <div style="display:flex;gap:12px;font-size:0.75rem;color:var(--muted-foreground);">
+                  <span>✅ 成功: <strong id="img-gen-count" style="color:var(--brand);">0</strong></span>
+                  <span>❌ 失败: <strong id="img-fail-count" style="color:var(--destructive);">0</strong></span>
+                  <span>📡 API: <strong id="img-api-count">0</strong></span>
+                  <span id="img-stage-badge" style="margin-left:auto;padding:0.125rem 0.5rem;border-radius:999px;background:var(--secondary);font-size:0.625rem;"></span>
+                </div>
+              </div>
+              <div class="step-output" id="output-generate_images" style="display:{{ 'block' if gi.get('status') == 'completed' else 'none' }};">{% if gi.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div>
+              <div class="step-error" id="error-generate_images" style="display:none;"></div>
+              <div class="step-spinner" id="spinner-generate_images" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="task-step" id="step-generate_audio">
+            <div class="ts-header"><span class="ts-num">5</span><span class="ts-name">生成配音</span><span class="step-status {{ 'status-completed' if ga.get('status') == 'completed' else 'status-pending' }}" id="status-generate_audio">{{ '已完成' if ga.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">{% if ga.get('status') == 'completed' %}<button class="btn btn-outline" id="btn-generate_audio" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'generate_audio')">重新生成</button>{% else %}<button class="btn btn-primary" id="btn-generate_audio" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'generate_audio')">运行</button>{% endif %}</div>
+              <div class="step-output" id="output-generate_audio" style="display:{{ 'block' if ga.get('status') == 'completed' else 'none' }};">{% if ga.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div><div class="step-error" id="error-generate_audio" style="display:none;"></div>{{ step_progress("generate_audio") }}<div class="step-spinner" id="spinner-generate_audio" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="task-step" id="step-timeline_assembly">
+            <div class="ts-header"><span class="ts-num">6</span><span class="ts-name">时间线组装</span><span class="step-status {{ 'status-completed' if tl.get('status') == 'completed' else 'status-pending' }}" id="status-timeline_assembly">{{ '已完成' if tl.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">{% if tl.get('status') == 'completed' %}<button class="btn btn-outline" id="btn-timeline_assembly" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'timeline_assembly')">重新运行</button>{% else %}<button class="btn btn-primary" id="btn-timeline_assembly" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'timeline_assembly')">运行</button>{% endif %}</div>
+              <div class="step-output" id="output-timeline_assembly" style="display:{{ 'block' if tl.get('status') == 'completed' else 'none' }};">{% if tl.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div><div class="step-error" id="error-timeline_assembly" style="display:none;"></div>{{ step_progress("timeline_assembly") }}<div class="step-spinner" id="spinner-timeline_assembly" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="task-step" id="step-generate_subtitles">
+            <div class="ts-header"><span class="ts-num">7</span><span class="ts-name">生成字幕</span><span class="step-status {{ 'status-completed' if gs2.get('status') == 'completed' else 'status-pending' }}" id="status-generate_subtitles">{{ '已完成' if gs2.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">{% if gs2.get('status') == 'completed' %}<button class="btn btn-outline" id="btn-generate_subtitles" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'generate_subtitles')">重新生成</button>{% else %}<button class="btn btn-primary" id="btn-generate_subtitles" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'generate_subtitles')">运行</button>{% endif %}</div>
+              <div class="step-output" id="output-generate_subtitles" style="display:{{ 'block' if gs2.get('status') == 'completed' else 'none' }};">{% if gs2.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div><div class="step-error" id="error-generate_subtitles" style="display:none;"></div>{{ step_progress("generate_subtitles") }}<div class="step-spinner" id="spinner-generate_subtitles" style="display:none;"></div>
+            </div>
+          </div>
+          <div class="task-step" id="step-compose_final_video">
+            <div class="ts-header"><span class="ts-num">8</span><span class="ts-name">合成最终视频</span><span class="step-status {{ 'status-completed' if cfv.get('status') == 'completed' else 'status-pending' }}" id="status-compose_final_video">{{ '已完成' if cfv.get('status') == 'completed' else '待执行' }}</span></div>
+            <div class="ts-body">
+              <div class="ts-buttons">{% if cfv.get('status') == 'completed' %}<button class="btn btn-outline" id="btn-compose_final_video" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'compose_final_video')">重新合成</button>{% else %}<button class="btn btn-primary" id="btn-compose_final_video" onclick="runStep('{{ book_name }}', {{ kp_id }}, 'compose_final_video')">合成</button>{% endif %}</div>
+              <div class="step-output" id="output-compose_final_video" style="display:{{ 'block' if cfv.get('status') == 'completed' else 'none' }};">{% if cfv.get('status') == 'completed' %}<p style="color:var(--green);padding:4px 0;">✅ 已完成 | <a href="/api/project/{{ book_name }}/kp/{{ kp_id }}/video/final" class="btn btn-sm" style="background:var(--primary);color:var(--primary-foreground);text-decoration:none;border-radius:0.5rem;padding:0.3rem 0.8rem;font-weight:600;" download>⬇ 下载视频</a> | <a href="/project/{{ book_name }}/kp/{{ kp_id }}" style="color:var(--primary);font-weight:600;">查看详情 →</a></p>{% endif %}</div><div class="step-error" id="error-compose_final_video" style="display:none;"></div>{{ step_progress("compose_final_video") }}<div class="step-spinner" id="spinner-compose_final_video" style="display:none;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div><!-- /work-page-layout -->
+
+{% elif book_name == '__new__' %}
+<div class="v0-empty">
+    <div class="v0-empty-icon">◎</div>
+    <h2>从一本书开始</h2>
+    <p>在上方输入书名或需求，Agent 会自动分析并生成选题。</p>
+</div>
+{% endif %}
+
+<!-- app.js 由 base.html 统一加载 -->
+
+<!-- 讲稿预览弹窗 -->
+<dialog id="script-dialog" style="border:none;border-radius:16px;padding:2rem;min-width:500px;max-width:800px;width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.15);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <h3 id="script-dialog-title" style="margin:0;font-size:1.1rem;">讲稿预览</h3>
+        <button type="button" onclick="this.closest('dialog').close()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;">X</button>
+    </div>
+    <div id="script-dialog-body" style="max-height:70vh;overflow-y:auto;padding:1rem;background:var(--bg);border-radius:8px;white-space:pre-wrap;font-size:14px;line-height:1.8;"></div>
+    <div style="display:flex;justify-content:flex-end;gap:0.8rem;margin-top:1.5rem;">
+        <button type="button" onclick="this.closest('dialog').close()" style="background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:0.5rem 1.2rem;border-radius:8px;cursor:pointer;">关闭</button>
+    </div>
+</dialog>
+
+<script>
+// 讲稿预览（全屏弹窗）
+function viewScriptPreview(bookName, topicId) {
+    if (!bookName && !topicId) {
+        var up = new URLSearchParams(window.location.search);
+        bookName = (typeof _safeDecodeURI !== 'undefined') ? _safeDecodeURI(up.get('book')||'') : (up.get('book')||'');
+        topicId = (parseInt(up.get('kp_id')||'0')) - 100;
+    }
+    var raw = (typeof _safeDecodeURI !== 'undefined') ? _safeDecodeURI(bookName) : bookName;
+    fetch('/api/agent/draft-script?book_name='+encodeURIComponent(raw)+'&topic_id='+topicId).then(function(r){return r.json();}).then(function(j){
+        if(!j.success){alert('加载失败');return;}
+        var d=j.data;
+        document.getElementById('script-dialog-title').textContent = '讲稿预览 ('+d.script_words+'字)';
+        document.getElementById('script-dialog-body').textContent = d.full_script || '(空)';
+        document.getElementById('script-dialog').showModal();
+    }).catch(function(e){alert('加载失败: '+e.message);});
+}
+
+// 页面加载时自动加载讲稿内容到预览区
+function loadScriptPreview() {
+    var body = document.getElementById('script-preview-body');
+    var meta = document.getElementById('script-preview-meta');
+    if (!body || !meta) return;
+    // 从 URL 实时获取参数，避免模板变量编码问题
+    var urlParams = new URLSearchParams(window.location.search);
+    var raw = (typeof _safeDecodeURI !== 'undefined') ? _safeDecodeURI(urlParams.get('book') || '') : (urlParams.get('book') || '');
+    var kpId = parseInt(urlParams.get('kp_id') || '0');
+    if (!raw || !kpId || kpId < 100) { body.textContent = '讲稿预览不可用'; return; }
+    var topicId = kpId - 100;
+    var scriptTimeout = setTimeout(function() {
+        if (body && body.textContent === '加载中...') {
+            body.textContent = '加载超时，请点「全屏查看」按钮查看';
+            meta.textContent = '超时';
+        }
+    }, 5000);
+    fetch('/api/agent/draft-script?book_name='+encodeURIComponent(raw)+'&topic_id='+topicId)
+        .then(function(r){return r.json()})
+        .then(function(j){
+            clearTimeout(scriptTimeout);
+            if (!j.success) { body.textContent = '讲稿尚未生成'; meta.textContent = '无'; return; }
+            var d = j.data;
+            meta.textContent = d.script_words + '字' + (d.quality_check ? ' · 已审核' : '');
+            body.textContent = d.full_script || '(空)';
+        })
+        .catch(function(){
+            clearTimeout(scriptTimeout);
+            body.textContent = '讲稿尚未生成';
+            meta.textContent = '无';
+        });
+}
+
+// 立即执行讲稿预览加载
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadScriptPreview);
+} else {
+    loadScriptPreview();
+}
+</script>
+
+{% endblock %}

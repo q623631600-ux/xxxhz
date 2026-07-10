@@ -1,0 +1,500 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% set script = detail.script %}
+{% set cu = detail.content_units %}
+{% set vb = detail.visual_beats %}
+{% set ip = detail.image_prompts %}
+{% set qc = detail.quality_check %}
+{% set sc = detail.safety_check %}
+{% set tl = detail.timeline %}
+{% set title = script.knowledge_point if script else detail.kp_dir %}
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="/" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="/project/{{ book_name }}" class="kp-bcrumb-link">{{ book_name }}</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #{{ kp_id }}</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">{{ title or '知识点详情' }}</h1>
+      <div class="kp-meta-row">
+        {% if script %}
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>{{ script.chapter or '-' }}</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>{{ script.source_scope or '-' }}</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>{{ script.estimated_video_length or script.suggested_video_length or '-' }}</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>{{ script.full_script | length if script.full_script else 0 }}</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="/work?book={{ book_name }}&kp_id={{ kp_id }}" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('{{ book_name }}', {{ kp_id }})">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    {% for fname, exists in detail.files.items() %}
+    <span class="kp-file-badge {{ 'kp-file-ok' if exists else 'kp-file-missing' }}">
+      {{ '✓' if exists else '○' }} {{ fname }}
+    </span>
+    {% endfor %}
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元{% if cu %}<span class="kp-tab-count">{{ cu.total_units }}</span>{% endif %}</button>
+    <button class="kp-tab" data-tab="visual-beats">画面点{% if vb %}<span class="kp-tab-count">{{ vb.total_visual_beats }}</span>{% endif %}</button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词{% if ip %}<span class="kp-tab-count">{{ ip.total_prompts }}</span>{% endif %}</button>
+    <button class="kp-tab" data-tab="timeline" {% if not tl %}style="opacity:0.5;"{% endif %}>时间线{% if tl %}<span class="kp-tab-count">{{ tl._beat_count }}/{{ tl._audio_count }}</span>{% endif %}</button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    {% if script %}
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">{{ script.full_script or '' }}</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('{{ book_name }}', {{ kp_id }})">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>{{ script.book_name }}</dd>
+            <dt>章节</dt><dd>{{ script.chapter or '-' }}</dd>
+            <dt>来源</dt><dd class="kp-side-tag">{{ script.source_scope }}</dd>
+            <dt>时长</dt><dd>{{ script.estimated_video_length or script.suggested_video_length }}</dd>
+            <dt>字数</dt><dd>{{ script.full_script | length if script.full_script else 0 }}</dd>
+          </dl>
+        </div>
+        {% if script.opening %}
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 {{ script.opening_mode or '?' }}</div>
+          <p class="kp-side-card-text">{{ script.opening[:200] }}{% if script.opening | length > 200 %}…{% endif %}</p>
+        </div>
+        {% endif %}
+        {% if script.structure_overview %}
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">结构概览</div>
+          <p class="kp-side-card-text">{{ script.structure_overview[:150] }}{% if script.structure_overview | length > 150 %}…{% endif %}</p>
+        </div>
+        {% endif %}
+      </aside>
+    </div>
+    {% else %}
+    <div class="kp-empty">
+      <div class="kp-empty-icon">◎</div>
+      <p>未找到脚本文件（script.json / script_safe.json / script_edited.json）</p>
+      <a href="/work?book={{ book_name }}&kp_id={{ kp_id }}" class="v0-btn v0-btn-primary" style="margin-top:1rem;">去生成讲稿</a>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    {% if cu and cu.content_units %}
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">{{ cu.total_units }}</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      {% if cu.segmentation_principle %}
+      <p class="kp-summary-desc">{{ cu.segmentation_principle[:180] }}{% if cu.segmentation_principle | length > 180 %}…{% endif %}</p>
+      {% endif %}
+    </div>
+    <div class="kp-unit-list">
+      {% for u in cu.content_units %}
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#{{ u.unit_id }}</span>
+          <span class="kp-unit-stage">{{ u.stage or '-' }}</span>
+          <span class="kp-unit-type">{{ u.unit_type or '段落' }}</span>
+          <span class="kp-unit-time">{{ u.estimated_reading_seconds }}s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          {% if u.core_meaning %}<div class="kp-unit-field"><span class="kp-unit-field-label">核心含义</span><span>{{ u.core_meaning }}</span></div>{% endif %}
+          {% if u.function_in_script %}<div class="kp-unit-field"><span class="kp-unit-field-label">功能</span><span>{{ u.function_in_script }}</span></div>{% endif %}
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">{{ u.text }}</span></div>
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="kp-empty">
+      <div class="kp-empty-icon">◎</div>
+      <p>尚未生成内容单元，请先运行「内容单元切分」步骤。</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    {% if vb and vb.visual_beats %}
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">{{ vb.total_visual_beats }}</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      {% if vb.visual_extraction_principle %}
+      <p class="kp-summary-desc">{{ vb.visual_extraction_principle[:180] }}{% if vb.visual_extraction_principle | length > 180 %}…{% endif %}</p>
+      {% endif %}
+    </div>
+    <div class="kp-beat-list">
+      {% for b in vb.visual_beats %}
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat {{ b.beat_id }}</span>
+          <span class="kp-beat-type kp-badge-type-{{ b.visual_type or 'concept' }}">{{ b.visual_type or 'concept' }}</span>
+          <span class="kp-beat-stage">{{ b.stage or '-' }}</span>
+          <span class="kp-beat-time">{{ b.estimated_display_seconds }}s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>{{ b.core_message }}</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>{{ b.visual_reason }}</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>{{ b.visual_goal }}</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">{{ (b.covered_text or '')[:400] }}{% if (b.covered_text or '') | length > 400 %}…{% endif %}</span></div>
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="kp-empty">
+      <div class="kp-empty-icon">◎</div>
+      <p>尚未生成画面点，请先运行「画面点提取」步骤。</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    {% if ip and ip['items'] %}
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">{{ ip.total_prompts }}</span>
+        <span class="kp-summary-label">图片提示词</span>
+      </div>
+      {% if ip.style %}
+      <span class="kp-summary-style-badge">{{ ip.style[:60] }}{% if ip.style | length > 60 %}…{% endif %}</span>
+      {% endif %}
+      <div class="kp-summary-stats">
+        {% for status, count in ip._status_counts.items() %}
+        <span class="kp-status-pill kp-pill-{{ status }}">{{ status }}: {{ count }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="kp-prompt-grid">
+      {% for item in ip['items'] %}
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat {{ item.beat_id }}</span>
+          <span class="kp-prompt-stage">{{ item.stage }}</span>
+          <span class="kp-prompt-type">{{ item.visual_type }}</span>
+          <span class="kp-prompt-status kp-st-{{ item.image_status or 'waiting' }}">{{ item.image_status or '等待' }}</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>{{ item.core_message }}</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>{{ item.visual_goal }}</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>{{ item.image_prompt }}</p>
+        </div>
+        {% if item.negative_prompt %}
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>{{ item.negative_prompt[:120] }}{% if item.negative_prompt | length > 120 %}…{% endif %}</p>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="kp-empty">
+      <div class="kp-empty-icon">◎</div>
+      <p>尚未生成图片提示词，请先运行「图片提示词生成」步骤。</p>
+    </div>
+    {% endif %}
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    {% if tl %}
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">总时长</div>
+        <div style="font-size:1.5rem;font-weight:700;">{{ tl.total_duration or tl.total_duration_seconds | default('?') }}</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">画面节拍</div>
+        <div style="font-size:1.5rem;font-weight:700;">{{ tl._beat_count or tl.total_beats or '?' }}</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">音频段</div>
+        <div style="font-size:1.5rem;font-weight:700;">{{ tl._audio_count or tl.total_audio_segments or '?' }}</div>
+      </div>
+    </div>
+
+    {% set beats = tl.beats or tl.timeline or [] %}
+    {% if beats %}
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">画面时间线（{{ beats | length }} 个节拍）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      {% for beat in beats %}
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid {% if beat.image_status in ('done','success') %}var(--brand){% else %}var(--border){% endif %};margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#{{ beat.beat or loop.index }}</span>
+            {% if beat.visual_type %}<span class="kp-unit-tag">{{ beat.visual_type }}</span>{% endif %}
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            {% if beat.start_seconds is defined %}{{ (beat.start_seconds | int // 60) }}分{{ (beat.start_seconds | int % 60) }}秒{% endif %}
+            {% if beat.end_seconds is defined %} -> {{ (beat.end_seconds | int // 60) }}分{{ (beat.end_seconds | int % 60) }}秒{% endif %}
+            {% if beat.duration_seconds is defined %}{{ (beat.duration_seconds | int // 60) }}分{{ (beat.duration_seconds | int % 60) }}秒{% endif %}
+          </div>
+        </div>
+        {% if beat.core_message %}
+        <div style="font-size:0.8rem;margin-top:0.3rem;">{{ beat.core_message | truncate(100) }}</div>
+        {% endif %}
+        {% if beat.image_prompt %}
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> {{ beat.image_prompt | truncate(150) }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% set segments = tl.audio_segments or tl.segments or [] %}
+    {% if segments %}
+    <div style="font-size:0.9rem;font-weight:600;margin:1rem 0 0.5rem;">音频片段（{{ segments | length }} 段）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      {% for seg in segments %}
+      <div class="kp-unit-card" style="display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0.75rem;">
+        <span class="kp-unit-num" style="min-width:2rem;">#{{ seg.index or loop.index }}</span>
+        <div style="flex:1;font-size:0.8rem;">{{ seg.text_preview or seg.text or '' | truncate(80) }}</div>
+        <div style="text-align:right;font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">{% if seg.duration %}{{ seg.duration | int // 60 }}分{{ seg.duration | int % 60 }}秒{% else %}?{% endif %}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if not beats and not segments %}
+    <div class="kp-empty"><p>时间线数据为空</p></div>
+    {% endif %}
+    {% else %}
+    <div class="kp-empty">
+      <div class="kp-empty-icon">@</div>
+      <p>timeline.json 不存在。请先运行「时间线组装」步骤。</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        {% if qc %}
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score {{ 'kp-score-pass' if qc.passed else 'kp-score-fail' }}">
+            {{ qc.overall_score or '?' }}分
+          </span>
+        </div>
+        <div class="kp-review-verdict {{ 'kp-verdict-pass' if qc.passed else 'kp-verdict-fail' }}">
+          {{ 'PASSED' if qc.passed else 'FAILED' }}
+        </div>
+        {% if qc.editor_conclusion %}
+        <p class="kp-review-conclusion">{{ qc.editor_conclusion }}</p>
+        {% endif %}
+        {% if qc.dimension_scores %}
+        <div class="kp-dim-table">
+          {% for k, v in qc.dimension_scores.items() %}
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">{{ k }}</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:{{ v * 5 }}%"></div>
+            </div>
+            <span class="kp-dim-val">{{ v }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if qc.main_problems %}
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            {% for p in qc.main_problems %}
+            <li class="kp-review-list-item kp-issue-warn">{{ p }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% if qc.must_fix %}
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            {% for m in qc.must_fix %}
+            <li class="kp-review-list-item kp-issue-danger">{{ m }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">quality_check.json 不存在</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        {% if sc %}
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+          {% set risk = sc.risk_level or 'unknown' %}
+          <span class="kp-risk-badge kp-risk-{{ risk }}">
+            {{ risk }}
+          </span>
+        </div>
+        <div class="kp-review-verdict {{ 'kp-verdict-pass' if sc.passed else 'kp-verdict-fail' }}">
+          {{ 'PASSED' if sc.passed else 'FAILED' }}
+        </div>
+        {% if sc.summary or sc.editor_conclusion %}
+        <p class="kp-review-conclusion">{{ sc.summary or sc.editor_conclusion }}</p>
+        {% endif %}
+        {% if sc.issues %}
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">问题</div>
+          <ul class="kp-review-list">
+            {% for iss in sc.issues %}
+            <li class="kp-review-list-item kp-issue-{{ iss.severity or 'warn' }}">
+              <span class="kp-issue-sev">[{{ iss.severity }}]</span>
+              <span>{{ iss.issue_type }}: {{ iss.original_text[:80] }}{% if iss.original_text | length > 80 %}…{% endif %}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('{{ book_name }}', {{ kp_id }})">
+        <option value="">-- 选择 JSON 文件 --</option>
+        {% for fname, exists in detail.files.items() %}
+        {% if exists %}
+        <option value="{{ fname }}">{{ fname }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+{% endblock %}

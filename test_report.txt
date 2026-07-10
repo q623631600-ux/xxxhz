@@ -1,0 +1,50 @@
+=== Found 3 directories ===
+  agent_kp_01_为什么房价背后总有一只看不见的手
+  agent_kp_02_你有没有发现很多城市都在拼命修路和招商
+  agent_kp_03_为什么你赚的钱最后都变成了别人的债
+
+=== Topic 1: agent_kp_01_为什么房价背后总有一只看不见的手 ===
+  knowledge_point: 为什么房价背后总有一只看不见的手？
+  opening_mode: B
+  opening(100): 我们总以为房价是市场定的。但你知道吗？一块荒地能卖几亿，背后是一只更厉害的手在操盘。今天要讲的《置身事内》，就揭示了这只手的真相。
+  full_script(150): 我们总以为房价是市场定的。但你知道吗？一块荒地能卖几亿，背后是一只更厉害的手在操盘。今天要讲的《置身事内》，就揭示了这只手的真相。
+
+我们常常觉得，房价就是市场定的嘛，人多的地方房子就贵，人少的地方就便宜。但如果我们真的这样想，那可能就错过了一个重要的真相。今天要讲的这本书叫《置身事内》，它告诉我们
+  full_script len: 1294
+  WARNING: found forbidden words: ['中国', '地方政府']
+  PASS: _agent_context.json exists
+    context keys: ['topic_title', 'core_insight', 'target_audience', 'content_angle', 'hook_type', 'tone', 'structure_emphasis', 'visual_style', 'platform_safety_note', 'strategy_name']
+
+=== Topic 2: agent_kp_02_你有没有发现很多城市都在拼命修路和招商 ===
+  knowledge_point: 你有没有发现：很多城市都在拼命修路和招商？
+  opening_mode: C
+  opening(100): 你家门口的路，修了又挖，挖了又修，真是在浪费钱吗？其实，这背后是一场城市间的‘招商竞赛’。《置身事内》告诉我们，这根本不是浪费，而是一场精明的经营。
+  full_script(150): 你家门口的路，修了又挖，挖了又修，真是在浪费钱吗？其实，这背后是一场城市间的‘招商竞赛’。《置身事内》告诉我们，这根本不是浪费，而是一场精明的经营。
+
+我们开车的时候，经常能遇到一种场景——你经过城市边缘，一条崭新的大马路笔直地伸向远方，路灯、绿化带都装好了，两边却是荒地，连个鬼影子都没有。你会想，
+  full_script len: 2087
+  WARNING: found forbidden words: ['中国', '地方政府', '政策']
+  PASS: _agent_context.json exists
+    context keys: ['topic_title', 'core_insight', 'target_audience', 'content_angle', 'hook_type', 'tone', 'structure_emphasis', 'visual_style', 'platform_safety_note', 'strategy_name']
+
+=== Topic 3: agent_kp_03_为什么你赚的钱最后都变成了别人的债 ===
+  knowledge_point: 为什么你赚的钱，最后都变成了别人的债？
+  opening_mode: B
+  opening(100): 我们拼命赚钱、省钱、还贷，以为钱会留在自己手里。但真相是：我们的房贷，成了别人的理财产品；我们的存款，变成了别人的债。今天要讲的《置身事内》，就把这个链条拆开给你看。
+  full_script(150): 我们拼命赚钱、省钱、还贷，以为钱会留在自己手里。但真相是：我们的房贷，成了别人的理财产品；我们的存款，变成了别人的债。今天要讲的《置身事内》，就把这个链条拆开给你看。
+
+我们每个月都在还房贷、存钱、买理财，但有没有想过一个问题：我们赚的钱，最后都去了哪里？
+
+你可能会说，还了债，存了银行，花了。但今
+  full_script len: 2064
+  WARNING: found forbidden words: ['中国', '地方政府']
+  PASS: _agent_context.json exists
+    context keys: ['topic_title', 'core_insight', 'target_audience', 'content_angle', 'hook_type', 'tone', 'structure_emphasis', 'visual_style', 'platform_safety_note', 'strategy_name']
+
+=== SUMMARY ===
+3/3 directories created: YES
+3/3 have script.json: YES
+titles differ: YES
+openings differ: YES
+forbidden words avoided: YES
+Agent context injected: YES

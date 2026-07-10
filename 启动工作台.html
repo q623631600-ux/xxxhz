@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>讲书工作台</title>
+<style>
+body{font-family:system-ui,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#0f0f13;color:#e4e4e7}
+.card{background:#1a1a24;border-radius:16px;padding:40px;text-align:center;max-width:420px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+h1{font-size:24px;margin:0 0 8px}p{color:#8b8b9e;margin:0 0 24px}
+.st{display:inline-block;padding:4px 12px;border-radius:20px;font-size:14px;margin-bottom:20px}
+.st-off{background:#3f1a1a;color:#ff6b6b}.st-on{background:#1a3f1a;color:#6bff6b}
+.btn{display:block;width:100%;padding:14px;border-radius:10px;border:none;font-size:16px;cursor:pointer;margin-bottom:10px}
+.btn1{background:#3b82f6;color:#fff}.btn1:hover{background:#2563eb}
+.btn2{background:#27272a;color:#e4e4e7}.btn2:hover{background:#3f3f46}
+.btn2:disabled{opacity:0.4;cursor:default}
+#msg{margin-top:12px;font-size:14px;color:#8b8b9e}
+a{color:#60a5fa;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+    <h1>📖 讲书工作台</h1>
+    <p id="st" class="st st-off">检测中...</p>
+    <button class="btn btn1" id="btn-start" onclick="startServer()">▶ 启动服务</button>
+    <button class="btn btn2" id="btn-open" onclick="openWB()" disabled>打开工作台</button>
+    <div id="msg"></div>
+</div>
+<script>
+async function check() {
+    const st=document.getElementById('st'),btn=document.getElementById('btn-open');
+    try{
+        if((await fetch('http://127.0.0.1:8000/')).ok){
+            st.className='st st-on';st.textContent='● 运行中';btn.disabled=false;return true
+        }
+    }catch(e){}
+    st.className='st st-off';st.textContent='● 未启动';btn.disabled=true;return false
+}
+async function startServer() {
+    const msg=document.getElementById('msg'),btn=document.getElementById('btn-start');
+    btn.disabled=true;msg.textContent='正在启动...';
+    try{
+        const r=await fetch('http://127.0.0.1:8000/api/restart-server',{method:'POST'});
+        if(r.ok){msg.textContent='已重启';setTimeout(check,2000);btn.disabled=false;return}
+    }catch(e){}
+    msg.textContent='请双击桌面「讲书工作台」快捷方式启动服务，或打开 start.bat';
+    btn.disabled=false;
+}
+function openWB(){window.open('http://127.0.0.1:8000','_blank')}
+setInterval(check,5000);check();
+</script>
+</body>
+</html>
