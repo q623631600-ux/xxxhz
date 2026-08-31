@@ -114,7 +114,7 @@ class ContentPlanner:
         log.success(f"大纲生成完成：{total} 个章节，{kp_count} 个知识点")
         return plan
 
-    def _normalize_plan(self, plan: dict) -> dict:
+    def _normalize_plan(self, plan: dict, keep_all_kps: bool = False) -> dict:
         """
         标准化：扁平格式（core_insight 字段）→ 兼容的数组格式（content_outline[].knowledge_points[]）
         也兼容旧版数组格式（如果 LLM 仍然输出数组）
@@ -125,7 +125,7 @@ class ContentPlanner:
             # 仅保留第一个章节的第一个知识点
             first_section = sections[0]
             kps = first_section.get("knowledge_points", [])
-            if len(kps) > 1:
+            if len(kps) > 1 and not keep_all_kps:
                 log.warn(f"  检测到 {len(kps)} 个知识点，仅保留第一个（单视频策略）")
                 first_section["knowledge_points"] = [kps[0]]
             elif len(kps) == 0:
@@ -146,11 +146,16 @@ class ContentPlanner:
                         "specific_book_content": "",
                         "suggested_video_length": "8-12分钟",
                     }]
-            # 重新编号 ID
-            for i, kp in enumerate(first_section.get("knowledge_points", [])):
-                kp["id"] = i + 1
-            plan["content_outline"] = [first_section]
-            plan["total_knowledge_points"] = 1
+            # 重新编号 ID（加载已有Plan时保持原ID不变）
+            if not keep_all_kps:
+                for i, kp in enumerate(first_section.get("knowledge_points", [])):
+                    kp["id"] = i + 1
+                plan["content_outline"] = [first_section]  # 新生成Plan只保留首个章节
+                plan["total_knowledge_points"] = 1
+            else:
+                # 加载已有Plan：保留所有章节和知识点，不重新编号
+                total = sum(len(s.get("knowledge_points", [])) for s in sections)
+                plan["total_knowledge_points"] = total
             return plan
 
         # 扁平格式：从 core_insight 字段构建数组
@@ -191,13 +196,13 @@ class ContentPlanner:
         return path
 
     def load_plan(self, book_name: str) -> dict | None:
-        """加载已有大纲，自动标准化兼容新旧格式"""
+        """加载已有大纲，自动标准化兼容新旧格式。加载时保留所有知识点。"""
         output_dir = OUTPUT_DIR / self._safe_name(book_name)
         path = output_dir / "knowledge_plan.json"
         if path.exists():
             plan = json.loads(path.read_text(encoding="utf-8"))
-            # 标准化：兼容旧版 core_insight 扁平格式
-            normalized = self._normalize_plan(plan)
+            # 标准化：兼容旧版 core_insight 扁平格式（加载时保留所有KP）
+            normalized = self._normalize_plan(plan, keep_all_kps=True)
             # 如果文件格式被标准化过（比如从 core_insight 转为 content_outline），写回磁盘
             if normalized.get("_format_upgraded"):
                 normalized.pop("_format_upgraded", None)

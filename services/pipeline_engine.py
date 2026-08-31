@@ -58,6 +58,13 @@ PIPELINE_STEPS = [
         "depends_on": [],
     },
     {
+        "id": "generate_hooks",
+        "name": "生成钩子候选",
+        "description": "量产10条钩子→选定主钩子（前3秒留人）",
+        "output_file": "hook_candidates.json",
+        "depends_on": ["plan_book"],
+    },
+    {
         "id": "generate_script",
         "name": "生成知识点脚本",
         "description": "深度讲解脚本 + 质量审核 + 安全审核",
@@ -162,17 +169,39 @@ class PipelineEngine:
     # 步骤1: 规划大纲
     # ================================================================
 
-    def run_plan_book(self, book_name: str, toc: str = "", source: str = "") -> dict:
-        """执行：生成选题大纲（每本书3-4个知识点）"""
+    def run_plan_book(self, book_name: str, toc: str = "", source: str = "",
+                       focus: str = "") -> dict:
+        """执行：生成选题大纲（每本书3-4个知识点），自动注入增长信号"""
         step_id = "plan_book"
         kp_dir = OUTPUT_DIR / self._safe_name(book_name)
-        write_step_progress(kp_dir, step_id, 0, "正在调用 LLM 生成大纲...")
+        write_step_progress(kp_dir, step_id, 0, "正在加载增长信号...")
         self._set_state(book_name, 0, step_id, status=STATUS_RUNNING, started_at=datetime.now().isoformat())
 
         try:
             from services.content_planner import ContentPlanner
+            from services.hook_generator import HookGenerator
+
+            # 读取增长信号并注入到 focus
+            growth_signals = HookGenerator.build_growth_signals()
+            growth_context = ""
+            if growth_signals and "暂无" not in growth_signals:
+                growth_context = (
+                    "\n\n## 📈 增长信号（历史验证的高表现策略）\n"
+                    + growth_signals
+                    + "\n\n请参考以上历史数据进行选题规划，优先使用已验证的高表现结构和开场类型。"
+                )
+                log.info(f"  已注入增长信号到规划阶段 ({len(growth_signals)} 字符)")
+                write_step_progress(kp_dir, step_id, 5, "增长信号已加载")
+
+            enhanced_focus = focus
+            if growth_context:
+                enhanced_focus = (focus + growth_context) if focus else growth_context
+
+            write_step_progress(kp_dir, step_id, 10, "正在调用 LLM 生成大纲...")
             planner = ContentPlanner()
-            plan = planner.plan(book_name, toc_text=toc, source_text=source)
+            plan = planner.plan(book_name, toc_text=toc, source_text=source,
+                               focus_hint=enhanced_focus,
+                               agent_context_block=growth_context)
             write_step_progress(kp_dir, step_id, 70, "大纲已生成，正在保存...")
 
             output_dir = OUTPUT_DIR / self._safe_name(book_name)
@@ -198,6 +227,87 @@ class PipelineEngine:
             error = f"{e}\n{traceback.format_exc()}"
             write_step_progress(kp_dir, step_id, 0, f"失败: {str(e)[:100]}")
             self._set_state(book_name, 0, step_id, status=STATUS_FAILED, error=error)
+            return {"success": False, "error": str(e)}
+
+    # ================================================================
+    # 步骤1.5: 生成钩子候选
+    # ================================================================
+
+    def run_generate_hooks(self, book_name: str, kp_id: int) -> dict:
+        """执行：生成 10 条钩子候选 + 自动选最佳"""
+        step_id = "generate_hooks"
+        kp_id = int(kp_id)
+        self._set_state(book_name, kp_id, step_id, status=STATUS_RUNNING, started_at=datetime.now().isoformat())
+
+        try:
+            from services.hook_generator import HookGenerator
+            from services.content_planner import ContentPlanner
+
+            # 加载大纲 + 查找 KP
+            planner = ContentPlanner()
+            plan = planner.load_plan(book_name)
+            if not plan:
+                raise ValueError("未找到大纲，请先运行第1步")
+
+            kp_info = planner.find_kp(plan, kp_id)
+            if not kp_info:
+                raise ValueError(f"未找到知识点 #{kp_id}")
+
+            kp_dir = self._find_kp_dir(book_name, kp_id) or (
+                OUTPUT_DIR / self._safe_name(book_name)
+                / f"kp_{kp_id:03d}_{self._safe_name(kp_info.get('title', ''))[:50]}"
+            )
+            kp_dir.mkdir(parents=True, exist_ok=True)
+            write_step_progress(kp_dir, step_id, 10, "正在生成 10 条候选钩子...")
+
+            gen = HookGenerator()
+
+            # 读取增长信号
+            growth_signals = HookGenerator.build_growth_signals()
+            if growth_signals:
+                log.info(f"  已加载增长信号 ({len(growth_signals)} 字符)")
+
+            # 幂等检查：已生成则跳过
+            existing = gen.load_candidates(kp_dir)
+            if existing.get("candidates") and len(existing["candidates"]) >= 5:
+                hooks = existing["candidates"]
+                log.info(f"  幂等跳过：已有 {len(hooks)} 条候选钩子")
+                write_step_progress(kp_dir, step_id, 50, f"已有 {len(hooks)} 条候选钩子，跳过生成")
+            else:
+                hooks = gen.generate_hooks(kp_info, growth_signals=growth_signals)
+                if not hooks:
+                    raise RuntimeError("钩子生成为空")
+                gen.save_candidates(hooks, kp_dir, kp_info)
+                write_step_progress(kp_dir, step_id, 60, f"已生成 {len(hooks)} 条候选钩子")
+
+            # 自动评分选最佳（如果没有选定过）
+            if not existing.get("primary_hook"):
+                write_step_progress(kp_dir, step_id, 70, "正在评分并选定最佳钩子...")
+                result = gen.auto_select(kp_dir, kp_info)
+                primary = result.get("primary_hook", hooks[0] if hooks else "")
+            else:
+                primary = existing["primary_hook"]
+                write_step_progress(kp_dir, step_id, 70, "已有选定钩子，跳过评分")
+
+            result = {
+                "success": True,
+                "kp_id": kp_id,
+                "total_candidates": len(hooks),
+                "primary_hook": primary[:100] if primary else "",
+                "has_selected": bool(primary),
+                "kp_dir": str(kp_dir),
+            }
+            write_step_progress(kp_dir, step_id, 100, "钩子生成完成")
+            self._set_state(book_name, kp_id, step_id, status=STATUS_COMPLETED,
+                            finished_at=datetime.now().isoformat(), output=result)
+            return result
+
+        except Exception as e:
+            error = f"{e}\n{traceback.format_exc()}"
+            kp_dir = self._find_kp_dir(book_name, kp_id)
+            if kp_dir:
+                write_step_progress(kp_dir, step_id, 0, f"失败: {str(e)[:100]}")
+            self._set_state(book_name, kp_id, step_id, status=STATUS_FAILED, error=error)
             return {"success": False, "error": str(e)}
 
     # ================================================================
@@ -227,14 +337,32 @@ class PipelineEngine:
                 raise ValueError(f"未找到知识点 #{kp_id}")
 
             kp_dir = self._find_kp_dir(book_name, kp_id) or (OUTPUT_DIR / self._safe_name(book_name) / f"kp_{kp_id:03d}_{self._safe_name(kp_info.get('title', ''))[:50]}")
+            kp_dir.mkdir(parents=True, exist_ok=True)
             write_step_progress(kp_dir, step_id, 5, "正在生成脚本结构...")
 
-            # 生成脚本（深度注入 Agent Strategy Context）
+            # 加载主钩子（如有）
+            primary_hook = ""
+            try:
+                from services.hook_generator import HookGenerator
+                hg = HookGenerator()
+                primary_hook = hg.get_primary_hook(kp_dir)
+                if primary_hook:
+                    kp_info["primary_hook"] = primary_hook
+                    log.info(f"  已注入主钩子: {primary_hook[:80]}...")
+                    write_step_progress(kp_dir, step_id, 8, f"主钩子已注入")
+            except Exception as e:
+                log.warn(f"  钩子加载失败（跳过）: {e}")
+
+            # 生成脚本（深度注入 Agent Strategy Context + 主钩子）
             agent_context_block = plan.get("_agent_context_block", "")
             gen = ScriptGenerator()
             write_step_progress(kp_dir, step_id, 15, "正在调用 LLM 撰写脚本（可能需要1-3分钟）...")
             script = gen.generate_knowledge_point(kp_info, mode=mode,
                                                   agent_context_block=agent_context_block)
+
+            # 在脚本中记录主钩子
+            if primary_hook and "primary_hook" not in script:
+                script["primary_hook"] = primary_hook
 
             # 保存目录
             kp_dir.mkdir(parents=True, exist_ok=True)
@@ -606,6 +734,16 @@ class PipelineEngine:
             results["_action"] = "请选择知识点 ID 继续"
             return {"success": True, "steps": results}
 
+        # 第1.5步：生成钩子
+        if not _done("generate_hooks"):
+            r_hook = self.run_generate_hooks(book_name, kp_id)
+            results["generate_hooks"] = r_hook
+            if not r_hook.get("success"):
+                # 钩子失败不阻塞流程（有默认开场白兜底）
+                results["generate_hooks"]["_warning"] = "钩子生成失败，将使用默认开场白"
+        else:
+            results["generate_hooks"] = {"success": True, "skipped": True, "reason": "已存在"}
+
         # 第2步：生成脚本
         if not _done("generate_script"):
             from pathlib import Path as _P
@@ -804,12 +942,30 @@ class PipelineEngine:
         # 查找 KP 目录
         kp_dir = self._find_kp_dir(book_name, kp_id)
         if not kp_dir:
-            for step_id in ["generate_script", "content_units", "visual_beats", "image_prompts"]:
+            for step_id in ["generate_hooks", "generate_script", "content_units", "visual_beats", "image_prompts"]:
                 steps_status[step_id] = {"status": STATUS_PENDING}
             return steps_status
 
         def _exists(*names):
             return any((kp_dir / n).exists() for n in names)
+
+        # 步骤1.5: generate_hooks → hook_candidates.json
+        hooks_exists = (kp_dir / "hook_candidates.json").exists()
+        has_primary = False
+        hook_text = ""
+        if hooks_exists:
+            try:
+                hc = json.loads((kp_dir / "hook_candidates.json").read_text("utf-8"))
+                has_primary = bool(hc.get("primary_hook"))
+                hook_text = (hc.get("primary_hook") or "")[:80]
+            except Exception:
+                pass
+        steps_status["generate_hooks"] = {
+            "status": STATUS_COMPLETED if hooks_exists and has_primary else (STATUS_RUNNING if hooks_exists else STATUS_PENDING),
+            "has_hooks": hooks_exists,
+            "has_primary": has_primary,
+            "primary_hook": hook_text,
+        }
 
         # 步骤2: generate_script → script.json / script_safe.json / script_edited.json
         script_exists = _exists("script.json", "script_safe.json", "script_edited.json")
@@ -1006,13 +1162,29 @@ class PipelineEngine:
         kps = []
         for section in plan.get("content_outline", []):
             for kp in section.get("knowledge_points", []):
+                kp_id = kp.get("id")
+                kp_dir = kp.get("kp_dir", "")
+                # 检查是否有钩子
+                has_hooks = False
+                has_primary = False
+                if kp_dir:
+                    try:
+                        hc_path = Path(kp_dir) / "hook_candidates.json"
+                        if hc_path.exists():
+                            hc = json.loads(hc_path.read_text("utf-8"))
+                            has_hooks = bool(hc.get("candidates"))
+                            has_primary = bool(hc.get("primary_hook"))
+                    except Exception:
+                        pass
                 kps.append({
-                    "id": kp.get("id"),
+                    "id": kp_id,
                     "title": kp.get("title", ""),
                     "chapter": section.get("chapter", ""),
                     "length": kp.get("suggested_video_length", ""),
                     "has_script": kp.get("has_script", False),
-                    "kp_dir": kp.get("kp_dir", ""),
+                    "has_hooks": has_hooks,
+                    "has_primary_hook": has_primary,
+                    "kp_dir": kp_dir,
                 })
         return kps
 

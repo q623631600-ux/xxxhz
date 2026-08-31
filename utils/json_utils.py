@@ -6,13 +6,42 @@ import re
 from utils.logger import log
 
 
+def _strip_llm_preamble(text: str) -> str:
+    """剥离 LLM 常见的自然语言前缀（"好的，"、"以下是" 等），从第一个 { 或 [ 开始"""
+    # 尝试找 JSON 起始位置
+    brace = text.find("{")
+    bracket = text.find("[")
+    # 取最先出现的
+    start = -1
+    if brace >= 0 and bracket >= 0:
+        start = min(brace, bracket)
+    elif brace >= 0:
+        start = brace
+    elif bracket >= 0:
+        start = bracket
+
+    if start > 0:
+        stripped = text[start:]
+        # 只剥离确实有自然语言前缀的情况（前缀不能太长，否则可能是其他问题）
+        if len(text[:start].strip()) < 200:
+            return stripped
+    return text
+
+
 def extract_json(text: str, warn_on_repair: bool = True) -> dict:
     """
     从 LLM 回复中提取 JSON，支持：
     - 纯 JSON 字符串
     - markdown ```json 代码块
+    - LLM 自然语言前缀（"好的，"、"以下是" 等）
     - 被截断的 JSON（自动修复补全）
     """
+    if not text or not text.strip():
+        raise ValueError(f"无法解析 JSON：LLM 返回空内容")
+
+    # 预处理：剥离 LLM 常见自然语言前缀
+    text = _strip_llm_preamble(text)
+
     # 直接解析
     try:
         return json.loads(text)

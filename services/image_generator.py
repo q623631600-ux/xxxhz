@@ -671,9 +671,14 @@ class ImageGenerator:
                 if resp.status_code in (401, 402, 403):
                     raise HardError(f"HTTP {resp.status_code}: {error_detail}")
 
-                # 内容审核拒绝 → 不重试
+                # 内容审核拒绝 → 允许重试1次（可能只是某个词触发了审核，换个请求可能通过）
                 if "content_filter" in error_detail.lower() or "safety" in error_detail.lower():
-                    raise RuntimeError(f"[内容审核] HTTP {resp.status_code}: {error_detail}")
+                    if attempt == 0:
+                        log.info(f"    内容审核被拒，{self.REQUEST_INTERVAL}s 后重试...")
+                        time.sleep(self.REQUEST_INTERVAL)
+                        last_error = RuntimeError(f"[内容审核] HTTP {resp.status_code}: {error_detail}")
+                        continue
+                    raise RuntimeError(f"[内容审核-重试失败] HTTP {resp.status_code}: {error_detail}")
 
                 # 429 Rate Limit → 允许重试1次
                 if resp.status_code == 429 and attempt == 0:
@@ -761,7 +766,13 @@ class ImageGenerator:
                 if sd.get("is_final"):
                     url = sd.get("result_url", "")
                     if not url:
-                        raise RuntimeError(f"任务完成但无 result_url: {sr.text[:300]}")
+                        error_text = sr.text[:300]
+                        # API返回final但没有url，通常是模型内部错误，允许重试
+                        if error_text:
+                            log.info(f"    任务完成但无图片，2s后重试: {error_text[:120]}")
+                            raise RuntimeError(f"任务完成但无 result_url: {error_text}")
+                        # 无任何返回内容，重试
+                        raise RuntimeError("任务完成但无 result_url（空响应）")
                     return url
                 if sd.get("state") == "failed":
                     raise RuntimeError(f"任务失败: {sd.get('error', sr.text[:300])}")

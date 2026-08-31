@@ -57,6 +57,11 @@ class ScriptGenerator:
         kp_title = kp_info.get("title", "")
         log.info(f"正在为「{kp_title}」生成深度讲解脚本...")
 
+        # 提取主钩子（由 pipeline_engine 从 hook_candidates.json 注入）
+        primary_hook = kp_info.get("primary_hook", "")
+        if primary_hook:
+            log.success(f"  发现主钩子: {primary_hook[:80]}...")
+
         # ====== Step 1: 生成结构 ======
         log.info("  [1/2] 生成脚本结构...")
         structure = self._generate_structure(kp_info, agent_context_block=agent_context_block)
@@ -90,8 +95,19 @@ class ScriptGenerator:
 
         # ====== Step 2.5: 生成开场白 ======
         log.info("  [2.5/3] 生成开场白...")
-        opening_data = self._generate_opening(kp_info, structure, agent_context_block=agent_context_block)
+        opening_data = self._generate_opening(kp_info, structure,
+                                              primary_hook=primary_hook,
+                                              agent_context_block=agent_context_block)
         opening_text = opening_data.get("opening", "").strip()
+
+        # 如果有主钩子但开场白没以它开头，前置钩子
+        if primary_hook and opening_text:
+            if not opening_text.startswith(primary_hook[:30]):
+                opening_text = primary_hook + " " + opening_text
+                log.info("  已将主钩子前置到开场白")
+        elif primary_hook and not opening_text:
+            opening_text = primary_hook
+
         if opening_text:
             full_with_opening = opening_text + "\n\n" + full_script_text
             log.success(f"  开场白生成完成（{len(opening_text)} 字）→ 已前置到正文")
@@ -130,6 +146,7 @@ class ScriptGenerator:
             "suggested_video_length": computed_length,
             "length_reason": structure.get("length_reason", kp_info.get("length_reason", "")),
             "script_structure": structure,
+            "primary_hook": primary_hook,
             "opening": opening_text,
             "opening_mode": opening_data.get("mode", ""),
             "full_script": full_with_opening,
@@ -277,19 +294,57 @@ class ScriptGenerator:
         return script
 
     def _generate_opening(self, kp_info: dict, structure: dict,
+                           primary_hook: str = "",
                            agent_context_block: str = "") -> dict:
-        """为脚本生成开场白（可选的第三步）"""
+        """为脚本生成开场白（可选的第三步）
+
+        如有 primary_hook 则使用 opening_generator.txt（更成熟的A/B/C模式），
+        并注入钩子作为第一句上下文。
+        无钩子时使用 opening_writer.txt（向后兼容）。
+        """
         try:
-            prompt_template = self._load_prompt("opening_writer.txt")
-            if not prompt_template.strip():
-                return {"opening": "", "mode": ""}
-            prompt = prompt_template.replace("{book_name}", kp_info.get("book_name", ""))
             kp_title = kp_info.get("title", "")
-            prompt = prompt.replace("{kp_title}", kp_title)
-            full_script = structure if isinstance(structure, str) else json.dumps(structure, ensure_ascii=False, indent=2)
-            prompt = prompt.replace("{full_script}", full_script[:3000])
-            response = self._call_llm(prompt, f"请为「{kp_title}」生成开场白。", max_tokens=2000)
-            return extract_json(response)
+
+            if primary_hook:
+                # 使用成熟的 opening_generator.txt，注入主钩子
+                prompt_template = self._load_prompt("opening_generator.txt")
+                if not prompt_template.strip():
+                    return {"opening": "", "mode": ""}
+                prompt = prompt_template.replace("{book_name}", kp_info.get("book_name", ""))
+                prompt = prompt.replace("{kp_title}", kp_title)
+                prompt = prompt.replace("{core_problem}", kp_info.get("core_problem", ""))
+                prompt = prompt.replace("{universal_relevance}",
+                                        kp_info.get("universal_relevance", kp_info.get("why_useful", "")))
+                structure_overview = ""
+                if isinstance(structure, dict):
+                    sections = structure.get("sections", structure.get("script_structure", {}).get("sections", []))
+                    if sections:
+                        structure_overview = " → ".join(s.get("title", "") for s in sections[:5])
+                prompt = prompt.replace("{structure_overview}", structure_overview[:500])
+
+                # 在 prompt 末尾注入主钩子信息
+                prompt += f"\n\n## 主钩子（开场第一句）\n已为你选定开场第一句：\n「{primary_hook}」\n\n请以这句话作为开场白的第一句（直接引用，不加前缀），然后自然地过渡到书籍主题。整篇开场白30-80字，包含这句钩子。"
+
+                response = self._call_llm(prompt, f"请为「{kp_title}」生成开场白（以主钩子开头）。", max_tokens=2000)
+                result = extract_json(response)
+                opening_text = result.get("opening", "").strip()
+
+                # 确保开场白以主钩子开头
+                if opening_text and not opening_text.startswith(primary_hook[:30]):
+                    opening_text = primary_hook + " " + opening_text
+                    result["opening"] = opening_text
+                return result
+            else:
+                # 无钩子时使用简单版（向后兼容）
+                prompt_template = self._load_prompt("opening_writer.txt")
+                if not prompt_template.strip():
+                    return {"opening": "", "mode": ""}
+                prompt = prompt_template.replace("{book_name}", kp_info.get("book_name", ""))
+                prompt = prompt.replace("{kp_title}", kp_title)
+                full_script = structure if isinstance(structure, str) else json.dumps(structure, ensure_ascii=False, indent=2)
+                prompt = prompt.replace("{full_script}", full_script[:3000])
+                response = self._call_llm(prompt, f"请为「{kp_title}」生成开场白。", max_tokens=2000)
+                return extract_json(response)
         except Exception as e:
             log.warn(f"开场白生成失败: {e}")
             return {"opening": "", "mode": ""}
@@ -328,6 +383,10 @@ class ScriptGenerator:
         return response.choices[0].message.content
 
     def _extract_json(self, text: str) -> dict:
+        if not text or not text.strip():
+            raise ValueError(f"无法解析 JSON：LLM 返回空内容")
+        # 剥离 LLM 前缀
+        text = self._strip_llm_preamble(text)
         try:
             return json.loads(text)
         except (json.JSONDecodeError, TypeError):
@@ -349,6 +408,21 @@ class ScriptGenerator:
             log.warn("JSON 被截断，已自动修复")
             return result
         raise ValueError(f"无法解析 JSON:\n{text[:500]}")
+
+    def _strip_llm_preamble(self, text: str) -> str:
+        """剥离 LLM 常见的自然语言前缀"""
+        brace = text.find("{")
+        bracket = text.find("[")
+        start = -1
+        if brace >= 0 and bracket >= 0:
+            start = min(brace, bracket)
+        elif brace >= 0:
+            start = brace
+        elif bracket >= 0:
+            start = bracket
+        if start > 0 and len(text[:start].strip()) < 200:
+            return text[start:]
+        return text
 
     def _repair_truncated_json(self, text: str) -> dict | None:
         match = re.search(r"```(?:json)?\s*([\s\S]*?)```", text)

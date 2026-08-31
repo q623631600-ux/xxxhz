@@ -37,7 +37,7 @@ cp .env.example .env
 ```bash
 # Web 工作台
 python web_app.py
-# 访问 http://127.0.0.1:8001
+# 访问 http://127.0.0.1:8000
 
 # 或命令行模式
 python main.py --produce --book "书名"

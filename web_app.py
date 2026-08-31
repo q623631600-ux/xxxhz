@@ -383,6 +383,18 @@ def _do_generate_script(book_name: str, topic_id: int) -> dict:
 
     from services.script_generator import ScriptGenerator
     gen = ScriptGenerator()
+
+    # 加载主钩子（如有）
+    try:
+        from services.hook_generator import HookGenerator
+        hg = HookGenerator()
+        primary_hook = hg.get_primary_hook(draft_dir)
+        if primary_hook:
+            kp_info["primary_hook"] = primary_hook
+            log.info(f"  已注入主钩子: {primary_hook[:80]}...")
+    except Exception as e:
+        log.warn(f"  钩子加载失败（跳过）: {e}")
+
     try:
         script = gen.generate_knowledge_point(kp_info, agent_context_block=agent_context_block)
     except Exception as script_err:
@@ -1195,8 +1207,148 @@ async def api_pipeline_status(book_name: str, kp_id: int = 0):
 
 
 @app.post("/api/pipeline/{book_name}/run/plan")
-async def api_run_plan(book_name: str):
-    return await _run_in_background(engine.run_plan_book, book_name)
+async def api_run_plan(book_name: str, request: Request):
+    focus = ""
+    try:
+        body = await request.json()
+        focus = body.get("focus", "")
+    except Exception:
+        pass
+    return await _run_in_background(engine.run_plan_book, book_name, "", "", focus)
+
+
+# ============================================================
+# 增长信号 API
+# ============================================================
+
+@app.get("/api/growth/signals")
+async def api_growth_signals():
+    """获取当前增长信号摘要（供前端 UI 展示）"""
+    try:
+        from services.hook_generator import HookGenerator
+        raw_signals = HookGenerator.build_growth_signals()
+        has_signals = raw_signals and "暂无" not in raw_signals
+
+        # 解析关键信号
+        signals = {
+            "has_signals": has_signals,
+            "raw": raw_signals,
+            "summary": "无历史数据" if not has_signals else "已启用增长模式",
+        }
+
+        if has_signals:
+            import json as _json
+            sg_path = PROJECT_ROOT / "memory" / "self_growth_memory.json"
+            if sg_path.exists():
+                sg = _json.loads(sg_path.read_text(encoding="utf-8"))
+                signals["total_videos_analyzed"] = sg.get("total_videos_analyzed", 0)
+                signals["best_structure"] = sg.get("content_structures", {}).get("best", "")
+                signals["best_opening"] = sg.get("openings", {}).get("best", "")
+                structures = sg.get("content_structures", {}).get("rankings", [])
+                if structures:
+                    signals["top_structure"] = {
+                        "name": structures[0]["structure"],
+                        "pct_better": structures[0].get("pct_better_than_average", 0),
+                        "samples": structures[0].get("sample_count", 0),
+                    }
+
+            fb_path = PROJECT_ROOT / "memory" / "feedback_memory.json"
+            if fb_path.exists():
+                fb = _json.loads(fb_path.read_text(encoding="utf-8"))
+                prefs = fb.get("preferences", {})
+                signals["user_preferences"] = {
+                    "liked": prefs.get("liked_styles", []),
+                    "disliked": prefs.get("disliked_styles", []),
+                }
+
+        return {"success": True, "data": signals}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+# ============================================================
+# 钩子（Hook）API
+# ============================================================
+
+@app.post("/api/pipeline/{book_name}/run/hooks/{kp_id}")
+async def api_run_hooks(book_name: str, kp_id: int):
+    """生成 10 条候选钩子 + 自动选最佳"""
+    return await _run_in_background(engine.run_generate_hooks, book_name, kp_id)
+
+
+@app.get("/api/pipeline/{book_name}/hooks/{kp_id}")
+async def api_get_hooks(book_name: str, kp_id: int):
+    """获取候选钩子列表和选定状态"""
+    from services.hook_generator import HookGenerator
+    try:
+        kp_dir = engine._find_kp_dir(book_name, kp_id)
+        if not kp_dir:
+            return {"success": False, "error": "未找到知识点目录"}
+        hg = HookGenerator()
+        candidates = hg.load_candidates(kp_dir)
+        if not candidates or not candidates.get("candidates"):
+            return {"success": True, "data": {"candidates": [], "primary_hook": None, "primary_index": None, "has_selected": False}}
+        return {
+            "success": True,
+            "data": {
+                "candidates": candidates.get("candidates", []),
+                "primary_hook": candidates.get("primary_hook"),
+                "primary_index": candidates.get("primary_index"),
+                "has_selected": bool(candidates.get("primary_hook")),
+                "book_name": candidates.get("book_name", book_name),
+                "kp_title": candidates.get("kp_title", ""),
+            }
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.post("/api/pipeline/{book_name}/hooks/{kp_id}/select")
+async def api_select_hook(book_name: str, kp_id: int, request: Request):
+    """选定一条主钩子"""
+    from services.hook_generator import HookGenerator
+    try:
+        body = await request.json()
+        hook_index = int(body.get("hook_index", 0))
+        kp_dir = engine._find_kp_dir(book_name, kp_id)
+        if not kp_dir:
+            return {"success": False, "error": "未找到知识点目录"}
+        hg = HookGenerator()
+        result = hg.select_hook(kp_dir, hook_index)
+        return {
+            "success": True,
+            "data": {
+                "primary_hook": result.get("primary_hook"),
+                "primary_index": result.get("primary_index"),
+            }
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@app.post("/api/pipeline/{book_name}/hooks/{kp_id}/auto-select")
+async def api_auto_select_hook(book_name: str, kp_id: int):
+    """AI 自动评分选最佳钩子"""
+    from services.hook_generator import HookGenerator
+    from services.content_planner import ContentPlanner
+    try:
+        kp_dir = engine._find_kp_dir(book_name, kp_id)
+        if not kp_dir:
+            return {"success": False, "error": "未找到知识点目录"}
+        planner = ContentPlanner()
+        plan = planner.load_plan(book_name)
+        kp_info = planner.find_kp(plan, kp_id) if plan else {}
+        hg = HookGenerator()
+        result = hg.auto_select(kp_dir, kp_info or {})
+        return {
+            "success": True,
+            "data": {
+                "primary_hook": result.get("primary_hook"),
+                "primary_index": result.get("primary_index"),
+            }
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
 
 @app.post("/api/script-mode/{mode}")
@@ -1466,5 +1618,5 @@ if __name__ == "__main__":
     print(f"\n  讲书升级Agent Web 工作台")
     if dy_routes:
         print(f"  抖音数据分析: 已加载 ({len(dy_routes)} 个API路由)")
-    print(f"  访问: http://127.0.0.1:8001\n")
-    uvicorn.run(app, host="127.0.0.1", port=8001)
+    print(f"  访问: http://127.0.0.1:8000\n")
+    uvicorn.run(app, host="127.0.0.1", port=8000)

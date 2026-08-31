@@ -12,6 +12,7 @@ function selectKp(b, k) { var bookName = _safeDecodeURI(b); window.location.href
 
 var STEP_ROUTES = {
     plan_book: function(b) { return "/api/pipeline/" + encodeURIComponent(b) + "/run/plan"; },
+    generate_hooks: function(b, k) { return "/api/pipeline/" + encodeURIComponent(b) + "/run/hooks/" + k; },
     generate_script: function(b, k) { return "/api/pipeline/" + encodeURIComponent(b) + "/run/script/" + k; },
     content_units: function(b, k) { return "/api/pipeline/" + encodeURIComponent(b) + "/run/content-units/" + k; },
     visual_beats: function(b, k) { return "/api/pipeline/" + encodeURIComponent(b) + "/run/visual-beats/" + k; },
@@ -22,6 +23,207 @@ var STEP_ROUTES = {
     generate_subtitles: function(b, k) { return "/api/pipeline/" + encodeURIComponent(b) + "/run/generate-subtitles/" + k; },
     compose_final_video: function(b, k) { return "/api/pipeline/" + encodeURIComponent(b) + "/run/compose-final-video/" + k; },
 };
+
+// ================================================================
+// 钩子（Hook）功能
+// ================================================================
+
+function getCurrentBook() {
+    var u = new URLSearchParams(window.location.search);
+    return (typeof _safeDecodeURI !== 'undefined') ? _safeDecodeURI(u.get('book') || '') : (u.get('book') || '');
+}
+
+function getCurrentKpId() {
+    return parseInt(new URLSearchParams(window.location.search).get('kp_id') || '0');
+}
+
+function generateHooks() {
+    var bookName = getCurrentBook();
+    var kpId = getCurrentKpId();
+    if (!bookName || bookName === '__new__' || !kpId || kpId <= 0) {
+        showHookError('请先选择一个知识点');
+        return;
+    }
+    var btn = document.getElementById('btn-generate-hooks');
+    var status = document.getElementById('hook-status');
+    var errEl = document.getElementById('hook-error');
+    if (errEl) errEl.style.display = 'none';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ 生成中...'; }
+    if (status) status.textContent = '⏳ 正在调用 AI 生成 10 条候选钩子...';
+
+    fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/hooks/' + kpId, { method: 'POST' })
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+            if (btn) { btn.disabled = false; btn.textContent = '🎣 重新生成'; }
+            if (j.success) {
+                if (status) status.textContent = '';
+                loadHooks();
+            } else {
+                showHookError(j.error || '生成失败');
+            }
+        })
+        .catch(function(e) {
+            if (btn) { btn.disabled = false; btn.textContent = '🎣 生成钩子'; }
+            showHookError('请求失败: ' + e.message);
+        });
+}
+
+function showHookError(msg) {
+    var errEl = document.getElementById('hook-error');
+    var status = document.getElementById('hook-status');
+    if (errEl) { errEl.textContent = '❌ ' + msg; errEl.style.display = 'inline'; }
+    if (status) status.textContent = '❌ ' + msg;
+}
+
+function loadHooks() {
+    var bookName = getCurrentBook();
+    var kpId = getCurrentKpId();
+    if (!bookName || bookName === '__new__' || !kpId || kpId <= 0) return;
+
+    var container = document.getElementById('hook-candidates');
+    var grid = document.getElementById('hook-grid');
+    var status = document.getElementById('hook-status');
+    var badge = document.getElementById('hook-selected-badge');
+    var preview = document.getElementById('hook-preview');
+    var autoBtn = document.getElementById('btn-auto-select');
+    var errEl = document.getElementById('hook-error');
+    if (errEl) errEl.style.display = 'none';
+
+    fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/hooks/' + kpId)
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+            if (!j.success || !j.data || !j.data.candidates || j.data.candidates.length === 0) {
+                if (status) status.textContent = '暂无候选钩子，点击「生成钩子」量产 10 条';
+                if (container) container.style.display = 'none';
+                if (autoBtn) autoBtn.style.display = 'none';
+                return;
+            }
+            if (status) status.textContent = '';
+            if (container) container.style.display = 'block';
+
+            var hooks = j.data.candidates;
+            var primaryIdx = j.data.primary_index;
+            var hasSelected = j.data.has_selected;
+
+            // 渲染钩子卡片
+            var html = '';
+            for (var i = 0; i < hooks.length; i++) {
+                var isSelected = (primaryIdx === i);
+                html += '<div class="hook-card' + (isSelected ? ' hook-card-selected' : '') + '" onclick="selectHook(' + i + ')" data-index="' + i + '">';
+                html += '<div class="hook-card-num">#' + (i + 1) + '</div>';
+                html += '<div class="hook-card-text">' + esc(hooks[i]) + '</div>';
+                html += '<div class="hook-card-check">' + (isSelected ? '✓' : '') + '</div>';
+                html += '</div>';
+            }
+            if (grid) grid.innerHTML = html;
+
+            // 更新选定状态
+            if (hasSelected && primaryIdx !== null && primaryIdx !== undefined) {
+                if (badge) { badge.style.display = 'inline-block'; badge.textContent = '✓ 已选 #' + (primaryIdx + 1); }
+                if (preview) preview.textContent = '当前开场：' + hooks[primaryIdx];
+                if (autoBtn) autoBtn.style.display = 'none';
+            } else {
+                if (badge) badge.style.display = 'none';
+                if (preview) preview.textContent = '点击卡片选定主钩子';
+                if (autoBtn) autoBtn.style.display = 'inline-block';
+            }
+        })
+        .catch(function(e) {
+            if (status) status.textContent = '加载失败: ' + e.message;
+        });
+}
+
+function selectHook(hookIndex) {
+    var bookName = getCurrentBook();
+    var kpId = getCurrentKpId();
+    fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/hooks/' + kpId + '/select', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ hook_index: hookIndex }),
+    })
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+            if (j.success) {
+                loadHooks();
+            } else {
+                showHookError(j.error || '选定失败');
+            }
+        })
+        .catch(function(e) {
+            showHookError('请求失败: ' + e.message);
+        });
+}
+
+function autoSelectHook() {
+    var bookName = getCurrentBook();
+    var kpId = getCurrentKpId();
+    var autoBtn = document.getElementById('btn-auto-select');
+    var errEl = document.getElementById('hook-error');
+    if (errEl) errEl.style.display = 'none';
+    if (autoBtn) { autoBtn.disabled = true; autoBtn.textContent = '⏳ 评分中...'; }
+
+    fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/hooks/' + kpId + '/auto-select', {
+        method: 'POST'
+    })
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+            if (autoBtn) { autoBtn.disabled = false; autoBtn.textContent = '🤖 AI 自动选最佳'; }
+            if (j.success) {
+                loadHooks();
+            } else {
+                showHookError(j.error || '自动选择失败');
+            }
+        })
+        .catch(function(e) {
+            if (autoBtn) { autoBtn.disabled = false; autoBtn.textContent = '🤖 AI 自动选最佳'; }
+            showHookError('请求失败: ' + e.message);
+        });
+}
+
+// ================================================================
+// 增长信号指示器
+// ================================================================
+
+function loadGrowthSignals() {
+    fetch('/api/growth/signals')
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+            var badge = document.getElementById('growth-badge');
+            var text = document.getElementById('growth-text');
+            if (!j.success || !j.data || !j.data.has_signals) {
+                if (badge) badge.style.display = 'none';
+                if (text) text.textContent = '无历史数据 — 选题使用默认策略';
+                return;
+            }
+            var d = j.data;
+            if (badge) {
+                badge.style.display = 'inline';
+                badge.textContent = '📈 增长模式';
+                badge.style.cssText = 'padding:0.15rem 0.5rem;border-radius:999px;background:color-mix(in srgb, var(--brand) 15%, transparent);color:var(--brand);font-weight:600;font-size:0.7rem;';
+            }
+            var parts = [];
+            if (d.total_videos_analyzed) parts.push(d.total_videos_analyzed + '条视频分析');
+            if (d.best_structure) parts.push('最佳结构: ' + d.best_structure);
+            if (d.best_opening) parts.push('最佳开场: ' + d.best_opening);
+            if (text) text.textContent = parts.join(' · ');
+        })
+        .catch(function() {
+            var text = document.getElementById('growth-text');
+            if (text) text.textContent = '';
+        });
+}
+
+// 页面加载时自动加载钩子和增长信号
+document.addEventListener('DOMContentLoaded', function() {
+    loadGrowthSignals();
+    setTimeout(function() {
+        var bookName = getCurrentBook();
+        var kpId = getCurrentKpId();
+        if (bookName && bookName !== '__new__' && kpId > 0) {
+            loadHooks();
+        }
+    }, 500);
+});
 
 // ---- 步骤实时进度轮询 ----
 var _stepPollTimers = {};

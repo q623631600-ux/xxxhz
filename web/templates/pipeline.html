@@ -7,6 +7,10 @@
         AI 内容操作系统
     </div>
     <h1>把一本书，变成会增长的内容</h1>
+    <div id="growth-indicator" style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-size:0.75rem;color:var(--muted-foreground);">
+      <span id="growth-badge" style="display:none;">📈</span>
+      <span id="growth-text">加载增长数据中...</span>
+    </div>
     <p class="subtitle">告诉 Agent 你想分析的书或想创作的内容，它会完成从洞察、选题到成片的全过程，并持续优化表现。</p>
 
     <form onsubmit="event.preventDefault();window._agentProduce(document.getElementById('ai-input').value)" style="width:100%;">
@@ -83,12 +87,53 @@
   </div>
 
   <!-- =============================================================== -->
-  <!-- ③ 生产流水线 -->
+  <!-- ③ 钩子选择器 — Hook 候选展示与选定 -->
+  <!-- =============================================================== -->
+  <div class="work-section" style="margin-top:0.5rem;" id="hook-section">
+    <div class="work-section-header">
+      <div class="work-section-header-left">
+        <span class="work-section-icon">🎣</span>
+        <div>
+          <div class="work-section-title">钩子选择器</div>
+          <div class="work-section-subtitle">量产 10 条候选钩子 → 选出"前 3 秒留人"的最佳开场</div>
+        </div>
+      </div>
+      <div class="work-section-header-right">
+        {% if kp_id > 0 %}
+        <button class="v0-btn v0-btn-sm" onclick="generateHooks()" id="btn-generate-hooks">🎣 生成钩子</button>
+        <button class="v0-btn v0-btn-sm" onclick="loadHooks()" style="margin-left:0.5rem;">刷新</button>
+        {% else %}
+        <span style="font-size:0.75rem;color:var(--muted-foreground);">← 先选知识点</span>
+        {% endif %}
+      </div>
+    </div>
+    <div id="hook-container" style="margin-top:0.75rem;">
+      {% if kp_id > 0 %}
+      <div class="topic-pool-empty" id="hook-status">加载中…</div>
+      <div id="hook-candidates" style="display:none;">
+        <div class="hook-grid" id="hook-grid"></div>
+        <div style="margin-top:1rem;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+          <span id="hook-selected-badge" style="display:none;padding:0.25rem 0.75rem;border-radius:999px;background:var(--green);color:white;font-size:0.8rem;">✓ 已选定</span>
+          <button class="v0-btn v0-btn-sm" onclick="autoSelectHook()" id="btn-auto-select" style="display:none;">🤖 AI 自动选最佳</button>
+          <span id="hook-preview" style="font-size:0.85rem;color:var(--ink-muted);margin-left:0.5rem;"></span>
+          <span id="hook-error" style="font-size:0.8rem;color:var(--destructive);display:none;"></span>
+        </div>
+      </div>
+      {% else %}
+      <div class="topic-pool-empty" style="color:var(--muted-foreground);">📌 从左侧知识点列表中选择一个 K P，然后回来生成钩子</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- =============================================================== -->
+  <!-- ④ 生产流水线 -->
   <!-- =============================================================== -->
   <div class="work-section" style="margin-top:0.5rem;">
 
     {% set pb = initial_status.get('plan_book', {}) %}
     {% set pb_done = pb.get('status') == 'completed' %}
+    {% set gh = initial_status.get('generate_hooks', {}) %}
+    {% set gh_done = gh.get('status') == 'completed' %}
     {% set gs = initial_status.get('generate_script', {}) %}
     {% set cu = initial_status.get('content_units', {}) %}
     {% set vb = initial_status.get('visual_beats', {}) %}
@@ -112,6 +157,7 @@
           <span class="summary-label">生产链路</span>
           <ol class="mini-steps">
             <li class="{{ 'done' if pb_done else '' }}">大纲</li>
+            <li class="{{ 'done' if gh.get('status') == 'completed' else '' }}">钩子</li>
             <li class="{{ 'done' if gs.get('status') == 'completed' else '' }}">脚本</li>
             <li class="{{ 'done' if cu.get('status') == 'completed' else '' }}">内容单元</li>
             <li class="{{ 'done' if vb.get('status') == 'completed' else '' }}">画面点</li>
@@ -134,7 +180,11 @@
               <span class="kp-sidebar-num">[{{ kp.id }}]</span>
               <div>
                 <div class="kp-sidebar-title">{{ kp.title }}</div>
-                <div class="kp-sidebar-chapter">{% if kp.get('has_script') %}<span style="color:var(--green);">已生成讲稿</span>{% else %}<span style="color:var(--yellow);">草稿</span>{% endif %} | {{ kp.chapter }} | {{ kp.length }}</div>
+                <div class="kp-sidebar-chapter">
+                  {% if kp.get('has_primary_hook') %}<span style="color:var(--accent);font-size:0.7rem;">🎣 已选钩子</span> |
+                  {% elif kp.get('has_hooks') %}<span style="color:var(--yellow);font-size:0.7rem;">🎣 待选择</span> |
+                  {% endif %}
+                  {% if kp.get('has_script') %}<span style="color:var(--green);">已生成讲稿</span>{% else %}<span style="color:var(--yellow);">草稿</span>{% endif %} | {{ kp.chapter }} | {{ kp.length }}</div>
               </div>
               {% if kp.id == kp_id %}<span class="kp-sidebar-check">✓</span>{% endif %}
             </div>
