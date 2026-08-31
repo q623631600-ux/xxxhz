@@ -32,6 +32,71 @@ BASE_DIR = Path(__file__).parent
 app.mount("/static", StaticFiles(directory=str(BASE_DIR / "web" / "static")), name="static")
 jinja_env = Environment(loader=FileSystemLoader(str(BASE_DIR / "web" / "templates")))
 
+# ============================================================
+# 公网部署访问密码保护（可选）
+# 设置环境变量 ACCESS_PASSWORD 后，访问需先输入密码，防止 API key 被刷
+# ============================================================
+ACCESS_PASSWORD = os.getenv("ACCESS_PASSWORD", "").strip()
+
+if ACCESS_PASSWORD:
+    import hashlib, hmac
+    from starlette.responses import RedirectResponse
+
+    AUTH_COOKIE = "book_agent_auth"
+    AUTH_TOKEN = hashlib.sha256(ACCESS_PASSWORD.encode("utf-8")).hexdigest()
+
+    def _auth_ok(request: Request) -> bool:
+        return hmac.compare_digest(request.cookies.get(AUTH_COOKIE, "") or "", AUTH_TOKEN)
+
+    LOGIN_HTML = """<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>登录 - 讲书升级Agent</title>
+<style>
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#0f1115;color:#e6e6e6;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+.box{background:#1a1d24;padding:40px 36px;border-radius:14px;width:320px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+h1{font-size:20px;margin:0 0 6px}
+p{color:#8a8f98;font-size:13px;margin:0 0 24px}
+input{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:8px;border:1px solid #333844;background:#0f1115;color:#e6e6e6;font-size:14px;outline:none}
+input:focus{border-color:#4c8dff}
+button{width:100%;margin-top:16px;padding:12px;border:none;border-radius:8px;background:#4c8dff;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+button:hover{background:#3b7be8}
+.err{color:#ff6b6b;font-size:13px;margin-top:14px;min-height:18px}
+</style></head><body>
+<div class="box"><h1>🔐 讲书升级Agent</h1><p>演示环境，请输入访问密码</p>
+<form method="post" action="/login">
+<input type="password" name="password" placeholder="访问密码" autofocus required>
+<button type="submit">进入工作台</button>
+<div class="err">{{error}}</div>
+</form></div></body></html>"""
+
+    @app.middleware("http")
+    async def auth_middleware(request: Request, call_next):
+        path = request.url.path
+        if path.startswith("/login"):
+            return await call_next(request)
+        if _auth_ok(request):
+            return await call_next(request)
+        if path.startswith("/api/"):
+            return JSONResponse({"success": False, "error": "未授权，请先登录"}, status_code=401)
+        return RedirectResponse(url="/login", status_code=302)
+
+    @app.get("/login", response_class=HTMLResponse)
+    async def login_page(request: Request):
+        if _auth_ok(request):
+            return RedirectResponse(url="/", status_code=302)
+        return HTMLResponse(LOGIN_HTML.replace("{{error}}", ""))
+
+    @app.post("/login")
+    async def login_submit(request: Request):
+        form = await request.form()
+        pw = form.get("password", "") or ""
+        if hmac.compare_digest(pw, ACCESS_PASSWORD):
+            resp = RedirectResponse(url="/", status_code=302)
+            resp.set_cookie(AUTH_COOKIE, AUTH_TOKEN, httponly=True, max_age=60 * 60 * 24)
+            return resp
+        return HTMLResponse(LOGIN_HTML.replace("{{error}}", "密码错误，请重试"), status_code=401)
+
 # 全局异常处理器
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request: Request, exc: StarletteHTTPException):
@@ -1618,5 +1683,7 @@ if __name__ == "__main__":
     print(f"\n  讲书升级Agent Web 工作台")
     if dy_routes:
         print(f"  抖音数据分析: 已加载 ({len(dy_routes)} 个API路由)")
-    print(f"  访问: http://127.0.0.1:8000\n")
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    host = os.getenv("HOST", "127.0.0.1")
+    port = int(os.getenv("PORT", "8000"))
+    print(f"  访问: http://{host}:{port}\n")
+    uvicorn.run(app, host=host, port=port)

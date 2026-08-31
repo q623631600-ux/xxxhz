@@ -858,6 +858,8 @@ class ImageGenerator:
                 "C:/Windows/Fonts/msyhbd.ttc",
                 "C:/Windows/Fonts/simhei.ttf",
                 "C:/Windows/Fonts/simsun.ttc",
+                "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+                "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
             ]
             font = None
             font_size = 72
@@ -972,7 +974,9 @@ class ImageGenerator:
 
         # 加载字体
         font = None
-        for fp in ["C:/Windows/Fonts/msyh.ttc", "C:/Windows/Fonts/msyhbd.ttc", "C:/Windows/Fonts/simhei.ttf"]:
+        for fp in ["C:/Windows/Fonts/msyh.ttc", "C:/Windows/Fonts/msyhbd.ttc", "C:/Windows/Fonts/simhei.ttf",
+                   "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+                   "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"]:
             if Path(fp).exists():
                 try:
                     font = ImageFont.truetype(fp, 48)

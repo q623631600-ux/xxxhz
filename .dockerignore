@@ -1,0 +1,42 @@
+# 敏感信息（绝不能打进镜像）
+.env
+
+# Git / 缓存
+.git
+.gitignore
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 运行时产物（部署后由应用自己生成）
+output/
+memory/
+data_warehouse/
+input/
+temp/
+*.log
+
+# 大文件 / 媒体
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+
+# 本地启动脚本（Windows 专用，容器用不到）
+*.bat
+*.vbs
+*.ps1
+
+# 部署相关（不进镜像）
+Dockerfile
+.dockerignore
+render.yaml
+
+# 临时调试文件
+_*.js
+_*.py
+*_test.py
+test_*.py
+line102_test.js

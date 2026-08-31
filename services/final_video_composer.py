@@ -169,6 +169,8 @@ class FinalVideoComposer:
             "C:/Windows/Fonts/msyhbd.ttc",
             "C:/Windows/Fonts/msyh.ttc",
             "C:/Windows/Fonts/simhei.ttf",
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+            "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
         ]
 
         img_w, img_h = self.width, self.height  # 1920x1080 (16:9)
@@ -719,6 +721,8 @@ class FinalVideoComposer:
             fallbacks = [
                 "C:/Windows/Fonts/simhei.ttf",
                 "C:/Windows/Fonts/simsun.ttc",
+                "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+                "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
             ]
             for fb in fallbacks:
                 if Path(fb).exists():

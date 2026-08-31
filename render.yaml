@@ -1,0 +1,43 @@
+# ============================================================
+# Render Blueprint 配置
+# 在 Render 控制台 "New +" → "Blueprint" → 连接 GitHub 仓库即可自动部署
+# sync: false 的变量表示是密钥，部署时在 Render 面板里手动填写，不会写进仓库
+# ============================================================
+services:
+  - type: web
+    name: book-agent
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      # ---- 访问密码（防止陌生人刷你的 API key）----
+      - key: ACCESS_PASSWORD
+        sync: false
+      # ---- LLM（DeepSeek）----
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+      # ---- 图片生成 API（lk888 等）----
+      - key: IMAGE_API1_KEY
+        sync: false
+      - key: IMAGE_API1_URL
+        sync: false
+      - key: IMAGE_ACTIVE_API
+        sync: false
+      - key: IMAGE_MODEL
+        sync: false
+      - key: IMAGE_STYLE
+        sync: false
+      # ---- 配音 ----
+      - key: TTS_ENGINE
+        value: edge
+      # ---- 视频/字幕 ----
+      - key: SUBTITLE_FONT_PATH
+        value: /usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc
+      - key: VIDEO_WIDTH
+        value: "1920"
+      - key: VIDEO_HEIGHT
+        value: "1080"
