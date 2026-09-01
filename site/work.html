@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+<div class="v0-console">
+    <div class="v0-pill">
+        <span class="v0-pill-icon">*</span>
+        AI 内容操作系统
+    </div>
+    <h1>把一本书，变成会增长的内容</h1>
+    <div id="growth-indicator" style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-size:0.75rem;color:var(--muted-foreground);">
+      <span id="growth-badge" style="display:none;">📈</span>
+      <span id="growth-text">加载增长数据中...</span>
+    </div>
+    <p class="subtitle">告诉 Agent 你想分析的书或想创作的内容，它会完成从洞察、选题到成片的全过程，并持续优化表现。</p>
+
+    <form onsubmit="event.preventDefault();window._agentProduce(document.getElementById('ai-input').value)" style="width:100%;">
+        <div class="v0-input-wrap">
+            <textarea id="ai-input" rows="2" placeholder="输入书名，或告诉 Agent 你想创作什么…"></textarea>
+            <div class="v0-input-footer">
+                <span class="hint">支持中文书籍 · 短视频脚本</span>
+                <button type="submit" class="v0-send-btn">^</button>
+            </div>
+        </div>
+    </form>
+
+    <div style="display:flex;align-items:center;gap:0.5rem;width:100%;margin-top:0.5rem;">
+      <input id="topic-focus-input" type="text" placeholder="选题要求（可选）— 如：聚焦房地产、不要学术化、适合年轻人" style="flex:1;padding:0.5rem 0.75rem;border:1px solid var(--border);border-radius:0.5rem;background:var(--bg);font-size:0.85rem;color:var(--ink);outline:none;">
+      <span style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">📌 选题方向</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.35rem;width:100%;">
+      <button type="button" onclick="setTopicFocus('标题用反问句，如「为什么你越努力钱却越不值钱？」风格要扎心、有共鸣')" class="v0-example-chip" style="font-size:0.7rem;">🔥 扎心反问</button>
+      <button type="button" onclick="setTopicFocus('用「你不是不努力，你只是…」句式，揭示认知盲区')" class="v0-example-chip" style="font-size:0.7rem;">🧠 认知揭示</button>
+      <button type="button" onclick="setTopicFocus('聚焦贫穷、普通人、底层视角，有社会观察感')" class="v0-example-chip" style="font-size:0.7rem;">📊 社会观察</button>
+      <button type="button" onclick="setTopicFocus('用具体案例开头，讲普通人能用的方法')" class="v0-example-chip" style="font-size:0.7rem;">📖 案例+方法</button>
+    </div>
+
+    <div class="v0-examples">
+        <button type="button" onclick="document.getElementById('ai-input').value='分析书籍《置身事内》';window._agentProduce('置身事内')" class="v0-example-chip">分析书籍《置身事内》</button>
+        <button type="button" onclick="document.getElementById('ai-input').value='从这本书生成视频选题';window._agentProduce('置身事内')" class="v0-example-chip">从这本书生成视频选题</button>
+        <button type="button" onclick="window.location.href='/dashboard'" class="v0-example-chip">分析视频表现</button>
+    </div>
+</div>
+
+<section id="agent-response-area" style="display:none;"></section>
+
+
+<div class="v0-empty">
+    <div class="v0-empty-icon">◎</div>
+    <h2>从一本书开始</h2>
+    <p>在上方输入书名或需求，Agent 会自动分析并生成选题。</p>
+</div>
+
+
+<!-- app.js 由 base.html 统一加载 -->
+
+<!-- 讲稿预览弹窗 -->
+<dialog id="script-dialog" style="border:none;border-radius:16px;padding:2rem;min-width:500px;max-width:800px;width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.15);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <h3 id="script-dialog-title" style="margin:0;font-size:1.1rem;">讲稿预览</h3>
+        <button type="button" onclick="this.closest('dialog').close()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;">X</button>
+    </div>
+    <div id="script-dialog-body" style="max-height:70vh;overflow-y:auto;padding:1rem;background:var(--bg);border-radius:8px;white-space:pre-wrap;font-size:14px;line-height:1.8;"></div>
+    <div style="display:flex;justify-content:flex-end;gap:0.8rem;margin-top:1.5rem;">
+        <button type="button" onclick="this.closest('dialog').close()" style="background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:0.5rem 1.2rem;border-radius:8px;cursor:pointer;">关闭</button>
+    </div>
+</dialog>
+
+<script>
+// 讲稿预览（全屏弹窗）
+function viewScriptPreview(bookName, topicId) {
+    if (!bookName && !topicId) {
+        var up = new URLSearchParams(window.location.search);
+        bookName = (typeof _safeDecodeURI !== 'undefined') ? _safeDecodeURI(up.get('book')||'') : (up.get('book')||'');
+        topicId = (parseInt(up.get('kp_id')||'0')) - 100;
+    }
+    var raw = (typeof _safeDecodeURI !== 'undefined') ? _safeDecodeURI(bookName) : bookName;
+    fetch('/api/agent/draft-script?book_name='+encodeURIComponent(raw)+'&topic_id='+topicId).then(function(r){return r.json();}).then(function(j){
+        if(!j.success){alert('加载失败');return;}
+        var d=j.data;
+        document.getElementById('script-dialog-title').textContent = '讲稿预览 ('+d.script_words+'字)';
+        document.getElementById('script-dialog-body').textContent = d.full_script || '(空)';
+        document.getElementById('script-dialog').showModal();
+    }).catch(function(e){alert('加载失败: '+e.message);});
+}
+
+// 页面加载时自动加载讲稿内容到预览区
+function loadScriptPreview() {
+    var body = document.getElementById('script-preview-body');
+    var meta = document.getElementById('script-preview-meta');
+    if (!body || !meta) return;
+    // 从 URL 实时获取参数，避免模板变量编码问题
+    var urlParams = new URLSearchParams(window.location.search);
+    var raw = (typeof _safeDecodeURI !== 'undefined') ? _safeDecodeURI(urlParams.get('book') || '') : (urlParams.get('book') || '');
+    var kpId = parseInt(urlParams.get('kp_id') || '0');
+    if (!raw || !kpId || kpId < 100) { body.textContent = '讲稿预览不可用'; return; }
+    var topicId = kpId - 100;
+    var scriptTimeout = setTimeout(function() {
+        if (body && body.textContent === '加载中...') {
+            body.textContent = '加载超时，请点「全屏查看」按钮查看';
+            meta.textContent = '超时';
+        }
+    }, 5000);
+    fetch('/api/agent/draft-script?book_name='+encodeURIComponent(raw)+'&topic_id='+topicId)
+        .then(function(r){return r.json()})
+        .then(function(j){
+            clearTimeout(scriptTimeout);
+            if (!j.success) { body.textContent = '讲稿尚未生成'; meta.textContent = '无'; return; }
+            var d = j.data;
+            meta.textContent = d.script_words + '字' + (d.quality_check ? ' · 已审核' : '');
+            body.textContent = d.full_script || '(空)';
+        })
+        .catch(function(){
+            clearTimeout(scriptTimeout);
+            body.textContent = '讲稿尚未生成';
+            meta.textContent = '无';
+        });
+}
+
+// 立即执行讲稿预览加载
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadScriptPreview);
+} else {
+    loadScriptPreview();
+}
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

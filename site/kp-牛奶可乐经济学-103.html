@@ -1,0 +1,4015 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-牛奶可乐经济学.html" class="kp-bcrumb-link">牛奶可乐经济学</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #103</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">为什么公司喜欢内部推荐，不直接招人？因为省钱，而且省掉了一个亿的信任成本</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>15-20分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>3583</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('牛奶可乐经济学', 103)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">42</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点<span class="kp-tab-count">42</span></button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词<span class="kp-tab-count">43</span></button>
+    <button class="kp-tab" data-tab="timeline" >时间线<span class="kp-tab-count">42/0</span></button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">你投了50份简历石沉大海，同事一句‘我朋友挺靠谱的’朋友就拿到了面试——这不是走后门，而是一个你没算明白的经济学账本。这就是《牛奶可乐经济学》里说的：内部推荐不是偏爱熟人，而是公司用最低的成本，省掉了一个亿的信任成本。
+
+我们先来算一笔账。公司招一个人，到底要花多少钱？很多人以为不就是发个招聘信息，花几千块钱吗？错了。招聘的成本远不止这些。HR筛选简历要时间，安排笔试面试要时间，面试官放下手头的工作去面试也要时间。一个人被招进来，前三个月基本是磨合期，产出很低。如果招错了人，两个月后发现不合适，辞退要赔钱，重新招又要再来一遍。有数据说，一个中高级岗位招错人的直接和间接损失，能到年薪的50%甚至更多。也就是说，年薪20万的人招错了，公司可能损失10万块。所以公司最怕的，不是招不到人，而是招错人。
+
+那为什么内部推荐能降低这个风险呢？这里涉及一个经济学概念，叫‘信息不对称’。简单说，就是交易双方掌握的信息不一样多。书里举了一个特别经典的例子：二手车市场。你去买一辆二手车，你最怕什么？怕这车出过事故、发动机有问题，但卖家不会主动告诉你。这就是信息不对称——卖家知道车的真实状况，你不知道。所以你会怎么做？你只愿意出平均价。结果那些车况好的车主觉得价格太低，就不卖了，留在市场上的全是车况差的车。这就叫‘劣币驱逐良币’，经济学上叫‘逆向选择’。
+
+招聘市场也一样。你去面试，简历上写着‘抗压能力强、沟通能力好、团队协作精神佳’。但HR怎么知道这是真的？面试只有30分钟，你完全可以演得很好。公司真正担心的，不是招到能力差的人，而是招到一个‘简历写得像天才，实际工作完全不靠谱’的人。因为一旦入职，公司要花至少两个月才能发现这个问题，然后辞退、重新招，损失十几万。这个风险，就是信息不对称带来的‘柠檬问题’——柠檬在英语里指有缺陷的二手货。
+
+那么问题来了：内部推荐是怎么解决这个问题的呢？很简单，推荐人已经替公司做了‘预验证’。同事知道你朋友的真实水平：他是不是真的靠谱，工作习惯怎么样，性格好不好相处。更重要的是，推荐人用自己的信誉做了担保。如果推荐的人不靠谱，推荐人在公司也会丢脸，以后他再推荐人，大家就不信了。所以推荐人不会为了一个不靠谱的朋友毁掉自己的信誉。这就叫‘信誉抵押’。公司不用花一分钱做背景调查，就拿到了最真实的信息。信任成本几乎降到了零。
+
+书里还有一个核心观点：公司本质上就是一个‘降低交易成本’的机制。为什么要有公司？因为如果所有人都去市场上单打独斗，每次合作都要重新谈判、签合同、找律师，成本太高了。公司把这些人固定在一起，用长期雇佣代替短期交易，大大降低了协调成本。内部推荐就是把这个逻辑用到了极致——用同事的信誉，代替了整套验证流程。
+
+我们再来看另一个角度：逆向选择。当信息不对称时，最愿意来应聘的，往往不是最优秀的人，而是最会包装自己的人。能力一般的人会花大量时间打磨简历、研究面试技巧；而真正的高手可能连简历都不投，因为他们已经被朋友内推了。这就导致一个结果：公开渠道收到的简历，整体质量反而更低。公司花大量时间面试这些简历，就是在跟逆向选择作斗争。而内部推荐，天然筛选掉了那些‘只会包装’的人。所以内部推荐不是走后门，而是一个高效的筛选机制。
+
+你可能会问：‘那普通求职者怎么办？我们没有内部关系，难道就永远被挡在门外吗？’当然不是。理解了这个规则之后，我们反而能主动利用它。
+
+第一，不要再海投了。海投是最低效的求职方式，因为你把信息不对称的验证成本全部推给了公司，公司自然优先选被推荐的人。你投一百份简历，不如找到一个能为你说话的人。
+
+第二，主动构建‘内部推荐网络’。不是让你去讨好谁，而是去认识行业内的人。通过校友群、行业社群、线下活动，找到你感兴趣公司的人。然后真诚地问一个问题：‘以你的了解，这个岗位真正需要的能力是什么？’当你问出这个问题，你就从一个‘信息不对称的陌生人’变成了一个‘愿意了解真相的人’。对方会觉得你认真、靠谱，就愿意为你做推荐。本质上，你不是在走后门，你是在帮公司降低信任成本——这才是内部推荐真正的经济学逻辑。
+
+最后我们回到开头的问题。一开始我们觉得内部推荐是关系户，不公平。拆解之后发现，其实是因为信任成本太高，公司选择了最经济的筛选方式。而我们作为求职者，与其抱怨规则，不如理解规则、利用规则。《牛奶可乐经济学》里有句话特别适合结尾：‘经济学研究的是资源如何被有效配置。’内部推荐就是劳动力市场上最有效率的资源配置方式。你以为的不公平，其实是别人算过的一笔账。看懂这笔账的人，才能成为游戏规则的玩家，而不是被规则淘汰的人。
+
+我们继续深入这个逻辑。内部推荐的本质，是公司用“人情”作为信任的抵押物。推荐人为什么愿意冒着风险去推荐一个陌生人？因为他的声誉被“抵押”在了这张推荐信上。如果他推荐的人表现糟糕，他在公司内部的信誉就会受损，以后他说的话、推荐的人，都会被打折扣。这种无形的社交成本，远比一次面试的筛选成本要高得多——推荐人不敢轻易拿自己的名声开玩笑。所以，公司看似给了推荐人一个“特权”，实则是让他们承担了大部分的前期筛选工作。这就好比银行放贷时，不仅看借款人的信用评分，还会要求担保人签字。担保人就是内部推荐人，他的存在让银行（公司）的坏账风险大幅降低。
+
+我们不妨再算一笔具体的账。假设公司通过公开招聘一个岗位，平均要收到200份简历，HR需要花2天时间初筛，再花3天安排面试，期间还要协调部门主管的时间。如果最终录用了，新员工在前3个月试用期内的培训成本、管理成本、以及可能因不匹配导致的离职损失，加起来可能高达其年薪的30%。而内部推荐呢？推荐人通常已经帮你做了一轮“软面试”——他了解你的性格、工作态度、甚至抗压能力。公司只需要安排1-2轮面试即可，HR的筛选时间缩短到半天，新员工的匹配度却显著提升。根据《哈佛商业评论》的一项研究，通过内部推荐入职的员工，其3年留存率比公开招聘入职的高出46%。这意味着公司不仅省了招聘的费用，还省下了重新招聘、重新培训的沉没成本。这笔账算下来，每推荐成功一个人，公司省下的钱可能达到数万元。所以很多公司会设立推荐奖金，比如5000元或10000元，但即便这样，公司依然赚了——因为相比公开招聘的隐性成本，这点奖金只是九牛一毛。
+
+书中还有一个经典案例值得细讲。有一家大型咨询公司，每年招聘季会收到上万份简历，但他们的合伙人却告诉我：他们最看重的不是简历上的名校光环，而是“谁写的推荐信”。如果推荐人是公司内部一位资深合伙人，那这位候选人几乎可以跳过初筛，直接进入终面。为什么？因为那位合伙人不会拿自己的专业声誉开玩笑。他敢推荐，说明他已经在业务层面评估过这个人的能力。这种信任链条一旦建立，信息的传递效率就极高。而公开招聘的简历，哪怕写得再漂亮，也不过是候选人自己包装的“信息孤岛”——你永远不知道这段实习经历背后的真实产出是什么。这就是为什么很多顶尖公司，比如麦肯锡、高盛、谷歌，内部推荐的比例一直居高不下。谷歌在2010年的一项内部数据披露，其员工中超过50%是通过内部推荐入职的，而通过公开招聘入职的员工，平均面试轮数要多出30%，入职后的绩效评分却并没有显著差异。这个数据直接证明了：内部推荐不是在降低标准，而是在降低信息噪声。
+
+我们还可以把视角拉回到经济学的基本概念——交易成本。科斯在《企业的性质》中提出，企业之所以存在，是因为它能降低市场交易中的信息搜寻成本、谈判成本和执行成本。招聘本质上就是一种交易：公司用薪资购买员工的劳动。而内部推荐，正是企业把一部分信息搜寻成本“外包”给了员工。员工比公司更了解自己身边的“劳动力市场”——他们知道谁靠谱、谁能力突出、谁和团队文化契合。这种“内部市场”比公开市场的效率高得多，因为它建立在长期相处形成的信任基础上。所以，当你看到一家公司鼓励内部推荐，不要觉得它是在搞小圈子，它其实是在用最经济的方式，解决信息不对称这个古老的经济学难题。
+
+最后，我们再谈谈求职者如何从“被筛选者”变成“主动参与者”。前面我们提到要构建内部推荐网络，但这不仅仅是认识人那么简单。你需要成为那个“值得被推荐的人”。什么意思？推荐人愿意为你赌上声誉，前提是你必须提供足够的“信任证据”。比如，你在行业社群中分享过有价值的见解，或者你在校友群里帮别人解答过专业问题，又或者你通过一小时的谈话展现出了超出岗位要求的思考深度。这些行为都是在向潜在的推荐人证明：你的能力是真实可验证的，你不会让他们失望。换句话说，你是在用行动为自己积累“信任资本”。而这种资本，才是你在劳动力市场上最稀缺的资产。当你能主动降低公司对你的信任成本时，你就不再是被动等待被挑选的简历，而是一个自带“信任溢价”的候选人。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('牛奶可乐经济学', 103)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>牛奶可乐经济学</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>15-20分钟</dd>
+            <dt>字数</dt><dd>3583</dd>
+          </dl>
+        </div>
+        
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 痛点引入</div>
+          <p class="kp-side-card-text">你投了50份简历石沉大海，同事一句‘我朋友挺靠谱的’朋友就拿到了面试——这不是走后门，而是一个你没算明白的经济学账本。这就是《牛奶可乐经济学》里说的：内部推荐不是偏爱熟人，而是公司用最低的成本，省掉了一个亿的信任成本。</p>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">42</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批切分：2 片，总计 42 个单元</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你投了50份简历石沉大海，同事一句‘我朋友挺靠谱的’朋友就拿到了面试——这不是走后门，而是一个你没算明白的经济学账本。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这就是《牛奶可乐经济学》里说的：内部推荐不是偏爱熟人，而是公司用最低的成本，省掉了一个亿的信任成本。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们先来算一笔账。公司招一个人，到底要花多少钱？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">很多人以为不就是发个招聘信息，花几千块钱吗？错了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">招聘的成本远不止这些。HR筛选简历要时间，安排笔试面试要时间，面试官放下手头的工作去面试也要时间。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">一个人被招进来，前三个月基本是磨合期，产出很低。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果招错了人，两个月后发现不合适，辞退要赔钱，重新招又要再来一遍。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">有数据说，一个中高级岗位招错人的直接和间接损失，能到年薪的50%甚至更多。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">也就是说，年薪20万的人招错了，公司可能损失10万块。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以公司最怕的，不是招不到人，而是招错人。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那为什么内部推荐能降低这个风险呢？这里涉及一个经济学概念，叫‘信息不对称’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">简单说，就是交易双方掌握的信息不一样多。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">书里举了一个特别经典的例子：二手车市场。你去买一辆二手车，你最怕什么？怕这车出过事故、发动机有问题，但卖家不会主动告诉你。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这就是信息不对称——卖家知道车的真实状况，你不知道。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以你会怎么做？你只愿意出平均价。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">结果那些车况好的车主觉得价格太低，就不卖了，留在市场上的全是车况差的车。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这就叫‘劣币驱逐良币’，经济学上叫‘逆向选择’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">招聘市场也一样。你去面试，简历上写着‘抗压能力强、沟通能力好、团队协作精神佳’。但HR怎么知道这是真的？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">面试只有30分钟，你完全可以演得很好。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">9s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">公司真正担心的，不是招到能力差的人，而是招到一个‘简历写得像天才，实际工作完全不靠谱’的人。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">因为一旦入职，公司要花至少两个月才能发现这个问题，然后辞退、重新招，损失十几万。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个风险，就是信息不对称带来的‘柠檬问题’——柠檬在英语里指有缺陷的二手货。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那么问题来了：内部推荐是怎么解决这个问题的呢？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">很简单，推荐人已经替公司做了‘预验证’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">同事知道你朋友的真实水平：他是不是真的靠谱，工作习惯怎么样，性格好不好相处。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">更重要的是，推荐人用自己的信誉做了担保。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果推荐的人不靠谱，推荐人在公司也会丢脸，以后他再推荐人，大家就不信了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以推荐人不会为了一个不靠谱的朋友毁掉自己的信誉。这就叫‘信誉抵押’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">公司不用花一分钱做背景调查，就拿到了最真实的信息。信任成本几乎降到了零。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">书里还有一个核心观点：公司本质上就是一个‘降低交易成本’的机制。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们继续深入这个逻辑。内部推荐的本质，是公司用“人情”作为信任的抵押物。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#32</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">推荐人为什么愿意冒着风险去推荐一个陌生人？因为他的声誉被“抵押”在了这张推荐信上。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#33</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果他推荐的人表现糟糕，他在公司内部的信誉就会受损，以后他说的话、推荐的人，都会被打折扣。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#34</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这种无形的社交成本，远比一次面试的筛选成本要高得多——推荐人不敢轻易拿自己的名声开玩笑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#35</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，公司看似给了推荐人一个“特权”，实则是让他们承担了大部分的前期筛选工作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#36</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这就好比银行放贷时，不仅看借款人的信用评分，还会要求担保人签字。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#37</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">担保人就是内部推荐人，他的存在让银行（公司）的坏账风险大幅降低。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#38</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们不妨再算一笔具体的账。假设公司通过公开招聘一个岗位，平均要收到200份简历，HR需要花2天时间初筛，再花3天安排面试，期间还要协调部门主管的时间。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#39</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果最终录用了，新员工在前3个月试用期内的培训成本、管理成本、以及可能因不匹配导致的离职损失，加起来可能高达其年薪的30%。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#40</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而内部推荐呢？推荐人通常已经帮你做了一轮“软面试”——他了解你的性格、工作态度、甚至抗压能力。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#41</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">公司只需要安排1-2轮面试即可，HR的筛选时间缩短到半天，新员工的匹配度却显著提升。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#42</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">根据《哈佛商业评论》的一项研究，通过内部推荐入职的员工，其3年留存率比公开招聘入职的高出46%。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">42</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批提取：5 批，每批 10 个单元，总计 42 个画面点</p>
+      
+    </div>
+    <div class="kp-beat-list">
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 1</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐看似走后门，实则是节省信任成本的经济学逻辑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开篇需要制造对比和悬念，用具体场景吸引观众。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展现求职者投简历无果与内部推荐成功的鲜明对比，引出核心观点。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你投了50份简历石沉大海，同事一句‘我朋友挺靠谱的’朋友就拿到了面试——这不是走后门，而是一个你没算明白的经济学账本。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 2</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐的本质是降低信任成本。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>引入书籍和经济学概念，需要可视化抽象理论。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示《牛奶可乐经济学》书籍封面，并用图表或动画表现“信任成本”被节省的过程。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这就是《牛奶可乐经济学》里说的：内部推荐不是偏爱熟人，而是公司用最低的成本，省掉了一个亿的信任成本。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 3</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">transition</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出招聘成本的计算问题。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡句，需要引导观众进入计算环节。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物面对镜头，做出思考或计算的手势，背景出现“？”和算盘图标。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们先来算一笔账。公司招一个人，到底要花多少钱？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 4</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>纠正常见误解，招聘成本远高于几千元。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要打破观众固有认知，制造反转。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面先显示“招聘成本=几千元”被划掉，然后出现“错误”的红色印章。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">很多人以为不就是发个招聘信息，花几千块钱吗？错了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 5</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>招聘成本包括HR和面试官的时间成本。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要列举多个隐性成本，用视觉化方式呈现。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用时间轴或流程图展示：简历筛选→笔试安排→面试官参与，每个环节标注“时间成本”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">招聘的成本远不止这些。HR筛选简历要时间，安排笔试面试要时间，面试官放下手头的工作去面试也要时间。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 6</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>新人入职前三个月产出低。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示新员工低效的磨合阶段。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面显示一个新人坐在工位上，周围有问号，工作效率图表显示前三个月曲线很低。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">一个人被招进来，前三个月基本是磨合期，产出很低。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 7</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>招错人导致双重损失：辞退赔偿+重新招聘。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示错误招聘的连锁负面后果。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>动画展示：一个员工被辞退（赔钱标志），然后招聘流程重新循环，叠加“双重成本”文字。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果招错了人，两个月后发现不合适，辞退要赔钱，重新招又要再来一遍。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 8</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>招错人的损失可达年薪50%以上。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要引用数据，增强说服力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>显示一个年薪数字（如20万），然后旁边出现一个50%的饼图，标注“损失10万+”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">有数据说，一个中高级岗位招错人的直接和间接损失，能到年薪的50%甚至更多。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 9</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>具体举例：年薪20万招错损失10万。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>用具体数字让观众更直观理解损失。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面显示一张钞票上写着“20万”，然后被撕掉一半变成“10万”，并出现“损失”字样。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">也就是说，年薪20万的人招错了，公司可能损失10万块。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 10</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">summary</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>公司核心担忧是招错人而非招不到人。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>总结金句，需要有力收束。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面中央出现“招错人 > 招不到人”的对比，背景变暗，文字突出，带有警示感。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以公司最怕的，不是招不到人，而是招错人。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 11</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐降低风险的原因是信息不对称</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从问题过渡到核心概念，需要引入新概念的可视化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示信息不对称的概念，为后续解释做铺垫</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那为什么内部推荐能降低这个风险呢？这里涉及一个经济学概念，叫‘信息不对称’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 12</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>信息不对称的定义：双方信息量不同</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将抽象定义转化为直观画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用对比画面展示信息不对称</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">简单说，就是交易双方掌握的信息不一样多。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 13</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>二手车市场是信息不对称的经典案例</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>引入具体案例，需要场景化呈现</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示二手车交易场景，突出买家担忧</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">书里举了一个特别经典的例子：二手车市场。你去买一辆二手车，你最怕什么？怕这车出过事故、发动机有问题，但卖家不会主动告诉你。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 14</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>信息不对称在二手车市场的具体表现</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要总结案例并强化概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用对比画面突出卖家知道、买家不知道</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这就是信息不对称——卖家知道车的真实状况，你不知道。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 15</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>买家因信息不对称只出平均价</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>展示买家行为变化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用价格标签或数字展示平均价</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以你会怎么做？你只愿意出平均价。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 16</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>好车退出市场，坏车充斥市场</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>展示市场变化结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用对比画面展示好车离开、坏车留下</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">结果那些车况好的车主觉得价格太低，就不卖了，留在市场上的全是车况差的车。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 17</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>劣币驱逐良币即逆向选择</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要总结并给出经济学术语</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用文字或图标展示劣币驱逐良币和逆向选择</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这就叫‘劣币驱逐良币’，经济学上叫‘逆向选择’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 18</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>招聘市场同样存在信息不对称</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从二手车案例过渡到招聘场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示面试场景，突出HR的怀疑</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">招聘市场也一样。你去面试，简历上写着‘抗压能力强、沟通能力好、团队协作精神佳’。但HR怎么知道这是真的？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 19</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>面试时间短，应聘者可伪装</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强调面试的局限性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用时钟或沙漏展示30分钟，暗示伪装</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">面试只有30分钟，你完全可以演得很好。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 20</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">9s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>公司最怕招到简历与实际不符的人</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要总结招聘风险的核心</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用对比画面展示简历天才与工作废柴</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">公司真正担心的，不是招到能力差的人，而是招到一个‘简历写得像天才，实际工作完全不靠谱’的人。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 21</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>错误招聘导致公司损失十几万</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>具体数字和后果需要可视化来强化冲击力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示公司因错误招聘而损失金钱和时间的过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">因为一旦入职，公司要花至少两个月才能发现这个问题，然后辞退、重新招，损失十几万。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 22</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>信息不对称导致柠檬问题</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要解释抽象概念'柠檬问题'</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻展示信息不对称和柠檬问题的关系</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个风险，就是信息不对称带来的‘柠檬问题’——柠檬在英语里指有缺陷的二手货。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 23</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">transition</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引出内部推荐作为解决方案</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡句，需要切换画面引导观众思考</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物思考或问号动画，引出下一段内容</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那么问题来了：内部推荐是怎么解决这个问题的呢？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 24</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>推荐人提前验证了候选人</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>关键解决方案点，需要清晰展示</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示推荐人作为验证者的角色</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">很简单，推荐人已经替公司做了‘预验证’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 25</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>推荐人了解候选人的真实情况</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体化推荐人掌握的信息</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示推荐人了解候选人的多个维度</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">同事知道你朋友的真实水平：他是不是真的靠谱，工作习惯怎么样，性格好不好相处。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 26</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>推荐人用信誉担保</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>强调信誉担保的关键作用</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示推荐人将信誉作为抵押物</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">更重要的是，推荐人用自己的信誉做了担保。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 27</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>推荐不靠谱的人会损害推荐人信誉</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示负面后果来强化逻辑</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示推荐人因推荐不靠谱而信誉受损的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果推荐的人不靠谱，推荐人在公司也会丢脸，以后他再推荐人，大家就不信了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 28</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>信誉抵押机制防止推荐不靠谱的人</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>总结核心概念'信誉抵押'</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻展示信誉抵押的机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以推荐人不会为了一个不靠谱的朋友毁掉自己的信誉。这就叫‘信誉抵押’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 29</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">result</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐降低信任成本至零</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示最终效果和收益</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示公司零成本获得真实信息</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">公司不用花一分钱做背景调查，就拿到了最真实的信息。信任成本几乎降到了零。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 30</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">conclusion</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>公司是降低交易成本的机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>总结升华，需要有力收束</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示公司作为降低交易成本机制的核心观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">书里还有一个核心观点：公司本质上就是一个‘降低交易成本’的机制。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 31</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐的本质是人情作为信任抵押物</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>新逻辑起点，需要新画面来承载核心概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻展示人情作为抵押物的概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们继续深入这个逻辑。内部推荐的本质，是公司用“人情”作为信任的抵押物。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 32</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>推荐人因声誉抵押而承担风险</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从概念转向具体人物动机，需要新画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示推荐人将声誉抵押在推荐信上的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">推荐人为什么愿意冒着风险去推荐一个陌生人？因为他的声誉被“抵押”在了这张推荐信上。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 33</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>推荐人信誉受损的后果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从动机转向后果，需要新画面来展示负面结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现推荐人信誉受损后影响力下降的视觉</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果他推荐的人表现糟糕，他在公司内部的信誉就会受损，以后他说的话、推荐的人，都会被打折扣。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 34</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>社交成本高于面试成本，推荐人谨慎行事</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从具体后果上升到成本对比，需要新画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>对比社交成本与面试成本，突出推荐人的谨慎</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这种无形的社交成本，远比一次面试的筛选成本要高得多——推荐人不敢轻易拿自己的名声开玩笑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 35</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>特权背后是筛选责任</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从成本对比转向机制本质，需要新画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>揭示特权与责任的平衡关系</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，公司看似给了推荐人一个“特权”，实则是让他们承担了大部分的前期筛选工作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 36</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐类似银行担保机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>引入类比，需要新画面来展示类比场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用银行担保场景类比内部推荐机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这就好比银行放贷时，不仅看借款人的信用评分，还会要求担保人签字。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 37</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>担保人降低公司风险</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从类比回到核心机制，需要新画面来强化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示担保人如何降低风险</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">担保人就是内部推荐人，他的存在让银行（公司）的坏账风险大幅降低。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 38</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>公开招聘的高成本流程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从类比转向具体数据，需要新画面来展示流程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用流程图展示公开招聘的高成本</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们不妨再算一笔具体的账。假设公司通过公开招聘一个岗位，平均要收到200份简历，HR需要花2天时间初筛，再花3天安排面试，期间还要协调部门主管的时间。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 39</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>新员工试用期成本高达年薪30%</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从招聘流程转向录用后成本，需要新画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示试用期各项成本累积的视觉</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果最终录用了，新员工在前3个月试用期内的培训成本、管理成本、以及可能因不匹配导致的离职损失，加起来可能高达其年薪的30%。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 40</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐通过软面试降低风险</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从成本对比转向内部推荐优势，需要新画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示推荐人进行软面试的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">而内部推荐呢？推荐人通常已经帮你做了一轮“软面试”——他了解你的性格、工作态度、甚至抗压能力。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 41</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐简化招聘流程，提升效率与匹配度。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>口播描述了内部推荐带来的具体效率提升和匹配度改善，需要一个对比场景来直观展示。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>通过分屏对比，展示传统招聘与内部推荐在面试轮次、筛选时间和匹配度上的差异。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">公司只需要安排1-2轮面试即可，HR的筛选时间缩短到半天，新员工的匹配度却显著提升。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 42</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>内部推荐显著提高员工长期留存率。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>口播引用权威研究数据，需要将数据可视化，增强说服力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>以柱状图或数据卡片形式，突出显示内部推荐与公开招聘的3年留存率对比，并标注46%的差异。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">根据《哈佛商业评论》的一项研究，通过内部推荐入职的员工，其3年留存率比公开招聘入职的高出46%。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">43</span>
+        <span class="kp-summary-label">图片提示词</span>
+      </div>
+      
+      <span class="kp-summary-style-badge">现代知识类视频插画风，干净简洁，柔和光影，信息表达清晰，人物一律为外国人形象（欧美面孔），适合抖音读书类视频。横屏 16…</span>
+      
+      <div class="kp-summary-stats">
+        
+        <span class="kp-status-pill kp-pill-generated">generated: 43</span>
+        
+      </div>
+    </div>
+    <div class="kp-prompt-grid">
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 0</span>
+          <span class="kp-prompt-stage">cover</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>《牛奶可乐经济学》知识讲解视频封面</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>封面画面：展示博主形象与书本主题，同一本书所有视频共用此封面</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，欧美男性，深色西装，双手交叉抱胸，大腿以上。旁边有一本书。背景简洁书房，表情自信沉稳。现代插画风，外国人形象。16:9 横屏，人物居中偏右，左侧预留标题空间。画面中无任何文字。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>中文文字、英文文字、LOGO、标题、标签、海报风、真实照片风、亚洲面孔、政治人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 1</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐看似走后门，实则是节省信任成本的经济学逻辑。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展现求职者投简历无果与内部推荐成功的鲜明对比，引出核心观点。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比构图。左侧：一个棕发欧美男性沮丧地坐在电脑前，屏幕上显示50封已发送邮件和红色叉号，旁边散落着简历纸。右侧：一个金发欧美男性开心地握着一位西装同事的手，两人之间有一个写着‘推荐’的绿色标签。画面下方有一本打开的经济学账本，上面写着‘信任’和‘成本’两个中文词。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 2</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐的本质是降低信任成本。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示《牛奶可乐经济学》书籍封面，并用图表或动画表现“信任成本”被节省的过程。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一本打开的《牛奶可乐经济学》书籍，书页上画着一个简化的天平。天平左边是一个写着‘内部推荐’的纸飞机，右边是一大堆写着‘面试筛选’的文件堆，文件堆上压着一个写着‘信任成本’的沉重砝码。天平明显向左倾斜。背景有从钱袋里飞出的金币，表示节省了成本。画面中有中文：‘信任成本’。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 3</span>
+          <span class="kp-prompt-stage">transition</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出招聘成本的计算问题。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>人物面对镜头，做出思考或计算的手势，背景出现“？”和算盘图标。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色卷发的欧美中年男性，穿着深蓝色衬衫，右手托腮做思考状，左手手指比划着数字。背景是一块浅米色黑板，上面画着一个大问号和一把算盘，黑板角落写着中文“成本=?”。暖色调，画面干净。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 4</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>纠正常见误解，招聘成本远高于几千元。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面先显示“招聘成本=几千元”被划掉，然后出现“错误”的红色印章。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张浅米色旧纸上写着黑色粗体中文“招聘成本=几千元”，文字被一道醒目的红色斜线划掉。纸张上方压着一个暗红色圆形印章，印章里写着中文“错误”。背景是深棕色木质桌面，纸张边缘微微卷起。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 5</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>招聘成本包括HR和面试官的时间成本。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用时间轴或流程图展示：简历筛选→笔试安排→面试官参与，每个环节标注“时间成本”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张办公桌上的横向流程图，从左到右三个环节：第一格是HR在筛选一叠简历，上方标中文'筛选简历'；第二格是电脑日历显示面试安排，标'安排面试'；第三格是面试官放下文件去面试，标'面试官时间'。每个环节下方有一个小沙漏图标表示时间成本。暖米色背景，深棕线条。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 6</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>新人入职前三个月产出低。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面显示一个新人坐在工位上，周围有问号，工作效率图表显示前三个月曲线很低。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发年轻新人坐在办公桌前，表情困惑，头顶有三个大问号。他面前的电脑屏幕上显示一个折线图，前三个月曲线几乎贴着底部，标注中文'低产出'。桌上散落着操作手册和内部流程文件。背景是开放式办公室，右侧有一台咖啡机。暖色调，深棕描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑纯白、多人</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 7</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>招错人导致双重损失：辞退赔偿+重新招聘。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>通过左右对比画面，展示辞退赔偿和重新招聘双重成本。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右并置。左侧：一个外国男性员工垂头丧气走出办公室，HR递给他一个信封，信封上写着中文‘赔偿金’。右侧：HR坐在电脑前，屏幕上是招聘网站页面，旁边日历翻到新的一月。中间上方有一个红色标签，写着中文‘双重成本’。暖米色背景，深棕色描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 8</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>招错人的损失可达年薪50%以上。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用饼图和数据标签直观展示损失比例。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一个大饼图，饼图左侧50%区域为暗红色，上面写着中文‘损失’，右侧50%区域为复古蓝色，上面写着中文‘年薪’。饼图下方有一张名片大小的卡片，卡片上写着数字‘年薪20万 → 损失10万+’。背景是干净的暖米色，深棕色描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 9</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>具体举例：年薪20万招错损失10万。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面显示一张钞票上写着“20万”，然后被撕掉一半变成“10万”，并出现“损失”字样。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一只戴棕色西装袖的手，正撕开一张大面额钞票。钞票上用粗体中文写着“20万”，被撕掉的一半飘落，剩下一半上写着“10万”。旁边有一个红色印章，印着中文“损失”二字。背景是深色木质桌面，光线聚焦在撕开的钞票上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 10</span>
+          <span class="kp-prompt-stage">summary</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>公司核心担忧是招错人而非招不到人。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面中央出现“招错人 > 招不到人”的对比，背景变暗，文字突出，带有警示感。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央，两个中文标签上下排列。上方标签写着“招错人”，用暗红色粗体字，标签边缘破损；下方标签写着“招不到人”，用灰绿色细体字，标签完整但暗淡。两者之间有一个橙色的“>”符号。背景是深棕色的墙面，有微弱的聚光灯从上方打下来，只照亮中央区域，四周渐暗，营造警示氛围。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色、信息图、箭头、红叉绿勾</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 11</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐降低风险的原因是信息不对称</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示信息不对称的概念，为后续解释做铺垫</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位金发欧美男子站在黑板前，黑板上用粉笔写着中文大字'信息不对称'。他一手拿着粉笔，另一手拿着一份文件。黑板左侧画着一个简单的天平，一侧高一侧低，代表不平衡。教室场景，暖色调灯光。画面中有中文：'信息不对称'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、渐变、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 12</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>信息不对称的定义：双方信息量不同</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用对比画面展示信息不对称</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，左右对比构图。左侧是一个红发欧美男人，面前堆着一大摞文件，他自信微笑，头顶有一个大大的'✓'符号。右侧是一个深棕发欧美女人，面前只有一张小纸片，她困惑地皱眉，头顶有一个'?'符号。两人中间有一条虚线分隔。画面中有中文：'信息多'在左侧，'信息少'在右侧。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、渐变、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 13</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>二手车市场是信息不对称的经典案例</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示二手车交易场景，突出买家担忧</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人站在二手车场，面前是一辆银色轿车。他皱着眉头，手摸着下巴，表情怀疑。车的引擎盖打开，可以看到里面锈迹斑斑的发动机。背景有红色的'二手车'标牌。画面中有中文：'事故？'写在黄色便签上贴在车头。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 14</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>信息不对称在二手车市场的具体表现</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用对比画面突出卖家知道、买家不知道</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面分为左右两半。左边：一个戴帽子的欧美卖家站在车旁，手指向车底，头顶冒出一个气泡，气泡里画着发动机故障图标，旁边写着中文'我知道'。右边：一个棕发买家站在车另一侧，头顶气泡里画着一个大大的问号，旁边写着中文'你不知道'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 15</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>买家因信息不对称只出平均价</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用价格标签或数字展示平均价</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人站在二手车市场里，手里举着一个写着'平均价'的纸牌，纸牌上有个数字'￥100'。他面前有几辆二手车的轮廓，背景是市场摊位。他表情困惑，微皱眉头。画面中有中文：'平均价'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白、Q版人物、亚洲面孔</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 16</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>好车退出市场，坏车充斥市场</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用对比画面展示好车离开、坏车留下</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割对比。左侧：一辆光亮崭新的轿车驶出画面，车身上标着'好车'，旁边一个棕色头发车主摆手说'不卖'。右侧：两辆破旧生锈的轿车停在原地，车身上标着'坏车'，车身有凹陷和掉漆，背景是二手车市场。画面中有中文：'好车'、'坏车'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白、Q版人物、亚洲面孔</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 17</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>劣币驱逐良币即逆向选择</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用文字或图标展示劣币驱逐良币和逆向选择</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧一个旧木桌上放着两枚硬币，一枚闪亮的金币标签写着“良币”，一枚暗淡的银币标签写着“劣币”，银币正将金币挤到桌子边缘。画面右侧一个箭头指向一张旧纸片，上面用粗体中文写着“逆向选择”。暖米色背景，深棕线条。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 18</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>招聘市场同样存在信息不对称</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示面试场景，突出HR的怀疑</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位金发欧美男性求职者坐在办公桌对面，递出一份简历，简历上用粗体中文写着“抗压能力强”。对面一位戴眼镜的棕发HR女士，双手交叉放在桌上，眉头微皱，眼神中带着怀疑。办公桌上一杯咖啡冒着热气。暖色调室内，复古蓝背景墙。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、多人杂乱场景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 19</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>面试时间短，应聘者可伪装</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用时钟或沙漏展示30分钟，暗示伪装</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男子坐在面试桌前，面带自信微笑，双手交叉放在桌上。他背后有一个巨大的圆形挂钟，钟面上用粗体红字标着'30分钟'。他旁边的椅子上挂着一件外套，外套下面隐隐露出一张写有'伪装'的纸条。暖色调室内，复古蓝墙壁。画面中有中文：'30分钟'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 20</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>公司最怕招到简历与实际不符的人</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用对比画面展示简历天才与工作废柴</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比。左侧：一个棕发欧美男人手持一份简历，简历上用粗体大字写着'天才'，他表情得意，胸前别着闪亮徽章。右侧：同一个男人坐在办公桌前，面前文件散乱一地，他抓着头表情崩溃，电脑屏幕上显示'错误'。中间用一条垂直的红色虚线隔开。画面中有中文：'天才'、'错误'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 21</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>错误招聘导致公司损失十几万</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示公司因错误招聘而损失金钱和时间的过程</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个穿西装的外国男人站在办公室白板前，白板上画着时间线：从‘入职’到‘发现’（两个月后）再到‘辞退’和‘重新招’。旁边一个巨大的金币上写着中文‘损失十几万’。男人表情懊恼，低头看表。画面中有中文：损失十几万。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 22</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>信息不对称导致柠檬问题</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉隐喻展示信息不对称和柠檬问题的关系</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中间是一颗巨大的柠檬，柠檬上贴着标签写着中文‘有缺陷’。柠檬左边站着一个金发外国人，表情困惑，手里拿着放大镜。右边站着一个棕色头发的外国人，表情狡黠，手藏在背后。两人之间有一条虚线，虚线两端写着中文‘信息不对称’。背景是二手车市场。画面中有中文：有缺陷、信息不对称。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 23</span>
+          <span class="kp-prompt-stage">transition</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引出内部推荐作为解决方案</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>人物思考或问号动画，引出下一段内容</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色头发的欧美男人站在办公室白板前，手托下巴作思考状，头顶浮现一个大大的白色气泡问号。白板上用黑色粗笔写着“内推？”两个字。背景是简洁的办公区，光线柔和。画面中有中文：内推？</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 24</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>推荐人提前验证了候选人</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示推荐人作为验证者的角色</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人（推荐人）站在办公桌前，面带微笑，一只手竖起大拇指，另一只手拿着一份简历，简历上盖着一个红色圆章写着“已验”。旁边一个西装革履的面试官点头表示认可。画面中有中文：已验。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 25</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>推荐人了解候选人的真实情况</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示推荐人了解候选人的多个维度</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个欧美男同事站在办公桌旁，手里拿着一份简历，另一只手指着简历上的内容。他旁边有三块漂浮的标签牌：一块写着'靠谱'、一块写着'习惯好'、一块写着'性格好'。背景是简洁的办公室格子间，暖色调，有柔和光线。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 26</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>推荐人用信誉担保</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示推荐人将信誉作为抵押物</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个欧美男人双手捧着一枚发光的金色徽章，徽章上写着中文'信誉'二字。他郑重地将徽章放在一张合同纸上。背景是深色木质桌面和柔和暖光，画面聚焦于这个交接动作，气氛严肃而有分量。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 27</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>推荐不靠谱的人会损害推荐人信誉</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示推荐人因推荐不靠谱而信誉受损的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，办公室场景，左侧一位棕发欧美男子（推荐人）尴尬地低着头，脸颊泛红，旁边同事投来怀疑和失望的目光。右侧一个红发男子（被推荐人）正在弄翻咖啡杯，场面混乱。推荐人头顶上方有一个碎裂的盾牌图案，盾牌上写着中文“信誉”。画面中有中文：信誉（写在碎裂的盾牌上）。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 28</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>信誉抵押机制防止推荐不靠谱的人</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉隐喻展示信誉抵押的机制</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，抽象空间场景，画面中央有一个巨大的天平。天平左侧托盘上放着一个写有中文“信誉”的金色硬币，硬币发着微光。右侧托盘上放着一个写有中文“朋友”的小人偶。一位金发欧美男子站在天平前，双手托腮思考，表情犹豫。天平左侧较重，微微倾斜。背景是柔和的暖色光晕。画面中有中文：信誉、朋友。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 29</span>
+          <span class="kp-prompt-stage">result</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐降低信任成本至零</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示公司零成本获得真实信息</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位公司经理坐在办公桌前，微笑着展示一份文件。文件上有一个大大的红色零（0）和中文“信任成本”。旁边一个员工竖起大拇指，背景有简单的推荐流程箭头。画面中有中文：信任成本 = 0。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 30</span>
+          <span class="kp-prompt-stage">conclusion</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>公司是降低交易成本的机制</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示公司作为降低交易成本机制的核心观点</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个打开的书籍中间，浮现出一个立体模型：公司大楼的轮廓内，有一个天平，天平一端放着“交易成本”标签，另一端是“0”。背景有向上的箭头和光效。画面中有中文：交易成本 → 0。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 31</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐的本质是人情作为信任抵押物</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉隐喻展示人情作为抵押物的概念</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张木桌，桌面中央放着一枚老式铜质怀表（象征信任），怀表旁边压着一张写有中文“人情”二字的泛黄纸片，纸片一角被一枚圆形金属筹码（象征抵押物）压住。背景是深色书架，暖光从侧上方打亮桌面，画面简洁有质感。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 32</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>推荐人因声誉抵押而承担风险</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示推荐人将声誉抵押在推荐信上的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕发欧美男性坐在办公桌前，表情严肃且略显紧张，一只手握着一封推荐信，另一只手将一枚刻有“信誉”二字的金色徽章放在信封上。信封上写着中文“推荐信”。背景是简约办公室，暖色调，光线聚焦于信封和徽章。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 33</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>推荐人信誉受损的后果</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现推荐人信誉受损后影响力下降的视觉</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位穿西装的欧美男性站在公司办公室内，表情沮丧。他胸前原本挂着的'推荐'标签被撕下一半，旁边一个同事正摇头摆手，表示不信任。他身后的公告板上，他推荐的人的照片被贴上了'糟糕表现'的红色印章。画面中有中文标签：'信誉打折'写在裂开的牌子上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 34</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>社交成本高于面试成本，推荐人谨慎行事</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>对比社交成本与面试成本，突出推荐人的谨慎</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比。左边：一个简单的面试桌，桌上放着一张纸写着'面试成本'，旁边一个小硬币。右边：一个复杂的社交网，中心是穿西装的欧美男性，周围连接着多个同事头像，每个人脸上都有关注的表情，网的中心写着'社交成本'四个中文大字。推荐人表情紧张，手放在下巴上思考。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 35</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>特权背后是筛选责任</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>揭示特权与责任的平衡关系</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个外国人站在天平中间，左手拿着一枚金色徽章（上面中文写着'特权'），右手拿着一叠简历（上面中文写着'筛选'）。天平两端平衡。背景是简洁的办公室。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 36</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐类似银行担保机制</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用银行担保场景类比内部推荐机制</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，银行柜台前，一个外国借款人紧张地站着，旁边一个担保人（外国人）在文件上签字。柜员（外国人）在柜台后查看文件。墙上挂钟指向3点。画面中有中文标签'信用评分'贴在借款人身上，'担保'贴在文件上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 37</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>担保人降低公司风险</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示担保人如何降低风险</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位穿西装的外国男人（担保人）站在一扇巨大的银行大门前，伸出双手挡住从门缝涌出的黑色墨水（代表坏账风险），墨水在碰到他手掌后变成透明水滴落下。画面中有中文标签：担保人，写在他胸口的工牌上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 38</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>公开招聘的高成本流程</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用流程图展示公开招聘的高成本</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张办公桌上摊开一张大流程图，左侧画着一大堆卷起来的简历（标注200份），中间一个戴眼镜的女HR正埋头筛选，旁边日历显示2天；右侧一个时钟指向3天后，一个部门主管在打电话协调时间。每个步骤下方有中文标签：初筛2天、面试3天。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 39</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>新员工试用期成本高达年薪30%</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示试用期各项成本累积的视觉</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个打开的文件夹放在办公桌上，里面露出一张写有中文“年薪”二字的纸张。从文件夹里伸出三根箭头标签，分别写着中文“培训”、“管理”、“离职”，这些标签像账单一样堆叠起来，旁边有一个大大的百分比符号“30%”用红笔圈出。背景是简洁的办公桌。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 40</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐通过软面试降低风险</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示推荐人进行软面试的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，办公室里，一位穿白衬衫的欧美男性员工（推荐人）正拿着咖啡杯，轻松地与另一位求职者交谈。推荐人用手指点了点自己的太阳穴，表情自信，暗示他了解对方。旁边的文件上写有中文“性格”、“态度”字样。背景是简洁的工位，有绿植。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 41</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐简化招聘流程，提升效率与匹配度。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>通过分屏对比，展示传统招聘与内部推荐在面试轮次、筛选时间和匹配度上的差异。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分屏。左侧：传统招聘场景，一位HR坐在堆满简历的办公桌前，表情疲惫，面前日历上画着3个面试轮次标记。右侧：内部推荐场景，一位HR轻松地笑着，面前只有1个面试轮次标记，旁边有一个写着“匹配度高”的标签。两场景用一条竖线分隔。画面中有中文：“传统招聘”和“内部推荐”分别标注在左右两侧。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度色彩、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 42</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>内部推荐显著提高员工长期留存率。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>以柱状图或数据卡片形式，突出显示内部推荐与公开招聘的3年留存率对比，并标注46%的差异。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张简洁的数据卡片。左侧是一根低矮的灰色柱子，下方标注“公开招聘”，柱子上方写着“3年留存率”。右侧是一根高大的深蓝色柱子，下方标注“内部推荐”，柱子上方写着“3年留存率”。两根柱子之间有一个醒目的箭头连接，箭头中间写着“+46%”。背景是干净的米色，画面中有中文：“公开招聘”、“内部推荐”、“3年留存率”、“+46%”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度色彩、复杂背景、真实数据图表风格</p>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">总时长</div>
+        <div style="font-size:1.5rem;font-weight:700;">10分36秒</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">画面节拍</div>
+        <div style="font-size:1.5rem;font-weight:700;">42</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">音频段</div>
+        <div style="font-size:1.5rem;font-weight:700;">16</div>
+      </div>
+    </div>
+
+    
+    
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">画面时间线（42 个节拍）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#1</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分0秒
+             -> 0分20秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐看似走后门，实则是节省信任成本的经济学逻辑。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比构图。左侧：一个棕发欧美男性沮丧地坐在电脑前，屏幕上显示50封已发送邮件和红色叉号，旁边散落着简历纸。右侧：一个金发欧美男性开心地握着一位西装同事的手，两人之间有一个写着‘推荐’的绿色标签。画面下方有一本打开的经济
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#2</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分20秒
+             -> 0分40秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐的本质是降低信任成本。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一本打开的《牛奶可乐经济学》书籍，书页上画着一个简化的天平。天平左边是一个写着‘内部推荐’的纸飞机，右边是一大堆写着‘面试筛选’的文件堆，文件堆上压着一个写着‘信任成本’的沉重砝码。天平明显向左倾斜。背景有从钱袋里飞
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#3</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分40秒
+             -> 0分50秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出招聘成本的计算问题。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色卷发的欧美中年男性，穿着深蓝色衬衫，右手托腮做思考状，左手手指比划着数字。背景是一块浅米色黑板，上面画着一个大问号和一把算盘，黑板角落写着中文“成本=?”。暖色调，画面干净。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#4</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分50秒
+             -> 1分1秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">纠正常见误解，招聘成本远高于几千元。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张浅米色旧纸上写着黑色粗体中文“招聘成本=几千元”，文字被一道醒目的红色斜线划掉。纸张上方压着一个暗红色圆形印章，印章里写着中文“错误”。背景是深棕色木质桌面，纸张边缘微微卷起。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#5</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分1秒
+             -> 1分21秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">招聘成本包括HR和面试官的时间成本。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张办公桌上的横向流程图，从左到右三个环节：第一格是HR在筛选一叠简历，上方标中文'筛选简历'；第二格是电脑日历显示面试安排，标'安排面试'；第三格是面试官放下文件去面试，标'面试官时间'。每个环节下方有一个小沙漏图标表示时间
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#6</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分21秒
+             -> 1分32秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">新人入职前三个月产出低。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发年轻新人坐在办公桌前，表情困惑，头顶有三个大问号。他面前的电脑屏幕上显示一个折线图，前三个月曲线几乎贴着底部，标注中文'低产出'。桌上散落着操作手册和内部流程文件。背景是开放式办公室，右侧有一台咖啡机。暖色调，深棕描边
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#7</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分32秒
+             -> 1分46秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">招错人导致双重损失：辞退赔偿+重新招聘。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右并置。左侧：一个外国男性员工垂头丧气走出办公室，HR递给他一个信封，信封上写着中文‘赔偿金’。右侧：HR坐在电脑前，屏幕上是招聘网站页面，旁边日历翻到新的一月。中间上方有一个红色标签，写着中文‘双重成本’。暖米色背景，
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#8</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分46秒
+             -> 2分2秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">招错人的损失可达年薪50%以上。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一个大饼图，饼图左侧50%区域为暗红色，上面写着中文‘损失’，右侧50%区域为复古蓝色，上面写着中文‘年薪’。饼图下方有一张名片大小的卡片，卡片上写着数字‘年薪20万 → 损失10万+’。背景是干净的暖米色，深棕色描
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#9</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分2秒
+             -> 2分14秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">具体举例：年薪20万招错损失10万。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一只戴棕色西装袖的手，正撕开一张大面额钞票。钞票上用粗体中文写着“20万”，被撕掉的一半飘落，剩下一半上写着“10万”。旁边有一个红色印章，印着中文“损失”二字。背景是深色木质桌面，光线聚焦在撕开的钞票上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#10</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分14秒
+             -> 2分24秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">公司核心担忧是招错人而非招不到人。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央，两个中文标签上下排列。上方标签写着“招错人”，用暗红色粗体字，标签边缘破损；下方标签写着“招不到人”，用灰绿色细体字，标签完整但暗淡。两者之间有一个橙色的“>”符号。背景是深棕色的墙面，有微弱的聚光灯从上方打下来，只
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#11</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分24秒
+             -> 2分40秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐降低风险的原因是信息不对称</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位金发欧美男子站在黑板前，黑板上用粉笔写着中文大字'信息不对称'。他一手拿着粉笔，另一手拿着一份文件。黑板左侧画着一个简单的天平，一侧高一侧低，代表不平衡。教室场景，暖色调灯光。画面中有中文：'信息不对称'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#12</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分40秒
+             -> 2分49秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">信息不对称的定义：双方信息量不同</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，左右对比构图。左侧是一个红发欧美男人，面前堆着一大摞文件，他自信微笑，头顶有一个大大的'✓'符号。右侧是一个深棕发欧美女人，面前只有一张小纸片，她困惑地皱眉，头顶有一个'?'符号。两人中间有一条虚线分隔。画面中有中文：'信息多
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#13</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分49秒
+             -> 3分9秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">二手车市场是信息不对称的经典案例</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人站在二手车场，面前是一辆银色轿车。他皱着眉头，手摸着下巴，表情怀疑。车的引擎盖打开，可以看到里面锈迹斑斑的发动机。背景有红色的'二手车'标牌。画面中有中文：'事故？'写在黄色便签上贴在车头。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#14</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分9秒
+             -> 3分20秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">信息不对称在二手车市场的具体表现</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面分为左右两半。左边：一个戴帽子的欧美卖家站在车旁，手指向车底，头顶冒出一个气泡，气泡里画着发动机故障图标，旁边写着中文'我知道'。右边：一个棕发买家站在车另一侧，头顶气泡里画着一个大大的问号，旁边写着中文'你不知道'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#15</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分20秒
+             -> 3分28秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">买家因信息不对称只出平均价</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人站在二手车市场里，手里举着一个写着'平均价'的纸牌，纸牌上有个数字'￥100'。他面前有几辆二手车的轮廓，背景是市场摊位。他表情困惑，微皱眉头。画面中有中文：'平均价'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#16</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分28秒
+             -> 3分44秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">好车退出市场，坏车充斥市场</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割对比。左侧：一辆光亮崭新的轿车驶出画面，车身上标着'好车'，旁边一个棕色头发车主摆手说'不卖'。右侧：两辆破旧生锈的轿车停在原地，车身上标着'坏车'，车身有凹陷和掉漆，背景是二手车市场。画面中有中文：'好车'、'坏
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#17</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分44秒
+             -> 3分54秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">劣币驱逐良币即逆向选择</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧一个旧木桌上放着两枚硬币，一枚闪亮的金币标签写着“良币”，一枚暗淡的银币标签写着“劣币”，银币正将金币挤到桌子边缘。画面右侧一个箭头指向一张旧纸片，上面用粗体中文写着“逆向选择”。暖米色背景，深棕线条。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#18</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分54秒
+             -> 4分14秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">招聘市场同样存在信息不对称</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位金发欧美男性求职者坐在办公桌对面，递出一份简历，简历上用粗体中文写着“抗压能力强”。对面一位戴眼镜的棕发HR女士，双手交叉放在桌上，眉头微皱，眼神中带着怀疑。办公桌上一杯咖啡冒着热气。暖色调室内，复古蓝背景墙。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#19</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分14秒
+             -> 4分23秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">面试时间短，应聘者可伪装</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男子坐在面试桌前，面带自信微笑，双手交叉放在桌上。他背后有一个巨大的圆形挂钟，钟面上用粗体红字标着'30分钟'。他旁边的椅子上挂着一件外套，外套下面隐隐露出一张写有'伪装'的纸条。暖色调室内，复古蓝墙壁。画面中有中
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#20</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分23秒
+             -> 4分43秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">公司最怕招到简历与实际不符的人</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比。左侧：一个棕发欧美男人手持一份简历，简历上用粗体大字写着'天才'，他表情得意，胸前别着闪亮徽章。右侧：同一个男人坐在办公桌前，面前文件散乱一地，他抓着头表情崩溃，电脑屏幕上显示'错误'。中间用一条垂直的红色虚线隔
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#21</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分43秒
+             -> 5分0秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">错误招聘导致公司损失十几万</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个穿西装的外国男人站在办公室白板前，白板上画着时间线：从‘入职’到‘发现’（两个月后）再到‘辞退’和‘重新招’。旁边一个巨大的金币上写着中文‘损失十几万’。男人表情懊恼，低头看表。画面中有中文：损失十几万。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#22</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分0秒
+             -> 5分16秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">信息不对称导致柠檬问题</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中间是一颗巨大的柠檬，柠檬上贴着标签写着中文‘有缺陷’。柠檬左边站着一个金发外国人，表情困惑，手里拿着放大镜。右边站着一个棕色头发的外国人，表情狡黠，手藏在背后。两人之间有一条虚线，虚线两端写着中文‘信息不对称’。背景是二
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#23</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分16秒
+             -> 5分27秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引出内部推荐作为解决方案</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色头发的欧美男人站在办公室白板前，手托下巴作思考状，头顶浮现一个大大的白色气泡问号。白板上用黑色粗笔写着“内推？”两个字。背景是简洁的办公区，光线柔和。画面中有中文：内推？
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#24</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分27秒
+             -> 5分36秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">推荐人提前验证了候选人</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人（推荐人）站在办公桌前，面带微笑，一只手竖起大拇指，另一只手拿着一份简历，简历上盖着一个红色圆章写着“已验”。旁边一个西装革履的面试官点头表示认可。画面中有中文：已验。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#25</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分36秒
+             -> 5分52秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">推荐人了解候选人的真实情况</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个欧美男同事站在办公桌旁，手里拿着一份简历，另一只手指着简历上的内容。他旁边有三块漂浮的标签牌：一块写着'靠谱'、一块写着'习惯好'、一块写着'性格好'。背景是简洁的办公室格子间，暖色调，有柔和光线。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#26</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分52秒
+             -> 6分1秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">推荐人用信誉担保</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个欧美男人双手捧着一枚发光的金色徽章，徽章上写着中文'信誉'二字。他郑重地将徽章放在一张合同纸上。背景是深色木质桌面和柔和暖光，画面聚焦于这个交接动作，气氛严肃而有分量。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#27</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分1秒
+             -> 6分17秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">推荐不靠谱的人会损害推荐人信誉</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，办公室场景，左侧一位棕发欧美男子（推荐人）尴尬地低着头，脸颊泛红，旁边同事投来怀疑和失望的目光。右侧一个红发男子（被推荐人）正在弄翻咖啡杯，场面混乱。推荐人头顶上方有一个碎裂的盾牌图案，盾牌上写着中文“信誉”。画面中有中文：信
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#28</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分17秒
+             -> 6分32秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">信誉抵押机制防止推荐不靠谱的人</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，抽象空间场景，画面中央有一个巨大的天平。天平左侧托盘上放着一个写有中文“信誉”的金色硬币，硬币发着微光。右侧托盘上放着一个写有中文“朋友”的小人偶。一位金发欧美男子站在天平前，双手托腮思考，表情犹豫。天平左侧较重，微微倾斜。背
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#29</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分32秒
+             -> 6分47秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐降低信任成本至零</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位公司经理坐在办公桌前，微笑着展示一份文件。文件上有一个大大的红色零（0）和中文“信任成本”。旁边一个员工竖起大拇指，背景有简单的推荐流程箭头。画面中有中文：信任成本 = 0。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#30</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分47秒
+             -> 7分1秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">公司是降低交易成本的机制</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个打开的书籍中间，浮现出一个立体模型：公司大楼的轮廓内，有一个天平，天平一端放着“交易成本”标签，另一端是“0”。背景有向上的箭头和光效。画面中有中文：交易成本 → 0。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#31</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分1秒
+             -> 7分17秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐的本质是人情作为信任抵押物</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张木桌，桌面中央放着一枚老式铜质怀表（象征信任），怀表旁边压着一张写有中文“人情”二字的泛黄纸片，纸片一角被一枚圆形金属筹码（象征抵押物）压住。背景是深色书架，暖光从侧上方打亮桌面，画面简洁有质感。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#32</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分17秒
+             -> 7分35秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">推荐人因声誉抵押而承担风险</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕发欧美男性坐在办公桌前，表情严肃且略显紧张，一只手握着一封推荐信，另一只手将一枚刻有“信誉”二字的金色徽章放在信封上。信封上写着中文“推荐信”。背景是简约办公室，暖色调，光线聚焦于信封和徽章。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#33</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分35秒
+             -> 7分54秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">推荐人信誉受损的后果</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位穿西装的欧美男性站在公司办公室内，表情沮丧。他胸前原本挂着的'推荐'标签被撕下一半，旁边一个同事正摇头摆手，表示不信任。他身后的公告板上，他推荐的人的照片被贴上了'糟糕表现'的红色印章。画面中有中文标签：'信誉打折'写在裂
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#34</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分54秒
+             -> 8分13秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">社交成本高于面试成本，推荐人谨慎行事</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比。左边：一个简单的面试桌，桌上放着一张纸写着'面试成本'，旁边一个小硬币。右边：一个复杂的社交网，中心是穿西装的欧美男性，周围连接着多个同事头像，每个人脸上都有关注的表情，网的中心写着'社交成本'四个中文大字。推荐
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#35</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分13秒
+             -> 8分30秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">特权背后是筛选责任</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个外国人站在天平中间，左手拿着一枚金色徽章（上面中文写着'特权'），右手拿着一叠简历（上面中文写着'筛选'）。天平两端平衡。背景是简洁的办公室。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#36</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分30秒
+             -> 8分44秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐类似银行担保机制</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，银行柜台前，一个外国借款人紧张地站着，旁边一个担保人（外国人）在文件上签字。柜员（外国人）在柜台后查看文件。墙上挂钟指向3点。画面中有中文标签'信用评分'贴在借款人身上，'担保'贴在文件上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#37</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分44秒
+             -> 8分57秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">担保人降低公司风险</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位穿西装的外国男人（担保人）站在一扇巨大的银行大门前，伸出双手挡住从门缝涌出的黑色墨水（代表坏账风险），墨水在碰到他手掌后变成透明水滴落下。画面中有中文标签：担保人，写在他胸口的工牌上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#38</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分57秒
+             -> 9分17秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">公开招聘的高成本流程</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张办公桌上摊开一张大流程图，左侧画着一大堆卷起来的简历（标注200份），中间一个戴眼镜的女HR正埋头筛选，旁边日历显示2天；右侧一个时钟指向3天后，一个部门主管在打电话协调时间。每个步骤下方有中文标签：初筛2天、面试3天。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#39</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            9分17秒
+             -> 9分37秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">新员工试用期成本高达年薪30%</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个打开的文件夹放在办公桌上，里面露出一张写有中文“年薪”二字的纸张。从文件夹里伸出三根箭头标签，分别写着中文“培训”、“管理”、“离职”，这些标签像账单一样堆叠起来，旁边有一个大大的百分比符号“30%”用红笔圈出。背景是简洁
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#40</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            9分37秒
+             -> 9分57秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐通过软面试降低风险</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，办公室里，一位穿白衬衫的欧美男性员工（推荐人）正拿着咖啡杯，轻松地与另一位求职者交谈。推荐人用手指点了点自己的太阳穴，表情自信，暗示他了解对方。旁边的文件上写有中文“性格”、“态度”字样。背景是简洁的工位，有绿植。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#41</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            9分57秒
+             -> 10分16秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐简化招聘流程，提升效率与匹配度。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分屏。左侧：传统招聘场景，一位HR坐在堆满简历的办公桌前，表情疲惫，面前日历上画着3个面试轮次标记。右侧：内部推荐场景，一位HR轻松地笑着，面前只有1个面试轮次标记，旁边有一个写着“匹配度高”的标签。两场景用一条竖线分
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#42</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            10分16秒
+             -> 10分36秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">内部推荐显著提高员工长期留存率。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张简洁的数据卡片。左侧是一根低矮的灰色柱子，下方标注“公开招聘”，柱子上方写着“3年留存率”。右侧是一根高大的深蓝色柱子，下方标注“内部推荐”，柱子上方写着“3年留存率”。两根柱子之间有一个醒目的箭头连接，箭头中间写着“+4
+        </div>
+        
+      </div>
+      
+    </div>
+    
+
+    
+    
+
+    
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            72分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本核心逻辑清晰，对信息不对称和交易成本解释到位，但存在source_scope夸大、时长不匹配、缺少生活判断工具和举一反三、应用案例散点等硬伤，需针对性修改后方可发布。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:15%"></div>
+            </div>
+            <span class="kp-dim-val">3</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:60%"></div>
+            </div>
+            <span class="kp-dim-val">12</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:15%"></div>
+            </div>
+            <span class="kp-dim-val">3</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:10%"></div>
+            </div>
+            <span class="kp-dim-val">2</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:15%"></div>
+            </div>
+            <span class="kp-dim-val">3</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 为'整书分析'，但脚本仅聚焦于'内部推荐与信息不对称'一个具体知识点，未覆盖整书多个主题，存在夸大。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">estimated_video_length 为15-20分钟，但实际口播时长仅约12分钟，明显不匹配。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">缺少生活判断工具（自测问题/思考方式），不符合要求。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">缺少举一反三部分，未展示思想迁移到其他场景。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">应用案例为散点列表（海投、构建网络），没有深入展开一个主案例。</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-danger">修正 source_scope 为具体思想范围，如'《牛奶可乐经济学》中关于信息不对称与交易成本在招聘中的应用'。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">调整 estimated_video_length 为12分钟左右，或扩充脚本至15-20分钟对应字数（约3750-6400字）。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">补充生活判断工具：至少提供一个可自测的问题或思考方式，并附简短解释。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">补充举一反三部分：说明该思想可迁移到哪些类似场景（如租房、合作、消费决策等）。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">将应用案例从散点列表改为一个主案例深入展开，例如详细描述一个求职者如何通过构建网络获得内推。</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('牛奶可乐经济学', 103)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        <option value="visual_beats.json">visual_beats.json</option>
+        
+        
+        
+        <option value="image_prompts.json">image_prompts.json</option>
+        
+        
+        
+        <option value="timeline.json">timeline.json</option>
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

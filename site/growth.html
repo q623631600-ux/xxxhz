@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+<div class="v0-container" style="max-width:90rem;">
+    <!-- Header -->
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem;">
+        <div>
+            <h1 style="margin:0 0 0.25rem;">🧠 Agent 学习中心</h1>
+            <p style="margin:0; color:var(--ink-muted); font-size:0.875rem;">
+                分析数据 → 学习结构规律 → 验证策略 → 自动优化内容
+            </p>
+        </div>
+        <button class="v0-btn v0-btn-secondary" onclick="location.reload()">🔄 刷新</button>
+    </div>
+
+    
+
+    <!-- ============================================================ -->
+    <!-- Section 1: Stats Overview -->
+    <!-- ============================================================ -->
+    <div class="lc-stats" id="lc-stats">
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">132</div>
+            <div class="lc-stat-label">视频分析总数</div>
+        </div>
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">0</div>
+            <div class="lc-stat-label">已验证规则</div>
+        </div>
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">6</div>
+            <div class="lc-stat-label">测试中规则</div>
+        </div>
+        <div class="lc-stat-card">
+            <div class="lc-stat-value">0</div>
+            <div class="lc-stat-label">已淘汰规则</div>
+        </div>
+    </div>
+
+    <div class="lc-grid">
+        <!-- ============================================================ -->
+        <!-- Section 2: 内容结构排行榜 (Left Column) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">🏆 内容结构排行榜</h2>
+            
+            
+            <div class="lc-chart">
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#1</span>
+                        信息差结构
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:136.5%; background:var(--brand, #0a7c42);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">5522.3</span>
+                        <span class="lc-bar-pct up">
+                            +36.5%
+                        </span>
+                        <span class="lc-bar-n">n=14</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#2</span>
+                        现象解释结构
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:124.3%; background:var(--brand, #0a7c42);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">5027.8</span>
+                        <span class="lc-bar-pct up">
+                            +24.3%
+                        </span>
+                        <span class="lc-bar-n">n=28</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#3</span>
+                        规则揭秘结构
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:113.6%; background:var(--brand, #0a7c42);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4597.4</span>
+                        <span class="lc-bar-pct up">
+                            +13.6%
+                        </span>
+                        <span class="lc-bar-n">n=15</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#4</span>
+                        身份代入结构
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:101.8%; background:var(--brand, #0a7c42);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4119.2</span>
+                        <span class="lc-bar-pct up">
+                            +1.8%
+                        </span>
+                        <span class="lc-bar-n">n=45</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#5</span>
+                        反常识结构
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:88.8%; background:oklch(0.6 0.15 25);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">3593.9</span>
+                        <span class="lc-bar-pct down">
+                            -11.2%
+                        </span>
+                        <span class="lc-bar-n">n=15</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#6</span>
+                        利益冲突结构
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:85.1%; background:oklch(0.6 0.15 25);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">3443.0</span>
+                        <span class="lc-bar-pct down">
+                            -14.9%
+                        </span>
+                        <span class="lc-bar-n">n=3</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="lc-insight">
+                💡 最佳结构: <strong>信息差结构</strong> —
+                平均播放 5522.3，较均值提升 36.5%
+            </div>
+            
+            
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 3: 开场排行榜 (Right Column) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">🎬 开场排行榜</h2>
+            
+            
+            <div class="lc-chart">
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#1</span>
+                        提问开场
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:118.0%; background:oklch(0.55 0.13 245);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4772.7</span>
+                        <span class="lc-bar-pct up">
+                            +18.0%
+                        </span>
+                        <span class="lc-bar-n">n=18</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#2</span>
+                        结论开场
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:106.5%; background:oklch(0.55 0.13 245);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4307.2</span>
+                        <span class="lc-bar-pct up">
+                            +6.5%
+                        </span>
+                        <span class="lc-bar-n">n=4</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#3</span>
+                        信息差开场
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:104.3%; background:oklch(0.55 0.13 245);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4219.1</span>
+                        <span class="lc-bar-pct up">
+                            +4.3%
+                        </span>
+                        <span class="lc-bar-n">n=7</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#4</span>
+                        反常识开场
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:100.9%; background:oklch(0.55 0.13 245);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4084.2</span>
+                        <span class="lc-bar-pct up">
+                            +0.9%
+                        </span>
+                        <span class="lc-bar-n">n=16</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 4: 内容模型排行榜 (Left) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">🧩 内容模型排行榜</h2>
+            
+            
+            <div class="lc-chart">
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#1</span>
+                        信息差 + 规则揭秘
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:127.3%; background:oklch(0.5 0.15 325);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">5150.0</span>
+                        <span class="lc-bar-pct up">
+                            +27.3%
+                        </span>
+                        <span class="lc-bar-n">n=4</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#2</span>
+                        现象解释 + 数据支撑
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:124.3%; background:oklch(0.5 0.15 325);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">5027.8</span>
+                        <span class="lc-bar-pct up">
+                            +24.3%
+                        </span>
+                        <span class="lc-bar-n">n=28</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#3</span>
+                        提问 + 现象解释
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:124.3%; background:oklch(0.5 0.15 325);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">5027.8</span>
+                        <span class="lc-bar-pct up">
+                            +24.3%
+                        </span>
+                        <span class="lc-bar-n">n=28</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#4</span>
+                        反常识 + 规则揭秘
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:88.0%; background:oklch(0.5 0.15 325);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">3561.3</span>
+                        <span class="lc-bar-pct down">
+                            -12.0%
+                        </span>
+                        <span class="lc-bar-n">n=3</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#5</span>
+                        身份代入 + 反常识
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:81.8%; background:oklch(0.5 0.15 325);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">3311.0</span>
+                        <span class="lc-bar-pct down">
+                            -18.2%
+                        </span>
+                        <span class="lc-bar-n">n=10</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 5: 主题排行榜 (Right) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel">
+            <h2 class="lc-panel-title">📌 主题排行榜</h2>
+            
+            
+            <div class="lc-chart">
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#1</span>
+                        房地产
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:120.24%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">6012.0</span>
+                        <span class="lc-bar-n">n=1</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#2</span>
+                        经济学
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:86.83999999999999%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4342.0</span>
+                        <span class="lc-bar-n">n=30</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#3</span>
+                        就业
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:86.392%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4319.6</span>
+                        <span class="lc-bar-n">n=5</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#4</span>
+                        认知升级
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:81.524%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">4076.2</span>
+                        <span class="lc-bar-n">n=56</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#5</span>
+                        商业案例
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:78.88%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">3944.0</span>
+                        <span class="lc-bar-n">n=4</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#6</span>
+                        消费
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:78.756%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">3937.8</span>
+                        <span class="lc-bar-n">n=4</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#7</span>
+                        社会观察
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:73.05199999999999%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">3652.6</span>
+                        <span class="lc-bar-n">n=8</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#8</span>
+                        金融
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:47.02%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">2351.0</span>
+                        <span class="lc-bar-n">n=4</span>
+                    </div>
+                </div>
+                
+                <div class="lc-bar-row">
+                    <div class="lc-bar-label">
+                        <span class="lc-rank">#9</span>
+                        货币
+                    </div>
+                    <div class="lc-bar-track">
+                        <div class="lc-bar-fill" style="width:0.0%; background:oklch(0.55 0.1 85);"></div>
+                    </div>
+                    <div class="lc-bar-meta">
+                        <span class="lc-bar-value">0.0</span>
+                        <span class="lc-bar-n">n=1</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Section 7: Strategy Memory (Left - Full Width on Mobile) -->
+        <!-- ============================================================ -->
+        <div class="lc-panel lc-panel-full" id="lc-strategy-panel">
+            <h2 class="lc-panel-title">📋 Strategy Memory — 全部规则</h2>
+            <div id="lc-strategy-placeholder">
+                
+                
+                <table class="lc-table">
+                    <thead>
+                        <tr>
+                            <th>规则</th>
+                            <th>类别</th>
+                            <th>状态</th>
+                            <th>平均提升</th>
+                            <th>样本</th>
+                            <th>置信度</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td><strong>信息差结构</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-content_structure">content_structure</span></td>
+                            <td><span class="lc-status-tag lc-status-validated">validated</span></td>
+                            <td class="lc-num-up">
+                                +37.3%
+                            </td>
+                            <td>35</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:100%;"></div>
+                                    <span>100%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>现象解释结构</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-content_structure">content_structure</span></td>
+                            <td><span class="lc-status-tag lc-status-validated">validated</span></td>
+                            <td class="lc-num-up">
+                                +24.5%
+                            </td>
+                            <td>65</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:100%;"></div>
+                                    <span>100%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>规则揭秘结构</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-content_structure">content_structure</span></td>
+                            <td><span class="lc-status-tag lc-status-validated">validated</span></td>
+                            <td class="lc-num-up">
+                                +16.3%
+                            </td>
+                            <td>35</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:100%;"></div>
+                                    <span>100%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>利益冲突结构</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-content_structure">content_structure</span></td>
+                            <td><span class="lc-status-tag lc-status-testing">testing</span></td>
+                            <td class="lc-num-down">
+                                -14.9%
+                            </td>
+                            <td>6</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:30%;"></div>
+                                    <span>30%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>反常识结构</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-content_structure">content_structure</span></td>
+                            <td><span class="lc-status-tag lc-status-rejected">rejected</span></td>
+                            <td class="lc-num-down">
+                                -11.2%
+                            </td>
+                            <td>30</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:100%;"></div>
+                                    <span>100%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>身份代入结构</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-content_structure">content_structure</span></td>
+                            <td><span class="lc-status-tag lc-status-validated">validated</span></td>
+                            <td class="lc-num-up">
+                                +3.2%
+                            </td>
+                            <td>102</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:100%;"></div>
+                                    <span>100%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>提问开场</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-opening">opening</span></td>
+                            <td><span class="lc-status-tag lc-status-validated">validated</span></td>
+                            <td class="lc-num-up">
+                                +14.9%
+                            </td>
+                            <td>44</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:100%;"></div>
+                                    <span>100%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>结论开场</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-opening">opening</span></td>
+                            <td><span class="lc-status-tag lc-status-testing">testing</span></td>
+                            <td class="lc-num-up">
+                                +6.5%
+                            </td>
+                            <td>8</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:40%;"></div>
+                                    <span>40%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>信息差开场</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-opening">opening</span></td>
+                            <td><span class="lc-status-tag lc-status-testing">testing</span></td>
+                            <td class="lc-num-up">
+                                +4.6%
+                            </td>
+                            <td>19</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:95%;"></div>
+                                    <span>95%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><strong>反常识开场</strong></td>
+                            <td><span class="lc-cat-tag lc-cat-opening">opening</span></td>
+                            <td><span class="lc-status-tag lc-status-validated">validated</span></td>
+                            <td class="lc-num-up">
+                                +1.0%
+                            </td>
+                            <td>34</td>
+                            <td>
+                                <div class="lc-conf-bar">
+                                    <div class="lc-conf-fill" style="width:100%;"></div>
+                                    <span>100%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                
+                <p style="text-align:center; margin-top:0.75rem;">
+                    <button class="v0-btn v0-btn-link" onclick="loadAllRules()">查看全部 24 条规则 →</button>
+                </p>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- Section 8 & 9: 最近学到 / 最近淘汰 / 下次测试 (Bottom Row) -->
+    <!-- ============================================================ -->
+    <div class="lc-bottom-row">
+        <!-- 最近学到什么 -->
+        <div class="lc-bottom-card">
+            <h3 class="lc-bottom-title">📘 最近学到</h3>
+            
+            
+            <ul class="lc-timeline">
+                
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>房地产</strong>
+                    <span class="lc-tl-meta">582900.0 · n=3</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-validated">validated</span>
+                    <strong>经济学</strong>
+                    <span class="lc-tl-meta">437920.0 · n=75</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>就业</strong>
+                    <span class="lc-tl-meta">431960.0 · n=10</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-validated">validated</span>
+                    <strong>认知升级</strong>
+                    <span class="lc-tl-meta">412040.0 · n=130</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-validated">validated</span>
+                    <strong>社会观察</strong>
+                    <span class="lc-tl-meta">399420.0 · n=20</span>
+                </li>
+                
+            </ul>
+            
+        </div>
+
+        <!-- 最近淘汰 -->
+        <div class="lc-bottom-card">
+            <h3 class="lc-bottom-title">🗑️ 最近淘汰</h3>
+            
+            
+            <ul class="lc-timeline">
+                
+                <li>
+                    <span class="lc-status-tag lc-status-rejected">rejected</span>
+                    <strong>身份代入 + 反常识</strong>
+                    <span class="lc-tl-meta">n=20</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-rejected">rejected</span>
+                    <strong>反常识结构</strong>
+                    <span class="lc-tl-meta">n=30</span>
+                </li>
+                
+            </ul>
+            
+        </div>
+
+        <!-- 下次测试什么 -->
+        <div class="lc-bottom-card">
+            <h3 class="lc-bottom-title">🧪 下次测试</h3>
+            
+            
+            <ul class="lc-timeline">
+                
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>货币</strong>
+                    <span class="lc-tl-meta">置信度 10%</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>房地产</strong>
+                    <span class="lc-tl-meta">置信度 15%</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>利益冲突结构</strong>
+                    <span class="lc-tl-meta">置信度 30%</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>反常识 + 规则揭秘</strong>
+                    <span class="lc-tl-meta">置信度 30%</span>
+                </li>
+                
+                <li>
+                    <span class="lc-status-tag lc-status-testing">testing</span>
+                    <strong>消费</strong>
+                    <span class="lc-tl-meta">置信度 40%</span>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div style="text-align:center; margin-top:2rem; padding:1rem 0; border-top:1px solid var(--border); color:var(--ink-muted); font-size:0.8rem;">
+        Agent 已学习 132 条视频，
+        0 条规则已验证，
+        0 条规则已淘汰。
+        
+        <br>上次学习: 2026-08-31T13:10:40
+        
+    </div>
+    
+</div>
+
+<style>
+/* ================================================================
+   Learning Center Styles
+   ================================================================ */
+.lc-stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.75rem; margin-bottom:1.25rem; }
+.lc-stat-card { background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; padding:1rem; text-align:center; }
+.lc-stat-value { font-size:1.75rem; font-weight:700; color:var(--ink); line-height:1.2; }
+.lc-stat-label { font-size:0.75rem; color:var(--ink-muted); margin-top:0.2rem; }
+
+.lc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+@media (max-width:768px) { .lc-grid { grid-template-columns:1fr; } }
+.lc-panel { background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; padding:1.25rem; }
+.lc-panel-full { grid-column:1 / -1; }
+.lc-panel-title { font-size:1rem; font-weight:600; margin:0 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border); }
+
+.lc-chart { display:flex; flex-direction:column; gap:0.5rem; }
+.lc-bar-row { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; }
+.lc-bar-label { width:9rem; flex-shrink:0; display:flex; align-items:center; gap:0.3rem; }
+.lc-rank { display:inline-flex; align-items:center; justify-content:center; width:1.4rem; height:1.4rem; border-radius:50%; background:var(--brand); color:#fff; font-size:0.65rem; font-weight:700; flex-shrink:0; }
+.lc-bar-track { flex:1; height:1.2rem; background:var(--border); border-radius:0.3rem; overflow:hidden; }
+.lc-bar-fill { height:100%; border-radius:0.3rem; transition:width 0.4s; min-width:2%; }
+.lc-bar-meta { display:flex; align-items:center; gap:0.4rem; width:10rem; flex-shrink:0; justify-content:flex-end; }
+.lc-bar-value { font-weight:600; }
+.lc-bar-pct { font-size:0.7rem; font-weight:600; padding:0.1rem 0.3rem; border-radius:0.2rem; }
+.lc-bar-pct.up { background:color-mix(in srgb,var(--brand) 15%,transparent); color:var(--brand); }
+.lc-bar-pct.down { background:color-mix(in srgb,oklch(0.6 0.15 25) 15%,transparent); color:oklch(0.5 0.15 25); }
+.lc-bar-n { font-size:0.7rem; color:var(--ink-muted); }
+.lc-insight { margin-top:0.75rem; padding:0.5rem 0.75rem; background:color-mix(in srgb,var(--brand) 8%,transparent); border-radius:0.5rem; font-size:0.8rem; }
+
+.lc-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+.lc-table th { text-align:left; padding:0.4rem 0.5rem; color:var(--ink-muted); font-weight:500; border-bottom:1px solid var(--border); font-size:0.75rem; }
+.lc-table td { padding:0.4rem 0.5rem; border-bottom:1px solid var(--border-light,#f0f0f0); vertical-align:middle; }
+.lc-table tbody tr:hover { background:var(--surface-hover,#f8f8f8); }
+.lc-cat-tag { display:inline-block; padding:0.1rem 0.4rem; border-radius:999px; font-size:0.65rem; font-weight:500; }
+.lc-cat-content_structure { background:#e3f2fd; color:#1565c0; }
+.lc-cat-opening { background:#fce4ec; color:#c62828; }
+.lc-cat-content_model { background:#f3e5f5; color:#6a1b9a; }
+.lc-cat-topic { background:#e8f5e9; color:#2e7d32; }
+.lc-status-tag { display:inline-block; padding:0.1rem 0.4rem; border-radius:999px; font-size:0.65rem; font-weight:600; }
+.lc-status-validated { background:#e8f5e9; color:#2e7d32; }
+.lc-status-testing { background:#fff8e1; color:#f57f17; }
+.lc-status-rejected { background:#fbe9e7; color:#bf360c; }
+.lc-num-up { color:var(--brand,#0a7c42); font-weight:600; }
+.lc-num-down { color:oklch(0.5 0.15 25); font-weight:600; }
+.lc-conf-bar { display:flex; align-items:center; gap:0.3rem; width:6rem; }
+.lc-conf-fill { height:5px; background:var(--brand); border-radius:3px; transition:width 0.3s; max-width:100%; }
+
+.lc-bottom-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-bottom:1.5rem; }
+@media (max-width:768px) { .lc-bottom-row { grid-template-columns:1fr; } }
+.lc-bottom-card { background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; padding:1rem; }
+.lc-bottom-title { font-size:0.9rem; font-weight:600; margin:0 0 0.75rem; padding-bottom:0.4rem; border-bottom:1px solid var(--border); }
+.lc-timeline { list-style:none; padding:0; margin:0; }
+.lc-timeline li { display:flex; align-items:center; gap:0.4rem; padding:0.35rem 0; border-bottom:1px solid var(--border-light,#f0f0f0); font-size:0.8rem; }
+.lc-timeline li:last-child { border-bottom:none; }
+.lc-tl-meta { color:var(--ink-muted); font-size:0.7rem; margin-left:auto; }
+.lc-empty-text { color:var(--ink-muted); font-size:0.8rem; text-align:center; padding:1rem; }
+.lc-empty { text-align:center; padding:3rem 1.5rem; background:var(--surface); border:1px solid var(--border); border-radius:0.75rem; margin-bottom:1.5rem; }
+.lc-empty-icon { font-size:3rem; margin-bottom:0.5rem; }
+.lc-empty h2 { margin:0 0 0.5rem; }
+.lc-empty p { color:var(--ink-muted); max-width:400px; margin:0 auto 1rem; }
+</style>
+
+<script>
+/* Load full strategy rules */
+function loadAllRules() {
+    var panel = document.getElementById('lc-strategy-placeholder');
+    if (!panel || panel.dataset.loaded) return;
+    panel.dataset.loaded = '1';
+    panel.innerHTML = '<p style="text-align:center;color:var(--ink-muted);padding:1rem;">加载中...</p>';
+
+    fetch('/api/strategies/rules')
+        .then(function(r){return r.json()})
+        .then(function(j) {
+            if (!j.success) { panel.innerHTML = '<p style="text-align:center;color:var(--ink-muted);">加载失败</p>'; return; }
+            var rules = j.data.rules;
+            if (!rules || !rules.length) { panel.innerHTML = '<p class="lc-empty-text">暂无规则</p>'; return; }
+            var h = '<table class="lc-table"><thead><tr><th>规则</th><th>类别</th><th>状态</th><th>提升</th><th>样本</th><th>置信度</th></tr></thead><tbody>';
+            rules.forEach(function(r) {
+                var pct = (r.avg_play_increase > 0 ? '+' : '') + r.avg_play_increase + '%';
+                var conf = Math.round((r.confidence || 0) * 100) + '%';
+                h += '<tr>' +
+                    '<td><strong>' + esc(r.rule) + '</strong></td>' +
+                    '<td><span class="lc-cat-tag lc-cat-' + (r.category || 'content_structure') + '">' + (r.category||'') + '</span></td>' +
+                    '<td><span class="lc-status-tag lc-status-' + (r.status||'testing') + '">' + (r.status||'testing') + '</span></td>' +
+                    '<td class="' + (r.avg_play_increase > 0 ? 'lc-num-up' : 'lc-num-down') + '">' + pct + '</td>' +
+                    '<td>' + (r.sample_count||0) + '</td>' +
+                    '<td><div class="lc-conf-bar"><div class="lc-conf-fill" style="width:' + Math.min(100, (r.confidence||0)*100) + '%;"></div><span>' + conf + '</span></div></td>' +
+                    '</tr>';
+            });
+            h += '</tbody></table><p style="text-align:center;margin-top:0.75rem;font-size:0.75rem;color:var(--ink-muted);">共 ' + rules.length + ' 条规则</p>';
+            panel.innerHTML = h;
+        })
+        .catch(function() { panel.innerHTML = '<p style="text-align:center;color:var(--ink-muted);">网络错误</p>'; });
+}
+
+function esc(s) {
+    var d = document.createElement('div');
+    d.textContent = s || '';
+    return d.innerHTML;
+}
+</script>
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

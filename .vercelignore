@@ -12,6 +12,7 @@ __pycache__/
 services/
 utils/
 prompts/
+web/
 Dockerfile
 .dockerignore
 render.yaml

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Header -->
+  <div class="kp-header" style="margin-bottom:2rem;">
+    <div>
+      <h1 class="kp-title" style="font-size:1.75rem;">项目列表</h1>
+      <p class="kp-meta-row" style="margin-top:0.5rem;max-width:36rem;line-height:1.6;">
+        管理讲书项目，查看大纲状态，进入工作台继续生成脚本、画面点和配音素材。
+      </p>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn v0-btn-primary" style="font-size:0.9375rem;padding:0.625rem 1.25rem;">
+        ＋ 新建任务
+      </a>
+    </div>
+  </div>
+
+  
+  <!-- Stats -->
+  <div class="v0-analytics-grid" style="margin-bottom:2rem;">
+    <div class="kp-project-card" style="gap:0.25rem;">
+      <div style="font-size:0.6875rem;font-weight:500;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.06em;">项目总数</div>
+      <div style="font-family:monospace;font-size:1.75rem;font-weight:650;color:var(--foreground);line-height:1.2;">22</div>
+    </div>
+    <div class="kp-project-card" style="gap:0.25rem;">
+      <div style="font-size:0.6875rem;font-weight:500;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.06em;">已规划大纲</div>
+      <div style="font-family:monospace;font-size:1.75rem;font-weight:650;color:var(--foreground);line-height:1.2;">22</div>
+    </div>
+    <div class="kp-project-card" style="gap:0.25rem;">
+      <div style="font-size:0.6875rem;font-weight:500;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:0.06em;">总知识节点</div>
+      <div style="font-family:monospace;font-size:1.75rem;font-weight:650;color:var(--foreground);line-height:1.2;">79</div>
+    </div>
+  </div>
+
+  <!-- Book Grid -->
+  <div class="kp-project-grid">
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">t</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">test</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-good" style="width:100%;"></div>
+        </div>
+        <span class="kp-project-bar-label">1 / 1 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-test.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">人</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">人生财富靠康波</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:60%;"></div>
+        </div>
+        <span class="kp-project-bar-label">3 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-人生财富靠康波.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">债</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">债务危机</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-good" style="width:80%;"></div>
+        </div>
+        <span class="kp-project-bar-label">4 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-债务危机.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">博</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">博弈论</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-good" style="width:459%;"></div>
+        </div>
+        <span class="kp-project-bar-label">23 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-博弈论.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">噪</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">噪声</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:40%;"></div>
+        </div>
+        <span class="kp-project-bar-label">2 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-噪声.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">国</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">国富论</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-good" style="width:140%;"></div>
+        </div>
+        <span class="kp-project-bar-label">7 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-国富论.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">复</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">复利效应</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:60%;"></div>
+        </div>
+        <span class="kp-project-bar-label">3 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-复利效应.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">宏</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">宏观经济学</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:40%;"></div>
+        </div>
+        <span class="kp-project-bar-label">2 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-宏观经济学.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">对</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">对赌</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:60%;"></div>
+        </div>
+        <span class="kp-project-bar-label">3 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-对赌.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">思</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">思考快与慢</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:40%;"></div>
+        </div>
+        <span class="kp-project-bar-label">2 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-思考快与慢.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">毛</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">毛选</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-low" style="width:0%;"></div>
+        </div>
+        <span class="kp-project-bar-label">0 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-毛选.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">泡</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">泡沫经济学</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-low" style="width:20%;"></div>
+        </div>
+        <span class="kp-project-bar-label">1 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-泡沫经济学.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">牛</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">牛奶可乐经济学</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-low" style="width:20%;"></div>
+        </div>
+        <span class="kp-project-bar-label">1 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-牛奶可乐经济学.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">理</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">理解人性</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:60%;"></div>
+        </div>
+        <span class="kp-project-bar-label">3 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-理解人性.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">第</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">第一性原理</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:40%;"></div>
+        </div>
+        <span class="kp-project-bar-label">2 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-第一性原理.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">置</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">置身事内</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-good" style="width:100%;"></div>
+        </div>
+        <span class="kp-project-bar-label">6 / 6 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-置身事内.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">聪</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">聪明的投资者</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-low" style="width:20%;"></div>
+        </div>
+        <span class="kp-project-bar-label">1 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-聪明的投资者.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">认</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">认知觉醒</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-good" style="width:160%;"></div>
+        </div>
+        <span class="kp-project-bar-label">8 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-认知觉醒.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">认</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">认知驱动</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-low" style="width:0%;"></div>
+        </div>
+        <span class="kp-project-bar-label">0 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-认知驱动.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">财</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">财务自由之路</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-good" style="width:80%;"></div>
+        </div>
+        <span class="kp-project-bar-label">4 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-财务自由之路.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">货</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">货币金融学</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-low" style="width:0%;"></div>
+        </div>
+        <span class="kp-project-bar-label">0 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-货币金融学.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+    <div class="kp-project-card">
+      <div class="kp-project-top">
+        <div class="kp-project-avatar">金</div>
+        <div class="kp-project-title" style="font-size:1.0625rem;">金钱心理学</div>
+        <span class="kp-project-plan-badge planned">
+          大纲已生成
+        </span>
+      </div>
+
+      <div class="kp-project-progress" style="margin-top:0.25rem;">
+        
+        <div class="kp-project-bar-track" style="flex:1;">
+          <div class="kp-project-bar-fill fill-warn" style="width:60%;"></div>
+        </div>
+        <span class="kp-project-bar-label">3 / 5 知识点</span>
+      </div>
+
+      <div class="kp-project-actions" style="margin-top:0.5rem;">
+        <a href="work.html" class="v0-btn v0-btn-primary">
+          工作台 →
+        </a>
+        <a href="project-金钱心理学.html" class="v0-btn">
+          查看文件
+        </a>
+      </div>
+    </div>
+    
+  </div>
+  
+
+</div>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

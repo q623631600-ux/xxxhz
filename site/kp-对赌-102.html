@@ -1,0 +1,3982 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-对赌.html" class="kp-bcrumb-link">对赌</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #102</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">把人生当赌局的人，为什么反而更少犯错？</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>15-20分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>3955</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('对赌', 102)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">42</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点<span class="kp-tab-count">42</span></button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词<span class="kp-tab-count">42</span></button>
+    <button class="kp-tab" data-tab="timeline" >时间线<span class="kp-tab-count">42/0</span></button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">明明拼尽全力做决策，却总被结果打脸——你的问题不是不够努力，而是把人生当成了考试，而不是赌局。
+
+先想想看，我们平时是怎么评判一个决策的？如果结果好，我们就觉得当初的决定是对的；如果结果差，我们就认定自己错了。投资赚了钱，我们说“我眼光真准”；赔了钱，就说“我真是个蠢货”。但《对赌》的作者安妮·杜克，她曾经是世界扑克冠军，她告诉我们：这是最危险的思维方式。因为好的决策也可能带来坏的结果，坏的决策也可能撞上好运。你把全部积蓄买了一只股票，第二天它涨停了——这不代表你的分析有多高明，可能只是运气好。反过来，你做了详尽的市场调研，选了一个基本面很好的公司，结果遇到行业黑天鹅，亏了——这不代表你决策错了。我们真正该学的，不是如何避免坏结果，而是如何区分“决策质量”和“结果运气”。
+
+那我们为什么这么容易被结果绑架呢？因为我们对“赌局”这个词有偏见。一说到赌局，我们就想到冒险、不靠谱、输光家产。但《对赌》这本书重新定义了“赌局”——它不是说让你去赌场押注，而是让你用“概率思维”来看待每一个决策。真正的赌徒，尤其是职业扑克玩家，他们不是靠运气吃饭的。他们知道每一手牌都有确定的概率，赢或输都只是概率波动的结果。赢了，他们不会觉得自己天下无敌；输了，他们也不会崩溃，因为他们知道只要长期做对的事，概率会站在自己这边。他们真正厉害的地方，是把“决策”和“结果”解耦了——赢了不飘，输了不悔。这才是“赌局思维”的真正威力。
+
+你可能要问：这个思维怎么就能让我少犯错呢？我把它拆解成三个关键机制。第一个，剥离情绪。当我们把决策看作一个概率游戏时，我们就不再会因为一次亏损而陷入自我怀疑或盲目自信。比如你开了一家小店，第一个月亏了，你不会立刻觉得“我根本不会做生意”，而是会想：“这个结果在概率范围内，我需要调整策略。”情绪一旦被剥离，你就能更冷静地复盘。第二个，聚焦过程。你开始关注“我有没有按正确的方法做”，而不是“这次赚没赚到钱”。就像打牌的时候，你更在意自己有没有根据概率下注，而不是这把牌是输是赢。第三个，允许自己“输得起”。因为你知道，只要长期坚持做对的事，概率会站在你这边。一次失败的决策不会毁掉你，你也不会因为害怕失败而不敢做决定。这三个机制合在一起，就构成了一个抗焦虑、抗后悔的决策系统。
+
+那么，有没有一个具体的方法，可以让我们立刻用上这个思维？《对赌》里提供了一个特别实用的工具，叫“事前验尸”。听起来有点吓人，但做起来很简单。在做一个重要决策之前，先假设这个决策已经失败了——比如你投资了一个项目，一年后血本无归。然后你问自己：“为什么它会失败？”把最坏的情况先想出来，列出所有可能的原因：市场不对、团队不行、资金不够、竞争对手太强……然后逐一检查你现在有没有这些问题。这个方法不需要任何专业知识，任何人都能立刻用起来。它强迫我们跳出“一定会成功”的乐观幻觉，提前看到那些隐藏的风险。
+
+我举个例子，让你感受一下怎么用。假设你是一个创业者，现在面临要不要投入一笔钱做一个新项目。如果你用普通人的思维，你会纠结：“万一失败了怎么办？我是不是该再等等？”这种纠结其实是在用情绪做决策。但如果你用赌局思维，你会先做“事前验尸”。你假设这个项目已经失败了，然后列出所有可能的原因：也许市场调研不够充分，也许团队核心成员经验不足，也许启动资金只够撑半年，也许竞争对手已经抢先一步。然后你逐一检查：市场调研做了吗？团队能力够吗？资金规划合理吗？有没有竞品分析？当你把这些都列出来，你的决策就不再是“赌一把”，而是“在概率上做最优选择”。你可能会发现，现在确实不是好时机，或者你意识到需要先补上某个短板。
+
+回到开头的问题：把人生当赌局的人，为什么反而更少犯错？因为他们不是在赌运气，而是在玩一场概率游戏。他们知道输赢是暂时的，但过程是永恒的。我们不需要真的去赌场，但我们可以学会这种思维。下一次，当你面临一个重大决策时，试着问自己：如果这个决定注定失败，最可能的原因是什么？然后，你就能更清醒地往前走。好的决策不一定带来好结果，但长期坚持好的决策，好结果会自然而来。这就是“赌局思维”的精髓——不是教你冒险，而是教你在不确定性中，找到属于自己的确定性。
+
+让我们再深入一层。为什么普通人容易在决策中犯错？因为他们混淆了“决策质量”和“结果质量”。一个经典的例子是：你打德州扑克，拿到一对A，这是最好的起手牌。你加注，对手跟注。翻牌后，你继续下注，对手弃牌。你赢了。这看起来是个好结果，但真的是好决策吗？不一定。如果你因为对手弃牌就沾沾自喜，下次拿到一对A时贸然全押，那就危险了。因为真正的好决策，是在每次行动前，基于已有信息做出概率最优的选择。而结果，只是概率的随机实现。你可能做出完美决策，却因为运气差输掉；也可能做出糟糕决策，却因为运气好赢了。长期来看，只有坚持高质量决策的人，才会在概率的累积中胜出。
+
+《对赌》书中，作者安妮·杜克（Annie Duke）分享了她在扑克生涯中的一个关键教训。她曾在一场比赛中，拿到一手好牌，但对手突然全押。她凭直觉跟注，结果输了。事后复盘，她发现自己忽略了一个关键信息：对手在之前几轮中，每当拿到好牌时，都会有一个微小的身体语言变化。她当时没注意，但事后回想，那个信号明显。杜克意识到，她犯的错误不是“输掉这一局”，而是“没有利用所有可用信息做决策”。从此，她开始系统性地记录每一手牌，包括自己的情绪、对手的行为、牌桌的位置等。她把这些数据输入一个“决策日志”，每次打牌后都复盘：我的决策是好的吗？我忽略了什么？这种习惯让她从靠直觉打牌，变成靠概率和证据打牌。结果，她的胜率从45%提升到接近60%。这不是运气，而是系统。
+
+这个案例告诉我们一个残酷的真相：我们的大脑天生不擅长处理概率。进化心理学研究表明，人类祖先在非洲草原上，面对的是“要么被狮子吃掉，要么安全”的二元情境，而不是“有30%概率被咬伤、20%概率被惊吓、50%概率安全”的复杂概率。所以，我们的大脑更倾向于“全有或全无”的思维模式。当你说“我肯定能行”或“我肯定不行”时，你其实是在用原始脑做决策。而赌局思维，就是强迫你跨越这个本能，进入“概率脑”。例如，当你面对一个投资机会，你可能会本能地想：“这个项目看起来太完美了，一定能成。”但如果你用赌局思维，你会问：“如果这个项目有70%的成功概率，那30%的失败概率从哪来？”然后你列出可能的风险点：市场变化、技术瓶颈、团队内讧等。这个过程，就像在头脑中做一次“压力测试”，让你从盲目乐观转向理性评估。
+
+为了强化这种思维，杜克还引入了“心理时间旅行”的概念。她建议我们在做决策前，想象自己已经站在未来某个时间点，回望现在的选择。比如，你正在考虑是否跳槽到一家初创公司。你可以想象自己一年后，如果跳槽了，会看到什么？也许你看到公司倒闭，你后悔没留在原公司；也许你看到公司上市，你庆幸自己勇敢。然后，你再想象自己没跳槽，一年后会怎样？也许你看到原公司死气沉沉，你后悔没走；也许你看到原公司升职加薪，你庆幸没冒险。这种“时间旅行”让你跳出当下的情绪波动，看到不同路径的概率分布。你不再纠结“要不要跳槽”，而是问自己：“在概率上，哪种选择更可能带来长期收益？”你会发现，答案往往不是非黑即白，而是“如果A，那么有60%概率好结果；如果B，那么有40%概率好结果”。然后，你选择那个概率更高的方向，并接受剩余的不确定性。
+
+更重要的是，赌局思维要求我们学会“认错”和“修正”。普通人犯错后，第一反应是找借口：“市场不好”“队友不给力”“运气太差”。但赌局思维者会说：“我这次决策有缺陷，下次要改进。”这种态度源于一个核心原则：决策和结果要解耦。在扑克中，你输掉一手好牌，不代表你决策差；你赢了一手烂牌，也不代表你决策好。同样，在人生中，你做了一个好决策却失败，那只是运气不好；你做了一个坏决策却成功，那只是运气好。长期坚持好决策，运气会回归均值。所以，当你犯错时，不要自责，而是问：“我从中学到了什么？如何改进我的决策系统？”这种“复盘”文化，在顶尖扑克玩家中非常普遍。他们会在赛后花数小时看录像，分析每一手牌的决策过程，甚至请教练点评。这种习惯，让他们从“赌徒”变成“决策工程师”。
+
+最后，我们回到一个更深层的洞见：把人生当赌局的人，为什么反而更少犯错？因为他们接受了“不确定性”是常态，而不是意外。普通人追求“确定性”，希望每个决策都有100%把握。但现实是，世界充满随机性。你无法预测明天股票涨跌，无法保证项目一定成功，甚至无法确定明天会不会下雨。但赌局思维者，恰恰利用了这种不确定性。他们不追求“必胜”，而是追求“在概率上占优”。他们知道，每一次决策就像抛一枚硬币，但如果你能通过信息收集、逻辑推理和概率计算，让硬币的正面概率从50%提升到55%，那么长期下来，你就会成为赢家。这种思维，让他们在面对挫折时更理性，面对成功时更谦逊。因为他们知道，输赢只是概率的体现，真正重要的是决策系统本身。
+
+所以，下一次当你面临一个重大决策，无论是职业选择、投资决策，还是人际关系，试试这个框架：第一步，列出所有可能的结果，并给每个结果分配一个概率（比如“项目成功概率60%，失败40%”）。第二步，识别你忽略的信息：还有什么你不知道的？有什么隐藏变量？第三步，做“事前验尸”：假设最坏的结果发生，原因是什么？第四步，记录你的决策过程，以便日后复盘。这个框架听起来简单，但实践起来需要刻意练习。你会发现，当你习惯了用概率思考，你的焦虑会减少，因为你不再要求自己“必须正确”，而是追求“在不确定性中做出最优选择”。这种心态的转变，才是《对赌》这本书真正的宝藏。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('对赌', 102)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>对赌</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>15-20分钟</dd>
+            <dt>字数</dt><dd>3955</dd>
+          </dl>
+        </div>
+        
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 痛点引入</div>
+          <p class="kp-side-card-text">明明拼尽全力做决策，却总被结果打脸——你的问题不是不够努力，而是把人生当成了考试，而不是赌局。</p>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">42</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批切分：2 片，总计 42 个单元</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">明明拼尽全力做决策，却总被结果打脸——你的问题不是不够努力，而是把人生当成了考试，而不是赌局。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">先想想看，我们平时是怎么评判一个决策的？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果结果好，我们就觉得当初的决定是对的；如果结果差，我们就认定自己错了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">投资赚了钱，我们说“我眼光真准”；赔了钱，就说“我真是个蠢货”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但《对赌》的作者安妮·杜克，她曾经是世界扑克冠军，她告诉我们：这是最危险的思维方式。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">因为好的决策也可能带来坏的结果，坏的决策也可能撞上好运。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你把全部积蓄买了一只股票，第二天它涨停了——这不代表你的分析有多高明，可能只是运气好。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">反过来，你做了详尽的市场调研，选了一个基本面很好的公司，结果遇到行业黑天鹅，亏了——这不代表你决策错了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们真正该学的，不是如何避免坏结果，而是如何区分“决策质量”和“结果运气”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那我们为什么这么容易被结果绑架呢？因为我们对“赌局”这个词有偏见。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">一说到赌局，我们就想到冒险、不靠谱、输光家产。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但《对赌》这本书重新定义了“赌局”——它不是说让你去赌场押注，而是让你用“概率思维”来看待每一个决策。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">真正的赌徒，尤其是职业扑克玩家，他们不是靠运气吃饭的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他们知道每一手牌都有确定的概率，赢或输都只是概率波动的结果。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">赢了，他们不会觉得自己天下无敌；输了，他们也不会崩溃，因为他们知道只要长期做对的事，概率会站在自己这边。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他们真正厉害的地方，是把“决策”和“结果”解耦了——赢了不飘，输了不悔。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这才是“赌局思维”的真正威力。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你可能要问：这个思维怎么就能让我少犯错呢？我把它拆解成三个关键机制。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第一个，剥离情绪。当我们把决策看作一个概率游戏时，我们就不再会因为一次亏损而陷入自我怀疑或盲目自信。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">比如你开了一家小店，第一个月亏了，你不会立刻觉得“我根本不会做生意”，而是会想：“这个结果在概率范围内，我需要调整策略。”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">情绪一旦被剥离，你就能更冷静地复盘。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第二个，聚焦过程。你开始关注“我有没有按正确的方法做”，而不是“这次赚没赚到钱”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">就像打牌的时候，你更在意自己有没有根据概率下注，而不是这把牌是输是赢。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第三个，允许自己“输得起”。因为你知道，只要长期坚持做对的事，概率会站在你这边。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">一次失败的决策不会毁掉你，你也不会因为害怕失败而不敢做决定。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这三个机制合在一起，就构成了一个抗焦虑、抗后悔的决策系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那么，有没有一个具体的方法，可以让我们立刻用上这个思维？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">《对赌》里提供了一个特别实用的工具，叫“事前验尸”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">让我们再深入一层。为什么普通人容易在决策中犯错？因为他们混淆了“决策质量”和“结果质量”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">15s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">一个经典的例子是：你打德州扑克，拿到一对A，这是最好的起手牌。你加注，对手跟注。翻牌后，你继续下注，对手弃牌。你赢了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这看起来是个好结果，但真的是好决策吗？不一定。因为如果你因为对手弃牌就沾沾自喜，下次拿到一对A时贸然全押，那就危险了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#32</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">因为真正的好决策，是在每次行动前，基于已有信息做出概率最优的选择。而结果，只是概率的随机实现。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#33</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">14s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你可能做出完美决策，却因为运气差输掉；也可能做出糟糕决策，却因为运气好赢了。长期来看，只有坚持高质量决策的人，才会在概率的累积中胜出。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#34</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">15s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">《对赌》书中，作者安妮·杜克（Annie Duke）分享了她在扑克生涯中的一个关键教训。她曾在一场比赛中，拿到一手好牌，但对手突然全押。她凭直觉跟注，结果输了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#35</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">14s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">事后复盘，她发现自己忽略了一个关键信息：对手在之前几轮中，每当拿到好牌时，都会有一个微小的身体语言变化。她当时没注意，但事后回想，那个信号明显。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#36</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">杜克意识到，她犯的错误不是“输掉这一局”，而是“没有利用所有可用信息做决策”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#37</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">16s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">从此，她开始系统性地记录每一手牌，包括自己的情绪、对手的行为、牌桌的位置等。她把这些数据输入一个“决策日志”，每次打牌后都复盘：我的决策是好的吗？我忽略了什么？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#38</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这种习惯让她从靠直觉打牌，变成靠概率和证据打牌。结果，她的胜率从45%提升到接近60%。这不是运气，而是系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#39</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个案例告诉我们一个残酷的真相：我们的大脑天生不擅长处理概率。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#40</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">18s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">进化心理学研究表明，人类祖先在非洲草原上，面对的是“要么被狮子吃掉，要么安全”的二元情境，而不是“有30%概率被咬伤、20%概率被惊吓、50%概率安全”的复杂概率。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#41</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，我们的大脑更倾向于“全有或全无”的思维模式。当你说“我肯定能行”或“我肯定不行”时，你其实是在用原始脑做决策。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#42</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">30s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而赌局思维，就是强迫你跨越这个本能，进入“概率脑”。例如，当你面对一个投资机会，你可能会本能地想：“这个项目看起来太完美了，一定能成。”但如果你用赌局思维，你会问：“如果这个项目有70%的成功概率，那30%的失败概率从哪来？”然后你列出可能的风险点：市场变化、技术瓶颈、团队内讧等。这个过程，就像在头脑中做一次“压力测试”，让你从盲目乐观转向理性评估。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">42</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批提取：5 批，每批 10 个单元，总计 42 个画面点</p>
+      
+    </div>
+    <div class="kp-beat-list">
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 1</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>努力决策却总被结果否定，因为错误地把人生当考试而非赌局。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开篇需要强冲击力画面吸引注意力，同时传达核心隐喻。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉对比展现'考试'与'赌局'的差异，引发观众共鸣。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">明明拼尽全力做决策，却总被结果打脸——你的问题不是不够努力，而是把人生当成了考试，而不是赌局。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 2</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引导观众反思日常决策评判方式。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用人物思考画面，营造自问自答的互动感。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">先想想看，我们平时是怎么评判一个决策的？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 3</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>人们习惯用结果倒推决策对错。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用左右对比画面，直观展示'好结果→对决策'和'坏结果→错决策'的思维链条。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果结果好，我们就觉得当初的决定是对的；如果结果差，我们就认定自己错了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 4</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>投资结果好坏导致自我评价的极端化。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用具体投资场景，展示赚赔两种结果下人物的不同反应和内心独白。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">投资赚了钱，我们说“我眼光真准”；赔了钱，就说“我真是个蠢货”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 5</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入权威人物安妮·杜克，指出结果导向思维的危害。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示安妮·杜克形象及《对赌》书籍，配合警示性视觉元素，强调'最危险'。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但《对赌》的作者安妮·杜克，她曾经是世界扑克冠军，她告诉我们：这是最危险的思维方式。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 6</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>决策质量与结果好坏并非一一对应。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用矩阵图或交叉箭头，展示'好决策+坏结果'和'坏决策+好结果'两种组合。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">因为好的决策也可能带来坏的结果，坏的决策也可能撞上好运。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 7</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>好结果可能源于运气而非决策质量。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用动画展示一个人孤注一掷买股票，第二天涨停，但旁边出现'运气'标签，暗示偶然性。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你把全部积蓄买了一只股票，第二天它涨停了——这不代表你的分析有多高明，可能只是运气好。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 8</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>坏结果可能源于不可控因素，而非决策错误。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个人认真调研后投资，突然出现'黑天鹅'图标导致亏损，强调决策本身是好的。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">反过来，你做了详尽的市场调研，选了一个基本面很好的公司，结果遇到行业黑天鹅，亏了——这不代表你决策错了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 9</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">solution</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>核心学习目标是区分决策质量与结果运气。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用天平或分栏对比，左边'决策质量'，右边'结果运气'，强调需要学会区分。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们真正该学的，不是如何避免坏结果，而是如何区分“决策质量”和“结果运气”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 10</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">transition</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>被结果绑架的原因是人们对'赌局'的偏见。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物思考特写，旁边浮现'赌局'二字并带有负面符号（如骷髅或叉号），暗示偏见。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那我们为什么这么容易被结果绑架呢？因为我们对“赌局”这个词有偏见。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 11</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>人们对赌局的负面刻板印象</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开篇需要建立认知冲突，用负面画面引出后续反转</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展现赌局带来的风险与负面联想</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">一说到赌局，我们就想到冒险、不靠谱、输光家产。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 12</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>《对赌》重新定义赌局为概率思维</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示概念转变，从负面印象到新定义</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示书本和概率思维的概念可视化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但《对赌》这本书重新定义了“赌局”——它不是说让你去赌场押注，而是让你用“概率思维”来看待每一个决策。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 13</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>职业赌徒靠技能而非运气</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体化职业赌徒的形象，打破刻板印象</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展现职业扑克玩家专注、理性的形象</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">真正的赌徒，尤其是职业扑克玩家，他们不是靠运气吃饭的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 14</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>职业赌徒理解概率波动</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化概率概念，解释牌局中的数学原理</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示扑克牌的概率分布和波动</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">他们知道每一手牌都有确定的概率，赢或输都只是概率波动的结果。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 15</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>职业赌徒保持情绪稳定，相信长期概率</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要对比赢和输两种情境下的理性态度</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示赢不骄、输不馁的理性心态</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">赢了，他们不会觉得自己天下无敌；输了，他们也不会崩溃，因为他们知道只要长期做对的事，概率会站在自己这边。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 16</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>决策与结果解耦是核心能力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强调关键概念“解耦”，用视觉方式呈现</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示决策与结果分离的图示</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">他们真正厉害的地方，是把“决策”和“结果”解耦了——赢了不飘，输了不悔。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 17</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>总结赌局思维的价值</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要收束前文，强调核心观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用有力画面总结赌局思维的力量</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这才是“赌局思维”的真正威力。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 18</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引出三个关键机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡到具体机制，需要设置悬念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示人物思考并引出三个机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你可能要问：这个思维怎么就能让我少犯错呢？我把它拆解成三个关键机制。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 19</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>第一个机制：剥离情绪</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示情绪剥离的过程和效果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示情绪从决策中分离的视觉隐喻</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第一个，剥离情绪。当我们把决策看作一个概率游戏时，我们就不再会因为一次亏损而陷入自我怀疑或盲目自信。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 20</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>案例：开店亏损时的理性应对</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体案例来阐释剥离情绪的应用</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示开店场景中理性分析亏损</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">比如你开了一家小店，第一个月亏了，你不会立刻觉得“我根本不会做生意”，而是会想：“这个结果在概率范围内，我需要调整策略。”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 21</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>剥离情绪才能冷静复盘</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个抽象概念，需要可视化剥离情绪的过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示情绪被剥离后，人物冷静思考的画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">情绪一旦被剥离，你就能更冷静地复盘。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 22</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>聚焦过程而非结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个新的机制点，需要新的画面来展示聚焦过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示人物关注方法步骤，忽略金钱数字的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第二个，聚焦过程。你开始关注“我有没有按正确的方法做”，而不是“这次赚没赚到钱”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 23</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>打牌时关注概率而非输赢</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个类比案例，需要具体场景来强化理解</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示打牌场景，人物专注计算概率，忽略输赢结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">就像打牌的时候，你更在意自己有没有根据概率下注，而不是这把牌是输是赢。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 24</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>允许输得起，长期坚持概率优势</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个新的机制点，需要画面展示输得起的心态</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示人物坦然接受失败，同时看到长期概率优势的画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第三个，允许自己“输得起”。因为你知道，只要长期坚持做对的事，概率会站在你这边。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 25</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>失败不可怕，不因恐惧而退缩</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是对输得起心态的进一步阐述，需要画面强化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示人物面对失败依然坚定，不畏惧做决定</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">一次失败的决策不会毁掉你，你也不会因为害怕失败而不敢做决定。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 26</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>三个机制构成抗焦虑决策系统</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是总结性语句，需要画面整合三个机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示三个机制融合成一个完整的决策系统</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这三个机制合在一起，就构成了一个抗焦虑、抗后悔的决策系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 27</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引出具体方法</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个过渡句，需要画面引导观众期待</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示人物思考并提问，引出下一个工具</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那么，有没有一个具体的方法，可以让我们立刻用上这个思维？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 28</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>介绍事前验尸工具</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个新工具引入，需要画面展示工具名称</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示书名《对赌》和“事前验尸”工具名称</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">《对赌》里提供了一个特别实用的工具，叫“事前验尸”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 29</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>混淆决策质量与结果质量是犯错原因</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个深入分析，需要画面区分两个概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两个概念对比，突出混淆的后果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">让我们再深入一层。为什么普通人容易在决策中犯错？因为他们混淆了“决策质量”和“结果质量”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 30</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">15s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>德州扑克例子说明决策质量与结果质量</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个具体案例，需要画面还原扑克场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示德州扑克牌局过程，突出好决策带来好结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">一个经典的例子是：你打德州扑克，拿到一对A，这是最好的起手牌。你加注，对手跟注。翻牌后，你继续下注，对手弃牌。你赢了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 31</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>好结果不等于好决策，沾沾自喜会导致危险。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个转折和警示，需要从上一个场景切换到新的画面来展示危险后果。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个玩家因为赢了一手牌而得意忘形，随后在下一手牌中因冲动全押而输掉大量筹码的对比场景。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这看起来是个好结果，但真的是好决策吗？不一定。因为如果你因为对手弃牌就沾沾自喜，下次拿到一对A时贸然全押，那就危险了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 32</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>好决策是基于信息的最优概率选择，结果只是随机实现。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个抽象概念的定义和解释，需要可视化呈现。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用白板或思维导图的形式，展示“好决策 = 信息 + 概率最优选择”，旁边用骰子或转盘表示“结果 = 随机实现”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">因为真正的好决策，是在每次行动前，基于已有信息做出概率最优的选择。而结果，只是概率的随机实现。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 33</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">14s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>短期靠运气，长期靠高质量决策的累积。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个对比和总结性的观点，需要视觉化对比短期和长期。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用两条曲线对比：一条是随机波动的短期结果线，另一条是稳步上升的长期决策质量线，最后聚焦于长期曲线。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你可能做出完美决策，却因为运气差输掉；也可能做出糟糕决策，却因为运气好赢了。长期来看，只有坚持高质量决策的人，才会在概率的累积中胜出。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 34</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">15s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>安妮·杜克因凭直觉跟注而输掉一手好牌。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个具体案例的引入，需要还原扑克牌桌上的关键场景。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>扑克牌桌特写，安妮·杜克看着手中的好牌，对面对手全押，她犹豫后跟注，随后牌面翻转显示她输了。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">《对赌》书中，作者安妮·杜克（Annie Duke）分享了她在扑克生涯中的一个关键教训。她曾在一场比赛中，拿到一手好牌，但对手突然全押。她凭直觉跟注，结果输了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 35</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">14s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>复盘发现忽略了对手的身体语言信号。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个复盘和发现关键信息的时刻，需要展示回忆和对比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面分为两半：左边是当时牌桌场景，对手有微小动作但未被注意；右边是复盘时的慢动作回放，放大对手的身体语言变化。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">事后复盘，她发现自己忽略了一个关键信息：对手在之前几轮中，每当拿到好牌时，都会有一个微小的身体语言变化。她当时没注意，但事后回想，那个信号明显。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 36</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>真正的错误是未利用所有可用信息做决策。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个认知转折点，需要突出核心教训。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>安妮·杜克的特写，表情从懊悔变为顿悟，旁边出现文字：“错误不是输，而是没有用尽信息”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">杜克意识到，她犯的错误不是“输掉这一局”，而是“没有利用所有可用信息做决策”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 37</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">16s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>她开始系统性记录和复盘，建立决策日志。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个行动转变，需要展示新的工作方法和工具。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>安妮·杜克在书桌前，打开一本“决策日志”，上面有表格记录情绪、对手行为、位置等，她正在认真填写和复盘。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">从此，她开始系统性地记录每一手牌，包括自己的情绪、对手的行为、牌桌的位置等。她把这些数据输入一个“决策日志”，每次打牌后都复盘：我的决策是好的吗？我忽略了什么？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 38</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>从直觉到概率证据，胜率提升，这是系统的力量。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个成果展示和总结，需要可视化数据变化。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>一个动态图表，显示胜率从45%逐步上升到60%，旁边出现文字“系统 > 运气”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这种习惯让她从靠直觉打牌，变成靠概率和证据打牌。结果，她的胜率从45%提升到接近60%。这不是运气，而是系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 39</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>大脑天生不擅长处理概率。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个转折和核心观点的抛出，需要视觉隐喻。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>大脑的3D模型，内部显示混乱的数学符号和概率公式，表示大脑处理概率时的混乱状态。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个案例告诉我们一个残酷的真相：我们的大脑天生不擅长处理概率。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 40</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">18s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>人类进化中面对的是二元情境，而非复杂概率。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个进化心理学的解释，需要对比远古和现代情境。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面分为两部分：左边是非洲草原上，一个原始人面对狮子，只有“安全”或“被吃”两种结果；右边是现代人面对复杂的概率图表，表情困惑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">进化心理学研究表明，人类祖先在非洲草原上，面对的是“要么被狮子吃掉，要么安全”的二元情境，而不是“有30%概率被咬伤、20%概率被惊吓、50%概率安全”的复杂概率。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 41</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>大脑倾向于极端思维，这是原始脑的决策方式。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从抽象概念转向具体解释，需要可视化大脑的思维模式。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示大脑中“全有或全无”的极端思维模式，对比原始脑与理性脑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，我们的大脑更倾向于“全有或全无”的思维模式。当你说“我肯定能行”或“我肯定不行”时，你其实是在用原始脑做决策。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 42</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">30s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>赌局思维通过概率分析，从盲目乐观转向理性评估。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示从本能乐观到概率分析的思维转变过程，体现压力测试。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">而赌局思维，就是强迫你跨越这个本能，进入“概率脑”。例如，当你面对一个投资机会，你可能会本能地想：“这个项目看起来太完美了，一定能成。”但如果你用赌局思维，你会问：“如果这个项目有70%的成功概率，那30%的失败概率从哪来？”然后你列出可能的风险点：市场变化、技术瓶颈、团队内讧等。这个过程，就像在头脑中做一次“压力测试”，让你从盲目乐观转向理性评估。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">42</span>
+        <span class="kp-summary-label">图片提示词</span>
+      </div>
+      
+      <span class="kp-summary-style-badge">现代知识类视频插画风，干净简洁，柔和光影，信息表达清晰，人物一律为外国人形象（欧美面孔），适合抖音读书类视频。横屏 16…</span>
+      
+      <div class="kp-summary-stats">
+        
+        <span class="kp-status-pill kp-pill-generated">generated: 42</span>
+        
+      </div>
+    </div>
+    <div class="kp-prompt-grid">
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 1</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>努力决策却总被结果否定，因为错误地把人生当考试而非赌局。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉对比展现'考试'与'赌局'的差异，引发观众共鸣。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割。左侧：一个欧美年轻男人坐在课桌前，面前是一张写有'考试'二字的试卷，他眉头紧锁、表情焦虑，试卷上画着红色大叉。右侧：同一人站在赌桌旁，自信地笑着，桌上散落着筹码和一张写有'赌局'的卡片。中间有一条垂直的分隔线。画面中有中文：'考试'和'赌局'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 2</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引导观众反思日常决策评判方式。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用人物思考画面，营造自问自答的互动感。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个欧美年轻男人坐在书房的书桌前，单手托腮，眼神向上看，露出思考的表情。桌上摊开一本笔记本，上面画着一个大大的问号和一个写有'决策？'的标签。背景是暖色调的书架，光线柔和。画面中有中文：'决策？'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 3</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>人们习惯用结果倒推决策对错。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用左右对比画面，直观展示'好结果→对决策'和'坏结果→错决策'的思维链条。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割。左侧：一个金发男人开心地站在金币堆旁，头顶上方有一个写着'赚了'的标签，标签下箭头指向'对的决定'四个大字。右侧：同一个男人垂头丧气，面前是空钱包，头顶标签写着'赔了'，箭头指向'错的决定'四个大字。背景为浅米色，人物有黑色描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、渐变、高饱和度</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 4</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>投资结果好坏导致自我评价的极端化。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用具体投资场景，展示赚赔两种结果下人物的不同反应和内心独白。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，上下分格漫画。上格：一个红发男人坐在电脑前，屏幕上显示上涨的股票K线图，他双手抱胸，自信微笑，头顶气泡内文字'我眼光真准'。下格：同一男人，电脑屏幕显示下跌的K线图，他双手抱头，表情痛苦，头顶气泡内文字'我真是个蠢货'。背景为浅灰色，人物有黑色描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、渐变、高饱和度</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 5</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入权威人物安妮·杜克，指出结果导向思维的危害。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示安妮·杜克形象及《对赌》书籍，配合警示性视觉元素，强调'最危险'。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位红棕色短发的欧美女性（安妮·杜克），身穿深蓝色外套，表情严肃认真，手指指向一本打开的书籍，书页上写着中文大字'对赌'。背景是一个巨大的红色警告标志，标志内写着中文'危险'二字，整体构图有紧迫的警示感。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景、多人</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 6</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>决策质量与结果好坏并非一一对应。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用矩阵图或交叉箭头，展示'好决策+坏结果'和'坏决策+好结果'两种组合。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个2x2的矩阵图，左上角格子内写'好决策'，右上角格子内写'坏结果'，两者之间有一个叉号连接；左下角格子内写'坏决策'，右下角格子内写'好结果'，两者之间有一个对勾连接。矩阵用深棕色线条绘制，背景为暖米色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、人物、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 7</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>好结果可能源于运气而非决策质量。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用动画展示一个人孤注一掷买股票，第二天涨停，但旁边出现'运气'标签，暗示偶然性。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男子站在股票电子屏前，屏幕显示绿色涨停箭头和数字。他双手举过头顶，表情惊喜。他头顶上方漂浮着一张巨大的黄色贴纸，上面用粗黑体写着中文'运气'。他脚边有一个空钱包。背景是简洁的交易所氛围，暖米色和深棕色为主。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 8</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>坏结果可能源于不可控因素，而非决策错误。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个人认真调研后投资，突然出现'黑天鹅'图标导致亏损，强调决策本身是好的。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个戴眼镜的棕发欧美男子坐在办公桌前，桌上摊开财务报表和调研笔记，他表情困惑。他面前的电脑屏幕显示红色下跌箭头。他头顶上方漂浮着一个巨大的黑色天鹅剪影，天鹅身上贴着一张纸，用中文写着'黑天鹅'。背景是简洁的办公室，复古蓝和深棕色为主。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 9</span>
+          <span class="kp-prompt-stage">solution</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>核心学习目标是区分决策质量与结果运气。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用天平或分栏对比，左边'决策质量'，右边'结果运气'，强调需要学会区分。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个深棕色头发的欧美男人站在中间，左右手各举一块大标签牌。左手牌上写着中文'决策质量'，右手牌上写着'结果运气'。两块牌之间有一个金色的天平符号悬在空中。背景是暖米色，干净简洁。人物表情认真专注，像是在讲解一个重要概念。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 10</span>
+          <span class="kp-prompt-stage">transition</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>被结果绑架的原因是人们对'赌局'的偏见。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>人物思考特写，旁边浮现'赌局'二字并带有负面符号（如骷髅或叉号），暗示偏见。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红棕色卷发的欧美男人侧面特写，他手托下巴，眉头微皱，表情困惑。在他右侧的空气中，漂浮着一个暗红色标签牌，上面写着中文'赌局'。标签牌旁边有一个白色的骷髅头和两根交叉的骨头，带有黑色描边。背景是深蓝色的抽象空间，营造思考氛围。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 11</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>人们对赌局的负面刻板印象</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展现赌局带来的风险与负面联想</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个欧美中年男人坐在赌桌前，双手紧张地撑着额头，表情焦虑。桌上散落着扑克牌和骰子，旁边一个空钱包被翻开。背景是暗色调的赌场氛围，有模糊的轮盘剪影。画面中有中文："风险"写在一张破旧的纸条上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 12</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>《对赌》重新定义赌局为概率思维</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示书本和概率思维的概念可视化</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本打开的《对赌》书平放在桌面上，书页上方浮现一个透明的骰子，骰子的每个面都变成不同方向的箭头符号，代表概率和选择。旁边有一张纸，上面写着中文大字："概率思维"。背景是暖色书房，有柔和的光线。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 13</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>职业赌徒靠技能而非运气</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展现职业扑克玩家专注、理性的形象</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位金发欧美男子坐在扑克桌前，身穿深蓝色衬衫，双手交叉托着下巴，表情专注冷静。桌上整齐地摆放着几摞筹码和一副扑克牌。背景是暗色调的赌场，光线集中在人物面部。画面中有中文关键词：'技能'两个大字写在桌上的一张纸条上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 14</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>职业赌徒理解概率波动</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示扑克牌的概率分布和波动</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个戴眼镜的棕发欧美男子站在白板前，白板上画着一条波浪形的概率曲线图，曲线中间标注着'概率'两个中文大字。他右手拿着笔指向曲线的高点，左手展示一张扑克牌。背景是简洁的深色书房，桌上放着一杯咖啡。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 15</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>职业赌徒保持情绪稳定，相信长期概率</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示赢不骄、输不馁的理性心态</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男子站在左右两个场景中间。左侧画面中，他赢得一叠筹码，表情平静微笑，没有狂喜；右侧画面中，他输掉筹码，表情淡定，只是耸耸肩。背景是简单的赌桌，上方有一个大骰子和一个写着'概率'的标签。画面中有中文：'概率'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 16</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>决策与结果解耦是核心能力</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示决策与结果分离的图示</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红棕色头发的欧美男子站在中间，双手分别指向左右。左边是一个写有'决策'的白色卡片，旁边有一个思考的大脑图标；右边是一个写有'结果'的白色卡片，旁边有一个骰子图标。两卡片之间有一条断裂的虚线，表示分离。背景是简单的灰色墙面。画面中有中文：'决策'、'结果'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 17</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>总结赌局思维的力量——让人在不确定中做出明智决策</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用有力画面收束，展现赌局思维带来的掌控感和力量感，人物表情自信坚定</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位金发白人男性站在岔路口中央，双手握拳、表情自信坚定。他面前两条路分别标有中文“机会”和“风险”的路牌，但他不再犹豫，目光直视前方。背景是暖米色天空，光线从人物背后照来，形成有力剪影感。画面底部留白。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 18</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引出三个关键机制，为后续内容做铺垫</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示人物思考动作，并用视觉方式呈现'三个机制'的引入</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，红棕色短发白人男性坐在书桌前，一只手托下巴作思考状，另一只手伸出三根手指。桌面上放着一本打开的书和一支铅笔，书页上写着中文“机制”二字。背景是复古蓝色墙面，墙上挂着三个空白相框，暗示三个即将揭晓的关键机制。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 19</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>第一个机制：剥离情绪</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示情绪从决策中分离的视觉隐喻</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一名金发欧美男子，站在一个岔路口前。他的大脑像打开的书本一样翻开，里面飘出红色和灰色的情绪云团，飘向天空。他手里拿着一枚硬币和一张写着“概率”的纸牌。背景是干净的浅色空间，画面中有中文大字：“剥离情绪”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 20</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>案例：开店亏损时的理性应对</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示开店场景中理性分析亏损</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一名红棕色头发的欧美男子站在一家小便利店柜台后，他面前摊开一本账本，上面画着一个向下的红色箭头和数字“-”。他表情平静，一只手托着下巴思考，另一只手拿着一支笔在账本上画圈。柜台上有收银机和一杯咖啡。画面中有中文：“概率范围内”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 21</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>剥离情绪才能冷静复盘</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示情绪被剥离后，人物冷静思考的画面</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位金发欧美男性坐在简约书桌前，双手交叉放在桌上，表情平静专注。他身旁放着一个透明的玻璃罐，罐子上贴着标签写着中文'情绪'，罐子里飘出几缕浅灰色的烟雾，象征情绪被剥离。桌上摊开一本笔记本和一支笔。暖米色背景，柔和光线。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑纯白、多人、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 22</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>聚焦过程而非结果</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示人物关注方法步骤，忽略金钱数字的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕发欧美男性站在办公桌前，低头专注看着桌上展开的一张流程图或步骤清单，纸上写着中文大字'方法'。他的一只手轻轻指着纸上的步骤。画面右侧边缘，一个被推到角落的小小计算器上显示着金额数字，但人物完全无视它。暖米色背景，炭灰色线条勾勒。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑纯白、多人、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 23</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>打牌时关注概率而非输赢结果</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示牌桌场景，人物专注看概率笔记，旁边放着一堆输赢筹码但表情平静</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人坐在牌桌前，桌上散落着扑克牌和红蓝筹码。他手里拿着一张纸，纸上写着中文'概率'二字，眼睛专注看着纸，表情平静。旁边一堆输掉的筹码，但他完全不看。背景是深绿色赌桌，暖色台灯光线，画面简洁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景、多人拥挤</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 24</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>允许输得起，长期坚持概率优势</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示人物坦然接受一次失败，同时看到远处代表长期概率优势的光明前景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色短发欧美男人站在岔路口，他面前的地上有一张被撕碎的写有'输'字的纸，他微笑着摊开双手表示接受。远处一条路上有明亮的阳光和向上的箭头，箭头旁有中文'概率'二字。天空暖色渐亮，画面有希望感。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景、多人拥挤</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 25</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>失败不可怕，不因恐惧而退缩</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示人物面对失败依然坚定，不畏惧做决定</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕发白人男性站在岔路口，他身后一条路标着'失败'的路面上画着一个裂开的金币，但他表情坚定，目光向前。他面前另一条路的路牌上写着'新决策'。画面中有中文标注：'失败'和'新决策'分别写在路牌上。背景是暖米色天空，地面有轻微阴影。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 26</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>三个机制融合成抗焦虑决策系统</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示三个机制融合成一个完整的决策系统</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，三个齿轮咬合在一起，每个齿轮上分别写着：'止损线'、'概率思维'、'复盘清单'。三个齿轮的中心汇聚成一个更大的齿轮，上面写着'决策系统'。背景是复古蓝色的抽象空间，有轻微的光晕从齿轮中心向外扩散。画面中有中文标注。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 27</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引出具体方法</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示人物思考并提问，引出下一个工具</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色头发的欧美男子，坐在办公桌前，左手托腮做思考状，右手食指向上举起，表情专注好奇。桌上摊开一本笔记本和一支笔。背景是暖米色的书房，书架上有几本书。画面下方留白。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 28</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>介绍事前验尸工具</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示书名《对赌》和“事前验尸”工具名称</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，特写镜头：一本打开的书的右侧页，书脊处写着中文《对赌》。页面中间用粗体大字写着中文“事前验尸”四个字，下方有一支笔和一个放大镜。背景是深棕色木质桌面，光线柔和。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 29</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>混淆决策质量与结果质量是犯错原因</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示两个概念对比，突出混淆的后果</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割。左侧一个金发男子皱眉，大脑内有一个发光灯泡（标签'决策质量'），但面前的结果是一堆散落的骰子（坏结果）。右侧一个棕发男子微笑，大脑内有一个暗淡灯泡（决策质量差），但面前意外有一堆金币（好结果）。两人中间有一个大大的红色问号，下方中文标签'混淆'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 30</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>德州扑克例子说明决策质量与结果质量</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示德州扑克牌局过程，突出好决策带来好结果</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，绿色赌桌特写，桌面上摊开两张红心A（起手牌），旁边有一堆彩色筹码。桌对面一个棕发对手已经站起来做出弃牌手势，桌这边一个金发男子自信地将手伸向赢来的筹码堆。桌面中央有中文标签'好决策→好结果'。背景模糊的赌场灯光。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、复杂背景、真实人脸</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 31</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>好结果不等于好决策，沾沾自喜会导致危险。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个玩家因为赢了一手牌而得意忘形，随后在下一手牌中因冲动全押而输掉大量筹码的对比场景。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，左右对比构图：左侧一个金发外国男子靠在椅背上、双手抱胸得意大笑，面前桌上一堆筹码，头顶气泡写着“好结果”；右侧同一男子惊恐地双手抱头，面前筹码全无，一张A扑克牌飘落，头顶气泡写着“坏决策”。画面中有中文：“好结果≠好决策”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 32</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>好决策是基于信息的最优概率选择，结果只是随机实现。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用白板或思维导图的形式，展示“好决策 = 信息 + 概率最优选择”，旁边用骰子或转盘表示“结果 = 随机实现”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色短发外国男子站在白板前，白板上分左右两栏：左栏画着放大镜和一组数据图表，旁边写着“信息 + 概率最优选择”；右栏画着一个转盘和一个骰子，旁边写着“结果 = 随机实现”。男子用马克笔指向左栏，表情认真。画面中有中文：“好决策”和“随机实现”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 33</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>短期靠运气，长期靠高质量决策的累积。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用两条曲线对比：一条是随机波动的短期结果线，另一条是稳步上升的长期决策质量线，最后聚焦于长期曲线。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中两条曲线对比：左边一条红色虚线剧烈上下抖动，标着'短期运气'；右边一条蓝色实线从左下角稳步向右上方攀升，标着'长期决策'。蓝色线末端有一个金光闪闪的奖杯图标。背景是简洁的灰色网格坐标纸。画面中中文大字标注：'短期运气'和'长期决策'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 34</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>安妮·杜克因凭直觉跟注而输掉一手好牌。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>扑克牌桌特写，安妮·杜克看着手中的好牌，对面对手全押，她犹豫后跟注，随后牌面翻转显示她输了。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，扑克牌桌特写，金发欧美女性安妮·杜克坐在桌前，双手护着面前的两张好牌（A和K），表情紧张犹豫。桌对面一个戴墨镜的男性对手已将全部筹码推入池中，双手交叉。桌面上散落着彩色筹码。画面中中文大字标注：'直觉跟注'。背景是昏暗的赌场灯光。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和荧光色、真实人物肖像</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 35</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>复盘发现忽略了对手的身体语言信号。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面分为两半：左边是当时牌桌场景，对手有微小动作但未被注意；右边是复盘时的慢动作回放，放大对手的身体语言变化。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割构图。左侧：牌桌场景，一名金发女性牌手（主角）正专注看牌，对面红发男性对手手指轻轻敲桌面，动作微小不显眼。右侧：同一场景的慢动作回放效果，对手敲桌面的手指被放大特写，周围有半透明箭头指向手指，箭头旁有中文标签“信号”。整体暖色调，复古蓝桌面。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑、纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 36</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>真正的错误是未利用所有可用信息做决策。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>安妮·杜克的特写，表情从懊悔变为顿悟，旁边出现文字：“错误不是输，而是没有用尽信息”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，金发女性（安妮·杜克）面部特写，表情从懊悔转向顿悟，眉头舒展，眼睛睁大。她身旁漂浮着一张半透明的纸片，纸片上有中文大字：“错误：未用尽信息”。背景是模糊的牌桌，光线从右侧照向她的脸庞，形成明暗对比。深棕色和暖米色为主。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑、纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 37</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>她开始系统性记录和复盘，建立决策日志。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>安妮·杜克在书桌前，打开一本“决策日志”，上面有表格记录情绪、对手行为、位置等，她正在认真填写和复盘。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕色长发的欧美女性坐在书桌前，面前摊开一本打开的笔记本，封面上写着中文“决策日志”。笔记本内页有手绘的表格，用中文标注了“情绪”、“对手”、“位置”等栏目，她右手握笔正在填写，左手托腮思考，表情专注。桌面有台灯和一杯咖啡，暖色调灯光。画面中有中文“决策日志”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色、纯黑纯白背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 38</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>从直觉到概率证据，胜率提升，这是系统的力量。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>一个动态图表，显示胜率从45%逐步上升到60%，旁边出现文字“系统 > 运气”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央有一个向上倾斜的折线图，图表的起点标注“45%”，终点标注“60%”，折线由箭头指向右上角。图表旁边有一块立着的白色卡片，上面用粗体中文写着“系统 > 运气”。背景是柔和的暖米色，图表线条为复古蓝色，整体简洁有力。画面中有中文“系统 > 运气”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色、纯黑纯白背景、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 39</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>大脑天生不擅长处理概率。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>大脑的3D模型，内部显示混乱的数学符号和概率公式，表示大脑处理概率时的混乱状态。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个半透明的大脑3D模型悬浮在深色背景中，内部充满混乱交错的数学符号和概率公式（如%号、分数、随机数字），线条缠绕无序，大脑表面有裂痕和问号，整体氛围困惑混乱。画面中有中文：'概率混乱'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 40</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>人类进化中面对的是二元情境，而非复杂概率。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面分为两部分：左边是非洲草原上，一个原始人面对狮子，只有“安全”或“被吃”两种结果；右边是现代人面对复杂的概率图表，表情困惑。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割。左边：非洲草原上，一个棕色头发的原始人惊恐地面对一头狮子，只有两个箭头指向'安全'和'被吃'。右边：一个现代金发男人坐在办公桌前，面前是一张写满百分比和概率公式的复杂图表，他挠头表情困惑。画面中有中文：'二元'和'复杂概率'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 41</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>大脑倾向于极端思维，这是原始脑的决策方式。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示大脑中“全有或全无”的极端思维模式，对比原始脑与理性脑。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个打开的颅骨轮廓内部，左侧是一个红色的原始脑（杏仁核形状），旁边有中文大字标签“原始脑”；右侧是一个蓝色的理性脑（前额叶形状），旁边有中文标签“理性脑”。中间有一条粗黑的分割线，分割线上方左右各伸出一只手，左手举着写有“一定行”的牌子，右手举着写有“一定不行”的牌子。背景是暖米色，有轻微纸张纹理。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度荧光色、纯黑纯白背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 42</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>赌局思维通过概率分析，从盲目乐观转向理性评估。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示从本能乐观到概率分析的思维转变过程，体现压力测试。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一枚巨大的硬币，正面写着“70%成功”，反面写着“30%失败”。硬币左侧有一个小人（欧美面孔，金色短发）正兴奋地指着正面，表情盲目乐观。硬币右侧有另一个小人（相同风格，棕色短发）正拿着放大镜仔细查看反面，旁边漂浮着三张写着“市场变化”、“技术瓶颈”、“团队内讧”的标签纸。背景是深棕色的抽象空间，有从暗到亮的光线过渡。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度荧光色、纯黑纯白背景、复杂背景</p>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">总时长</div>
+        <div style="font-size:1.5rem;font-weight:700;">11分26秒</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">画面节拍</div>
+        <div style="font-size:1.5rem;font-weight:700;">42</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">音频段</div>
+        <div style="font-size:1.5rem;font-weight:700;">14</div>
+      </div>
+    </div>
+
+    
+    
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">画面时间线（42 个节拍）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#1</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分0秒
+             -> 0分19秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">努力决策却总被结果否定，因为错误地把人生当考试而非赌局。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割。左侧：一个欧美年轻男人坐在课桌前，面前是一张写有'考试'二字的试卷，他眉头紧锁、表情焦虑，试卷上画着红色大叉。右侧：同一人站在赌桌旁，自信地笑着，桌上散落着筹码和一张写有'赌局'的卡片。中间有一条垂直的分隔线。画
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#2</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分19秒
+             -> 0分28秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引导观众反思日常决策评判方式。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个欧美年轻男人坐在书房的书桌前，单手托腮，眼神向上看，露出思考的表情。桌上摊开一本笔记本，上面画着一个大大的问号和一个写有'决策？'的标签。背景是暖色调的书架，光线柔和。画面中有中文：'决策？'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#3</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分28秒
+             -> 0分44秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">人们习惯用结果倒推决策对错。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割。左侧：一个金发男人开心地站在金币堆旁，头顶上方有一个写着'赚了'的标签，标签下箭头指向'对的决定'四个大字。右侧：同一个男人垂头丧气，面前是空钱包，头顶标签写着'赔了'，箭头指向'错的决定'四个大字。背景为浅米色
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#4</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分44秒
+             -> 0分57秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">投资结果好坏导致自我评价的极端化。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，上下分格漫画。上格：一个红发男人坐在电脑前，屏幕上显示上涨的股票K线图，他双手抱胸，自信微笑，头顶气泡内文字'我眼光真准'。下格：同一男人，电脑屏幕显示下跌的K线图，他双手抱头，表情痛苦，头顶气泡内文字'我真是个蠢货'。背景为
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#5</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分57秒
+             -> 1分15秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入权威人物安妮·杜克，指出结果导向思维的危害。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位红棕色短发的欧美女性（安妮·杜克），身穿深蓝色外套，表情严肃认真，手指指向一本打开的书籍，书页上写着中文大字'对赌'。背景是一个巨大的红色警告标志，标志内写着中文'危险'二字，整体构图有紧迫的警示感。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#6</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分15秒
+             -> 1分27秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">决策质量与结果好坏并非一一对应。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个2x2的矩阵图，左上角格子内写'好决策'，右上角格子内写'坏结果'，两者之间有一个叉号连接；左下角格子内写'坏决策'，右下角格子内写'好结果'，两者之间有一个对勾连接。矩阵用深棕色线条绘制，背景为暖米色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#7</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分27秒
+             -> 1分45秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">好结果可能源于运气而非决策质量。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男子站在股票电子屏前，屏幕显示绿色涨停箭头和数字。他双手举过头顶，表情惊喜。他头顶上方漂浮着一张巨大的黄色贴纸，上面用粗黑体写着中文'运气'。他脚边有一个空钱包。背景是简洁的交易所氛围，暖米色和深棕色为主。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#8</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分45秒
+             -> 2分5秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">坏结果可能源于不可控因素，而非决策错误。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个戴眼镜的棕发欧美男子坐在办公桌前，桌上摊开财务报表和调研笔记，他表情困惑。他面前的电脑屏幕显示红色下跌箭头。他头顶上方漂浮着一个巨大的黑色天鹅剪影，天鹅身上贴着一张纸，用中文写着'黑天鹅'。背景是简洁的办公室，复古蓝和深棕
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#9</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分5秒
+             -> 2分21秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">核心学习目标是区分决策质量与结果运气。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个深棕色头发的欧美男人站在中间，左右手各举一块大标签牌。左手牌上写着中文'决策质量'，右手牌上写着'结果运气'。两块牌之间有一个金色的天平符号悬在空中。背景是暖米色，干净简洁。人物表情认真专注，像是在讲解一个重要概念。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#10</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分21秒
+             -> 2分35秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">被结果绑架的原因是人们对'赌局'的偏见。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红棕色卷发的欧美男人侧面特写，他手托下巴，眉头微皱，表情困惑。在他右侧的空气中，漂浮着一个暗红色标签牌，上面写着中文'赌局'。标签牌旁边有一个白色的骷髅头和两根交叉的骨头，带有黑色描边。背景是深蓝色的抽象空间，营造思考氛围
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#11</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分35秒
+             -> 2分46秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">人们对赌局的负面刻板印象</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个欧美中年男人坐在赌桌前，双手紧张地撑着额头，表情焦虑。桌上散落着扑克牌和骰子，旁边一个空钱包被翻开。背景是暗色调的赌场氛围，有模糊的轮盘剪影。画面中有中文："风险"写在一张破旧的纸条上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#12</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分46秒
+             -> 3分6秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">《对赌》重新定义赌局为概率思维</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本打开的《对赌》书平放在桌面上，书页上方浮现一个透明的骰子，骰子的每个面都变成不同方向的箭头符号，代表概率和选择。旁边有一张纸，上面写着中文大字："概率思维"。背景是暖色书房，有柔和的光线。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#13</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分6秒
+             -> 3分18秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">职业赌徒靠技能而非运气</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位金发欧美男子坐在扑克桌前，身穿深蓝色衬衫，双手交叉托着下巴，表情专注冷静。桌上整齐地摆放着几摞筹码和一副扑克牌。背景是暗色调的赌场，光线集中在人物面部。画面中有中文关键词：'技能'两个大字写在桌上的一张纸条上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#14</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分18秒
+             -> 3分31秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">职业赌徒理解概率波动</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个戴眼镜的棕发欧美男子站在白板前，白板上画着一条波浪形的概率曲线图，曲线中间标注着'概率'两个中文大字。他右手拿着笔指向曲线的高点，左手展示一张扑克牌。背景是简洁的深色书房，桌上放着一杯咖啡。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#15</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分31秒
+             -> 3分51秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">职业赌徒保持情绪稳定，相信长期概率</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男子站在左右两个场景中间。左侧画面中，他赢得一叠筹码，表情平静微笑，没有狂喜；右侧画面中，他输掉筹码，表情淡定，只是耸耸肩。背景是简单的赌桌，上方有一个大骰子和一个写着'概率'的标签。画面中有中文：'概率'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#16</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分51秒
+             -> 4分7秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">决策与结果解耦是核心能力</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红棕色头发的欧美男子站在中间，双手分别指向左右。左边是一个写有'决策'的白色卡片，旁边有一个思考的大脑图标；右边是一个写有'结果'的白色卡片，旁边有一个骰子图标。两卡片之间有一条断裂的虚线，表示分离。背景是简单的灰色墙面。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#17</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分7秒
+             -> 4分15秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">总结赌局思维的价值</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位金发白人男性站在岔路口中央，双手握拳、表情自信坚定。他面前两条路分别标有中文“机会”和“风险”的路牌，但他不再犹豫，目光直视前方。背景是暖米色天空，光线从人物背后照来，形成有力剪影感。画面底部留白。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#18</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分15秒
+             -> 4分29秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引出三个关键机制</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，红棕色短发白人男性坐在书桌前，一只手托下巴作思考状，另一只手伸出三根手指。桌面上放着一本打开的书和一支铅笔，书页上写着中文“机制”二字。背景是复古蓝色墙面，墙上挂着三个空白相框，暗示三个即将揭晓的关键机制。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#19</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分29秒
+             -> 4分49秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">第一个机制：剥离情绪</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一名金发欧美男子，站在一个岔路口前。他的大脑像打开的书本一样翻开，里面飘出红色和灰色的情绪云团，飘向天空。他手里拿着一枚硬币和一张写着“概率”的纸牌。背景是干净的浅色空间，画面中有中文大字：“剥离情绪”。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#20</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分49秒
+             -> 5分9秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">案例：开店亏损时的理性应对</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一名红棕色头发的欧美男子站在一家小便利店柜台后，他面前摊开一本账本，上面画着一个向下的红色箭头和数字“-”。他表情平静，一只手托着下巴思考，另一只手拿着一支笔在账本上画圈。柜台上有收银机和一杯咖啡。画面中有中文：“概率范围内”
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#21</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分9秒
+             -> 5分18秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">剥离情绪才能冷静复盘</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位金发欧美男性坐在简约书桌前，双手交叉放在桌上，表情平静专注。他身旁放着一个透明的玻璃罐，罐子上贴着标签写着中文'情绪'，罐子里飘出几缕浅灰色的烟雾，象征情绪被剥离。桌上摊开一本笔记本和一支笔。暖米色背景，柔和光线。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#22</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分18秒
+             -> 5分35秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">聚焦过程而非结果</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕发欧美男性站在办公桌前，低头专注看着桌上展开的一张流程图或步骤清单，纸上写着中文大字'方法'。他的一只手轻轻指着纸上的步骤。画面右侧边缘，一个被推到角落的小小计算器上显示着金额数字，但人物完全无视它。暖米色背景，炭灰色线
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#23</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分35秒
+             -> 5分50秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">打牌时关注概率而非输赢</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人坐在牌桌前，桌上散落着扑克牌和红蓝筹码。他手里拿着一张纸，纸上写着中文'概率'二字，眼睛专注看着纸，表情平静。旁边一堆输掉的筹码，但他完全不看。背景是深绿色赌桌，暖色台灯光线，画面简洁。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#24</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分50秒
+             -> 6分7秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">允许输得起，长期坚持概率优势</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色短发欧美男人站在岔路口，他面前的地上有一张被撕碎的写有'输'字的纸，他微笑着摊开双手表示接受。远处一条路上有明亮的阳光和向上的箭头，箭头旁有中文'概率'二字。天空暖色渐亮，画面有希望感。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#25</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分7秒
+             -> 6分20秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">失败不可怕，不因恐惧而退缩</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕发白人男性站在岔路口，他身后一条路标着'失败'的路面上画着一个裂开的金币，但他表情坚定，目光向前。他面前另一条路的路牌上写着'新决策'。画面中有中文标注：'失败'和'新决策'分别写在路牌上。背景是暖米色天空，地面有轻微阴
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#26</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分20秒
+             -> 6分33秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">三个机制构成抗焦虑决策系统</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，三个齿轮咬合在一起，每个齿轮上分别写着：'止损线'、'概率思维'、'复盘清单'。三个齿轮的中心汇聚成一个更大的齿轮，上面写着'决策系统'。背景是复古蓝色的抽象空间，有轻微的光晕从齿轮中心向外扩散。画面中有中文标注。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#27</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分33秒
+             -> 6分45秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引出具体方法</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色头发的欧美男子，坐在办公桌前，左手托腮做思考状，右手食指向上举起，表情专注好奇。桌上摊开一本笔记本和一支笔。背景是暖米色的书房，书架上有几本书。画面下方留白。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#28</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分45秒
+             -> 6分57秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">介绍事前验尸工具</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，特写镜头：一本打开的书的右侧页，书脊处写着中文《对赌》。页面中间用粗体大字写着中文“事前验尸”四个字，下方有一支笔和一个放大镜。背景是深棕色木质桌面，光线柔和。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#29</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分57秒
+             -> 7分15秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">混淆决策质量与结果质量是犯错原因</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割。左侧一个金发男子皱眉，大脑内有一个发光灯泡（标签'决策质量'），但面前的结果是一堆散落的骰子（坏结果）。右侧一个棕发男子微笑，大脑内有一个暗淡灯泡（决策质量差），但面前意外有一堆金币（好结果）。两人中间有一个大大
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#30</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分15秒
+             -> 7分36秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">德州扑克例子说明决策质量与结果质量</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，绿色赌桌特写，桌面上摊开两张红心A（起手牌），旁边有一堆彩色筹码。桌对面一个棕发对手已经站起来做出弃牌手势，桌这边一个金发男子自信地将手伸向赢来的筹码堆。桌面中央有中文标签'好决策→好结果'。背景模糊的赌场灯光。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#31</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分36秒
+             -> 7分56秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">好结果不等于好决策，沾沾自喜会导致危险。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，左右对比构图：左侧一个金发外国男子靠在椅背上、双手抱胸得意大笑，面前桌上一堆筹码，头顶气泡写着“好结果”；右侧同一男子惊恐地双手抱头，面前筹码全无，一张A扑克牌飘落，头顶气泡写着“坏决策”。画面中有中文：“好结果≠好决策”。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#32</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分56秒
+             -> 8分15秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">好决策是基于信息的最优概率选择，结果只是随机实现。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色短发外国男子站在白板前，白板上分左右两栏：左栏画着放大镜和一组数据图表，旁边写着“信息 + 概率最优选择”；右栏画着一个转盘和一个骰子，旁边写着“结果 = 随机实现”。男子用马克笔指向左栏，表情认真。画面中有中文：“好
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#33</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分15秒
+             -> 8分35秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">短期靠运气，长期靠高质量决策的累积。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中两条曲线对比：左边一条红色虚线剧烈上下抖动，标着'短期运气'；右边一条蓝色实线从左下角稳步向右上方攀升，标着'长期决策'。蓝色线末端有一个金光闪闪的奖杯图标。背景是简洁的灰色网格坐标纸。画面中中文大字标注：'短期运气'和
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#34</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分35秒
+             -> 8分55秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">安妮·杜克因凭直觉跟注而输掉一手好牌。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，扑克牌桌特写，金发欧美女性安妮·杜克坐在桌前，双手护着面前的两张好牌（A和K），表情紧张犹豫。桌对面一个戴墨镜的男性对手已将全部筹码推入池中，双手交叉。桌面上散落着彩色筹码。画面中中文大字标注：'直觉跟注'。背景是昏暗的赌场灯
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#35</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分55秒
+             -> 9分15秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">复盘发现忽略了对手的身体语言信号。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割构图。左侧：牌桌场景，一名金发女性牌手（主角）正专注看牌，对面红发男性对手手指轻轻敲桌面，动作微小不显眼。右侧：同一场景的慢动作回放效果，对手敲桌面的手指被放大特写，周围有半透明箭头指向手指，箭头旁有中文标签“信号
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#36</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            9分15秒
+             -> 9分32秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">真正的错误是未利用所有可用信息做决策。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，金发女性（安妮·杜克）面部特写，表情从懊悔转向顿悟，眉头舒展，眼睛睁大。她身旁漂浮着一张半透明的纸片，纸片上有中文大字：“错误：未用尽信息”。背景是模糊的牌桌，光线从右侧照向她的脸庞，形成明暗对比。深棕色和暖米色为主。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#37</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            9分32秒
+             -> 9分52秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">她开始系统性记录和复盘，建立决策日志。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕色长发的欧美女性坐在书桌前，面前摊开一本打开的笔记本，封面上写着中文“决策日志”。笔记本内页有手绘的表格，用中文标注了“情绪”、“对手”、“位置”等栏目，她右手握笔正在填写，左手托腮思考，表情专注。桌面有台灯和一杯咖啡，
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#38</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            9分52秒
+             -> 10分12秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">从直觉到概率证据，胜率提升，这是系统的力量。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央有一个向上倾斜的折线图，图表的起点标注“45%”，终点标注“60%”，折线由箭头指向右上角。图表旁边有一块立着的白色卡片，上面用粗体中文写着“系统 > 运气”。背景是柔和的暖米色，图表线条为复古蓝色，整体简洁有力。画面
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#39</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            10分12秒
+             -> 10分25秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">大脑天生不擅长处理概率。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个半透明的大脑3D模型悬浮在深色背景中，内部充满混乱交错的数学符号和概率公式（如%号、分数、随机数字），线条缠绕无序，大脑表面有裂痕和问号，整体氛围困惑混乱。画面中有中文：'概率混乱'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#40</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            10分25秒
+             -> 10分45秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">人类进化中面对的是二元情境，而非复杂概率。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割。左边：非洲草原上，一个棕色头发的原始人惊恐地面对一头狮子，只有两个箭头指向'安全'和'被吃'。右边：一个现代金发男人坐在办公桌前，面前是一张写满百分比和概率公式的复杂图表，他挠头表情困惑。画面中有中文：'二元'和
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#41</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            10分45秒
+             -> 11分6秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">大脑倾向于极端思维，这是原始脑的决策方式。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个打开的颅骨轮廓内部，左侧是一个红色的原始脑（杏仁核形状），旁边有中文大字标签“原始脑”；右侧是一个蓝色的理性脑（前额叶形状），旁边有中文标签“理性脑”。中间有一条粗黑的分割线，分割线上方左右各伸出一只手，左手举着写有“一定
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#42</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            11分6秒
+             -> 11分26秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">赌局思维通过概率分析，从盲目乐观转向理性评估。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一枚巨大的硬币，正面写着“70%成功”，反面写着“30%失败”。硬币左侧有一个小人（欧美面孔，金色短发）正兴奋地指着正面，表情盲目乐观。硬币右侧有另一个小人（相同风格，棕色短发）正拿着放大镜仔细查看反面，旁边漂浮着三
+        </div>
+        
+      </div>
+      
+    </div>
+    
+
+    
+    
+
+    
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            82分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本整体质量较高，核心思想传达清晰，逻辑递进合理，但存在 source_scope 标注偏差、大问题到小问题转换不够彻底、框架提炼不足、缺少自测工具和举一反三等问题，需针对性修改后通过。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:65%"></div>
+            </div>
+            <span class="kp-dim-val">13</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 标注为'整书分析'，但脚本实际只聚焦于《对赌》中'概率思维'和'事前验尸'等核心概念，未覆盖整书所有内容（如书中关于'决策日志'、'心理时间旅行'等细节虽有提及但未系统展开），存在一定偏差。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">big_to_small_translation 转换不够彻底：虽然开头用'决策被结果打脸'引入，但后续从原书概念到普通人生活的转换枢纽不够清晰，部分段落直接从原书概念跳到例子，缺少明确的'大问题→小问题'过渡语句。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">thinking_framework 提炼不够完整：脚本中提到了'事前验尸'和'概率思维'，但未将其整合成一个清晰的、可迁移的几步框架（如'第一步：列出概率→第二步：识别盲点→第三步：事前验尸→第四步：记录复盘'），框架感较弱。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">life_judgment_tool 输出不足：脚本末尾虽给出了一个四步框架，但未将其提炼成观众可自测的具体问题或思考方式，缺少类似'你可以问自己：这个决策的失败概率是多少？'这样的自测工具。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">transfer_ability 举一反三部分缺失：结尾没有明确告诉观众这个思想还能迁移到哪些类似场景（如职业选择、人际关系、消费决策等），只停留在原案例中。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">language_safety 存在轻微问题：部分语句如'这是最危险的思维方式'、'你其实是在用原始脑做决策'带有较强价值判断，可改为更中性的表达。</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-danger">补充一个明确的'大问题→小问题'转换段落，例如：'《对赌》这本书要解决的核心问题是：如何在充满不确定性的世界中做出高质量决策。放到我们普通人的生活里，其实就是：为什么我们总是因为一次失败就否定自己？为什么我们明明做了正确的事，结果却不好？'</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">在结尾增加举一反三部分，明确告诉观众这个思想还能用在哪些场景，如：'这个思维不仅适用于投资和创业，也适用于职业选择、学习规划，甚至日常生活中的小决策。'</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">将末尾的四步框架提炼成更清晰的自测工具，例如：'你可以用这个清单自测：1. 我是否列出了所有可能的结果并分配了概率？2. 我是否识别了隐藏信息？3. 我是否做了事前验尸？4. 我是否记录了决策过程？'</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('对赌', 102)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        <option value="visual_beats.json">visual_beats.json</option>
+        
+        
+        
+        <option value="image_prompts.json">image_prompts.json</option>
+        
+        
+        
+        <option value="timeline.json">timeline.json</option>
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>
