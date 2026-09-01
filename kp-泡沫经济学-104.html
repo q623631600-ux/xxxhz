@@ -1,0 +1,3874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-泡沫经济学.html" class="kp-bcrumb-link">泡沫经济学</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #104</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">你相信'市场永远是对的'？这本书说：你被骗了。</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>8-12分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>2565</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('泡沫经济学', 104)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">40</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点<span class="kp-tab-count">40</span></button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词<span class="kp-tab-count">41</span></button>
+    <button class="kp-tab" data-tab="timeline" >时间线<span class="kp-tab-count">40/0</span></button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">看着账户里缩水的数字，你是不是也怀疑过：为什么我跟着市场走，却总是被割韭菜？别再迷信‘市场永远是对的’——《泡沫经济学》直接告诉你：你被骗了。
+
+我们先把时间拉回到1720年，看看人类历史上最聪明的大脑之一——艾萨克·牛顿。没错，就是那个被苹果砸中、发现万有引力的牛顿。当时，英国有一家叫南海的公司，拿到了南美洲的贸易特许权。故事听起来很熟悉吧？一个新概念、一个大市场、一个“未来无限好”的故事。南海公司的股价从120英镑开始疯涨，半年内涨到1000英镑。牛顿第一次入场，赚了7000英镑，相当于他当造币厂厂长十年的薪水。这位科学巨匠觉得太疯狂了，果断离场。结果呢？股价继续狂飙。牛顿坐不住了，心想“我是不是太保守了？”于是，他把全部身家又投了进去。后面的故事我们都猜到了——泡沫破裂，股价暴跌回原点。牛顿亏掉了两万英镑，几乎是他二十年的收入。他留下一句名言：“我能计算天体的运动，却无法计算人类的疯狂。”
+
+我们忍不住要问：如果市场永远是对的，为什么牛顿会犯这种错误？难道他的智商不够用吗？显然不是。问题出在我们相信了一个核心教条——市场是有效的。
+
+这个教条在经济学里有个响亮的名字：“有效市场假说”。它的核心观点是：所有已知信息都已经反映在价格里了，所以没有人能持续战胜市场。这个理论有多厉害？它被写进每一本金融学教材，甚至有人因为它拿了诺贝尔奖。你打开手机看财经新闻，听到的“市场先生总是对的”“不要试图战胜市场”，都是从这来的。
+
+但我们稍微动动脑子就会发现问题：如果市场总是有效的，为什么会有泡沫？为什么会有崩盘？为什么我们身边总有人在高点买入、低点割肉？这个理论就像在说“人都是理性的”，可我们明明看到，人总是会冲动、会恐慌、会跟风。
+
+《泡沫经济学》告诉我们：市场不是上帝，它只是一个由人组成的巨型系统。而人，是会集体犯错的。
+
+好，那泡沫到底是怎么发生的？是不是像我们以为的那样，只是一群傻子在瞎炒？书中用几个经典案例拆解了泡沫的完整剧本，你会发现，每一步都似曾相识。
+
+先说17世纪的郁金香泡沫。在荷兰，一株稀有郁金香球茎的价格，可以抵得上阿姆斯特丹运河边的一栋豪宅。为什么？不是因为郁金香突然变得比房子还实用，而是因为价格开始涨了，大家觉得“这东西还能继续涨”。价格上涨本身，成了上涨的理由。
+
+然后到了18世纪的南海泡沫，故事一模一样。再到20世纪80年代的日本房地产泡沫——东京皇宫的地价，据说可以买下整个美国加州。当时日本流行一句话：“土地是不会贬值的。”这话是不是很耳熟？我们身边的某些城市，是不是也听过类似的说法？
+
+书中总结了一个惊人的模式：每一次泡沫，都像在复制粘贴。先是某个资产价格开始上涨；然后更多人买入，价格继续涨；接着媒体和专家出来说“这次不一样，有新技术、新市场、新政策”；最后，连你的理发师、出租车司机、邻居大妈都开始给你推荐这个资产。这时候，就离崩盘不远了。
+
+泡沫不是意外，更不是偶然。它是市场机制在特定条件下的必然产物。只要有人类在，就有泡沫。
+
+那问题来了：为什么我们明明知道这是泡沫，却总是忍不住跳进去？难道我们比牛顿还聪明吗？
+
+《泡沫经济学》给出了几个让我们无法反驳的心理机制。
+
+第一个叫信息不对称。你看到的只是价格在涨，你看不到的是，买入的人是真看好，还是只是跟风。你只能通过价格来判断——价格涨，说明别人觉得它值钱。可问题是，别人也在通过你的买入来判断。于是，大家互相欺骗，一起推高了价格。
+
+第二个叫从众效应。当所有人都说“快买”，你一个人说“不买”，需要巨大的勇气。你会怀疑自己：“是不是我太笨了？是不是我错过了机会？”这种焦虑感，比亏钱还难受。
+
+第三个叫自我强化。价格上涨本身，让你相信“上涨有道理”。你不需要基本面分析，不需要懂行业，只要看到K线图往上走，你就觉得这是牛市。价格成了最直接、最容易被误解的信息。
+
+第四个叫时间错配。你心里清楚这是泡沫，但你相信：“我比别人聪明，我能在崩盘前逃出来。”每个人都这么想，结果呢？当崩盘来临时，所有人同时想逃，谁也逃不掉。
+
+你看，这些机制让每一个理性的个体，做出了非理性的集体行为。个体越理性，集体越疯狂。这恰恰是《泡沫经济学》最核心的洞见。
+
+那么，真正的聪明人该怎么办？难道我们只能眼睁睁看着泡沫发生，然后被收割吗？
+
+书中虽然没有直接给出“投资建议”，但它揭示了一个重要的思维框架：识别泡沫的关键，不是预测价格，而是观察行为。
+
+当你的理发师、出租车司机、同事、亲戚都开始推荐股票或者某个资产时，当饭局上唯一的话题就是“你怎么还没买”时，当所有人都在说“这次不一样”时——这就是书中说的“人人都是专家”的信号。
+
+这时候，最理性的选择，可能恰恰是不参与。
+
+为什么？因为当人人都觉得自己是专家的时候，说明市场上已经没有新的“傻钱”可以接了。聪明钱早就离场了。而你，如果这时候冲进去，大概率会成为最后一个接盘的人。
+
+这不是让你永远不投资，而是让你知道：市场不是神，它也会发疯。而识别发疯的信号，比预测价格更重要。
+
+我们把这个认知用到日常生活中。
+
+第一，当某个投资品成为饭局唯一话题时，警惕。不管它是股票、房子、比特币还是什么新概念，只要大家都在聊，说明泡沫已经进入了“人人都是专家”的阶段。
+
+第二，当“这次不一样”成为最流行的说法时，警惕。每一次泡沫，都有人告诉你“这次真的不一样，有新技术、新政策、新逻辑”。但历史告诉我们，泡沫的剧本从来没变过。
+
+第三，当你的恐惧感被焦虑感取代时，警惕。恐惧让你不敢买，焦虑让你怕错过。焦虑比恐惧更危险，因为它会让你做出冲动的决定。
+
+记住：我们不是要战胜市场，而是要认识市场。认识它的疯狂，才能保护自己不被它吞噬。
+
+最后，回到牛顿的故事。他在南海泡沫后说的那句名言，其实还有下半句——不是牛顿算错了，而是他相信了市场永远是对的。
+
+《泡沫经济学》告诉我们：市场不是上帝，它只是一个由人组成的、会集体犯错的巨型系统。当你觉得所有人都在赚钱时，可能正是最该离场的时候。
+
+所以，下一次当你听到“市场永远是对的”这句话时，不妨想一想：如果市场永远是对的，为什么连牛顿都栽了跟头？
+
+记住：真正聪明的投资者，不是在泡沫中狂欢的人，而是在别人疯狂时冷静观察的人。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('泡沫经济学', 104)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>泡沫经济学</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>8-12分钟</dd>
+            <dt>字数</dt><dd>2565</dd>
+          </dl>
+        </div>
+        
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 痛点引入</div>
+          <p class="kp-side-card-text">看着账户里缩水的数字，你是不是也怀疑过：为什么我跟着市场走，却总是被割韭菜？别再迷信‘市场永远是对的’——《泡沫经济学》直接告诉你：你被骗了。</p>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">40</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批切分：2 片，总计 40 个单元</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">看着账户里缩水的数字，你是不是也怀疑过：为什么我跟着市场走，却总是被割韭菜？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">别再迷信‘市场永远是对的’——《泡沫经济学》直接告诉你：你被骗了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们先把时间拉回到1720年，看看人类历史上最聪明的大脑之一——艾萨克·牛顿。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">没错，就是那个被苹果砸中、发现万有引力的牛顿。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">当时，英国有一家叫南海的公司，拿到了南美洲的贸易特许权。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">故事听起来很熟悉吧？一个新概念、一个大市场、一个“未来无限好”的故事。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">南海公司的股价从120英镑开始疯涨，半年内涨到1000英镑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">牛顿第一次入场，赚了7000英镑，相当于他当造币厂厂长十年的薪水。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这位科学巨匠觉得太疯狂了，果断离场。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">结果呢？股价继续狂飙。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">牛顿坐不住了，心想“我是不是太保守了？”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">于是，他把全部身家又投了进去。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">后面的故事我们都猜到了——泡沫破裂，股价暴跌回原点。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">牛顿亏掉了两万英镑，几乎是他二十年的收入。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他留下一句名言：“我能计算天体的运动，却无法计算人类的疯狂。”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们忍不住要问：如果市场永远是对的，为什么牛顿会犯这种错误？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">难道他的智商不够用吗？显然不是。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">问题出在我们相信了一个核心教条——市场是有效的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个教条在经济学里有个响亮的名字：“有效市场假说”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">它的核心观点是：所有已知信息都已经反映在价格里了，所以没有人能持续战胜市场。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个理论有多厉害？它被写进每一本金融学教材，甚至有人因为它拿了诺贝尔奖。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你打开手机看财经新闻，听到的“市场先生总是对的”“不要试图战胜市场”，都是从这来的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但我们稍微动动脑子就会发现问题：如果市场总是有效的，为什么会有泡沫？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">为什么会有崩盘？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">为什么我们身边总有人在高点买入、低点割肉？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个理论就像在说“人都是理性的”，可我们明明看到，人总是会冲动、会恐慌、会跟风。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">《泡沫经济学》告诉我们：市场不是上帝，它只是一个由人组成的巨型系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而人，是会集体犯错的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">好，那泡沫到底是怎么发生的？是不是像我们以为的那样，只是一群傻子在瞎炒？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">书中用几个经典案例拆解了泡沫的完整剧本，你会发现，每一步都似曾相识。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">先说17世纪的郁金香泡沫。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#32</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">在荷兰，一株稀有郁金香球茎的价格，可以抵得上阿姆斯特丹运河边的一栋豪宅。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#33</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">9s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">为什么？不是因为郁金香突然变得比房子还实用，而是因为价格开始涨了，大家觉得“这东西还能继续涨”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#34</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">价格上涨本身，成了上涨的理由。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#35</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">然后到了18世纪的南海泡沫，故事一模一样。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#36</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">最后，回到牛顿的故事。他在南海泡沫后说的那句名言，其实还有下半句——不是牛顿算错了，而是他相信了市场永远是对的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#37</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">《泡沫经济学》告诉我们：市场不是上帝，它只是一个由人组成的、会集体犯错的巨型系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#38</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">当你觉得所有人都在赚钱时，可能正是最该离场的时候。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#39</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，下一次当你听到“市场永远是对的”这句话时，不妨想一想：如果市场永远是对的，为什么连牛顿都栽了跟头？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#40</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">记住：真正聪明的投资者，不是在泡沫中狂欢的人，而是在别人疯狂时冷静观察的人。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">40</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批提取：4 批，每批 10 个单元，总计 40 个画面点</p>
+      
+    </div>
+    <div class="kp-beat-list">
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 1</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>投资者因跟随市场而亏损的普遍困惑</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开篇需要建立情感共鸣和问题意识</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个投资者盯着手机或电脑上亏损的股票账户，表情困惑和沮丧</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">看着账户里缩水的数字，你是不是也怀疑过：为什么我跟着市场走，却总是被割韭菜？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 2</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>打破市场永远正确的迷信，揭示泡沫经济学的真相</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从问题转向核心观点，需要视觉冲击力来强调颠覆性结论</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>一本《泡沫经济学》的书被翻开，书页上浮现出‘市场是错的’字样，背景是破碎的股市图表</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">别再迷信‘市场永远是对的’——《泡沫经济学》直接告诉你：你被骗了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 3</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入历史案例，以牛顿作为聪明人的代表</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要时间穿越的过渡，引出历史人物</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面从现代切换到18世纪伦敦，牛顿的肖像或剪影出现，背景是古老的街道和时钟倒转</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们先把时间拉回到1720年，看看人类历史上最聪明的大脑之一——艾萨克·牛顿。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 4</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>确认牛顿的身份，强化其科学天才形象</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要快速建立牛顿的经典形象，为后续反差做铺垫</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>牛顿坐在苹果树下，一个苹果落下砸中他的头，周围浮现万有引力公式</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">没错，就是那个被苹果砸中、发现万有引力的牛顿。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 5</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>介绍南海公司的背景和核心卖点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示故事的关键元素——南海公司</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>一张18世纪的英国地图，南美洲区域被高亮，一艘帆船驶向新大陆，旁边出现‘南海公司’字样</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">当时，英国有一家叫南海的公司，拿到了南美洲的贸易特许权。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 6</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>点出泡沫故事的通用套路，引发观众共鸣</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要从历史案例中提炼出普遍模式</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>三个关键词‘新概念’、‘大市场’、‘未来无限好’以大字幕形式依次弹出，背景是模糊的现代股市K线图</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">故事听起来很熟悉吧？一个新概念、一个大市场、一个“未来无限好”的故事。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 7</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示股价的惊人涨幅</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要数据可视化来表现泡沫膨胀</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>一条股价曲线从120直线飙升到1000，数字不断跳动，背景是兴奋的人群和报纸头条</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">南海公司的股价从120英镑开始疯涨，半年内涨到1000英镑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 8</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示牛顿早期获利，强化其聪明人形象</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体数字来体现收益的夸张程度</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>牛顿手持一袋金币，旁边出现数字‘7000英镑’，并对比显示‘造币厂厂长十年薪水’</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">牛顿第一次入场，赚了7000英镑，相当于他当造币厂厂长十年的薪水。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 9</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>牛顿理性离场，体现其谨慎</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要表现牛顿的理性决策</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>牛顿转身离开交易所，背景是疯狂交易的人群，他表情冷静，做出‘停止’的手势</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这位科学巨匠觉得太疯狂了，果断离场。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 10</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>股价在牛顿离场后继续上涨，制造悬念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要制造戏剧性转折，为后续反转铺垫</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>股价曲线继续向上飙升，牛顿的背影逐渐变小，画面出现问号‘？’</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">结果呢？股价继续狂飙。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 11</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>牛顿开始怀疑自己之前的判断，感到不安</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>故事进入转折点，需要表现牛顿的心理活动</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展现牛顿的犹豫和动摇</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">牛顿坐不住了，心想“我是不是太保守了？”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 12</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>牛顿在犹豫后做出了冒险的决定</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>行动转折，需要视觉上表现投入的动作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现牛顿孤注一掷的决策</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">于是，他把全部身家又投了进去。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 13</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>泡沫破裂，市场崩盘</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>故事高潮，需要强烈的视觉冲击</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现泡沫破裂和股价暴跌的戏剧性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">后面的故事我们都猜到了——泡沫破裂，股价暴跌回原点。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 14</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>牛顿遭受巨大经济损失</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要量化损失，让观众感受到惨痛</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现损失的巨大和沉重</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">牛顿亏掉了两万英镑，几乎是他二十年的收入。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 15</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">story</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>牛顿的名言总结了他的无奈</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>金句出现，需要有力的收束画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>强化名言的冲击力和哲理感</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">他留下一句名言：“我能计算天体的运动，却无法计算人类的疯狂。”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 16</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">question</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出核心问题：市场永远正确吗？</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从故事转向问题，需要引发思考</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现疑问和思考的氛围</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们忍不住要问：如果市场永远是对的，为什么牛顿会犯这种错误？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 17</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">question</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>否定智商不足的猜测</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要反驳一个可能的错误答案</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现否定和转折</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">难道他的智商不够用吗？显然不是。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 18</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>指出问题的根源在于相信市场有效</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开始解释核心概念，需要可视化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现“市场有效”这个教条</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">问题出在我们相信了一个核心教条——市场是有效的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 19</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>给出教条的正式名称</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要突出专业术语</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现“有效市场假说”这个术语</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个教条在经济学里有个响亮的名字：“有效市场假说”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 20</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>解释有效市场假说的核心观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要清晰展示核心观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用图表或动画展示信息反映在价格中的过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">它的核心观点是：所有已知信息都已经反映在价格里了，所以没有人能持续战胜市场。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 21</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>这个理论非常权威，被写入教材并获得诺贝尔奖。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示该理论的权威性和影响力，从抽象概念转向具体荣誉。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉符号（教材、诺贝尔奖）建立理论的可信度。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个理论有多厉害？它被写进每一本金融学教材，甚至有人因为它拿了诺贝尔奖。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 22</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>该理论衍生出大众熟知的金融谚语。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从理论荣誉过渡到日常应用场景，需要具象化这些谚语的来源。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示该理论如何渗透到大众媒体和日常投资观念中。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你打开手机看财经新闻，听到的“市场先生总是对的”“不要试图战胜市场”，都是从这来的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 23</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出对有效市场理论的第一个质疑：泡沫的存在。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从陈述转向质疑，需要视觉上呈现“思考”和“矛盾”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉对比（理论 vs 现实）引出核心矛盾。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但我们稍微动动脑子就会发现问题：如果市场总是有效的，为什么会有泡沫？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 24</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出第二个质疑：崩盘现象。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>延续上一个质疑，需要更强烈的视觉冲击来强调矛盾。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用崩盘画面强化对理论的质疑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">为什么会有崩盘？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 25</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出第三个质疑：普通投资者的非理性行为。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从宏观现象转向微观个体行为，需要更贴近观众生活的画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用具体人物行为让观众产生共鸣，质疑理论的有效性。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">为什么我们身边总有人在高点买入、低点割肉？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 26</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>总结质疑：理论假设（理性人）与现实（非理性行为）的冲突。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将多个质疑点整合成一个核心矛盾，进行视觉化总结。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用对比画面（理性符号 vs 非理性行为）突出核心矛盾。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个理论就像在说“人都是理性的”，可我们明明看到，人总是会冲动、会恐慌、会跟风。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 27</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入新书观点，重新定义市场的本质。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从质疑转向解答，需要引入新的视觉符号（书、新定义）。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉比喻（上帝 vs 系统）清晰传达新观点。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">《泡沫经济学》告诉我们：市场不是上帝，它只是一个由人组成的巨型系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 28</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>点出泡沫的核心成因：集体非理性。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强化“集体犯错”这个关键概念，为后续解释做铺垫。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻（人群、错误方向）表现集体非理性。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">而人，是会集体犯错的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 29</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出核心问题，并否定简单归因。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从结论转向过程，需要用一个问题引导观众进入下一阶段。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉疑问（问号、人群）引发观众思考，并否定简单答案。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">好，那泡沫到底是怎么发生的？是不是像我们以为的那样，只是一群傻子在瞎炒？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 30</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">middle</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>预告将用案例拆解泡沫的完整过程。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要为接下来的案例讲解做视觉铺垫，建立期待感。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉预告（剧本、案例封面）吸引观众继续观看。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">书中用几个经典案例拆解了泡沫的完整剧本，你会发现，每一步都似曾相识。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 31</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入郁金香泡沫的历史案例</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>新话题开始，需要新画面引入</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示17世纪荷兰郁金香市场的繁荣景象</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">先说17世纪的郁金香泡沫。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 32</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>郁金香球茎价格惊人，堪比豪宅</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体展示价格对比，强化冲击力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>对比展示一株郁金香球茎和一栋运河豪宅，突出价格离谱</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">在荷兰，一株稀有郁金香球茎的价格，可以抵得上阿姆斯特丹运河边的一栋豪宅。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 33</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">9s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>价格上涨本身成为上涨理由，非理性驱动</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要解释泡沫形成的心理机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用思维导图或动画展示“价格上涨→预期继续涨→更多人买入→价格再涨”的循环</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">为什么？不是因为郁金香突然变得比房子还实用，而是因为价格开始涨了，大家觉得“这东西还能继续涨”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 34</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>核心观点：价格自证其涨</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>金句需要强化视觉冲击</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用简洁有力的文字动画或视觉隐喻（如镜子反射）表现自我循环</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">价格上涨本身，成了上涨的理由。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 35</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>南海泡沫与郁金香泡沫模式相同</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡到新案例，需要场景切换</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示18世纪英国南海公司股票交易场景，与郁金香形成类比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">然后到了18世纪的南海泡沫，故事一模一样。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 36</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>牛顿名言揭示市场非理性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>引入名人故事增加说服力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示牛顿在南海泡沫中亏损后的沉思画面，配以名言文字</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">最后，回到牛顿的故事。他在南海泡沫后说的那句名言，其实还有下半句——不是牛顿算错了，而是他相信了市场永远是对的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 37</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>市场本质是人的集体行为，会犯错</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化抽象概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用人群组成的巨大齿轮或网络系统图，强调集体性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">《泡沫经济学》告诉我们：市场不是上帝，它只是一个由人组成的、会集体犯错的巨型系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 38</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>逆向思维：众人狂热时离场</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>警示性金句需要强烈视觉</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个人逆着狂欢人群向外走的画面，形成对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">当你觉得所有人都在赚钱时，可能正是最该离场的时候。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 39</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>质疑市场永远正确的观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>反问句需要引发思考</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示牛顿头像与问号，配合文字“市场永远是对的？”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，下一次当你听到“市场永远是对的”这句话时，不妨想一想：如果市场永远是对的，为什么连牛顿都栽了跟头？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 40</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>总结：冷静观察才是智慧</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>结尾金句需要收束力量</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个人站在高处冷静俯瞰下方狂欢人群的画面，配以文字</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">记住：真正聪明的投资者，不是在泡沫中狂欢的人，而是在别人疯狂时冷静观察的人。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">41</span>
+        <span class="kp-summary-label">图片提示词</span>
+      </div>
+      
+      <span class="kp-summary-style-badge">现代知识类视频插画风，干净简洁，柔和光影，信息表达清晰，人物一律为外国人形象（欧美面孔），适合抖音读书类视频。横屏 16…</span>
+      
+      <div class="kp-summary-stats">
+        
+        <span class="kp-status-pill kp-pill-generated">generated: 41</span>
+        
+      </div>
+    </div>
+    <div class="kp-prompt-grid">
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 0</span>
+          <span class="kp-prompt-stage">cover</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>《泡沫经济学》知识讲解视频封面</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>封面画面：展示博主形象与书本主题，同一本书所有视频共用此封面</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，欧美男性，深色西装，双手交叉抱胸，大腿以上。旁边有一本书。背景简洁书房，表情自信沉稳。现代插画风，外国人形象。16:9 横屏，人物居中偏右，左侧预留标题空间。画面中无任何文字。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>中文文字、英文文字、LOGO、标题、标签、海报风、真实照片风、亚洲面孔、政治人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 1</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>投资者因跟随市场而亏损的普遍困惑</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个投资者盯着手机或电脑上亏损的股票账户，表情困惑和沮丧</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红棕色短发的欧美男人坐在深色木桌前，双手撑头，表情沮丧。桌上放着一部手机，屏幕显示红色下跌的股票K线图和缩水的数字。手机旁边有一张揉皱的纸条，上面写着中文‘割韭菜’。背景是昏暗的房间，只有台灯照亮桌面。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 2</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>打破市场永远正确的迷信，揭示泡沫经济学的真相</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>一本《泡沫经济学》的书被翻开，书页上浮现出‘市场是错的’字样，背景是破碎的股市图表</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本打开的硬皮书放在桌面上，书页中间用粗体大字写着中文‘市场是错的’。书的封面标题是中文‘泡沫经济学’。背景是破碎散落的股市K线图碎片和几个气泡，气泡上写着中文‘泡沫’。整体色调温暖偏暗，只有书页被一束光照亮。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 3</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入历史案例，以牛顿作为聪明人的代表</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面从现代切换到18世纪伦敦，牛顿的肖像或剪影出现，背景是古老的街道和时钟倒转</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧是一个巨大的老式挂钟，指针在逆时针旋转，钟面有磨损痕迹。右侧出现牛顿的侧面剪影，他戴着白色假发，身穿深色长外套。背景是1720年伦敦的鹅卵石街道和砖石建筑，色调偏暖棕。画面中有中文文字'1720'写在钟面上方。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 4</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>确认牛顿的身份，强化其科学天才形象</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>牛顿坐在苹果树下，一个苹果落下砸中他的头，周围浮现万有引力公式</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，牛顿坐在一棵枝繁叶茂的苹果树下，他戴着白色假发，身穿深色外套，一只手摸着被苹果砸中的头顶，表情惊讶又若有所思。一个红苹果悬停在他头部上方。画面右侧的空气中浮现出白色线条的公式'F=G·m₁m₂/r²'。画面中有中文文字'万有引力'写在公式旁边的小标签上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 5</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>介绍南海公司的背景和核心卖点</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>一张18世纪的英国地图，南美洲区域被高亮，一艘帆船驶向新大陆，旁边出现‘南海公司’字样</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张泛黄的古旧地图上，南美洲区域被一圈粗红线高亮标记。地图右下角有一艘小木帆船，正驶向那片大陆。地图旁贴着一张标签纸，上面用粗体中文写着“南海公司”。整体色调为暖米色与深棕。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 6</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>点出泡沫故事的通用套路，引发观众共鸣</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>三个关键词‘新概念’、‘大市场’、‘未来无限好’以大字幕形式依次弹出，背景是模糊的现代股市K线图</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，背景是模糊的灰绿色股市K线图线条，前景依次排列三张撕下的记事贴。第一张贴纸上写着中文“新概念”，第二张写着“大市场”，第三张写着“未来无限好”。三张贴纸颜色分别为奶油黄、复古蓝、暗红，形成阶梯排列。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 7</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>展示股价的惊人涨幅</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>一条股价曲线从120直线飙升到1000，数字不断跳动，背景是兴奋的人群和报纸头条</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一幅金融漫画场景，画面中央是一条粗黑的股价曲线，从左下角的数字‘120’陡峭地向右上角飙升，顶部标有数字‘1000’。曲线像火箭轨迹一样向上冲。背景是一群白人男女兴奋地挥舞报纸，报纸头条写着‘大涨’。画面中有中文：‘120’和‘1000’标注在曲线两端。暖米色和深棕色主色调，黑色描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 8</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>展示牛顿早期获利，强化其聪明人形象</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>牛顿手持一袋金币，旁边出现数字‘7000英镑’，并对比显示‘造币厂厂长十年薪水’</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位戴假发的白人男子（牛顿）站在画面左侧，身穿深棕色复古西装，左手举起一袋沉甸甸的金币，袋口溢出金币，表情自信微笑。右侧空中漂浮着一张白色标签纸，上面用粗黑字体写着中文‘7000英镑’。标签下方有一行小字‘= 十年薪水’。背景是简单的米色墙面。复古蓝和暗红色调，黑色描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 9</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>牛顿理性离场，体现其谨慎</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>牛顿转身离开交易所，背景是疯狂交易的人群，他表情冷静，做出‘停止’的手势</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕色卷发、穿深色长外套的欧美中年男子，表情冷静坚定，正从喧闹的交易所中转身离开。他抬起一只手做出停止手势。背景是模糊的、正在挥手喊叫的人群和混乱的纸片。画面中有中文：'退场'二字标在他身旁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、荧光色、纯黑背景、人物过多</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 10</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>股价在牛顿离场后继续上涨，制造悬念</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>股价曲线继续向上飙升，牛顿的背影逐渐变小，画面出现问号‘？’</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个巨大的红色股价曲线图表占据画面左侧，箭头笔直向上飙升。右侧远处，一个穿深色外套的小小背影正走向画面边缘，越来越小。图表上方飘着一个巨大的黑色问号。画面中有中文：'飙升'二字标在曲线顶端。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、荧光色、纯黑背景、人物过多</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 11</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>牛顿开始怀疑自己之前的判断，感到不安</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展现牛顿的犹豫和动摇</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色卷发的欧美男人坐在书桌前，眉头紧锁，一只手托着下巴做思考状，另一只手放在一本打开的书上。桌上散落着几张写满数字的纸。他面前放着一个天平，天平两边摇晃不平衡。画面中有中文大字：'太保守？'写在一张纸条上贴在墙上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 12</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>牛顿在犹豫后做出了冒险的决定</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现牛顿孤注一掷的决策</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，同一个棕色卷发的欧美男人站在一个巨大的漏斗形投资沙漏前，双手用力将一大袋金币扔进沙漏入口。他表情坚定，咬紧牙关。沙漏底部已经堆了一些金币。背景是一面空白的墙，墙上有一个大大的箭头指向沙漏，箭头旁边有中文大字：'全投'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 13</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>泡沫破裂，市场崩盘</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现泡沫破裂和股价暴跌的戏剧性</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个巨大的肥皂泡在空中爆裂，碎片四溅。下方是一个股票走势图，红色箭头从最高点垂直向下暴跌至底部原点，图旁有中文标签'泡沫破裂'。背景是暗红色的天空。整体气氛紧张、充满冲击力。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 14</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>牛顿遭受巨大经济损失</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现损失的巨大和沉重</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，牛顿（棕发，欧美面孔）坐在一张古典书桌前，双手抱头，表情痛苦懊悔。桌上摆着一摞金币和一封写着'亏损20000英镑'的账单。他身后墙上挂着的镜子裂开一道缝。画面色调偏暗，气氛沉重压抑。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 15</span>
+          <span class="kp-prompt-stage">story</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>牛顿的名言总结了他的无奈</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>强化名言的冲击力和哲理感</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕色卷发的欧美男性（牛顿形象）站在书桌前，一只手放在一本打开的天文书上，另一只手摊开，表情无奈而深邃。身后窗外的星空和桌上一堆散落的股票交易单据形成对比。画面下方有一张纸条，上面写着中文：'人类的疯狂'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 16</span>
+          <span class="kp-prompt-stage">question</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出核心问题：市场永远正确吗？</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现疑问和思考的氛围</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个巨大的问号（由半透明色块构成）悬浮在画面中央，问号左侧是牛顿的剪影头像，右侧是一个股市K线图走势的简笔曲线。问号内部隐约可见一个天平，一端放着'牛顿公式'的纸条，另一端放着'市场'的纸片。背景是柔和的暖米色，整体画面简洁，突出疑问感。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 17</span>
+          <span class="kp-prompt-stage">question</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>否定智商不足的猜测</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现否定和转折</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红发欧美男人侧身站立，背后是一个巨大的红色叉号(✗)覆盖在一个问号上。他双手摊开，表情轻松自信，嘴角带着微笑。背景是暖米色，简洁干净。画面中有中文：'不是智商'写在纸上被撕碎飘落。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 18</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>指出问题的根源在于相信市场有效</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现“市场有效”这个教条</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人站在黑板前，黑板上用粗体粉笔字写着'市场有效'四个大字，下面画着一个向上的箭头和一个向下的箭头被一个圆圈框住。男人一只手拿着粉笔，另一只手指向黑板，表情严肃认真。背景是教室场景，暖色调。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 19</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>给出教条的正式名称</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现“有效市场假说”这个术语</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本打开的经济学教科书平放在木桌上，书页中央用粗体大字写着中文'有效市场假说'，周围漂浮着几个小金币和上升的箭头符号，背景是模糊的书架，暖黄色灯光从上方打下来，画面简洁聚焦在书名上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 20</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>解释有效市场假说的核心观点</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用图表或动画展示信息反映在价格中的过程</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男子站在黑板前，黑板上画着从左到右的箭头，箭头起点标着中文'信息'，终点标着中文'价格'，箭头中间有几个小图标(报纸、图表、喇叭)流入一条上升的折线图，男子侧身指向黑板，表情自信，背景是简约教室。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 21</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>这个理论非常权威，被写入教材并获得诺贝尔奖。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉符号（教材、诺贝尔奖）建立理论的可信度。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，特写镜头，一本打开的厚金融学教材平放在桌面上，书页上有一行醒目的中文大字'有效市场理论'。教材旁边放着一枚金色的诺贝尔奖奖牌，奖牌上刻着'Nobel Prize'字样。背景是暖色书架，光线从左侧打来，突出书本和奖牌。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 22</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>该理论衍生出大众熟知的金融谚语。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示该理论如何渗透到大众媒体和日常投资观念中。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发外国人坐在沙发上，低头看着手里的手机，手机屏幕上显示一个财经新闻APP界面，上面有中文标题'市场先生总是对的'。他另一只手端着一杯咖啡，面前茶几上散落着几份报纸。背景是简洁的客厅，有柔和灯光。人物表情专注而若有所思。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 23</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出对有效市场理论的第一个质疑：泡沫的存在。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉对比（理论 vs 现实）引出核心矛盾。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧是一块黑板，上面写着中文大字'有效市场'，旁边画着一条笔直向上的绿色箭头。画面右侧，一个巨大的彩色肥皂泡漂浮在空中，泡泡表面映出扭曲的城市轮廓和美元符号。一个金发欧美男人站在中间，左手摊开指向黑板，右手疑惑地指着泡泡，表情困惑。画面中有中文：'有效市场'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 24</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出第二个质疑：崩盘现象。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用崩盘画面强化对理论的质疑。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红棕色头发的欧美男人站在一个巨大的股票走势图屏幕前，屏幕上的K线图是一个陡峭的悬崖式下跌，红色箭头指向下方。男人的表情惊恐，双手抱着头。屏幕边缘有破碎的玻璃裂纹效果，地上散落着几张写有中文'崩盘'的纸片。画面中有中文：'崩盘'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 25</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出第三个质疑：普通投资者的非理性行为。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用具体人物行为让观众产生共鸣，质疑理论的有效性。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红发外国人站在股票交易大屏幕前，屏幕显示K线图，左侧高点处标有红色中文'买入'字样和向上的箭头，右侧低点处标有蓝色中文'割肉'字样和向下的箭头。该人物表情惊恐，双手抱头，周围散落着几张小纸条，上面写着'买'和'卖'。画面中有中文：买入、割肉。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 26</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>总结质疑：理论假设（理性人）与现实（非理性行为）的冲突。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用对比画面（理性符号 vs 非理性行为）突出核心矛盾。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割。左侧：一个戴着眼镜、表情冷静的金发外国人，西装革履，站在一块写着中文'理性人'的白板前，白板上画着一个完美的圆形。右侧：同一个人物形象但表情惊慌，头发凌乱，被一群不同发色的人潮推着跑，背景是红色箭头和绿色箭头混乱交错，地上有一张写着'跟风'的纸条。画面中有中文：理性人、跟风。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 27</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入新书观点，重新定义市场的本质。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉比喻（上帝 vs 系统）清晰传达新观点。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，左侧一个发光的上帝形象轮廓逐渐淡去，右侧是一个由无数小人手拉手组成的巨大齿轮系统。画面中央有一本打开的书，书页上写着中文大字'市场≠上帝，市场=系统'。背景是简洁的浅米色，有轻微纸张纹理。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 28</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>点出泡沫的核心成因：集体非理性。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉隐喻（人群、错误方向）表现集体非理性。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一群欧美面孔的人（棕色、金色、红棕色头发）排成一队，齐步走向悬崖边缘，最前面的人已经半只脚踏空。他们表情坚定但眼神空洞，仿佛被催眠。每个人胸前贴着一个标签，上面写着中文'跟随'二字。背景是灰蓝色迷雾天空。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 29</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出核心问题，并否定简单归因。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉疑问（问号、人群）引发观众思考，并否定简单答案。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个巨大的半透明问号悬浮在画面中央，问号由许多模糊的、表情各异的欧美面孔组成（有的兴奋，有的焦虑）。问号下方，有一个红叉（X）盖住了一个写着'傻子瞎炒'的纸条。背景是深棕色的抽象空间，有几道微弱的灰色线条。画面中有中文：'傻子瞎炒'被红叉覆盖。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 30</span>
+          <span class="kp-prompt-stage">middle</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>预告将用案例拆解泡沫的完整过程。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉预告（剧本、案例封面）吸引观众继续观看。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本打开的旧剧本放在画面中央，书页上写着'泡沫剧本'四个大字（中文）。从书页中伸出几根线，连接到几幅小画框：左边画框里是郁金香，中间画框里是南海公司的股票，右边画框里是密西西比公司的地图。所有元素都是复古的棕色和米色系，线条清晰。画面中有中文：'泡沫剧本'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 31</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入郁金香泡沫的历史案例</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示17世纪荷兰郁金香市场的繁荣景象</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，17世纪荷兰阿姆斯特丹的运河边市场，一位戴宽檐帽的商人正捧着一束鲜艳的郁金香向顾客展示。周围人群聚集，表情兴奋、伸出手指指点点。远处风车和尖顶房屋作为背景。画面中有中文大字标签写在木牌上：'郁金香热潮'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、现代元素</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 32</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>郁金香球茎价格惊人，堪比豪宅</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>对比展示一株郁金香球茎和一栋运河豪宅，突出价格离谱</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比构图。左侧是一个精美的木托盘中放着一颗饱满的郁金香球茎，球茎上贴有标签写'稀有'。右侧是阿姆斯特丹运河边一栋带山墙的砖石豪宅。中间一个巨大的天平，天平两端分别放着球茎和豪宅模型，天平保持平衡。一位戴眼镜的荷兰商人站在天平旁，双手摊开，表情震惊。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、现代元素</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 33</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>价格上涨本身成为上涨理由，非理性驱动</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用循环箭头展示‘价格上涨→预期继续涨→更多人买入→价格再涨’的自我循环</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个由四个节点组成的圆形循环箭头图。左上节点画着一个金币，上面写中文'涨价'；右上节点画着一个眼睛和向上的箭头，表示'看涨预期'；右下节点画着一个人伸手买入；左下节点画着价格标签数字上升。四个节点由粗黑箭头首尾相连形成闭环。背景是浅米色，线条为深棕色。画面中有中文：'涨价'、'预期'、'买入'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 34</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>核心观点：价格自证其涨</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用镜子反射的视觉隐喻表现自我循环，画面简洁有力</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一面复古圆镜立在深棕色桌面上。镜中反射出一只手正把一枚金币放在镜前，而镜中的金币旁边浮现出中文大字'涨价'。镜子周围有柔和的光晕，背景是暖米色墙壁，画面简洁，只有镜子和手。画面中有中文：'涨价'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景、多人</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 35</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>南海泡沫与郁金香泡沫模式相同</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示18世纪英国南海公司股票交易场景，与郁金香形成类比</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，18世纪伦敦咖啡馆内景，几位戴假发的绅士围站在一张木桌前，桌上散落着股票凭证和金币。墙上一张海报写着中文“南海泡沫”。窗外隐约可见一艘帆船。人物表情兴奋贪婪，手举着文件。画面中有中文：南海泡沫。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 36</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>牛顿名言揭示市场非理性</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示牛顿在南海泡沫中亏损后的沉思画面，配以名言文字</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕发中年男性（牛顿形象）坐在书房椅子上，身穿18世纪英式外套，手拿一张写有“亏损”字样的纸，低头沉思，表情懊悔。桌上散落着账本和几枚硬币。画面中有一张纸写着中文：“我无法计算人类的疯狂”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 37</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>市场本质是人的集体行为，会犯错</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用人群组成的巨大齿轮或网络系统图，强调集体性</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个由许多微小人物手拉手连接而成的巨大齿轮，齿轮在转动，内部有箭头指向错误的方向。背景是浅暖色。齿轮中心写中文'市场'二字。画面简洁，突出人与系统的关系。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 38</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>逆向思维：众人狂热时离场</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个人逆着狂欢人群向外走的画面，形成对比</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割：右侧是一群人在狂欢，举着钞票和酒杯，表情狂热；左侧是一个穿深色外套的男人，独自一人安静地走向画外，表情冷静。他手里拿着一张纸，上面写中文'离场'。背景是灰蓝色调。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 39</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>质疑市场永远正确的观点</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示牛顿头像与问号，配合文字“市场永远是对的？”</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧是一个巨大的牛顿半身肖像剪影（欧美面孔，假发，深色外套），表情困惑，眉头紧锁。右侧是一个巨大的红色问号。牛顿头上方悬浮着一个写有“市场永远是对的？”的黄色纸片标签，标签边缘有手撕的痕迹。背景是深米色，有轻微的纸张纹理。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 40</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>总结：冷静观察才是智慧</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个人站在高处冷静俯瞰下方狂欢人群的画面，配以文字</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面主体：一个戴眼镜的男性（棕色头发，深色风衣）站在一座石桥的中央，双手扶栏，身体前倾，神情冷静而专注，目光向下俯瞰。桥下远处是一片模糊的、色彩鲜艳的狂欢人群（简化处理，像彩色色块）。桥栏杆上贴着一张纸条，上面写着中文：“冷静观察”。天空是柔和的灰蓝色调。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色、人群细节过多</p>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">总时长</div>
+        <div style="font-size:1.5rem;font-weight:700;">7分35秒</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">画面节拍</div>
+        <div style="font-size:1.5rem;font-weight:700;">40</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">音频段</div>
+        <div style="font-size:1.5rem;font-weight:700;">33</div>
+      </div>
+    </div>
+
+    
+    
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">画面时间线（40 个节拍）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#1</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分0秒
+             -> 0分14秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">投资者因跟随市场而亏损的普遍困惑</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红棕色短发的欧美男人坐在深色木桌前，双手撑头，表情沮丧。桌上放着一部手机，屏幕显示红色下跌的股票K线图和缩水的数字。手机旁边有一张揉皱的纸条，上面写着中文‘割韭菜’。背景是昏暗的房间，只有台灯照亮桌面。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#2</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分14秒
+             -> 0分27秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">打破市场永远正确的迷信，揭示泡沫经济学的真相</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本打开的硬皮书放在桌面上，书页中间用粗体大字写着中文‘市场是错的’。书的封面标题是中文‘泡沫经济学’。背景是破碎散落的股市K线图碎片和几个气泡，气泡上写着中文‘泡沫’。整体色调温暖偏暗，只有书页被一束光照亮。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#3</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分27秒
+             -> 0分42秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入历史案例，以牛顿作为聪明人的代表</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧是一个巨大的老式挂钟，指针在逆时针旋转，钟面有磨损痕迹。右侧出现牛顿的侧面剪影，他戴着白色假发，身穿深色长外套。背景是1720年伦敦的鹅卵石街道和砖石建筑，色调偏暖棕。画面中有中文文字'1720'写在钟面上方。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#4</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分42秒
+             -> 0分51秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">确认牛顿的身份，强化其科学天才形象</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，牛顿坐在一棵枝繁叶茂的苹果树下，他戴着白色假发，身穿深色外套，一只手摸着被苹果砸中的头顶，表情惊讶又若有所思。一个红苹果悬停在他头部上方。画面右侧的空气中浮现出白色线条的公式'F=G·m₁m₂/r²'。画面中有中文文字'万有引
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#5</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分51秒
+             -> 1分2秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">介绍南海公司的背景和核心卖点</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张泛黄的古旧地图上，南美洲区域被一圈粗红线高亮标记。地图右下角有一艘小木帆船，正驶向那片大陆。地图旁贴着一张标签纸，上面用粗体中文写着“南海公司”。整体色调为暖米色与深棕。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#6</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分2秒
+             -> 1分16秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">点出泡沫故事的通用套路，引发观众共鸣</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，背景是模糊的灰绿色股市K线图线条，前景依次排列三张撕下的记事贴。第一张贴纸上写着中文“新概念”，第二张写着“大市场”，第三张写着“未来无限好”。三张贴纸颜色分别为奶油黄、复古蓝、暗红，形成阶梯排列。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#7</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分16秒
+             -> 1分28秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">展示股价的惊人涨幅</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一幅金融漫画场景，画面中央是一条粗黑的股价曲线，从左下角的数字‘120’陡峭地向右上角飙升，顶部标有数字‘1000’。曲线像火箭轨迹一样向上冲。背景是一群白人男女兴奋地挥舞报纸，报纸头条写着‘大涨’。画面中有中文：‘120’和
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#8</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分28秒
+             -> 1分40秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">展示牛顿早期获利，强化其聪明人形象</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位戴假发的白人男子（牛顿）站在画面左侧，身穿深棕色复古西装，左手举起一袋沉甸甸的金币，袋口溢出金币，表情自信微笑。右侧空中漂浮着一张白色标签纸，上面用粗黑字体写着中文‘7000英镑’。标签下方有一行小字‘= 十年薪水’。背景
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#9</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分40秒
+             -> 1分47秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">牛顿理性离场，体现其谨慎</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕色卷发、穿深色长外套的欧美中年男子，表情冷静坚定，正从喧闹的交易所中转身离开。他抬起一只手做出停止手势。背景是模糊的、正在挥手喊叫的人群和混乱的纸片。画面中有中文：'退场'二字标在他身旁。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#10</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分47秒
+             -> 1分52秒
+            0分4秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">股价在牛顿离场后继续上涨，制造悬念</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个巨大的红色股价曲线图表占据画面左侧，箭头笔直向上飙升。右侧远处，一个穿深色外套的小小背影正走向画面边缘，越来越小。图表上方飘着一个巨大的黑色问号。画面中有中文：'飙升'二字标在曲线顶端。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#11</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分52秒
+             -> 1分59秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">牛顿开始怀疑自己之前的判断，感到不安</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色卷发的欧美男人坐在书桌前，眉头紧锁，一只手托着下巴做思考状，另一只手放在一本打开的书上。桌上散落着几张写满数字的纸。他面前放着一个天平，天平两边摇晃不平衡。画面中有中文大字：'太保守？'写在一张纸条上贴在墙上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#12</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分59秒
+             -> 2分5秒
+            0分5秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">牛顿在犹豫后做出了冒险的决定</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，同一个棕色卷发的欧美男人站在一个巨大的漏斗形投资沙漏前，双手用力将一大袋金币扔进沙漏入口。他表情坚定，咬紧牙关。沙漏底部已经堆了一些金币。背景是一面空白的墙，墙上有一个大大的箭头指向沙漏，箭头旁边有中文大字：'全投'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#13</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分5秒
+             -> 2分15秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">泡沫破裂，市场崩盘</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个巨大的肥皂泡在空中爆裂，碎片四溅。下方是一个股票走势图，红色箭头从最高点垂直向下暴跌至底部原点，图旁有中文标签'泡沫破裂'。背景是暗红色的天空。整体气氛紧张、充满冲击力。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#14</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分15秒
+             -> 2分24秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">牛顿遭受巨大经济损失</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，牛顿（棕发，欧美面孔）坐在一张古典书桌前，双手抱头，表情痛苦懊悔。桌上摆着一摞金币和一封写着'亏损20000英镑'的账单。他身后墙上挂着的镜子裂开一道缝。画面色调偏暗，气氛沉重压抑。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#15</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分24秒
+             -> 2分36秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">牛顿的名言总结了他的无奈</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕色卷发的欧美男性（牛顿形象）站在书桌前，一只手放在一本打开的天文书上，另一只手摊开，表情无奈而深邃。身后窗外的星空和桌上一堆散落的股票交易单据形成对比。画面下方有一张纸条，上面写着中文：'人类的疯狂'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#16</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分36秒
+             -> 2分47秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出核心问题：市场永远正确吗？</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个巨大的问号（由半透明色块构成）悬浮在画面中央，问号左侧是牛顿的剪影头像，右侧是一个股市K线图走势的简笔曲线。问号内部隐约可见一个天平，一端放着'牛顿公式'的纸条，另一端放着'市场'的纸片。背景是柔和的暖米色，整体画面简洁，
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#17</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分47秒
+             -> 2分54秒
+            0分6秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">否定智商不足的猜测</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红发欧美男人侧身站立，背后是一个巨大的红色叉号(✗)覆盖在一个问号上。他双手摊开，表情轻松自信，嘴角带着微笑。背景是暖米色，简洁干净。画面中有中文：'不是智商'写在纸上被撕碎飘落。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#18</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分54秒
+             -> 3分3秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">指出问题的根源在于相信市场有效</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人站在黑板前，黑板上用粗体粉笔字写着'市场有效'四个大字，下面画着一个向上的箭头和一个向下的箭头被一个圆圈框住。男人一只手拿着粉笔，另一只手指向黑板，表情严肃认真。背景是教室场景，暖色调。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#19</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分3秒
+             -> 3分13秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">给出教条的正式名称</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本打开的经济学教科书平放在木桌上，书页中央用粗体大字写着中文'有效市场假说'，周围漂浮着几个小金币和上升的箭头符号，背景是模糊的书架，暖黄色灯光从上方打下来，画面简洁聚焦在书名上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#20</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分13秒
+             -> 3分28秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">解释有效市场假说的核心观点</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男子站在黑板前，黑板上画着从左到右的箭头，箭头起点标着中文'信息'，终点标着中文'价格'，箭头中间有几个小图标(报纸、图表、喇叭)流入一条上升的折线图，男子侧身指向黑板，表情自信，背景是简约教室。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#21</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分28秒
+             -> 3分42秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">这个理论非常权威，被写入教材并获得诺贝尔奖。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，特写镜头，一本打开的厚金融学教材平放在桌面上，书页上有一行醒目的中文大字'有效市场理论'。教材旁边放着一枚金色的诺贝尔奖奖牌，奖牌上刻着'Nobel Prize'字样。背景是暖色书架，光线从左侧打来，突出书本和奖牌。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#22</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分42秒
+             -> 3分58秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">该理论衍生出大众熟知的金融谚语。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发外国人坐在沙发上，低头看着手里的手机，手机屏幕上显示一个财经新闻APP界面，上面有中文标题'市场先生总是对的'。他另一只手端着一杯咖啡，面前茶几上散落着几份报纸。背景是简洁的客厅，有柔和灯光。人物表情专注而若有所思。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#23</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分58秒
+             -> 4分11秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出对有效市场理论的第一个质疑：泡沫的存在。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧是一块黑板，上面写着中文大字'有效市场'，旁边画着一条笔直向上的绿色箭头。画面右侧，一个巨大的彩色肥皂泡漂浮在空中，泡泡表面映出扭曲的城市轮廓和美元符号。一个金发欧美男人站在中间，左手摊开指向黑板，右手疑惑地指着泡泡，
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#24</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分11秒
+             -> 4分15秒
+            0分3秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出第二个质疑：崩盘现象。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红棕色头发的欧美男人站在一个巨大的股票走势图屏幕前，屏幕上的K线图是一个陡峭的悬崖式下跌，红色箭头指向下方。男人的表情惊恐，双手抱着头。屏幕边缘有破碎的玻璃裂纹效果，地上散落着几张写有中文'崩盘'的纸片。画面中有中文：'崩
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#25</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分15秒
+             -> 4分23秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出第三个质疑：普通投资者的非理性行为。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红发外国人站在股票交易大屏幕前，屏幕显示K线图，左侧高点处标有红色中文'买入'字样和向上的箭头，右侧低点处标有蓝色中文'割肉'字样和向下的箭头。该人物表情惊恐，双手抱头，周围散落着几张小纸条，上面写着'买'和'卖'。画面中
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#26</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分23秒
+             -> 4分38秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">总结质疑：理论假设（理性人）与现实（非理性行为）的冲突。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割。左侧：一个戴着眼镜、表情冷静的金发外国人，西装革履，站在一块写着中文'理性人'的白板前，白板上画着一个完美的圆形。右侧：同一个人物形象但表情惊慌，头发凌乱，被一群不同发色的人潮推着跑，背景是红色箭头和绿色箭头混乱
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#27</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分38秒
+             -> 4分52秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入新书观点，重新定义市场的本质。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，左侧一个发光的上帝形象轮廓逐渐淡去，右侧是一个由无数小人手拉手组成的巨大齿轮系统。画面中央有一本打开的书，书页上写着中文大字'市场≠上帝，市场=系统'。背景是简洁的浅米色，有轻微纸张纹理。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#28</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分52秒
+             -> 4分56秒
+            0分4秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">点出泡沫的核心成因：集体非理性。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一群欧美面孔的人（棕色、金色、红棕色头发）排成一队，齐步走向悬崖边缘，最前面的人已经半只脚踏空。他们表情坚定但眼神空洞，仿佛被催眠。每个人胸前贴着一个标签，上面写着中文'跟随'二字。背景是灰蓝色迷雾天空。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#29</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分56秒
+             -> 5分10秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出核心问题，并否定简单归因。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个巨大的半透明问号悬浮在画面中央，问号由许多模糊的、表情各异的欧美面孔组成（有的兴奋，有的焦虑）。问号下方，有一个红叉（X）盖住了一个写着'傻子瞎炒'的纸条。背景是深棕色的抽象空间，有几道微弱的灰色线条。画面中有中文：'傻子
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#30</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分10秒
+             -> 5分23秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">预告将用案例拆解泡沫的完整过程。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本打开的旧剧本放在画面中央，书页上写着'泡沫剧本'四个大字（中文）。从书页中伸出几根线，连接到几幅小画框：左边画框里是郁金香，中间画框里是南海公司的股票，右边画框里是密西西比公司的地图。所有元素都是复古的棕色和米色系，线条清
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#31</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分23秒
+             -> 5分28秒
+            0分5秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入郁金香泡沫的历史案例</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，17世纪荷兰阿姆斯特丹的运河边市场，一位戴宽檐帽的商人正捧着一束鲜艳的郁金香向顾客展示。周围人群聚集，表情兴奋、伸出手指指点点。远处风车和尖顶房屋作为背景。画面中有中文大字标签写在木牌上：'郁金香热潮'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#32</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分28秒
+             -> 5分42秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">郁金香球茎价格惊人，堪比豪宅</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比构图。左侧是一个精美的木托盘中放着一颗饱满的郁金香球茎，球茎上贴有标签写'稀有'。右侧是阿姆斯特丹运河边一栋带山墙的砖石豪宅。中间一个巨大的天平，天平两端分别放着球茎和豪宅模型，天平保持平衡。一位戴眼镜的荷兰商人站
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#33</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分42秒
+             -> 6分1秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">价格上涨本身成为上涨理由，非理性驱动</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个由四个节点组成的圆形循环箭头图。左上节点画着一个金币，上面写中文'涨价'；右上节点画着一个眼睛和向上的箭头，表示'看涨预期'；右下节点画着一个人伸手买入；左下节点画着价格标签数字上升。四个节点由粗黑箭头首尾相连形成闭环。背
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#34</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分1秒
+             -> 6分7秒
+            0分5秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">核心观点：价格自证其涨</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一面复古圆镜立在深棕色桌面上。镜中反射出一只手正把一枚金币放在镜前，而镜中的金币旁边浮现出中文大字'涨价'。镜子周围有柔和的光晕，背景是暖米色墙壁，画面简洁，只有镜子和手。画面中有中文：'涨价'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#35</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分7秒
+             -> 6分15秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">南海泡沫与郁金香泡沫模式相同</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，18世纪伦敦咖啡馆内景，几位戴假发的绅士围站在一张木桌前，桌上散落着股票凭证和金币。墙上一张海报写着中文“南海泡沫”。窗外隐约可见一艘帆船。人物表情兴奋贪婪，手举着文件。画面中有中文：南海泡沫。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#36</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分15秒
+             -> 6分35秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">牛顿名言揭示市场非理性</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕发中年男性（牛顿形象）坐在书房椅子上，身穿18世纪英式外套，手拿一张写有“亏损”字样的纸，低头沉思，表情懊悔。桌上散落着账本和几枚硬币。画面中有一张纸写着中文：“我无法计算人类的疯狂”。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#37</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分35秒
+             -> 6分51秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">市场本质是人的集体行为，会犯错</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个由许多微小人物手拉手连接而成的巨大齿轮，齿轮在转动，内部有箭头指向错误的方向。背景是浅暖色。齿轮中心写中文'市场'二字。画面简洁，突出人与系统的关系。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#38</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分51秒
+             -> 7分1秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">逆向思维：众人狂热时离场</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割：右侧是一群人在狂欢，举着钞票和酒杯，表情狂热；左侧是一个穿深色外套的男人，独自一人安静地走向画外，表情冷静。他手里拿着一张纸，上面写中文'离场'。背景是灰蓝色调。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#39</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分1秒
+             -> 7分21秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">质疑市场永远正确的观点</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧是一个巨大的牛顿半身肖像剪影（欧美面孔，假发，深色外套），表情困惑，眉头紧锁。右侧是一个巨大的红色问号。牛顿头上方悬浮着一个写有“市场永远是对的？”的黄色纸片标签，标签边缘有手撕的痕迹。背景是深米色，有轻微的纸张纹理。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#40</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分21秒
+             -> 7分35秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">总结：冷静观察才是智慧</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面主体：一个戴眼镜的男性（棕色头发，深色风衣）站在一座石桥的中央，双手扶栏，身体前倾，神情冷静而专注，目光向下俯瞰。桥下远处是一片模糊的、色彩鲜艳的狂欢人群（简化处理，像彩色色块）。桥栏杆上贴着一张纸条，上面写着中文：“冷静
+        </div>
+        
+      </div>
+      
+    </div>
+    
+
+    
+    
+
+    
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            82分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本整体质量较高，核心论点清晰，案例生动，逻辑递进合理，能有效传达原书思想。主要扣分点在于source_scope不够精确、思维框架和自测工具的可操作性有待加强、举一反三不够深入。建议优化后发布。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:65%"></div>
+            </div>
+            <span class="kp-dim-val">13</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 为'整书分析'，但脚本实际只聚焦于泡沫机制和个体理性导致集体非理性这一核心论点，未覆盖全书其他可能内容（如泡沫后的经济影响、政策应对等），存在一定简化</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">原书理解维度：脚本准确还原了泡沫心理机制，但对'有效市场假说'的批判略显简化，未充分展开该假说的复杂性和争议背景</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">thinking_framework 维度：提出的'观察行为'框架虽清晰，但未明确拆解为可操作的步骤（如'三步判断法'），框架的迁移性不够强</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">life_judgment_tool 维度：给出的三个警惕信号（饭局话题、'这次不一样'、焦虑感）虽具体，但缺少自测问题或量化判断标准，工具性偏弱</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">transfer_ability 维度：结尾举一反三部分较弱，仅提到'股票、房子、比特币'，未深入扩展到其他领域（如职业选择、消费决策等）</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">language_safety 维度：存在少量引导焦虑的表达，如'被割韭菜''你被骗了'，可调整为更中性的表述</li>
+            
+          </ul>
+        </div>
+        
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('泡沫经济学', 104)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        <option value="visual_beats.json">visual_beats.json</option>
+        
+        
+        
+        <option value="image_prompts.json">image_prompts.json</option>
+        
+        
+        
+        <option value="timeline.json">timeline.json</option>
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

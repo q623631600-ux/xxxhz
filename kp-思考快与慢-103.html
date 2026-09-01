@@ -1,0 +1,4269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-思考快与慢.html" class="kp-bcrumb-link">思考快与慢</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #103</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">为什么你越‘相信直觉’，越容易在关键时刻掉坑？</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>12-15分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>2842</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('思考快与慢', 103)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">45</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点<span class="kp-tab-count">45</span></button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词<span class="kp-tab-count">46</span></button>
+    <button class="kp-tab" data-tab="timeline" >时间线<span class="kp-tab-count">45/0</span></button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">面试第一眼就觉得这人不行，结果他去了对手公司反而成了销冠——你以为的‘直觉’，其实是大脑在给你挖坑。今天这本《思考快与慢》会告诉你：为什么越相信直觉，越容易在关键时刻掉进去。
+
+这本书，《思考，快与慢》，就是来回答这个问题的。它告诉我们一个扎心的真相：我们以为直觉是天赋，是经验积累的智慧，但大多数时候，它只是我们大脑为了省力而走的一条捷径。这条捷径，叫‘系统1’。而那条需要费力、耗能、但更准确的路，叫‘系统2’。
+
+我们的大脑里住着两个‘你’。一个是你熟悉的‘自动驾驶模式’——系统1。它快、自动、不费脑子，就像你走路、呼吸、或者看到一张愤怒的脸时瞬间做出的反应。另一个是‘手动驾驶模式’——系统2。它慢、费力、需要专注，就像你算一道复杂的数学题，或者认真研究一份商业合同。
+
+问题在于，我们天生懒惰。大脑遵循‘认知最小努力原则’，能省力就省力。所以，80%的决策，我们都交给了系统1。系统1确实厉害，它能在0.1秒内识别出危险，或者从一堆人中认出你的朋友。但它不是智慧，它只是一个‘模式识别机器’。它喜欢走捷径，这些捷径在心理学上叫‘启发式’。大多数时候，这些捷径管用，但在一些关键场景里，它们就是陷阱。
+
+第一个陷阱，叫‘代表性启发’。什么意思？我们判断一件事的概率，往往不是看真实数据，而是看它‘像不像’我们印象中那类事物的典型代表。
+
+书里有一个著名的实验，叫‘琳达问题’。研究者告诉被试者：琳达31岁，单身，坦率直言，非常聪明，大学主修哲学，曾积极参与反核示威和反歧视活动。然后问：以下哪种情况更有可能？A. 琳达是一个银行出纳员。B. 琳达是一个女权主义银行出员。
+
+大部分人都选了B。为什么？因为琳达的描述‘像’一个女权主义者，而‘银行出纳员’这个身份跟她的描述不匹配。但仔细想想，概率上，银行出纳员是一个很大的群体，而‘女权主义银行出纳员’只是这个群体里的一小部分。所以，B的概率无论如何都不可能大于A。
+
+可我们就是会犯错。系统1看到‘像’就自动匹配了，忽略了概率。这在职场里太常见了。我们招聘时，看到一个候选人名校毕业、谈吐不凡、形象好，就觉得他‘像’优秀员工。于是，我们自动忽略了那些更硬性的指标——比如他过往的项目成果、他解决问题的能力。我们被‘像’迷惑了。
+
+第二个陷阱，叫‘可得性启发’。我们判断一件事发生的频率，依据的不是真实数据，而是这件事在我们脑海中浮现的容易程度。
+
+我们来做一个测试。你觉得，离婚和失业，哪个更常见？凭直觉回答。很多人会说离婚。但真实数据呢？在很多国家，失业率比离婚率要高得多。为什么我们会觉得离婚更常见？因为关于离婚的故事、八卦、影视作品，我们听得太多了，它们更容易被想起来。
+
+书里有一个经典例子：你让被试者判断，以字母K开头的单词多，还是K在第三个位置的单词多？大部分人会说K开头的多。因为我们可以轻松想到kite、king、kiss……但事实上，英语里K在第三个位置的单词是K开头单词的两倍。只是因为K在第三个位置的单词更难想出来，我们就误以为它不常见。
+
+这在职场里更致命。管理者做复盘时，总是揪着最近一个项目的失败细节不放，因为那个失败让人印象深刻，更容易被回忆起来。于是，他们得出结论：‘流程有问题，要改！’但他们忽略了几个月前另一个项目用了同样的流程，却大获成功。因为那个成功案例太久远，记忆模糊了，不如失败的记忆‘可得’。
+
+第三个陷阱，叫‘锚定效应’。第一个进入我们大脑的数字，会像一个锚一样，牢牢地固定住我们所有的后续判断。
+
+书里有一个实验。研究者先让被试者转一个轮盘，轮盘上只有数字10和65。然后问被试者：‘联合国里非洲国家的比例是多少？’那些转到10的人，平均估计是25%；而转到65的人，平均估计是45%。一个毫无意义的随机数字，竟然完全改变了判断。
+
+我们自以为理性，但系统1已经在不知不觉中被‘锚’住了。然后系统2虽然会做一些调整，但调整总是不够。
+
+这在职场里无处不在。薪资谈判时，谁先开价，谁就掌握了主动权。如果对方先报出一个高锚点，我们后面的所有还价都会围绕那个数字展开，最终结果往往比我们预期的要高。预算审批也是，第一个提出的数字，往往决定了整个项目的资金规模。我们以为在客观评估，其实只是在那个锚点周围打转。
+
+听到这里，你可能会想：‘好吧，我知道这些陷阱了，下次注意不就行了吗？’但现实是，知道了也没用。因为系统1运行得太快了，从识别到反应，只需要零点几秒。我们根本来不及启动系统2。而且，系统2本身也是懒惰的，它倾向于接受系统1的答案，而不是主动去质疑。
+
+这不是我们笨，这是进化留下的‘节能模式’。大脑只占体重的2%，却消耗20%的能量。为了节省能量，大脑把大部分工作都外包给了系统1。所以，我们不是‘明知故犯’，我们是‘不知而犯’。
+
+那怎么办？难道我们就只能任由直觉摆布吗？不是。真正的高手，不是不相信直觉，而是知道什么时候该相信，什么时候该质疑。他们给自己的直觉装上了‘刹车’和‘检查单’。
+
+具体怎么做？我分享三个方法。
+
+第一，遇到重要决策，强制‘暂停5秒’。这5秒，是给系统2一个启动窗口。不要急着下结论，先深呼吸，告诉自己：‘这个判断可能来自系统1，我需要想一想。’
+
+第二，问一个‘反事实问题’。如果这个直觉告诉你的答案是A，那你就问自己：‘如果答案是B，理由会是什么？’比如，你觉得这个候选人不行，那就问自己：‘如果他很优秀，我看到的证据会是什么？’这个简单的动作，能帮你跳出系统1的自动匹配。
+
+第三，引入‘外部视角’。想象一下，如果换一个人，比如你的同行、你的导师，或者一个完全不了解情况的旁观者，遇到同样的情况，他们会怎么判断？书里管这个叫‘外部视角的引入’。它能帮我们摆脱自己的偏见和锚点。
+
+最后，让我们回到那个面试场景。那个让你不舒服的直觉，可能并不是对方能力有问题，而是系统1在说：‘这个人不像我们团队的人。’他的穿衣风格、说话方式、处事习惯，跟你熟悉的团队不一样。系统1把‘不一样’等同于‘不好’。但真正的高手知道，他们需要启动系统2，去评估那些‘像’和‘不像’之外的东西。
+
+书里有一句话说得很好：‘直觉只有在系统1已经积累了足够多经验的情况下才可信。’那些顶级棋手和消防员，他们的直觉确实厉害，但那是建立在成千上万次刻意练习和真实反馈的基础上的。而我们大多数人的直觉，只是基于有限经验和随机反馈的快速判断。
+
+所以，别让最快的判断，毁掉最重要的选择。下次，当你心里那个‘感觉’冒出来时，记得给它一个刹车。
+
+这就是《思考，快与慢》想让我们看懂的道理。它不是在否定直觉，而是在提醒我们：直觉是一把双刃剑。用得好，它是效率；用得不好，它就是陷阱。而真正的决策高手，不是只靠直觉，也不是只靠理性，而是懂得在两者之间切换。
+
+我们每个人都可以成为这样的高手。从今天开始，每一次重要的选择，都给自己5秒钟的暂停。你会发现自己看问题，完全不一样了。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('思考快与慢', 103)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>思考快与慢</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>12-15分钟</dd>
+            <dt>字数</dt><dd>2842</dd>
+          </dl>
+        </div>
+        
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 痛点引入</div>
+          <p class="kp-side-card-text">面试第一眼就觉得这人不行，结果他去了对手公司反而成了销冠——你以为的‘直觉’，其实是大脑在给你挖坑。今天这本《思考快与慢》会告诉你：为什么越相信直觉，越容易在关键时刻掉进去。</p>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">45</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批切分：2 片，总计 45 个单元</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">面试第一眼就觉得这人不行，结果他去了对手公司反而成了销冠——你以为的‘直觉’，其实是大脑在给你挖坑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">今天这本《思考快与慢》会告诉你：为什么越相信直觉，越容易在关键时刻掉进去。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这本书，《思考，快与慢》，就是来回答这个问题的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">它告诉我们一个扎心的真相：我们以为直觉是天赋，是经验积累的智慧，但大多数时候，它只是我们大脑为了省力而走的一条捷径。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这条捷径，叫‘系统1’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而那条需要费力、耗能、但更准确的路，叫‘系统2’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们的大脑里住着两个‘你’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">一个是你熟悉的‘自动驾驶模式’——系统1。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">它快、自动、不费脑子，就像你走路、呼吸、或者看到一张愤怒的脸时瞬间做出的反应。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">另一个是‘手动驾驶模式’——系统2。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">它慢、费力、需要专注，就像你算一道复杂的数学题，或者认真研究一份商业合同。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">问题在于，我们天生懒惰。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">大脑遵循‘认知最小努力原则’，能省力就省力。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，80%的决策，我们都交给了系统1。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">系统1确实厉害，它能在0.1秒内识别出危险，或者从一堆人中认出你的朋友。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但它不是智慧，它只是一个‘模式识别机器’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">它喜欢走捷径，这些捷径在心理学上叫‘启发式’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">大多数时候，这些捷径管用，但在一些关键场景里，它们就是陷阱。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第一个陷阱，叫‘代表性启发’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">什么意思？我们判断一件事的概率，往往不是看真实数据，而是看它‘像不像’我们印象中那类事物的典型代表。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">书里有一个著名的实验，叫‘琳达问题’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">研究者告诉被试者：琳达31岁，单身，坦率直言，非常聪明，大学主修哲学，曾积极参与反核示威和反歧视活动。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">然后问：以下哪种情况更有可能？A. 琳达是一个银行出纳员。B. 琳达是一个女权主义银行出员。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">大部分人都选了B。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">为什么？因为琳达的描述‘像’一个女权主义者，而‘银行出纳员’这个身份跟她的描述不匹配。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但仔细想想，概率上，银行出纳员是一个很大的群体，而‘女权主义银行出纳员’只是这个群体里的一小部分。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，B的概率无论如何都不可能大于A。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这不是我们笨，这是进化留下的‘节能模式’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">大脑只占体重的2%，却消耗20%的能量。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">为了节省能量，大脑把大部分工作都外包给了系统1。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，我们不是‘明知故犯’，我们是‘不知而犯’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#32</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那怎么办？难道我们就只能任由直觉摆布吗？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#33</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">不是。真正的高手，不是不相信直觉，而是知道什么时候该相信，什么时候该质疑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#34</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他们给自己的直觉装上了‘刹车’和‘检查单’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#35</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">具体怎么做？我分享三个方法。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#36</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第一，遇到重要决策，强制‘暂停5秒’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#37</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这5秒，是给系统2一个启动窗口。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#38</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">不要急着下结论，先深呼吸，告诉自己：‘这个判断可能来自系统1，我需要想一想。’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#39</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第二，问一个‘反事实问题’。如果这个直觉告诉你的答案是A，那你就问自己：‘如果答案是B，理由会是什么？’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#40</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">比如，你觉得这个候选人不行，那就问自己：‘如果他很优秀，我看到的证据会是什么？’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#41</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个简单的动作，能帮你跳出系统1的自动匹配。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#42</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第三，引入‘外部视角’。想象一下，如果换一个人，比如你的同行、你的导师，或者一个完全不了解情况的旁观者，遇到同样的情况，他们会怎么判断？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#43</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">书里管这个叫‘外部视角的引入’。它能帮我们摆脱自己的偏见和锚点。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#44</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">9s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">最后，让我们回到那个面试场景。那个让你不舒服的直觉，可能并不是对方能力有问题，而是系统1在说：‘这个人不像我们团队的人。’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#45</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他的穿衣风格、说话方式、处事习惯，跟你熟悉的团队不一样。系统1把‘不一样’等同于‘不好’。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">45</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批提取：5 批，每批 10 个单元，总计 45 个画面点</p>
+      
+    </div>
+    <div class="kp-beat-list">
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 1</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>直觉判断可能出错，导致错失人才。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开篇需要制造冲突和悬念，用具体场景吸引观众。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示面试官凭直觉否定候选人，候选人后来在对手公司成功的对比画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">面试第一眼就觉得这人不行，结果他去了对手公司反而成了销冠——你以为的‘直觉’，其实是大脑在给你挖坑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 2</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">introduction</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入书籍《思考，快与慢》，点明主题。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从具体案例过渡到书籍介绍，需要新画面聚焦书籍。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示《思考，快与慢》的封面，并配以文字强调主题。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">今天这本《思考快与慢》会告诉你：为什么越相信直觉，越容易在关键时刻掉进去。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 3</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">introduction</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>重申书籍的核心作用。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强化书籍与问题的关联，用简洁画面过渡。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>书籍封面放大，旁边出现问号图标，然后问号被书覆盖。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这本书，《思考，快与慢》，就是来回答这个问题的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 4</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>直觉并非天赋，而是大脑的省力捷径。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化抽象概念“直觉是捷径”，用比喻画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示大脑内部两条路径：一条笔直但标记“捷径（直觉）”，一条弯曲但标记“准确路径”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">它告诉我们一个扎心的真相：我们以为直觉是天赋，是经验积累的智慧，但大多数时候，它只是我们大脑为了省力而走的一条捷径。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 5</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>定义系统1为捷径。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要单独强调系统1的名称，用简洁画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>在之前的大脑路径图上，高亮“捷径”并标注“系统1”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这条捷径，叫‘系统1’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 6</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>定义系统2为费力但准确的路。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要对比系统1和系统2，用新画面展示系统2。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>在之前的大脑路径图上，高亮“准确路径”并标注“系统2”，同时显示能量消耗图标。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">而那条需要费力、耗能、但更准确的路，叫‘系统2’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 7</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>用拟人化比喻说明大脑有两个系统。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要生动形象地展示两个系统共存。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个大脑轮廓，里面有两个小人：一个快速奔跑（系统1），一个缓慢思考（系统2）。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们的大脑里住着两个‘你’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 8</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统1类比为自动驾驶模式。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要进一步解释系统1的特点，用生活化比喻。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一辆汽车在自动驾驶，方向盘上标注“系统1”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">一个是你熟悉的‘自动驾驶模式’——系统1。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 9</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统1的特点：快速、自动、不费脑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示系统1的具体例子，用多个小场景。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>分屏展示：一个人走路、一个人呼吸、一个人看到愤怒脸瞬间后退。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">它快、自动、不费脑子，就像你走路、呼吸、或者看到一张愤怒的脸时瞬间做出的反应。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 10</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统2类比为手动驾驶模式。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要与系统1的自动驾驶形成对比，用新画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一辆汽车在手动驾驶，方向盘上标注“系统2”，驾驶员表情专注。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">另一个是‘手动驾驶模式’——系统2。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 11</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统2的运作特点是缓慢、费力、需要专注</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将抽象的系统2特点转化为具体可感的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示系统2的典型场景：一个人皱眉算数学题或仔细阅读合同</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">它慢、费力、需要专注，就像你算一道复杂的数学题，或者认真研究一份商业合同。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 12</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>人类天生倾向于节省认知能量</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要从系统2的费力场景过渡到人类懒惰的本性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现一个人瘫在沙发上、不想动脑的慵懒状态</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">问题在于，我们天生懒惰。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 13</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>大脑的节能机制：认知最小努力原则</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将抽象原则可视化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用大脑内部示意图或思维导图展示‘认知最小努力原则’</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">大脑遵循‘认知最小努力原则’，能省力就省力。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 14</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统1主导了大部分决策</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要量化展示系统1的决策占比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用饼图或柱状图显示80%决策由系统1完成</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，80%的决策，我们都交给了系统1。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 15</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统1的快速模式识别能力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示系统1的快速反应场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>分屏展示：左边一个人突然躲开危险，右边从人群中快速认出朋友</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">系统1确实厉害，它能在0.1秒内识别出危险，或者从一堆人中认出你的朋友。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 16</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统1的本质是模式识别而非智慧</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要对比系统1与智慧的区别</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>将系统1画成一个机械化的模式识别机器，旁边标注‘非智慧’</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但它不是智慧，它只是一个‘模式识别机器’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 17</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统1使用启发式捷径</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将抽象概念‘启发式’可视化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用一条弯曲的捷径小路代表启发式，旁边标注‘启发式’</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">它喜欢走捷径，这些捷径在心理学上叫‘启发式’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 18</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>启发式在关键场景中可能成为陷阱</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示捷径的双面性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>分屏对比：左边捷径顺利到达终点，右边捷径导致掉入陷阱</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">大多数时候，这些捷径管用，但在一些关键场景里，它们就是陷阱。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 19</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>介绍第一个认知陷阱：代表性启发</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要引入新概念并制造悬念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>在陷阱上方标注‘陷阱1：代表性启发’，背景为警示色</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第一个陷阱，叫‘代表性启发’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 20</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>代表性启发：以相似性代替概率判断</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将抽象定义转化为具体例子</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个典型例子：比如一个人戴眼镜、看书，观众判断他是图书管理员而非农民，旁边显示真实数据对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">什么意思？我们判断一件事的概率，往往不是看真实数据，而是看它‘像不像’我们印象中那类事物的典型代表。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 21</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入一个著名的心理学实验——琳达问题。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个新话题的引入，需要用一个醒目的标题或书本画面来吸引注意力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示实验名称，建立权威感和好奇心。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">书里有一个著名的实验，叫‘琳达问题’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 22</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>描述琳达的人物背景和性格特征。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将文字描述转化为一个具体的人物形象，帮助观众建立对琳达的直观印象。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>通过动画或插画展示一个符合描述的年轻女性形象，并配上关键词标签。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">研究者告诉被试者：琳达31岁，单身，坦率直言，非常聪明，大学主修哲学，曾积极参与反核示威和反歧视活动。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 23</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出实验中的核心选择题。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个关键的问题抛出，需要视觉化呈现两个选项，让观众参与思考。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>在屏幕上清晰展示A和B两个选项，并配以简单的图标或人物剪影。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">然后问：以下哪种情况更有可能？A. 琳达是一个银行出纳员。B. 琳达是一个女权主义银行出员。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 24</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>揭示大多数人的选择结果。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个结果揭示，需要用一个数据或动画来强调这个反直觉的结果。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>显示一个投票结果动画，B选项被高亮或放大，并显示“大部分人选B”的文字。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">大部分人都选了B。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 25</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>解释人们选择B的原因——基于代表性启发。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要解释一个认知偏差，用对比图或思维导图来展示“匹配”与“不匹配”的关系。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用两个箭头或连线，将琳达的描述与“女权主义者”和“银行出纳员”连接，显示匹配与不匹配。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">为什么？因为琳达的描述‘像’一个女权主义者，而‘银行出纳员’这个身份跟她的描述不匹配。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 26</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>从概率角度分析，指出B的概率不可能大于A。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示集合与子集的关系，用韦恩图或包含关系图最直观。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画一个大圆代表“银行出纳员”，在里面画一个小圆代表“女权主义银行出纳员”，并标注概率关系。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但仔细想想，概率上，银行出纳员是一个很大的群体，而‘女权主义银行出纳员’只是这个群体里的一小部分。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 27</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>得出逻辑结论，强调这个反直觉的真相。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个总结性的结论，需要用强有力的视觉符号来强调。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>屏幕上出现一个红色的“X”或“不可能”的符号，覆盖在B选项上，同时A选项被绿色高亮。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，B的概率无论如何都不可能大于A。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 28</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>将错误归因于进化机制，而非个人智力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要从具体案例上升到抽象概念，用一个比喻或图标来代表“节能模式”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个大脑图标，旁边有一个电池或节能模式的符号，并配上文字“进化节能模式”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这不是我们笨，这是进化留下的‘节能模式’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 29</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>用数据说明大脑的高能耗特性。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个关键数据，需要用信息图或数据可视化的方式呈现，形成冲击力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>显示一个身体轮廓，大脑部分被高亮，旁边用饼图或柱状图对比2%和20%的数据。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">大脑只占体重的2%，却消耗20%的能量。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 30</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>解释大脑节能的具体策略——依赖系统1。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要引入“系统1”和“系统2”的概念，用流程图或分工图来展示。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个大脑内部的分工图，系统1（快速、自动）占据大部分区域，系统2（缓慢、费力）占据小部分，并标注“外包”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">为了节省能量，大脑把大部分工作都外包给了系统1。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 31</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>我们犯错是因为无知而非故意</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个总结性金句，需要强有力的视觉收束来强化认知</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻表达‘不知而犯’的概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，我们不是‘明知故犯’，我们是‘不知而犯’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 32</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出对直觉的质疑和无奈</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个问题抛出，需要人物思考的画面来承接</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现人物面对直觉时的困惑与思考</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那怎么办？难道我们就只能任由直觉摆布吗？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 33</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>高手懂得区分何时信任直觉</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个转折和关键观点，需要画面来突出‘高手’的智慧</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示高手在直觉与理性之间的平衡</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">不是。真正的高手，不是不相信直觉，而是知道什么时候该相信，什么时候该质疑。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 34</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>高手用工具控制直觉</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个生动的比喻，需要可视化‘刹车’和‘检查单’</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻表现对直觉的控制机制</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">他们给自己的直觉装上了‘刹车’和‘检查单’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 35</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引出三个具体方法</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个过渡句，需要简洁的过渡画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>为后续方法介绍做铺垫</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">具体怎么做？我分享三个方法。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 36</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>第一个方法：暂停5秒</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是第一个方法的核心指令，需要画面来强化‘暂停’动作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示暂停5秒的具体动作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第一，遇到重要决策，强制‘暂停5秒’。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 37</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>暂停是为了激活理性思维</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要解释‘系统2启动’的抽象概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>可视化系统2启动的过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这5秒，是给系统2一个启动窗口。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 38</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>具体操作：深呼吸并自我提醒</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个具体的行为指导，需要画面来示范</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示深呼吸和自我对话的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">不要急着下结论，先深呼吸，告诉自己：‘这个判断可能来自系统1，我需要想一想。’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 39</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>第二个方法：反事实提问</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个抽象的方法，需要可视化‘反事实’思维</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示从A到B的反事实思考过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第二，问一个‘反事实问题’。如果这个直觉告诉你的答案是A，那你就问自己：‘如果答案是B，理由会是什么？’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 40</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>反事实提问的具体案例</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个案例，需要画面来呈现面试场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示面试中应用反事实提问的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">比如，你觉得这个候选人不行，那就问自己：‘如果他很优秀，我看到的证据会是什么？’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 41</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>一个简单动作可以打破系统1的自动匹配模式</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个关键转折点，需要视觉化展示跳出自动匹配的动作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个简单动作（如暂停、深呼吸）打破自动匹配的瞬间</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个简单的动作，能帮你跳出系统1的自动匹配。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 42</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入外部视角，想象他人会如何判断</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个新策略的引入，需要视觉化展示外部视角的概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个人物从自身视角切换到多个外部视角（同行、导师、旁观者）的视觉隐喻</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第三，引入‘外部视角’。想象一下，如果换一个人，比如你的同行、你的导师，或者一个完全不了解情况的旁观者，遇到同样的情况，他们会怎么判断？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 43</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>外部视角的引入能摆脱偏见和锚点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是对上一个策略的总结和命名，需要强化概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用书籍或白板展示‘外部视角的引入’这个术语，并视觉化偏见和锚点被移除的过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">书里管这个叫‘外部视角的引入’。它能帮我们摆脱自己的偏见和锚点。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 44</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">9s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>回到面试场景，解释不舒服直觉的真正来源</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是案例回环，需要重新呈现面试场景并揭示系统1的误导</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示面试场景中面试官的不舒服直觉，并用文字或气泡揭示系统1的内心独白</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">最后，让我们回到那个面试场景。那个让你不舒服的直觉，可能并不是对方能力有问题，而是系统1在说：‘这个人不像我们团队的人。’</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 45</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>系统1将‘不一样’错误等同于‘不好’</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是对系统1错误逻辑的具象化解释，需要视觉对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用对比画面展示候选人的不同特质（穿衣、说话、习惯）与团队风格，并用箭头和标签显示系统1的‘不一样=不好’错误等式</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">他的穿衣风格、说话方式、处事习惯，跟你熟悉的团队不一样。系统1把‘不一样’等同于‘不好’。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">46</span>
+        <span class="kp-summary-label">图片提示词</span>
+      </div>
+      
+      <span class="kp-summary-style-badge">现代知识类视频插画风，干净简洁，柔和光影，信息表达清晰，人物一律为外国人形象（欧美面孔），适合抖音读书类视频。横屏 16…</span>
+      
+      <div class="kp-summary-stats">
+        
+        <span class="kp-status-pill kp-pill-generated">generated: 46</span>
+        
+      </div>
+    </div>
+    <div class="kp-prompt-grid">
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 0</span>
+          <span class="kp-prompt-stage">cover</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>《思考快与慢》知识讲解视频封面</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>封面画面：展示博主形象与书本主题，同一本书所有视频共用此封面</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，欧美男性，深色西装，双手交叉抱胸，大腿以上。旁边有一本书。背景简洁书房，表情自信沉稳。现代插画风，外国人形象。16:9 横屏，人物居中偏右，左侧预留标题空间。画面中无任何文字。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>中文文字、英文文字、LOGO、标题、标签、海报风、真实照片风、亚洲面孔、政治人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 1</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>直觉判断可能出错，导致错失人才。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示面试官凭直觉否定候选人，候选人后来在对手公司成功的对比画面。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割。左边：一个穿西装的外国面试官坐在办公桌后，手托下巴，表情嫌弃，面前放着一份简历，简历上画着一个红叉。右边：同一个候选人（年轻红发外国男子）站在领奖台上，胸前挂着金牌，背景是销售排行榜，他的名字列在第一名。画面底部有中文大字：'直觉陷阱'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景、信息过载</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 2</span>
+          <span class="kp-prompt-stage">introduction</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入书籍《思考，快与慢》，点明主题。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示《思考，快与慢》的封面，并配以文字强调主题。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张木质书桌上，放着一本摊开的书《思考，快与慢》，封面设计简洁，有复古蓝和深棕色块。书页上画着两个大脑的简笔图标：一个闪电符号（代表快思考），一个问号符号（代表慢思考）。旁边有一张便签纸，上面用中文写着：'直觉陷阱'。背景虚化，有暖色台灯光晕。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景、信息过载</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 3</span>
+          <span class="kp-prompt-stage">introduction</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>书籍是解答问题的核心工具。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>书籍封面放大，旁边出现问号图标，然后问号被书覆盖。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本深蓝色封面的书《思考，快与慢》占据画面中央，封面有白色粗体中文标题。书左侧有一个大大的半透明红色问号，问号正在被书页翻动的动作覆盖。背景是干净的暖米色，画面底部留白。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景、真实人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 4</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>直觉并非天赋，而是大脑的省力捷径。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示大脑内部两条路径：一条笔直但标记“捷径（直觉）”，一条弯曲但标记“准确路径”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个半透明的大脑侧面轮廓，内部有两条路径：一条笔直的红色箭头路径，上面贴着标签'捷径（直觉）'；另一条弯曲的蓝色箭头路径，上面贴着标签'准确路径'。一条路径通向一个闪烁的灯泡，另一条通向一个模糊的阴影。背景深棕，光线从灯泡处射出。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景、真实人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 5</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>定义系统1为捷径。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>在之前的大脑路径图上，高亮“捷径”并标注“系统1”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张大脑内部的抽象路径图。一条弯曲的捷径用亮黄色高亮，路径起点有一个小人快速奔跑。捷径上方悬浮一个粗体标签，画面中有中文：'系统1'。背景是暖米色，路径线条为深棕色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 6</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>定义系统2为费力但准确的路。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>在之前的大脑路径图上，高亮“准确路径”并标注“系统2”，同时显示能量消耗图标。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，同一张大脑路径图，另一条蜿蜒但笔直的路径用亮蓝色高亮。路径上有一个小人弯腰费力前行，旁边有闪电和汗水图标表示能量消耗。路径上方悬浮标签，画面中有中文：'系统2'。背景为暖米色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 7</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>用拟人化比喻说明大脑有两个系统。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个大脑轮廓，里面有两个小人：一个快速奔跑（系统1），一个缓慢思考（系统2）。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一个大脑轮廓的横截面剪影，暖米色背景。大脑内部左边画着一个快速奔跑的小人，表情兴奋，身后有运动轨迹线；右边画着一个坐在书桌前托腮沉思的小人，表情认真，头顶有一个缓慢旋转的齿轮。两个小人用黑色粗线条描边，纯色块上色。画面中有中文标注：大脑上方写着'两个你'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 8</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统1类比为自动驾驶模式。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一辆汽车在自动驾驶，方向盘上标注“系统1”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一辆复古蓝色小汽车在一条笔直的公路上自动行驶，驾驶座上没有人，方向盘自己在转动。方向盘中央贴着一张白色标签纸，上面用粗体黑字写着'系统1'。汽车轮廓有黑色描边，车身用纯蓝色块上色，远处有简单的绿色树木剪影。画面底部有道路标线。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景、车内有人</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 9</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统1的特点：快速、自动、不费脑。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>分屏展示：一个人走路、一个人呼吸、一个人看到愤怒脸瞬间后退。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，三分屏构图。左侧：一个棕发男人轻松地走在人行道上，脚步轻快。中间：一个女人闭眼，胸口起伏，正在深呼吸，表情平静。右侧：一个红发男人看到一张愤怒的卡通人脸，身体向后仰，双手抬起做防御状，表情惊讶。每个小画面都有粗黑边框。画面中有中文大字：'快''自动''不费脑'分别标注在三个小画面中。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、渐变、模糊阴影、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 10</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统2类比为手动驾驶模式。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一辆汽车在手动驾驶，方向盘上标注“系统2”，驾驶员表情专注。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一辆深蓝色汽车的驾驶室内部视角。一个金发男人双手紧握方向盘，身体微微前倾，眉头微皱，表情非常专注。方向盘中心贴着一张标签，上面写着中文大字：'系统2'。挡风玻璃外是模糊的公路。车内光线偏暗，只有仪表盘发出暖光。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、自动挡、方向盘上没有字、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 11</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统2的运作特点是缓慢、费力、需要专注</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示系统2的典型场景：一个人皱眉算数学题或仔细阅读合同</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕发欧美男人坐在书桌前，眉头紧锁，手拿钢笔在一张写满数字的纸上计算。桌上摊开一份商业合同，旁边有一杯冒热气的咖啡。台灯光线集中照亮纸张，画面中有中文标注：'系统2' 写在一张贴纸上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白、多人、模糊背景、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 12</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>人类天生倾向于节省认知能量</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现一个人瘫在沙发上、不想动脑的慵懒状态</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红发欧美男人瘫在棕色沙发上，双腿翘在茶几上，手里拿着电视遥控器，眼睛半闭，表情放松。沙发旁的地上散落着零食袋和空饮料罐。画面中有中文标注：'懒惰' 写在一张纸片上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白、多人、工作场景、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 13</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>大脑的节能机制：认知最小努力原则</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用大脑内部示意图或思维导图展示‘认知最小努力原则’</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个大脑的剖面图，内部有两条路径：一条是弯曲复杂、布满荆棘的‘费力通道’，另一条是笔直平坦、有箭头的‘省力通道’。大脑旁边有中文标签：‘省力模式’。背景是暖米色，线条有黑色描边，色块填充。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 14</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统1主导了大部分决策</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用饼图或柱状图显示80%决策由系统1完成</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个巨大的圆饼图，其中80%区域用深蓝色填充，上面有中文大字‘系统1’，剩下20%区域用浅灰色，标注‘系统2’。饼图旁边有一个简笔小人，摊开双手，表情有点惊讶。背景是干净的奶油黄色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 15</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统1的快速模式识别能力</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>分屏展示：左边一个人突然躲开危险，右边从人群中快速认出朋友</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，分屏构图，左侧：一个男人在街头突然侧身躲闪，头顶上方有一个掉落的花盆，表情惊恐；右侧：一个男人在人群中微笑着指向一个朋友，朋友正挥手回应。两个场景上方各有一个气泡框，分别写着中文：'危险识别'和'认出朋友'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 16</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统1的本质是模式识别而非智慧</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>将系统1画成一个机械化的模式识别机器，旁边标注‘非智慧’</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金属质感的机器装置，顶部有雷达天线和扫描光，机身正面有一个巨大的齿轮和多个小屏幕，屏幕上显示着简单的图形（如三角形、圆形、笑脸），机器侧面贴着一张标签纸，上面写着中文：'模式识别机器'。背景是暗色实验室，只有一束顶光打在机器上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 17</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统1使用启发式捷径</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用一条弯曲的捷径小路代表启发式，旁边标注‘启发式’</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一条蜿蜒的捷径小路穿过草地，直通远处的目的地，路旁立着一块木牌，上面用粗体中文写着'启发式'。阳光从侧面照亮小路。画面简洁，只有草地、小路和木牌。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 18</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>启发式在关键场景中可能成为陷阱</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>分屏对比：左边捷径顺利到达终点，右边捷径导致掉入陷阱</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，左右分屏构图。左侧：一个人沿着捷径顺利走向终点旗帜，表情轻松。右侧：同样的人走捷径，地面突然塌陷，他掉入一个深坑陷阱，表情惊恐。两幅画面中间用一条竖线分隔。画面中有中文：左侧标'管用'，右侧标'陷阱'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 19</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>介绍第一个认知陷阱：代表性启发</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>在陷阱上方标注‘陷阱1：代表性启发’，背景为警示色</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央地面上有一个方形的陷阱洞口，洞口边缘有破裂的木板。陷阱上方悬浮着一个写有中文'陷阱1：代表性启发'的木板路牌，字体粗黑醒目。背景为暗红色的警示色调，几道昏黄光线从上方打下，地面有粗糙的纸张纹理。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、真人、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 20</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>代表性启发：以相似性代替概率判断</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个典型例子：比如一个人戴眼镜、看书，观众判断他是图书管理员而非农民，旁边显示真实数据对比</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧，一个戴眼镜的金发男人正在专注看书，表情认真。画面右侧上方有一个写有中文'你的判断：图书管理员'的标签，下方有一个写有中文'实际数据：农民更多'的标签，两者对比。背景是简约的浅米色墙面，左侧有书架一角。人物有黑色描边，纯色块填充。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、真人、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 21</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入一个著名的心理学实验——琳达问题。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示实验名称，建立权威感和好奇心。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本打开的厚书平放在木桌上，书页中央用粗体大字写着中文'琳达问题'，字周围有放射状的细线条，像是从书中迸发出的光芒。书旁放着一副复古圆框眼镜。背景是柔和的暖米色，画面简洁有焦点。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 22</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>描述琳达的人物背景和性格特征。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>通过动画或插画展示一个符合描述的年轻女性形象，并配上关键词标签。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位约30岁的金发欧美女性站在大学校园草坪上，穿着休闲格子衬衫和牛仔裤，表情自信坦率，手里举着一块写着'反核'的白纸板。她身旁飘着几个标签贴纸：'31岁'、'哲学系'、'坦率直言'。背景是简化风格的校园建筑和树木，阳光明亮。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、亚洲面孔、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 23</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出实验中的核心选择题。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>在屏幕上清晰展示A和B两个选项，并配以简单的图标或人物剪影。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一个大大的问号图标，下方左右并排两个选项框。左边A框里画着一位穿制服、站柜台的女银行出纳员剪影，旁边中文标注“琳达是银行出纳员”。右边B框里画着同一位女性，但手里举着女权主义标语牌，旁边中文标注“琳达是女权主义银行出纳员”。背景是浅米色黑板，炭灰色线条。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景、真实人物照片</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 24</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>揭示大多数人的选择结果。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>显示一个投票结果动画，B选项被高亮或放大，并显示“大部分人选B”的文字。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，B选项框被放大到画面中央，暗红色背景上，穿制服举标语的女性剪影被金色光晕环绕。框上方出现一个巨大的金色对勾图标。画面底部有一排缩小的A选项框（变灰），形成对比。画面右下角有一张写有“大部分人选B”的白色标签纸，粗体黑字，用图钉固定在背景上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、复杂背景、真实人物照片</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 25</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>解释人们选择B的原因——基于代表性启发。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用两个箭头或连线，将琳达的描述与“女权主义者”和“银行出纳员”连接，显示匹配与不匹配。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧是一张琳达的简笔头像，旁边有文字气泡写着'关心社会'。从气泡伸出两个箭头：一个指向右侧上方一个写着'女权主义者'的标签，箭头为绿色；另一个指向右侧下方写着'银行出纳员'的标签，箭头为红色并画一个叉号。背景为浅米色，构图简洁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 26</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>从概率角度分析，指出B的概率不可能大于A。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画一个大圆代表“银行出纳员”，在里面画一个小圆代表“女权主义银行出纳员”，并标注概率关系。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央有一个深棕色大圆圈，内部写着'银行出纳员'。大圆内部靠左位置有一个较小的暗红色小圆圈，内部写着'女权主义银行出纳员'。小圆旁边有一个向下的箭头，标注'更小概率'。背景为暖米色，整体像一块知识讲解白板。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 27</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>得出逻辑结论，强调这个反直觉的真相。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>屏幕上出现一个红色的“X”或“不可能”的符号，覆盖在B选项上，同时A选项被绿色高亮。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张木桌上的两张对开的卡片。左边卡片A上画着绿色对勾和中文大字“正确”，被暖黄光晕照亮。右边卡片B上盖着一个巨大的红色叉号，旁边有中文“不可能”标签。背景是深色木纹桌面。画面简洁有力。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 28</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>将错误归因于进化机制，而非个人智力。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个大脑图标，旁边有一个电池或节能模式的符号，并配上文字“进化节能模式”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个简笔画的侧脸大脑轮廓，内部是暖米色。大脑旁边有一个电池图标，电量显示为一半，电池上贴着中文标签“节能模式”。背景是柔和的复古蓝色圆形光晕。画面干净，像一个知识图解。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 29</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>用数据说明大脑的高能耗特性。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>显示一个身体轮廓，大脑部分被高亮，旁边用饼图或柱状图对比2%和20%的数据。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个深棕色线条的欧美男性身体轮廓剪影，大脑区域被亮橙色高亮发光。旁边有一个简洁的柱状图，左侧细柱标着中文'2%体重'，右侧粗柱标着'20%能量'，柱体用复古蓝色填充。背景是暖米色，有轻微纸张纹理。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、渐变、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 30</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>解释大脑节能的具体策略——依赖系统1。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个大脑内部的分工图，系统1（快速、自动）占据大部分区域，系统2（缓慢、费力）占据小部分，并标注“外包”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个大脑的剖面图，左侧大部分区域用亮橙色填充，画着闪电符号和齿轮，标注中文'系统1（自动快速）'；右侧一小块区域用暗红色填充，画着缓慢的钟表，标注'系统2（费力缓慢）'。中间有一个箭头从系统2指向系统1，箭头旁写着中文'外包'。背景是暖米色纸张纹理。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、渐变、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 31</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>我们犯错是因为无知而非故意</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉隐喻表达‘不知而犯’的概念</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美年轻人站在岔路口，面前两条路，一条标着中文'正确'指向阳光，另一条标着中文'错误'指向迷雾。他一脸茫然地挠头，眼睛被眼罩蒙住，脚下已经踩进了错误的路。背景是暖米色天空，画面中有中文路牌。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、政治符号、暴力</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 32</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出对直觉的质疑和无奈</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现人物面对直觉时的困惑与思考</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕发欧美青年坐在书房木椅上，双手摊开，表情困惑无奈。他面前的书桌上放着一个巨大的木偶提线，线连着上方一个写着中文'直觉'的标签牌。窗外是深蓝夜空，一盏暖色台灯照亮他的侧脸。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、政治符号</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 33</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>高手懂得区分何时信任直觉</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示高手在直觉与理性之间的平衡</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个欧美面孔的中年男人，身穿棕色夹克，站在一个岔路口前。左边是一条明亮清晰的大路，路牌上写着中文'直觉'；右边是一条需要仔细看地图的岔路，地图上写着中文'质疑'。他一手摸着下巴思考，表情专注而平衡。背景是柔和的暖米色天空和远处的山丘。画面中有中文：'直觉'和'质疑'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、复杂背景、多人</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 34</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>高手用工具控制直觉</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉隐喻表现对直觉的控制机制</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个特写镜头：一只戴着棕色手套的手，正在一个巨大的红色汽车刹车上按下，刹车旁边贴着一张白色的检查单，上面用粗体中文写着'检查单'三个字。刹车和检查单之间有一条发光的链条连接着。背景是简洁的深灰色机械感空间，光线从上方打下来，聚焦在刹车和检查单上。画面中有中文：'检查单'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景、真实人物、血腥暴力</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 35</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引出三个具体方法</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>为后续方法介绍做铺垫</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一只手从画面右侧伸出，手指张开比出数字3。背景是简洁的暖米色墙面，墙上有三张并列的空白贴纸，呈浅黄色。画面中有中文：‘三个方法’写在最上面一张贴纸上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 36</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>第一个方法：暂停5秒</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示暂停5秒的具体动作</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕色短发的外国男人站在办公室白板前，右手掌心朝前做出‘停止’手势。白板上用粗黑马克笔写着‘暂停5秒’四个大字。他表情专注，身后是简洁的蓝色墙面和一张办公桌。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 37</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>暂停是为了激活理性思维</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>可视化系统2启动的过程</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男子站在一扇复古木门前，门上挂着一个标牌写着中文'系统2'。他的手正放在门把手上，准备转动。门缝里透出温暖的黄色光芒。画面左侧有一个圆形时钟，指针指向5秒位置。背景是深棕色木质墙面。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 38</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>具体操作：深呼吸并自我提醒</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示深呼吸和自我对话的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红发欧美男子站在窗边，闭着双眼，双手轻轻放在胸前做深呼吸动作。他的嘴巴微张，旁边有一个对话气泡，里面写着中文'来自系统1？'。窗外是柔和的晨光，房间内是暖米色墙壁，整体氛围安静。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 39</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>第二个方法：反事实提问</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示从A到B的反事实思考过程</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人站在一块白板前，白板左侧用黑色粗体写着大大的‘A’并打上红叉，右侧写着大大的‘B’并画上绿色对勾。中间有一个弯曲的箭头从A指向B，箭头旁写着‘?’。男人单手托腮做思考状，眼镜反光。背景是简洁的办公室，有一盏暖色台灯。画面中有中文：‘反事实提问’写在白板上方。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 40</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>反事实提问的具体案例</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示面试中应用反事实提问的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红发欧美面试官坐在办公桌后，面前放着一份简历。他一手拿笔，另一手托腮，表情若有所思。桌上有两个并列的文件夹，左边文件夹上写着‘不行’并画红叉，右边文件夹上写着‘优秀’并画绿色对勾，中间有一个问号。背景是简洁的会议室，墙上挂着一面钟。画面中有中文：‘如果优秀？’写在右侧文件夹旁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 41</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>一个简单动作可以打破系统1的自动匹配模式</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个简单动作（如暂停、深呼吸）打破自动匹配的瞬间</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕发外国男性站在岔路口，前方两个路牌分别写着‘自动反应’和‘暂停思考’。他一只手按住胸口，做出深呼吸的姿势，周围有碎裂的齿轮和链条从身上掉落，表示打破自动模式。画面中有中文：‘暂停’写在主角头顶的发光气泡中。背景是淡蓝色半抽象空间，干净简洁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 42</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入外部视角，想象他人会如何判断</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个人物从自身视角切换到多个外部视角（同行、导师、旁观者）的视觉隐喻</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位金发外国女性坐在办公桌前，双手托腮陷入思考。她周围漂浮着三个半透明的人物剪影：左边是一位戴眼镜的同行（标签‘同行’），中间是一位白发导师（标签‘导师’），右边是一位路人（标签‘旁观者’）。每个人物剪影都看向同一份放在桌上的文件。画面中有中文：‘外部视角’标在文件上方。背景是柔和的米色书房，光线温暖。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 43</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>外部视角的引入能摆脱偏见和锚点</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用书籍或白板展示‘外部视角的引入’这个术语，并视觉化偏见和锚点被移除的过程</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本打开的旧书放在木桌上，书页上画着一个白板，白板上用粗体中文写着'外部视角'四个字。白板旁边，一个像是锚点的黑色铁锚和一个写着'偏见'的红色标签正在被一个箭头推开，箭头末端是一只手。画面中有中文：'外部视角'、'偏见'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 44</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>回到面试场景，解释不舒服直觉的真正来源</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示面试场景中面试官的不舒服直觉，并用文字或气泡揭示系统1的内心独白</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发面试官坐在办公桌后，双手交叉，表情略带疑虑和困惑。他对面坐着一个红发应聘者，正在自信地说话。面试官头顶有一个思想气泡，气泡里写着一行粗体中文：'不像我们团队的人'。画面中有中文：'不像我们团队的人'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 45</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>系统1将‘不一样’错误等同于‘不好’</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用对比画面展示候选人的不同特质（穿衣、说话、习惯）与团队风格，并用箭头和标签显示系统1的‘不一样=不好’错误等式</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比。左侧：一位西装革履的棕发白人男性，表情自信，站在一群穿着统一深蓝工装的团队前，团队表情疑惑。右侧：一个大脑轮廓的剪影，内部有一个红色箭头从‘不一样’指向‘不好’，箭头旁有中文大字‘=’。整体暖米色背景，复古蓝和暗红点缀。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、渐变、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">总时长</div>
+        <div style="font-size:1.5rem;font-weight:700;">8分21秒</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">画面节拍</div>
+        <div style="font-size:1.5rem;font-weight:700;">45</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">音频段</div>
+        <div style="font-size:1.5rem;font-weight:700;">28</div>
+      </div>
+    </div>
+
+    
+    
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">画面时间线（45 个节拍）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#1</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分0秒
+             -> 0分18秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">直觉判断可能出错，导致错失人才。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割。左边：一个穿西装的外国面试官坐在办公桌后，手托下巴，表情嫌弃，面前放着一份简历，简历上画着一个红叉。右边：同一个候选人（年轻红发外国男子）站在领奖台上，胸前挂着金牌，背景是销售排行榜，他的名字列在第一名。画面底部
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#2</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分18秒
+             -> 0分32秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入书籍《思考，快与慢》，点明主题。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张木质书桌上，放着一本摊开的书《思考，快与慢》，封面设计简洁，有复古蓝和深棕色块。书页上画着两个大脑的简笔图标：一个闪电符号（代表快思考），一个问号符号（代表慢思考）。旁边有一张便签纸，上面用中文写着：'直觉陷阱'。背景虚化
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#3</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分32秒
+             -> 0分41秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">重申书籍的核心作用。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本深蓝色封面的书《思考，快与慢》占据画面中央，封面有白色粗体中文标题。书左侧有一个大大的半透明红色问号，问号正在被书页翻动的动作覆盖。背景是干净的暖米色，画面底部留白。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#4</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分41秒
+             -> 1分1秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">直觉并非天赋，而是大脑的省力捷径。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个半透明的大脑侧面轮廓，内部有两条路径：一条笔直的红色箭头路径，上面贴着标签'捷径（直觉）'；另一条弯曲的蓝色箭头路径，上面贴着标签'准确路径'。一条路径通向一个闪烁的灯泡，另一条通向一个模糊的阴影。背景深棕，光线从灯泡处射
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#5</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分1秒
+             -> 1分5秒
+            0分4秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">定义系统1为捷径。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张大脑内部的抽象路径图。一条弯曲的捷径用亮黄色高亮，路径起点有一个小人快速奔跑。捷径上方悬浮一个粗体标签，画面中有中文：'系统1'。背景是暖米色，路径线条为深棕色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#6</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分5秒
+             -> 1分15秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">定义系统2为费力但准确的路。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，同一张大脑路径图，另一条蜿蜒但笔直的路径用亮蓝色高亮。路径上有一个小人弯腰费力前行，旁边有闪电和汗水图标表示能量消耗。路径上方悬浮标签，画面中有中文：'系统2'。背景为暖米色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#7</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分15秒
+             -> 1分20秒
+            0分5秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">用拟人化比喻说明大脑有两个系统。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一个大脑轮廓的横截面剪影，暖米色背景。大脑内部左边画着一个快速奔跑的小人，表情兴奋，身后有运动轨迹线；右边画着一个坐在书桌前托腮沉思的小人，表情认真，头顶有一个缓慢旋转的齿轮。两个小人用黑色粗线条描边，纯色块上色。画
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#8</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分20秒
+             -> 1分28秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统1类比为自动驾驶模式。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一辆复古蓝色小汽车在一条笔直的公路上自动行驶，驾驶座上没有人，方向盘自己在转动。方向盘中央贴着一张白色标签纸，上面用粗体黑字写着'系统1'。汽车轮廓有黑色描边，车身用纯蓝色块上色，远处有简单的绿色树木剪影。画面底部有道路标线。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#9</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分28秒
+             -> 1分42秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统1的特点：快速、自动、不费脑。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，三分屏构图。左侧：一个棕发男人轻松地走在人行道上，脚步轻快。中间：一个女人闭眼，胸口起伏，正在深呼吸，表情平静。右侧：一个红发男人看到一张愤怒的卡通人脸，身体向后仰，双手抬起做防御状，表情惊讶。每个小画面都有粗黑边框。画面中有
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#10</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分42秒
+             -> 1分49秒
+            0分6秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统2类比为手动驾驶模式。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一辆深蓝色汽车的驾驶室内部视角。一个金发男人双手紧握方向盘，身体微微前倾，眉头微皱，表情非常专注。方向盘中心贴着一张标签，上面写着中文大字：'系统2'。挡风玻璃外是模糊的公路。车内光线偏暗，只有仪表盘发出暖光。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#11</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分49秒
+             -> 2分3秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统2的运作特点是缓慢、费力、需要专注</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕发欧美男人坐在书桌前，眉头紧锁，手拿钢笔在一张写满数字的纸上计算。桌上摊开一份商业合同，旁边有一杯冒热气的咖啡。台灯光线集中照亮纸张，画面中有中文标注：'系统2' 写在一张贴纸上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#12</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分3秒
+             -> 2分7秒
+            0分4秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">人类天生倾向于节省认知能量</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红发欧美男人瘫在棕色沙发上，双腿翘在茶几上，手里拿着电视遥控器，眼睛半闭，表情放松。沙发旁的地上散落着零食袋和空饮料罐。画面中有中文标注：'懒惰' 写在一张纸片上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#13</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分7秒
+             -> 2分15秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">大脑的节能机制：认知最小努力原则</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个大脑的剖面图，内部有两条路径：一条是弯曲复杂、布满荆棘的‘费力通道’，另一条是笔直平坦、有箭头的‘省力通道’。大脑旁边有中文标签：‘省力模式’。背景是暖米色，线条有黑色描边，色块填充。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#14</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分15秒
+             -> 2分23秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统1主导了大部分决策</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个巨大的圆饼图，其中80%区域用深蓝色填充，上面有中文大字‘系统1’，剩下20%区域用浅灰色，标注‘系统2’。饼图旁边有一个简笔小人，摊开双手，表情有点惊讶。背景是干净的奶油黄色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#15</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分23秒
+             -> 2分36秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统1的快速模式识别能力</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，分屏构图，左侧：一个男人在街头突然侧身躲闪，头顶上方有一个掉落的花盆，表情惊恐；右侧：一个男人在人群中微笑着指向一个朋友，朋友正挥手回应。两个场景上方各有一个气泡框，分别写着中文：'危险识别'和'认出朋友'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#16</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分36秒
+             -> 2分44秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统1的本质是模式识别而非智慧</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金属质感的机器装置，顶部有雷达天线和扫描光，机身正面有一个巨大的齿轮和多个小屏幕，屏幕上显示着简单的图形（如三角形、圆形、笑脸），机器侧面贴着一张标签纸，上面写着中文：'模式识别机器'。背景是暗色实验室，只有一束顶光打在机
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#17</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分44秒
+             -> 2分53秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统1使用启发式捷径</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一条蜿蜒的捷径小路穿过草地，直通远处的目的地，路旁立着一块木牌，上面用粗体中文写着'启发式'。阳光从侧面照亮小路。画面简洁，只有草地、小路和木牌。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#18</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分53秒
+             -> 3分4秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">启发式在关键场景中可能成为陷阱</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，左右分屏构图。左侧：一个人沿着捷径顺利走向终点旗帜，表情轻松。右侧：同样的人走捷径，地面突然塌陷，他掉入一个深坑陷阱，表情惊恐。两幅画面中间用一条竖线分隔。画面中有中文：左侧标'管用'，右侧标'陷阱'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#19</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分4秒
+             -> 3分9秒
+            0分5秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">介绍第一个认知陷阱：代表性启发</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央地面上有一个方形的陷阱洞口，洞口边缘有破裂的木板。陷阱上方悬浮着一个写有中文'陷阱1：代表性启发'的木板路牌，字体粗黑醒目。背景为暗红色的警示色调，几道昏黄光线从上方打下，地面有粗糙的纸张纹理。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#20</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分9秒
+             -> 3分28秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">代表性启发：以相似性代替概率判断</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧，一个戴眼镜的金发男人正在专注看书，表情认真。画面右侧上方有一个写有中文'你的判断：图书管理员'的标签，下方有一个写有中文'实际数据：农民更多'的标签，两者对比。背景是简约的浅米色墙面，左侧有书架一角。人物有黑色描边，
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#21</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分28秒
+             -> 3分35秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入一个著名的心理学实验——琳达问题。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本打开的厚书平放在木桌上，书页中央用粗体大字写着中文'琳达问题'，字周围有放射状的细线条，像是从书中迸发出的光芒。书旁放着一副复古圆框眼镜。背景是柔和的暖米色，画面简洁有焦点。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#22</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分35秒
+             -> 3分54秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">描述琳达的人物背景和性格特征。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位约30岁的金发欧美女性站在大学校园草坪上，穿着休闲格子衬衫和牛仔裤，表情自信坦率，手里举着一块写着'反核'的白纸板。她身旁飘着几个标签贴纸：'31岁'、'哲学系'、'坦率直言'。背景是简化风格的校园建筑和树木，阳光明亮。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#23</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分54秒
+             -> 4分11秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出实验中的核心选择题。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一个大大的问号图标，下方左右并排两个选项框。左边A框里画着一位穿制服、站柜台的女银行出纳员剪影，旁边中文标注“琳达是银行出纳员”。右边B框里画着同一位女性，但手里举着女权主义标语牌，旁边中文标注“琳达是女权主义银行出
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#24</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分11秒
+             -> 4分14秒
+            0分3秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">揭示大多数人的选择结果。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，B选项框被放大到画面中央，暗红色背景上，穿制服举标语的女性剪影被金色光晕环绕。框上方出现一个巨大的金色对勾图标。画面底部有一排缩小的A选项框（变灰），形成对比。画面右下角有一张写有“大部分人选B”的白色标签纸，粗体黑字，用图钉
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#25</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分14秒
+             -> 4分30秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">解释人们选择B的原因——基于代表性启发。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧是一张琳达的简笔头像，旁边有文字气泡写着'关心社会'。从气泡伸出两个箭头：一个指向右侧上方一个写着'女权主义者'的标签，箭头为绿色；另一个指向右侧下方写着'银行出纳员'的标签，箭头为红色并画一个叉号。背景为浅米色，构图
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#26</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分30秒
+             -> 4分48秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">从概率角度分析，指出B的概率不可能大于A。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央有一个深棕色大圆圈，内部写着'银行出纳员'。大圆内部靠左位置有一个较小的暗红色小圆圈，内部写着'女权主义银行出纳员'。小圆旁边有一个向下的箭头，标注'更小概率'。背景为暖米色，整体像一块知识讲解白板。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#27</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分48秒
+             -> 4分55秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">得出逻辑结论，强调这个反直觉的真相。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张木桌上的两张对开的卡片。左边卡片A上画着绿色对勾和中文大字“正确”，被暖黄光晕照亮。右边卡片B上盖着一个巨大的红色叉号，旁边有中文“不可能”标签。背景是深色木纹桌面。画面简洁有力。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#28</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分55秒
+             -> 5分3秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">将错误归因于进化机制，而非个人智力。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个简笔画的侧脸大脑轮廓，内部是暖米色。大脑旁边有一个电池图标，电量显示为一半，电池上贴着中文标签“节能模式”。背景是柔和的复古蓝色圆形光晕。画面干净，像一个知识图解。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#29</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分3秒
+             -> 5分11秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">用数据说明大脑的高能耗特性。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个深棕色线条的欧美男性身体轮廓剪影，大脑区域被亮橙色高亮发光。旁边有一个简洁的柱状图，左侧细柱标着中文'2%体重'，右侧粗柱标着'20%能量'，柱体用复古蓝色填充。背景是暖米色，有轻微纸张纹理。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#30</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分11秒
+             -> 5分20秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">解释大脑节能的具体策略——依赖系统1。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个大脑的剖面图，左侧大部分区域用亮橙色填充，画着闪电符号和齿轮，标注中文'系统1（自动快速）'；右侧一小块区域用暗红色填充，画着缓慢的钟表，标注'系统2（费力缓慢）'。中间有一个箭头从系统2指向系统1，箭头旁写着中文'外包'
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#31</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分20秒
+             -> 5分29秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">我们犯错是因为无知而非故意</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美年轻人站在岔路口，面前两条路，一条标着中文'正确'指向阳光，另一条标着中文'错误'指向迷雾。他一脸茫然地挠头，眼睛被眼罩蒙住，脚下已经踩进了错误的路。背景是暖米色天空，画面中有中文路牌。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#32</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分29秒
+             -> 5分36秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出对直觉的质疑和无奈</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕发欧美青年坐在书房木椅上，双手摊开，表情困惑无奈。他面前的书桌上放着一个巨大的木偶提线，线连着上方一个写着中文'直觉'的标签牌。窗外是深蓝夜空，一盏暖色台灯照亮他的侧脸。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#33</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分36秒
+             -> 5分50秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">高手懂得区分何时信任直觉</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个欧美面孔的中年男人，身穿棕色夹克，站在一个岔路口前。左边是一条明亮清晰的大路，路牌上写着中文'直觉'；右边是一条需要仔细看地图的岔路，地图上写着中文'质疑'。他一手摸着下巴思考，表情专注而平衡。背景是柔和的暖米色天空和远处
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#34</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分50秒
+             -> 5分58秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">高手用工具控制直觉</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个特写镜头：一只戴着棕色手套的手，正在一个巨大的红色汽车刹车上按下，刹车旁边贴着一张白色的检查单，上面用粗体中文写着'检查单'三个字。刹车和检查单之间有一条发光的链条连接着。背景是简洁的深灰色机械感空间，光线从上方打下来，聚
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#35</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分58秒
+             -> 6分3秒
+            0分5秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引出三个具体方法</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一只手从画面右侧伸出，手指张开比出数字3。背景是简洁的暖米色墙面，墙上有三张并列的空白贴纸，呈浅黄色。画面中有中文：‘三个方法’写在最上面一张贴纸上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#36</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分3秒
+             -> 6分10秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">第一个方法：暂停5秒</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕色短发的外国男人站在办公室白板前，右手掌心朝前做出‘停止’手势。白板上用粗黑马克笔写着‘暂停5秒’四个大字。他表情专注，身后是简洁的蓝色墙面和一张办公桌。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#37</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分10秒
+             -> 6分16秒
+            0分6秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">暂停是为了激活理性思维</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男子站在一扇复古木门前，门上挂着一个标牌写着中文'系统2'。他的手正放在门把手上，准备转动。门缝里透出温暖的黄色光芒。画面左侧有一个圆形时钟，指针指向5秒位置。背景是深棕色木质墙面。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#38</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分16秒
+             -> 6分31秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">具体操作：深呼吸并自我提醒</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红发欧美男子站在窗边，闭着双眼，双手轻轻放在胸前做深呼吸动作。他的嘴巴微张，旁边有一个对话气泡，里面写着中文'来自系统1？'。窗外是柔和的晨光，房间内是暖米色墙壁，整体氛围安静。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#39</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分31秒
+             -> 6分50秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">第二个方法：反事实提问</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人站在一块白板前，白板左侧用黑色粗体写着大大的‘A’并打上红叉，右侧写着大大的‘B’并画上绿色对勾。中间有一个弯曲的箭头从A指向B，箭头旁写着‘?’。男人单手托腮做思考状，眼镜反光。背景是简洁的办公室，有一盏暖色
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#40</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分50秒
+             -> 7分5秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">反事实提问的具体案例</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红发欧美面试官坐在办公桌后，面前放着一份简历。他一手拿笔，另一手托腮，表情若有所思。桌上有两个并列的文件夹，左边文件夹上写着‘不行’并画红叉，右边文件夹上写着‘优秀’并画绿色对勾，中间有一个问号。背景是简洁的会议室，墙上挂
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#41</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分5秒
+             -> 7分13秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">一个简单动作可以打破系统1的自动匹配模式</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕发外国男性站在岔路口，前方两个路牌分别写着‘自动反应’和‘暂停思考’。他一只手按住胸口，做出深呼吸的姿势，周围有碎裂的齿轮和链条从身上掉落，表示打破自动模式。画面中有中文：‘暂停’写在主角头顶的发光气泡中。背景是淡蓝色半
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#42</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分13秒
+             -> 7分33秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入外部视角，想象他人会如何判断</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位金发外国女性坐在办公桌前，双手托腮陷入思考。她周围漂浮着三个半透明的人物剪影：左边是一位戴眼镜的同行（标签‘同行’），中间是一位白发导师（标签‘导师’），右边是一位路人（标签‘旁观者’）。每个人物剪影都看向同一份放在桌上的
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#43</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分33秒
+             -> 7分45秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">外部视角的引入能摆脱偏见和锚点</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本打开的旧书放在木桌上，书页上画着一个白板，白板上用粗体中文写着'外部视角'四个字。白板旁边，一个像是锚点的黑色铁锚和一个写着'偏见'的红色标签正在被一个箭头推开，箭头末端是一只手。画面中有中文：'外部视角'、'偏见'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#44</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分45秒
+             -> 8分5秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">回到面试场景，解释不舒服直觉的真正来源</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发面试官坐在办公桌后，双手交叉，表情略带疑虑和困惑。他对面坐着一个红发应聘者，正在自信地说话。面试官头顶有一个思想气泡，气泡里写着一行粗体中文：'不像我们团队的人'。画面中有中文：'不像我们团队的人'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#45</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            8分5秒
+             -> 8分21秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">系统1将‘不一样’错误等同于‘不好’</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比。左侧：一位西装革履的棕发白人男性，表情自信，站在一群穿着统一深蓝工装的团队前，团队表情疑惑。右侧：一个大脑轮廓的剪影，内部有一个红色箭头从‘不一样’指向‘不好’，箭头旁有中文大字‘=’。整体暖米色背景，复古蓝和暗
+        </div>
+        
+      </div>
+      
+    </div>
+    
+
+    
+    
+
+    
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            82分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本质量较高，讲解清晰，案例贴切，但存在来源范围标注不准确和时长不匹配的问题，需修正后发布。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:15%"></div>
+            </div>
+            <span class="kp-dim-val">3</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:70%"></div>
+            </div>
+            <span class="kp-dim-val">14</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:15%"></div>
+            </div>
+            <span class="kp-dim-val">3</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 标注为'整书分析'，但脚本实际只聚焦于系统1和系统2的认知偏差部分，未覆盖全书（如幸福、前景理论等），存在不准确。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">estimated_video_length 为12-15分钟，但实际字数2842字，按250-320字/分钟计算仅约10分钟，时长明显不匹配。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">thinking_framework 提炼的'暂停5秒、反事实问题、外部视角'虽实用，但框架层次不够清晰，缺少条件判断和步骤间的逻辑关系。</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-danger">修正 source_scope 为更具体的范围，如'《思考，快与慢》中关于系统1和系统2的认知偏差与决策陷阱'。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">调整 estimated_video_length 为10分钟，或增加脚本内容至约3600-4800字以匹配12-15分钟。</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('思考快与慢', 103)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        <option value="visual_beats.json">visual_beats.json</option>
+        
+        
+        
+        <option value="image_prompts.json">image_prompts.json</option>
+        
+        
+        
+        <option value="timeline.json">timeline.json</option>
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

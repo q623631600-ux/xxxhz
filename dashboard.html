@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">首页</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">数据分析</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header" style="margin-bottom:2rem;">
+    <div>
+      <h1 class="kp-title" style="font-size:1.75rem;">📊 抖音数据分析</h1>
+      <p class="kp-meta-row" style="margin-top:0.5rem;max-width:40rem;line-height:1.6;">
+        基于 <strong>undoom-douyin-data-analysis</strong> 开源引擎的抖音运营数据分析工具。
+        支持关键词搜索采集实时数据或上传 Excel/CSV 离线分析。
+      </p>
+    </div>
+  </div>
+
+  <!-- Two-panel layout -->
+  <div class="da-layout">
+
+    <!-- ============================================================ -->
+    <!-- LEFT: 搜索 + 上传 + 格式说明 -->
+    <!-- ============================================================ -->
+    <div class="da-panel da-panel-left">
+
+      <!-- Panel: 关键词搜索 -->
+      <div class="da-card">
+        <div class="da-card-title">
+          <span>🔍 关键词搜索</span>
+          <span class="da-pill" id="da-drission-status" title="DrissionPage 在线采集引擎状态">—</span>
+        </div>
+        <div class="da-card-body">
+          <div class="da-input-row">
+            <input type="text" id="da-keyword" placeholder="输入关键词，如：认知觉醒、自我提升…" class="da-input">
+            <button class="tbtn tbtn-primary" onclick="daSearch()" id="da-search-btn">搜索分析</button>
+          </div>
+          <div class="da-hint">输入关键词 → 自动采集抖音搜索结果 → 实时分析互动/标题/关键词</div>
+          <div id="da-search-error" class="da-error" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Panel: 文件上传 -->
+      <div class="da-card">
+        <div class="da-card-title">
+          <span>📁 上传文件分析</span>
+          <a href="/api/douyin/template" class="da-download-link" download="抖音数据分析模板.xlsx">⬇ 下载模板</a>
+        </div>
+        <div class="da-card-body">
+          <div class="da-input-row">
+            <input type="file" id="da-file" accept=".xlsx,.csv" class="da-file-input">
+            <button class="tbtn tbtn-outline" onclick="daUpload()" id="da-upload-btn">上传分析</button>
+          </div>
+          <div id="da-upload-error" class="da-error" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Panel: 数据仓库 -->
+      <div class="da-card">
+        <div class="da-card-title">
+          <span>📂 数据仓库</span>
+          <span class="da-pill" id="da-wh-count">—</span>
+        </div>
+        <div class="da-card-body">
+          <div class="da-wh-hint">
+            从抖音创作者后台导出的文件，可以直接拖放到文件夹：
+            <code id="da-wh-path" style="display:block;margin-top:0.25rem;word-break:break-all;"></code>
+            或通过上方「上传分析」按钮存入。
+          </div>
+          <div id="da-wh-list" class="da-wh-list">
+            <div class="da-empty">加载中…</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: 数据格式说明 -->
+      <div class="da-card">
+        <div class="da-card-title">
+          <span>📋 支持的数据格式</span>
+        </div>
+        <div class="da-card-body">
+          <table class="da-format-table">
+            <thead>
+              <tr><th>字段</th><th>必填</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="da-fname">视频标题</td><td>✅</td><td>标题文本，用于关键词分析</td></tr>
+              <tr><td class="da-fname">播放量</td><td>✅</td><td>计算互动率必需</td></tr>
+              <tr><td class="da-fname">点赞</td><td>✅</td><td>互动数据核心指标</td></tr>
+              <tr><td class="da-fname">完播率</td><td>推荐</td><td>如 18.5% 或 0.185，分析内容留存</td></tr>
+              <tr><td class="da-fname">平均播放时长(秒)</td><td>推荐</td><td>如 42，分析观看深度</td></tr>
+              <tr><td class="da-fname">评论</td><td>可选</td><td>&nbsp;</td></tr>
+              <tr><td class="da-fname">分享</td><td>可选</td><td>&nbsp;</td></tr>
+              <tr><td class="da-fname">收藏</td><td>可选</td><td>&nbsp;</td></tr>
+              <tr><td class="da-fname">3秒完播率</td><td>可选</td><td>前3秒留存，如 62.3%</td></tr>
+              <tr><td class="da-fname">粉丝播放占比</td><td>可选</td><td>如 35.2%，衡量破圈能力</td></tr>
+              <tr><td class="da-fname">粉丝增长</td><td>可选</td><td>该视频带来的涨粉数</td></tr>
+              <tr><td class="da-fname">作者</td><td>可选</td><td>博主名称</td></tr>
+            </tbody>
+          </table>
+
+          <div class="da-source-guide">
+            <div class="da-source-guide-title">📎 从哪里获取这些数据？</div>
+            <ul class="da-source-list">
+              <li><strong>抖音创作者服务平台</strong>（<code>creator.douyin.com</code>）→ 「视频数据」→ 「数据总览」→ 「导出全部数据」→ 选择字段 → 导出 Excel</li>
+              <li><strong>抖音 App</strong> → 「我」→ 「☰」→ 「创作者中心」→ 「数据中心」→ 「作品数据」→ 右上角「导出」</li>
+              <li><strong>第三方插件</strong>：「社媒助手」「抖音数据助手」Chrome 扩展 → 批量导出为 Excel/CSV</li>
+            </ul>
+          </div>
+
+          <div class="da-tip-box">
+            <div class="da-tip-title">💡 想要更有价值的分析？</div>
+            <ul class="da-source-list">
+              <li><strong>至少 10 条以上视频</strong>数据再分析，统计结果才有参考意义</li>
+              <li>导出时勾选 <strong>完播率 + 平均播放时长 + 3秒完播率</strong>，分析会包含内容留存诊断</li>
+              <li>多次导出后上传，系统会自动告诉你哪些指标需要改进</li>
+            </ul>
+          </div>
+
+          <div class="da-warning-box">
+            <span class="da-warning-icon">⛔</span>
+            <div>
+              <strong>不支持图片/截图</strong> — 截图中的文字无法被自动识别。<br>
+              请从抖音创作者后台导出 <strong>Excel (.xlsx)</strong> 或 <strong>CSV</strong> 格式的表格数据文件。<br>
+              列名可以任意（中文/英文均可），系统会自动匹配。
+            </div>
+          </div>
+
+          <div class="da-mini-example">
+            <div class="da-mini-example-title">✅ 正确示例（抖音后台导出格式）：</div>
+            <div class="da-mini-table">
+              <div class="da-mini-row da-mini-header" style="grid-template-columns:1.2fr 0.6fr 0.6fr 0.6fr 0.6fr 0.8fr 0.8fr;">
+                <span>视频标题</span><span>播放量</span><span>点赞</span><span>完播率</span><span>平均播放</span><span>3秒完播</span><span>粉丝播放占比</span>
+              </div>
+              <div class="da-mini-row" style="grid-template-columns:1.2fr 0.6fr 0.6fr 0.6fr 0.6fr 0.8fr 0.8fr;">
+                <span>为什么你总是拖延？</span><span>85200</span><span>15200</span><span>18.5%</span><span>42s</span><span>62.3%</span><span>35.2%</span>
+              </div>
+              <div class="da-mini-row" style="grid-template-columns:1.2fr 0.6fr 0.6fr 0.6fr 0.6fr 0.8fr 0.8fr;">
+                <span>三个方法让你早起</span><span>43000</span><span>8700</span><span>22.1%</span><span>55s</span><span>68.7%</span><span>28.6%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="da-fail-example">
+            <div class="da-mini-example-title">❌ 不支持：</div>
+            <ul class="da-source-list">
+              <li>手机截图 / 屏幕拍照</li>
+              <li>PDF 文件</li>
+              <li>Word 文档</li>
+              <li>纯图片（JPG/PNG）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: 历史数据摘要 -->
+      <div class="da-card">
+        <div class="da-card-title">
+          <span>📋 已生产策略</span>
+          <span class="da-pill">138</span>
+        </div>
+        <div class="da-card-body">
+          
+          <div class="da-history-list">
+            
+            <div class="da-history-item">
+              <span class="da-history-book">聪明的投资者</span>
+              <span class="da-history-strat">反常识冲击型</span>
+              <span class="da-history-date">2026-08-31</span>
+            </div>
+            
+            <div class="da-history-item">
+              <span class="da-history-book">理解人性</span>
+              <span class="da-history-strat">反常识冲击型</span>
+              <span class="da-history-date">2026-08-29</span>
+            </div>
+            
+            <div class="da-history-item">
+              <span class="da-history-book">理解人性</span>
+              <span class="da-history-strat">反常识冲击型</span>
+              <span class="da-history-date">2026-08-29</span>
+            </div>
+            
+            <div class="da-history-item">
+              <span class="da-history-book">理解人性</span>
+              <span class="da-history-strat">反常识冲击型</span>
+              <span class="da-history-date">2026-08-23</span>
+            </div>
+            
+            <div class="da-history-item">
+              <span class="da-history-book">认知驱动</span>
+              <span class="da-history-strat">问题共鸣型</span>
+              <span class="da-history-date">2026-08-23</span>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- RIGHT: 分析结果 -->
+    <!-- ============================================================ -->
+    <div class="da-panel da-panel-right">
+
+      <!-- 操作引导 -->
+      <div class="da-card da-guide-card">
+        <div class="da-guide-steps">
+          <div class="da-guide-step">
+            <span class="da-guide-num">1</span>
+            <div><strong>上传文件</strong><span class="da-guide-detail">点左侧「上传分析」或把 Excel/CSV 拖入 data_warehouse 文件夹</span></div>
+          </div>
+          <div class="da-guide-arrow">→</div>
+          <div class="da-guide-step">
+            <span class="da-guide-num">2</span>
+            <div><strong>点击分析</strong><span class="da-guide-detail">在仓库文件中点「分析」按钮，或上传后自动分析</span></div>
+          </div>
+          <div class="da-guide-arrow">→</div>
+          <div class="da-guide-step">
+            <span class="da-guide-num">3</span>
+            <div><strong>查看报告</strong><span class="da-guide-detail">互动数据 · 完播率 · 播放时长 · 高频关键词 · 粉丝占比</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="da-results">
+        <div class="da-empty-state">
+          <div class="da-empty-icon">◎</div>
+          <p>上传文件后自动分析，或从仓库选择文件点击「分析」</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- CSS -->
+<!-- ============================================================ -->
+<style>
+.da-layout { display: grid; grid-template-columns: 360px 1fr; gap: 1.25rem; align-items: start; }
+.da-panel { display: flex; flex-direction: column; gap: 1rem; }
+.da-card { border: 1px solid var(--border); border-radius: 0.875rem; background: var(--card); padding: 1.25rem; }
+.da-card-title { display: flex; align-items: center; justify-content: space-between; font-size: 0.9375rem; font-weight: 600; color: var(--foreground); margin-bottom: 0.75rem; }
+.da-card-body { display: flex; flex-direction: column; gap: 0.625rem; }
+.da-input-row { display: flex; gap: 0.5rem; }
+.da-input { flex: 1; padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: 0.5rem; font-size: 0.875rem; font-family: inherit; color: var(--foreground); background: transparent; outline: none; transition: border-color 0.15s; }
+.da-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 12%, transparent); }
+.da-input::placeholder { color: var(--muted-foreground); }
+.da-file-input { font-size: 0.8125rem; padding: 0.4rem 0; }
+.da-hint { font-size: 0.75rem; color: var(--muted-foreground); }
+.da-pill { font-size: 0.625rem; font-weight: 600; padding: 0.125rem 0.5rem; border-radius: 999px; background: var(--secondary); color: var(--muted-foreground); }
+.da-error { font-size: 0.8125rem; color: var(--destructive); padding: 0.5rem 0.75rem; border-radius: 0.5rem; background: color-mix(in srgb, var(--destructive) 8%, transparent); }
+.da-empty { font-size: 0.8125rem; color: var(--muted-foreground); padding: 1rem 0; text-align: center; }
+.da-empty-state { text-align: center; padding: 4rem 2rem; color: var(--muted-foreground); border: 1px dashed var(--border); border-radius: 0.875rem; background: var(--card); }
+.da-empty-icon { font-size: 2.5rem; margin-bottom: 0.5rem; opacity: 0.4; }
+.da-empty-state p { font-size: 0.9375rem; margin: 0; }
+.da-history-list { display: flex; flex-direction: column; gap: 0.375rem; }
+.da-history-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; padding: 0.375rem 0.5rem; border-radius: 0.375rem; background: var(--muted); }
+.da-history-book { font-weight: 600; color: var(--foreground); min-width: 3rem; }
+.da-history-strat { color: var(--muted-foreground); flex: 1; }
+.da-history-date { color: var(--muted-foreground); font-size: 0.6875rem; }
+
+/* ── Format table ── */
+.da-format-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+.da-format-table th { text-align: left; font-weight: 600; color: var(--muted-foreground); padding: 0.25rem 0.4rem; border-bottom: 1px solid var(--border); font-size: 0.6875rem; }
+.da-format-table td { padding: 0.3rem 0.4rem; border-bottom: 1px solid var(--border); color: var(--foreground); }
+.da-format-table tr:last-child td { border-bottom: none; }
+.da-fname { font-family: monospace; color: var(--brand); font-weight: 500; white-space: nowrap; }
+
+.da-download-link { font-size: 0.6875rem; color: var(--brand); text-decoration: none; font-weight: 500; }
+.da-download-link:hover { text-decoration: underline; }
+.da-tip-box { margin-top: 0.5rem; padding: 0.625rem 0.75rem; border-radius: 0.5rem; background: color-mix(in srgb, var(--brand) 6%, transparent); border: 1px solid color-mix(in srgb, var(--brand) 15%, transparent); }
+.da-tip-title { font-size: 0.75rem; font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem; }
+
+.da-source-guide { margin-top: 0.5rem; padding: 0.625rem 0.75rem; border-radius: 0.5rem; background: var(--muted); }
+.da-source-guide-title { font-size: 0.75rem; font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem; }
+.da-source-list { margin: 0; padding-left: 1.125rem; display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.6875rem; color: var(--muted-foreground); }
+.da-source-list li { line-height: 1.5; }
+.da-source-list li strong { color: var(--foreground); }
+
+.da-warning-box { display: flex; align-items: flex-start; gap: 0.5rem; padding: 0.625rem 0.75rem; border-radius: 0.5rem; background: color-mix(in srgb, oklch(0.6 0.1 85) 8%, transparent); border: 1px solid color-mix(in srgb, oklch(0.6 0.1 85) 20%, transparent); font-size: 0.75rem; line-height: 1.5; }
+.da-warning-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.0625rem; }
+.da-warning-box strong { color: var(--foreground); }
+.da-warning-box div { color: var(--muted-foreground); }
+
+.da-mini-example { margin-top: 0.5rem; }
+.da-mini-example-title { font-size: 0.6875rem; font-weight: 600; color: var(--muted-foreground); margin-bottom: 0.375rem; }
+.da-mini-table { border: 1px solid var(--border); border-radius: 0.375rem; overflow: hidden; font-size: 0.6875rem; }
+.da-mini-row { display: grid; grid-template-columns: 1fr 0.8fr 0.6fr 0.6fr 0.8fr; gap: 0.25rem; padding: 0.25rem 0.5rem; }
+.da-mini-header { background: var(--secondary); font-weight: 600; color: var(--foreground); }
+.da-mini-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.da-fail-example { margin-top: 0.5rem; }
+.da-fail-example .da-source-list { color: var(--destructive); }
+
+/* ── Result cards ── */
+.da-result-section { margin-bottom: 1.5rem; }
+.da-result-section:last-child { margin-bottom: 0; }
+.da-result-header { display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; font-weight: 600; color: var(--foreground); margin-bottom: 0.75rem; }
+.da-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.625rem; }
+.da-stat-card { border: 1px solid var(--border); border-radius: 0.75rem; background: var(--card); padding: 0.875rem; text-align: center; }
+.da-stat-value { font-family: monospace; font-size: 1.375rem; font-weight: 650; color: var(--foreground); line-height: 1.2; }
+.da-stat-label { font-size: 0.6875rem; color: var(--muted-foreground); margin-top: 0.125rem; }
+
+/* Bar distribution */
+.da-bar-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; margin-bottom: 0.25rem; }
+.da-bar-label { width: 5.5rem; flex-shrink: 0; color: var(--muted-foreground); }
+.da-bar-track { flex: 1; height: 1.25rem; border-radius: 999px; background: var(--secondary); overflow: hidden; position: relative; }
+.da-bar-fill { height: 100%; border-radius: 999px; background: var(--brand); transition: width 0.4s; }
+.da-bar-count { width: 3rem; text-align: right; color: var(--foreground); font-family: monospace; }
+
+/* Keywords cloud */
+.da-kw-list { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.da-kw-item { padding: 0.2rem 0.625rem; border-radius: 999px; border: 1px solid var(--border); font-size: 0.75rem; color: var(--foreground); background: var(--card); transition: all 0.12s; }
+.da-kw-item:hover { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 6%, transparent); }
+.da-kw-rank { font-size: 0.625rem; color: var(--muted-foreground); margin-right: 0.25rem; }
+
+/* Videos preview */
+.da-video-list { display: flex; flex-direction: column; gap: 0.375rem; max-height: 240px; overflow-y: auto; }
+
+/* Warehouse */
+.da-wh-hint { font-size: 0.75rem; color: var(--muted-foreground); line-height: 1.5; }
+.da-wh-hint code { font-size: 0.6875rem; background: var(--secondary); padding: 0.25rem 0.5rem; border-radius: 0.375rem; }
+.da-wh-list { display: flex; flex-direction: column; gap: 0.375rem; max-height: 240px; overflow-y: auto; margin-top: 0.375rem; }
+.da-wh-item { display: flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.5rem; border-radius: 0.375rem; font-size: 0.75rem; background: var(--muted); transition: background 0.12s; }
+.da-wh-item:hover { background: var(--secondary); }
+.da-wh-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--foreground); cursor: pointer; }
+.da-wh-name:hover { color: var(--brand); }
+.da-wh-meta { font-size: 0.625rem; color: var(--muted-foreground); flex-shrink: 0; }
+.da-wh-badge { font-size: 0.5625rem; font-weight: 600; padding: 0.0625rem 0.375rem; border-radius: 999px; background: var(--secondary); color: var(--muted-foreground); flex-shrink: 0; }
+.da-wh-badge.done { background: color-mix(in srgb, var(--brand) 12%, transparent); color: var(--brand); }
+.da-wh-del { font-size: 0.6875rem; color: var(--muted-foreground); background: none; border: none; cursor: pointer; padding: 0.125rem; line-height: 1; flex-shrink: 0; }
+.da-wh-del:hover { color: var(--destructive); }
+
+/* Guide steps */
+.da-guide-card { background: color-mix(in srgb, var(--brand) 4%, var(--card)); }
+.da-guide-steps { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.da-guide-step { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 10rem; }
+.da-guide-num { display: flex; width: 1.5rem; height: 1.5rem; align-items: center; justify-content: center; border-radius: 999px; background: var(--brand); color: var(--brand-foreground); font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+.da-guide-step strong { font-size: 0.8125rem; color: var(--foreground); display: block; }
+.da-guide-detail { font-size: 0.6875rem; color: var(--muted-foreground); display: block; }
+.da-guide-arrow { font-size: 1.125rem; color: var(--muted-foreground); flex-shrink: 0; }
+@media (max-width: 768px) { .da-guide-steps { flex-direction: column; align-items: flex-start; } .da-guide-arrow { transform: rotate(90deg); } }
+.da-video-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; padding: 0.375rem 0.625rem; border-radius: 0.375rem; background: var(--muted); }
+.da-video-title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--foreground); }
+.da-video-author { color: var(--muted-foreground); font-size: 0.6875rem; }
+.da-video-likes { font-family: monospace; color: var(--muted-foreground); font-size: 0.6875rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .da-layout { grid-template-columns: 1fr; }
+  .da-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .da-mini-row { grid-template-columns: 1fr 0.8fr 0.6fr 0.6fr 0.8fr; }
+}
+</style>
+
+<!-- ============================================================ -->
+<!-- JS -->
+<!-- ============================================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('/api/douyin/status').then(function(r){return r.json()}).then(function(j){
+    var el = document.getElementById('da-drission-status');
+    if (el) {
+      if (j.success && j.data.drission_available) {
+        el.textContent = '在线模式 ✓';
+        el.style.background = 'color-mix(in srgb, var(--brand) 12%, transparent)';
+        el.style.color = 'var(--brand)';
+      } else {
+        el.textContent = '仅上传模式';
+        el.style.background = 'var(--secondary)';
+        el.style.color = 'var(--muted-foreground)';
+      }
+    }
+  }).catch(function(){});
+  loadWarehouse();
+});
+
+function esc(t) { if (!t) return ''; var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+function daShowError(id, msg) {
+  var el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
+}
+
+function daHideError(id) {
+  var el = document.getElementById(id);
+  if (el) el.style.display = 'none';
+}
+
+function fmt(n) {
+  n = parseInt(n) || 0;
+  if (n >= 10000) return (n/10000).toFixed(1) + '万';
+  return n.toLocaleString();
+}
+
+function daSearch() {
+  var kw = document.getElementById('da-keyword').value.trim();
+  if (!kw) { daShowError('da-search-error', '请输入关键词'); return; }
+  daHideError('da-search-error');
+  daShowLoading('正在搜索「' + esc(kw) + '」并分析…');
+  var btn = document.getElementById('da-search-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '搜索中…'; }
+
+  fetch('/api/douyin/search', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({keyword: kw, scroll_count: 6})
+  }).then(function(r){return r.json()}).then(function(j) {
+    if (btn) { btn.disabled = false; btn.textContent = '搜索分析'; }
+    if (j.success) {
+      daRenderResults(j.data, '关键词: ' + kw);
+    } else {
+      if (j.needs_drission) {
+        daShowError('da-search-error', '在线搜索需要安装 Chrome + DrissionPage。请使用「上传文件分析」方式代替。');
+      } else {
+        daShowError('da-search-error', j.error || '搜索失败');
+      }
+      daShowEmpty();
+    }
+  }).catch(function(e) {
+    if (btn) { btn.disabled = false; btn.textContent = '搜索分析'; }
+    daShowError('da-search-error', '请求失败: ' + e.message);
+    daShowEmpty();
+  });
+}
+
+function daUpload() {
+  var fileInput = document.getElementById('da-file');
+  if (!fileInput.files.length) { daShowError('da-upload-error', '请选择文件'); return; }
+  daHideError('da-upload-error');
+  daShowLoading('正在分析文件…');
+
+  var formData = new FormData();
+  formData.append('file', fileInput.files[0]);
+
+  var btn = document.getElementById('da-upload-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '分析中…'; }
+
+  fetch('/api/douyin/analyze-upload', {
+    method: 'POST', body: formData
+  }).then(function(r){return r.json()}).then(function(j) {
+    if (btn) { btn.disabled = false; btn.textContent = '上传分析'; }
+    if (j.success) {
+      daRenderResults(j.data, '上传文件 (' + fileInput.files[0].name + ')');
+    } else {
+      daShowError('da-upload-error', j.error || '分析失败');
+      daShowEmpty();
+    }
+  }).catch(function(e) {
+    if (btn) { btn.disabled = false; btn.textContent = '上传分析'; }
+    daShowError('da-upload-error', '请求失败: ' + e.message);
+    daShowEmpty();
+  });
+}
+
+function daRenderResults(data, sourceLabel) {
+  var el = document.getElementById('da-results');
+  var h = '';
+
+  h += '<div class="da-card" style="margin-bottom:1.25rem;">';
+  h += '<div class="da-card-title"><span>📊 分析结果</span><span class="da-pill">' + esc(sourceLabel) + '</span></div>';
+
+  // 样本数提示
+  var sampleCount = data.imported_count || data.sample_count || 0;
+  if (sampleCount > 0) {
+    h += '<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">';
+    h += '<span class="da-pill" style="background:color-mix(in srgb,var(--brand) 10%,transparent);color:var(--foreground);font-size:0.75rem;">📦 ' + sampleCount + ' 条数据</span>';
+    if (sampleCount < 5) {
+      h += '<span style="font-size:0.6875rem;color:oklch(0.55 0.1 85);">数据较少，结论仅供参考</span>';
+    }
+    h += '</div>';
+  }
+
+  if (data.summary && data.summary.fields_present && data.summary.fields_present.length) {
+    h += '<div style="display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.25rem;">';
+    data.summary.fields_present.forEach(function(f) {
+      h += '<span class="da-pill" style="background:color-mix(in srgb,var(--brand) 8%,transparent);color:var(--foreground);">' + esc(f.field) + ': ' + esc(f.sample) + '</span>';
+    });
+    h += '</div>';
+  }
+  h += '</div>';
+
+  // ═══ 互动数据 ═══
+  if (data.interaction && !data.interaction.error) {
+    var s = data.interaction;
+    h += '<div class="da-result-section">';
+    h += '<div class="da-result-header">📈 互动数据</div>';
+    h += '<div class="da-stat-grid">';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + (data.imported_count || s.total_videos || '—') + '</div><div class="da-stat-label">视频数</div></div>';
+    if (s.likes) {
+      h += '<div class="da-stat-card"><div class="da-stat-value">' + esc(s.likes.avg) + '</div><div class="da-stat-label">平均点赞</div></div>';
+      h += '<div class="da-stat-card"><div class="da-stat-value">' + esc(s.likes.max) + '</div><div class="da-stat-label">最高点赞</div></div>';
+      h += '<div class="da-stat-card"><div class="da-stat-value">' + esc(s.likes.total) + '</div><div class="da-stat-label">总点赞</div></div>';
+    } else {
+      h += '<div class="da-stat-card"><div class="da-stat-value">—</div><div class="da-stat-label">平均点赞</div></div>';
+    }
+    if (s.plays) {
+      h += '<div class="da-stat-card"><div class="da-stat-value">' + esc(s.plays.avg) + '</div><div class="da-stat-label">平均播放</div></div>';
+    }
+    if (s.engagement_rate) {
+      h += '<div class="da-stat-card"><div class="da-stat-value">' + esc(s.engagement_rate.avg) + '</div><div class="da-stat-label">互动率</div></div>';
+    }
+    h += '</div>';
+
+    if (s.likes_distribution && s.likes_distribution.length) {
+      h += '<div style="margin-top:0.75rem;font-size:0.8125rem;font-weight:600;color:var(--foreground);">点赞分布</div>';
+      s.likes_distribution.forEach(function(d) {
+        var pct = d.pct || 0;
+        h += '<div class="da-bar-row">';
+        h += '<span class="da-bar-label">' + esc(d.label) + '</span>';
+        h += '<div class="da-bar-track"><div class="da-bar-fill" style="width:' + pct + '%;"></div></div>';
+        h += '<span class="da-bar-count">' + d.count + '</span>';
+        h += '</div>';
+      });
+    }
+    h += '</div>';
+  }
+
+  // ═══ 完播率分析 ═══
+  if (data.completion && data.completion.has_data) {
+    var cr = data.completion;
+    h += '<div class="da-result-section">';
+    h += '<div class="da-result-header">⏱️ 完播率分析</div>';
+    h += '<div class="da-stat-grid">';
+    var compLabel = (cr.using_5s ? '5秒完播率' : '完播率');
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + cr.avg + '%</div><div class="da-stat-label">平均' + compLabel + '</div></div>';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + cr.max + '%</div><div class="da-stat-label">最高</div></div>';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + cr.min + '%</div><div class="da-stat-label">最低</div></div>';
+    if (cr.avg_3s) {
+      h += '<div class="da-stat-card"><div class="da-stat-value">' + cr.avg_3s + '%</div><div class="da-stat-label">平均3秒完播</div></div>';
+    }
+    h += '</div>';
+
+    if (cr.distribution && cr.distribution.length) {
+      h += '<div style="margin-top:0.75rem;font-size:0.8125rem;font-weight:600;color:var(--foreground);">完播率分布</div>';
+      cr.distribution.forEach(function(d) {
+        var barW = 0;
+        if (d.label.indexOf('5%') >= 0) barW = 20;
+        else if (d.label.indexOf('10%') >= 0) barW = 35;
+        else if (d.label.indexOf('20%') >= 0) barW = 50;
+        else if (d.label.indexOf('30%') >= 0) barW = 65;
+        else if (d.label.indexOf('50%') >= 0) barW = 80;
+        else barW = 100;
+        h += '<div class="da-bar-row">';
+        h += '<span class="da-bar-label">' + esc(d.label) + '</span>';
+        h += '<div class="da-bar-track"><div class="da-bar-fill" style="width:' + barW + '%;background:oklch(0.55 0.15 25);"></div></div>';
+        h += '<span class="da-bar-count">' + d.count + '</span>';
+        h += '</div>';
+      });
+    }
+
+    h += '<div style="font-size:0.6875rem;color:var(--muted-foreground);margin-top:0.5rem;">完播率越高，说明内容越能留住观众。抖音优质视频平均完播率约15-25%。</div>';
+    h += '</div>';
+  }
+
+  // ═══ 平均播放时长 ═══
+  if (data.play_duration && !data.play_duration.error) {
+    var pd = data.play_duration;
+    h += '<div class="da-result-section">';
+    h += '<div class="da-result-header">🕐 平均播放时长</div>';
+    h += '<div class="da-stat-grid">';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + pd.avg + 's</div><div class="da-stat-label">平均(秒)</div></div>';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + pd.max + 's</div><div class="da-stat-label">最长</div></div>';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + pd.min + 's</div><div class="da-stat-label">最短</div></div>';
+    h += '</div>';
+    if (pd.distribution) {
+      pd.distribution.forEach(function(d) {
+        var pct = d.pct || 0;
+        h += '<div class="da-bar-row">';
+        h += '<span class="da-bar-label">' + esc(d.label) + '</span>';
+        h += '<div class="da-bar-track"><div class="da-bar-fill" style="width:' + pct + '%;background:oklch(0.5 0.13 245);"></div></div>';
+        h += '<span class="da-bar-count">' + d.count + '</span>';
+        h += '</div>';
+      });
+    }
+    h += '</div>';
+  }
+
+  // ═══ 粉丝播放占比 ═══
+  if (data.fan_ratio && data.fan_ratio.has_data) {
+    h += '<div class="da-result-section">';
+    h += '<div class="da-result-header">👥 粉丝播放占比</div>';
+    h += '<div class="da-stat-grid">';
+    h += '<div class="da-stat-card" style="grid-column:span 2;"><div class="da-stat-value">' + data.fan_ratio.avg + '%</div><div class="da-stat-label">粉丝播放占比均值</div></div>';
+    h += '</div>';
+    h += '<div style="font-size:0.6875rem;color:var(--muted-foreground);margin-top:0.375rem;">粉丝播放占比越低，说明内容破圈能力越强。</div>';
+    h += '</div>';
+  }
+
+  // ═══ 标题长度 ═══
+  if (data.content_length && !data.content_length.error) {
+    var cl = data.content_length;
+    h += '<div class="da-result-section">';
+    h += '<div class="da-result-header">📐 标题长度</div>';
+    h += '<div class="da-stat-grid">';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + cl.avg + '</div><div class="da-stat-label">平均(字)</div></div>';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + cl.max + '</div><div class="da-stat-label">最长</div></div>';
+    h += '<div class="da-stat-card"><div class="da-stat-value">' + cl.min + '</div><div class="da-stat-label">最短</div></div>';
+    h += '</div>';
+    if (cl.distribution) {
+      cl.distribution.forEach(function(d) {
+        var pct = d.pct || 0;
+        h += '<div class="da-bar-row">';
+        h += '<span class="da-bar-label">' + esc(d.label) + '</span>';
+        h += '<div class="da-bar-track"><div class="da-bar-fill" style="width:' + pct + '%;background:oklch(0.5 0.13 245);"></div></div>';
+        h += '<span class="da-bar-count">' + d.count + '</span>';
+        h += '</div>';
+      });
+    }
+    h += '</div>';
+  }
+
+  // ═══ 高频关键词 ═══
+  if (data.keywords && data.keywords.keywords && data.keywords.keywords.length) {
+    h += '<div class="da-result-section">';
+    h += '<div class="da-result-header">🏷️ 高频关键词 TOP' + data.keywords.keywords.length + '</div>';
+    h += '<div class="da-kw-list">';
+    data.keywords.keywords.slice(0, 40).forEach(function(kw) {
+      h += '<span class="da-kw-item"><span class="da-kw-rank">#' + kw.rank + '</span>' + esc(kw.word) + '</span>';
+    });
+    h += '</div>';
+    h += '<div style="font-size:0.6875rem;color:var(--muted-foreground);margin-top:0.5rem;">共 ' + data.keywords.unique_words + ' 个不同词，总计 ' + data.keywords.total_words + ' 词次</div>';
+    h += '</div>';
+  }
+
+  // ═══ 结论与建议 ═══
+  if (data.advice) {
+    var adv = data.advice;
+    h += '<div class="da-result-section" style="background:color-mix(in srgb,var(--brand) 4%,transparent);border-radius:0.75rem;padding:1rem;margin-bottom:1.25rem;">';
+    h += '<div class="da-result-header" style="margin-bottom:0.5rem;">🧠 诊断结论</div>';
+
+    // 警告
+    if (adv.warnings && adv.warnings.length) {
+      adv.warnings.forEach(function(w) {
+        h += '<div style="padding:0.5rem 0.75rem;background:color-mix(in srgb,oklch(0.6 0.1 85) 10%,transparent);border-radius:0.5rem;font-size:0.8125rem;color:oklch(0.55 0.1 85);margin-bottom:0.5rem;">' + esc(w) + '</div>';
+      });
+    }
+
+    // 分析结论
+    if (adv.conclusions && adv.conclusions.length) {
+      adv.conclusions.forEach(function(c) {
+        h += '<div style="padding:0.375rem 0;font-size:0.8125rem;line-height:1.5;color:var(--foreground);">' + esc(c) + '</div>';
+      });
+    }
+
+    // 改进建议 - 用醒目样式
+    if (adv.suggestions && adv.suggestions.length) {
+      h += '<div style="margin-top:0.75rem;font-size:0.8125rem;font-weight:600;color:var(--foreground);">💡 改进建议</div>';
+      adv.suggestions.forEach(function(s, idx) {
+        h += '<div style="display:flex;align-items:flex-start;gap:0.375rem;padding:0.375rem 0.5rem;margin-top:0.25rem;border-radius:0.5rem;background:var(--card);border:1px solid var(--border);font-size:0.8125rem;line-height:1.5;">';
+        h += '<span style="font-weight:600;color:var(--brand);flex-shrink:0;">' + (idx+1) + '.</span>';
+        h += '<span style="color:var(--foreground);">' + esc(s) + '</span>';
+        h += '</div>';
+      });
+    }
+
+    h += '<div style="font-size:0.6875rem;color:var(--muted-foreground);margin-top:0.5rem;">' + esc(adv.summary || '') + '</div>';
+    h += '</div>';
+  }
+
+  // ═══ 视频预览 ═══
+  if (data.videos && data.videos.length) {
+    h += '<div class="da-result-section">';
+    h += '<div class="da-result-header">🎬 采集视频预览</div>';
+    h += '<div class="da-video-list">';
+    data.videos.forEach(function(v) {
+      h += '<div class="da-video-item"><span class="da-video-title">' + esc(v.title || '') + '</span><span class="da-video-author">' + esc(v.author || '') + '</span><span class="da-video-likes">' + esc(v.likes || '0') + '</span></div>';
+    });
+    h += '</div>';
+    h += '</div>';
+  }
+
+  // ═══ Content Growth 增强分析 ═══
+  if (data.growth_analysis) {
+    var ga = data.growth_analysis;
+    h += '<div class="da-result-section" style="border-left:3px solid var(--brand,oklch(0.55 0.11 155));">';
+    h += '<div class="da-result-header">🧠 Content Growth 分析</div>';
+
+    if (ga.error) {
+      h += '<div style="font-size:0.8rem;color:var(--muted-foreground);">增长分析跳过: ' + esc(ga.error) + '</div>';
+    } else {
+      // 信号检测摘要
+      if (ga.signal_analysis) {
+        var sa = ga.signal_analysis;
+        h += '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;">';
+        h += '<span class="da-pill" style="background:color-mix(in srgb,var(--brand) 12%,transparent);">📡 ' + sa.videos_with_signals + '/' + (sa.total_videos || '?') + ' 视频含信号</span>';
+        if (sa.summary) {
+          Object.keys(sa.summary).forEach(function(cat) {
+            var s = sa.summary[cat];
+            if (s.total_detected > 0) {
+              h += '<span class="da-pill" style="background:color-mix(in srgb, oklch(0.55 0.1 155) 10%,transparent);font-size:0.7rem;">' + esc(s.label) + ': ' + s.total_detected + '</span>';
+            }
+          });
+        }
+        h += '</div>';
+      }
+
+      // 高表现信号
+      if (ga.high_performing_patterns && ga.high_performing_patterns.length) {
+        h += '<div style="font-size:0.8rem;font-weight:600;margin-bottom:0.4rem;color:var(--foreground);">🏆 高表现信号 TOP</div>';
+        ga.high_performing_patterns.slice(0, 3).forEach(function(p) {
+          h += '<div style="display:flex;justify-content:space-between;padding:0.25rem 0;font-size:0.8rem;border-bottom:1px solid var(--border);">';
+          h += '<span><span class="da-pill" style="font-size:0.65rem;padding:0 0.35rem;background:var(--card);">' + esc(p.signal_category_label || p.signal_category) + '</span> ' + esc(p.signal_name) + '</span>';
+          h += '<span style="color:var(--muted-foreground);font-size:0.75rem;">' + p.avg_metric + ' (n=' + p.sample_count + ')</span>';
+          h += '</div>';
+        });
+      }
+
+      // 跳转到Agent学习页面
+      if (ga.growth_enabled !== false) {
+        h += '<div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border);text-align:center;">';
+        h += '<a href="growth.html" style="display:inline-block;padding:0.4rem 1rem;border-radius:999px;background:var(--brand);color:#fff;text-decoration:none;font-size:0.8rem;font-weight:500;">🧠 查看Agent学习结果 →</a>';
+        h += '</div>';
+      }
+    }
+    h += '</div>';
+  }
+
+  el.innerHTML = '<div class="da-card">' + h + '</div>';
+}
+
+function daShowLoading(msg) {
+  var el = document.getElementById('da-results');
+  el.innerHTML = '<div class="da-card" style="text-align:center;padding:3rem;"><div style="font-size:0.875rem;color:var(--muted-foreground);">⏳ ' + esc(msg) + '</div></div>';
+}
+
+function daShowEmpty() {
+  var el = document.getElementById('da-results');
+  el.innerHTML = '<div class="da-empty-state"><div class="da-empty-icon">◎</div><p>输入关键词或上传文件开始分析</p></div>';
+}
+
+// ─── 数据仓库 ──────────────────────────────────────────
+function loadWarehouse() {
+  fetch('/api/douyin/warehouse').then(function(r){return r.json()}).then(function(j) {
+    if (!j.success) {
+      var el = document.getElementById('da-wh-list');
+      if (el) el.innerHTML = '<div class="da-empty">接口返回错误: ' + esc(j.error || '未知') + ' — 请确认服务器已重启</div>';
+      return;
+    }
+    var data = j.data;
+    var pathEl = document.getElementById('da-wh-path');
+    if (pathEl) pathEl.textContent = data.dir;
+
+    var countEl = document.getElementById('da-wh-count');
+    if (countEl) countEl.textContent = data.files.length + ' 文件';
+
+    var listEl = document.getElementById('da-wh-list');
+    if (!listEl) return;
+
+    if (!data.files.length) {
+      listEl.innerHTML = '<div class="da-empty">暂无文件。使用上方「上传分析」或将 Excel/CSV 放入文件夹。</div>';
+      return;
+    }
+
+    var h = '';
+    data.files.forEach(function(f) {
+      var analyzed = f.analyzed;
+      h += '<div class="da-wh-item">';
+      h += '<span class="da-wh-name" title="' + esc(f.name) + '">' + esc(f.name) + '</span>';
+      h += '<span class="da-wh-meta">' + esc(f.size) + '</span>';
+      h += '<span class="da-wh-badge ' + (analyzed ? 'done' : '') + '">' + (analyzed ? '已分析' : '待分析') + '</span>';
+      h += '<button class="tbtn tbtn-primary tbtn-sm" onclick="daAnalyzeWarehouse(\'' + esc(f.name) + '\')" style="padding:0.15rem 0.5rem;font-size:0.625rem;">分析</button>';
+      h += '<button class="da-wh-del" onclick="daDeleteWarehouse(\'' + esc(f.name) + '\')" title="删除">✕</button>';
+      h += '</div>';
+    });
+    listEl.innerHTML = h;
+  }).catch(function(e){
+    var el = document.getElementById('da-wh-list');
+    if (el) el.innerHTML = '<div class="da-empty">网络错误 — 请确认服务器已重启</div>';
+    var cnt = document.getElementById('da-wh-count');
+    if (cnt) cnt.textContent = '连接失败';
+  });
+}
+
+function daAnalyzeWarehouse(filename) {
+  daShowLoading('正在从仓库分析: ' + filename + ' …');
+  fetch('/api/douyin/warehouse/analyze', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({filename: filename})
+  }).then(function(r){return r.json()}).then(function(j) {
+    if (j.success) {
+      daRenderResults(j.data, '仓库: ' + filename);
+      loadWarehouse();  // 刷新仓库状态
+    } else {
+      daShowError('da-upload-error', j.error || '分析失败');
+      daShowEmpty();
+    }
+  }).catch(function(e) {
+    daShowError('da-upload-error', '请求失败: ' + e.message);
+    daShowEmpty();
+  });
+}
+
+function daDeleteWarehouse(filename) {
+  if (!confirm('确定删除「' + filename + '」？')) return;
+  fetch('/api/douyin/warehouse/delete', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({filename: filename})
+  }).then(function(r){return r.json()}).then(function(j) {
+    if (j.success) loadWarehouse();
+  }).catch(function(){});
+}
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

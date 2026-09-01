@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-博弈论.html" class="kp-bcrumb-link">博弈论</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #103</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">为什么你总是被同事/合作伙伴坑？</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>5-8分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>1514</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('博弈论', 103)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">48</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点<span class="kp-tab-count">48</span></button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词</button>
+    <button class="kp-tab" data-tab="timeline" style="opacity:0.5;">时间线</button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">我们有没有这种经历？明明自己掏心掏肺合作，结果却被同事或合作伙伴坑了一把。别急着怪人心，问题可能出在游戏规则上。今天这本《博弈论》就揭开了这个谜底。
+
+你有没有过这样的经历？和同事一起负责一个项目，你们分工明确，你拼尽全力完成了自己那部分，结果到了最后关头，对方偷工减料，把责任推到你身上，他却在老板面前抢了功。你被坑了。这种感觉太熟悉了，对不对？我们常常会想：是不是我太善良了？是不是我运气不好？其实，都不是。今天我们要聊的这本书《博弈论》，它告诉我们一个扎心的真相：被坑，不是因为人心坏，而是因为游戏规则本身就在鼓励背叛。
+
+我们先把刚才的场景拆解一下。你和同事A合作一个项目，你们俩都有两个选择：合作，或者背叛。如果你合作，他也合作，你们双赢，项目成功，两人都得到好处。如果你合作，他背叛，他偷懒抢功，你背锅，他赚翻了，你血亏。如果你背叛，他合作，你就成了那个占便宜的人。如果你们都背叛，互相甩锅，项目失败，两人都倒霉。你看，无论对方怎么选，背叛对你来说都是最有利的选择。这就是博弈论里经典的“囚徒困境”。在这个游戏里，背叛是占优策略——不是因为谁坏，而是因为游戏规则只玩一次。
+
+但等等，如果这个游戏只玩一次，背叛确实是最理性的选择。可问题是，我们职场上遇到的合作，往往不是一次性交易啊。比如你和同事A是长期搭档，你们每个月都要合作。这时候，情况就变了。因为如果今天你背叛了他，明天他一定也会背叛你，长期下来，你们都得不到好处。所以，当游戏会重复进行时，合作反而变成了更聪明的选择。这就是为什么有些合作能长久——因为他们知道，未来还会无数次相遇。
+
+那具体怎么做才能不被坑呢？《博弈论》里有一个经典答案，来自罗伯特·阿克塞尔罗德组织的计算机锦标赛。他邀请全世界的博弈论专家提交程序，让这些程序在重复囚徒困境中互相对抗。结果胜出的策略非常简单，叫“以牙还牙”。这个策略只有四个特征：第一，善良——它永远不会主动背叛，第一次总是选择合作。第二，可激怒——如果对方背叛，它立刻在下一轮报复，也选择背叛。第三，宽容——如果对方在报复后改过自新，重新合作，它立刻原谅，也恢复合作。第四，清晰——它的行为模式简单明了，对方一眼就能看懂。
+
+这个策略为什么厉害？因为它完美地平衡了信任和防御。我们把它翻译到职场里：你和同事A第一次合作，你主动选择信任他，这是善良。如果他坑了你，你第二次就同样坑回去，这是可激怒。如果他意识到错误，第三次开始合作，你立刻不计前嫌，也合作，这是宽容。而且你的行为模式非常简单，他很快就能猜到你的规则，不敢轻易惹你。
+
+那回到我们的现实世界，怎么用这个策略呢？第一步，识别游戏类型。问问自己：这是“一次性博弈”还是“重复博弈”？比如和网约车司机、一次性的交易对手，默认保护自己，不要轻易信任。但如果是长期同事、合伙人、固定供应商，就主动合作。第二步，如果对方想坑你，你可以主动设计“重复博弈”——把大项目拆成多个小阶段，每个阶段都重新评估，增加未来互动的次数。比如一个季度的大项目，分成四周，每周复盘一次，这样对方知道他的每一次选择都会影响下周的合作。第三步，严格执行“以牙还牙”：第一次永远合作，对方背叛后立刻同等回击，对方改正后立刻原谅。第四步，保持行为清晰——让对方明确知道你的规则，不要模棱两可。
+
+最后，我们来总结一下。被坑不是因为你太善良，而是因为你看不懂游戏规则。从今天开始，我们不是要变得冷酷，而是要变得聪明。学会区分一次性博弈和重复博弈，主动用“以牙还牙”去管理你的合作关系。记住，在重复博弈里，最有效的善良，是有牙齿的善良。你不需要当圣母，也不需要当冤大头，你只需要做一个清醒的博弈者。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('博弈论', 103)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>博弈论</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>5-8分钟</dd>
+            <dt>字数</dt><dd>1514</dd>
+          </dl>
+        </div>
+        
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 A</div>
+          <p class="kp-side-card-text">我们有没有这种经历？明明自己掏心掏肺合作，结果却被同事或合作伙伴坑了一把。别急着怪人心，问题可能出在游戏规则上。今天这本《博弈论》就揭开了这个谜底。</p>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">48</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">根据画面级切分原则，每句话或半句话能独立画出画面即单独成单元，严格控制总单元数不超过80个（视频时长约8分钟），保持原脚本顺序，不改写原文。</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们有没有这种经历？明明自己掏心掏肺合作，结果却被同事或合作伙伴坑了一把。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">别急着怪人心，问题可能出在游戏规则上。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">今天这本《博弈论》就揭开了这个谜底。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你有没有过这样的经历？和同事一起负责一个项目，你们分工明确，你拼尽全力完成了自己那部分，结果到了最后关头，对方偷工减料，把责任推到你身上，他却在老板面前抢了功。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">1s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你被坑了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">2s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这种感觉太熟悉了，对不对？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们常常会想：是不是我太善良了？是不是我运气不好？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">1s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">其实，都不是。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">今天我们要聊的这本书《博弈论》，它告诉我们一个扎心的真相：被坑，不是因为人心坏，而是因为游戏规则本身就在鼓励背叛。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们先把刚才的场景拆解一下。你和同事A合作一个项目，你们俩都有两个选择：合作，或者背叛。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果你合作，他也合作，你们双赢，项目成功，两人都得到好处。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果你合作，他背叛，他偷懒抢功，你背锅，他赚翻了，你血亏。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果你背叛，他合作，你就成了那个占便宜的人。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果你们都背叛，互相甩锅，项目失败，两人都倒霉。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你看，无论对方怎么选，背叛对你来说都是最有利的选择。这就是博弈论里经典的“囚徒困境”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">在这个游戏里，背叛是占优策略——不是因为谁坏，而是因为游戏规则只玩一次。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但等等，如果这个游戏只玩一次，背叛确实是最理性的选择。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">可问题是，我们职场上遇到的合作，往往不是一次性交易啊。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">比如你和同事A是长期搭档，你们每个月都要合作。这时候，情况就变了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">因为如果今天你背叛了他，明天他一定也会背叛你，长期下来，你们都得不到好处。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，当游戏会重复进行时，合作反而变成了更聪明的选择。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这就是为什么有些合作能长久——因为他们知道，未来还会无数次相遇。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">2s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那具体怎么做才能不被坑呢？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">《博弈论》里有一个经典答案，来自罗伯特·阿克塞尔罗德组织的计算机锦标赛。他邀请全世界的博弈论专家提交程序，让这些程序在重复囚徒困境中互相对抗。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">结果胜出的策略非常简单，叫“以牙还牙”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个策略只有四个特征：第一，善良——它永远不会主动背叛，第一次总是选择合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第二，可激怒——如果对方背叛，它立刻在下一轮报复，也选择背叛。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第三，宽容——如果对方在报复后改过自新，重新合作，它立刻原谅，也恢复合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第四，清晰——它的行为模式简单明了，对方一眼就能看懂。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个策略为什么厉害？因为它完美地平衡了信任和防御。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们把它翻译到职场里：你和同事A第一次合作，你主动选择信任他，这是善良。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#32</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果他坑了你，你第二次就同样坑回去，这是可激怒。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#33</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果他意识到错误，第三次开始合作，你立刻不计前嫌，也合作，这是宽容。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#34</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而且你的行为模式非常简单，他很快就能猜到你的规则，不敢轻易惹你。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#35</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那回到我们的现实世界，怎么用这个策略呢？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#36</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第一步，识别游戏类型。问问自己：这是“一次性博弈”还是“重复博弈”？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#37</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">比如和网约车司机、一次性的交易对手，默认保护自己，不要轻易信任。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#38</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但如果是长期同事、合伙人、固定供应商，就主动合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#39</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第二步，如果对方想坑你，你可以主动设计“重复博弈”——把大项目拆成多个小阶段，每个阶段都重新评估，增加未来互动的次数。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#40</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">比如一个季度的大项目，分成四周，每周复盘一次，这样对方知道他的每一次选择都会影响下周的合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#41</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第三步，严格执行“以牙还牙”：第一次永远合作，对方背叛后立刻同等回击，对方改正后立刻原谅。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#42</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第四步，保持行为清晰——让对方明确知道你的规则，不要模棱两可。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#43</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">2s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">最后，我们来总结一下。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#44</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">被坑不是因为你太善良，而是因为你看不懂游戏规则。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#45</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">从今天开始，我们不是要变得冷酷，而是要变得聪明。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#46</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">学会区分一次性博弈和重复博弈，主动用“以牙还牙”去管理你的合作关系。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#47</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">记住，在重复博弈里，最有效的善良，是有牙齿的善良。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#48</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你不需要当圣母，也不需要当冤大头，你只需要做一个清醒的博弈者。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">48</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批提取：5 批，每批 10 个单元，总计 48 个画面点</p>
+      
+    </div>
+    <div class="kp-beat-list">
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 1</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出被合作方坑害的常见经历，引发共鸣。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>用生活场景唤起观众记忆，建立情感连接。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展现一个人真诚合作却被背叛的失落瞬间。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们有没有这种经历？明明自己掏心掏肺合作，结果却被同事或合作伙伴坑了一把。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 2</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>转折观点：问题不在人心，而在规则。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从情绪场景转向理性分析，需要新画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻表现规则比人心更关键。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">别急着怪人心，问题可能出在游戏规则上。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 3</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入核心书籍《博弈论》作为解决方案。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>引入新知识载体，需要展示书籍。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示《博弈论》书籍封面，营造知识感。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">今天这本《博弈论》就揭开了这个谜底。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 4</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>详细描述一个被同事背叛的具体工作场景。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体案例画面来强化代入感。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展现办公室中两人分工、一人努力、另一人偷懒抢功的对比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你有没有过这样的经历？和同事一起负责一个项目，你们分工明确，你拼尽全力完成了自己那部分，结果到了最后关头，对方偷工减料，把责任推到你身上，他却在老板面前抢了功。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 5</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">1s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>直接点出结果：被坑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>短句需要强冲击力的画面来配合。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用特写或警示符号强化被坑的冲击感。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你被坑了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 6</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">2s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>再次引发观众共鸣。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡句，需要简洁的互动画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物面向镜头，做出认同的表情或手势。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这种感觉太熟悉了，对不对？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 7</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示受害者常见的自我怀疑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从共鸣转向内心反思，需要人物思考画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物低头沉思，背景出现问号或内心独白气泡。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们常常会想：是不是我太善良了？是不是我运气不好？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 8</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">1s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>否定之前的自我怀疑，引出新观点。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>转折点，需要否定性画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物摇头或摆手，配合否定文字特效。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">其实，都不是。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 9</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>揭示核心观点：规则鼓励背叛。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要将抽象观点可视化。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用博弈论图表或规则框架展示背叛被奖励的机制。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">今天我们要聊的这本书《博弈论》，它告诉我们一个扎心的真相：被坑，不是因为人心坏，而是因为游戏规则本身就在鼓励背叛。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 10</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>开始用博弈论框架拆解案例。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>进入分析阶段，需要清晰的结构化画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用决策树或2x2矩阵展示两人的选择：合作/背叛。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们先把刚才的场景拆解一下。你和同事A合作一个项目，你们俩都有两个选择：合作，或者背叛。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 11</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>双方合作带来双赢结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示合作共赢的正面场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两人握手、项目成功、共享成果的画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果你合作，他也合作，你们双赢，项目成功，两人都得到好处。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 12</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>单方背叛导致合作方受损</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示背叛带来的不公平结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一人偷懒抢功、另一人背锅的对比画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果你合作，他背叛，他偷懒抢功，你背锅，他赚翻了，你血亏。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 13</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>背叛者占便宜的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示背叛者得利的画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一人得意洋洋、另一人无奈的表情对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果你背叛，他合作，你就成了那个占便宜的人。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 14</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>双方背叛导致双输</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示互相指责、项目失败的负面场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两人互相指责、项目崩溃的画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果你们都背叛，互相甩锅，项目失败，两人都倒霉。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 15</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>揭示囚徒困境的核心逻辑</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要总结前面四种情况，引出囚徒困境概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个决策矩阵图，标注背叛为最优策略，并出现囚徒困境字样</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你看，无论对方怎么选，背叛对你来说都是最有利的选择。这就是博弈论里经典的“囚徒困境”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 16</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>解释背叛成为占优策略的原因</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强调一次性游戏规则导致背叛理性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个一次性游戏的图标（如单次骰子），旁边标注占优策略，强调规则</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">在这个游戏里，背叛是占优策略——不是因为谁坏，而是因为游戏规则只玩一次。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 17</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>确认一次性游戏中背叛的合理性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要转折前的确认，为后续转折铺垫</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个思考的人物，旁边出现一次性游戏和背叛理性的文字</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但等等，如果这个游戏只玩一次，背叛确实是最理性的选择。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 18</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>指出职场合作是重复性的</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要转折，从一次性游戏过渡到重复博弈</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示职场场景，多个合作项目的时间线，强调重复性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">可问题是，我们职场上遇到的合作，往往不是一次性交易啊。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 19</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>举例说明长期合作改变博弈</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体案例展示长期合作场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两人在办公桌前每月合作的日历或时间轴，标注长期</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">比如你和同事A是长期搭档，你们每个月都要合作。这时候，情况就变了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 20</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>长期合作中背叛会导致互相报复</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示背叛的长期后果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个循环箭头，今天背叛导致明天背叛，最终双输的图表</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">因为如果今天你背叛了他，明天他一定也会背叛你，长期下来，你们都得不到好处。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 21</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>重复游戏中合作是更优策略</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从抽象结论过渡到具体视觉化，需要展示重复游戏与合作的关系</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两个玩家在重复进行的游戏中从竞争转向合作的过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，当游戏会重复进行时，合作反而变成了更聪明的选择。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 22</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>长期合作基于未来多次相遇的预期</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要视觉化长期合作的原因，强调时间维度</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两个人物在时间轴上多次相遇并握手合作的画面，体现长久关系</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这就是为什么有些合作能长久——因为他们知道，未来还会无数次相遇。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 23</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">2s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出如何避免被背叛的问题</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>问题抛出，需要人物思考的画面来过渡</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物皱眉思考，头顶出现问号，暗示寻找答案</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那具体怎么做才能不被坑呢？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 24</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>介绍阿克塞尔罗德的计算机锦标赛实验</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示实验背景，将抽象概念转化为具体场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个计算机屏幕，多个程序代码块在虚拟竞技场中对抗，旁边有阿克塞尔罗德的人物剪影</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">《博弈论》里有一个经典答案，来自罗伯特·阿克塞尔罗德组织的计算机锦标赛。他邀请全世界的博弈论专家提交程序，让这些程序在重复囚徒困境中互相对抗。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 25</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>胜出策略是以牙还牙</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要突出关键策略名称，形成视觉焦点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>大标题显示“以牙还牙”，背景是胜利的奖杯或排名第一的图标</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">结果胜出的策略非常简单，叫“以牙还牙”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 26</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>以牙还牙的第一个特征是善良，从不主动背叛</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要分点展示特征，第一个特征强调初始合作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>两个小人第一次握手，旁边标注“善良：永不主动背叛”，背景干净</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个策略只有四个特征：第一，善良——它永远不会主动背叛，第一次总是选择合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 27</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>以牙还牙的第二个特征是可激怒，立即报复背叛</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示报复行为，形成对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>一个小人背叛（红色标记），另一个小人立即在下一轮以红色反击，标注“可激怒”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第二，可激怒——如果对方背叛，它立刻在下一轮报复，也选择背叛。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 28</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>以牙还牙的第三个特征是宽容，原谅后恢复合作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示原谅和恢复合作的过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>之前背叛的小人主动握手（绿色），另一方立刻握手恢复合作，标注“宽容”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第三，宽容——如果对方在报复后改过自新，重新合作，它立刻原谅，也恢复合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 29</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>以牙还牙的第四个特征是清晰，行为模式简单</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强调策略的透明性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>一个透明的流程图展示“合作→合作，背叛→背叛”，旁边标注“清晰易懂”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第四，清晰——它的行为模式简单明了，对方一眼就能看懂。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 30</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>以牙还牙厉害之处在于平衡信任与防御</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要总结策略优势，形成收束</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>天平两端分别放“信任”和“防御”，中间平衡，背景是“以牙还牙”策略名称</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个策略为什么厉害？因为它完美地平衡了信任和防御。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 31</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>主动信任同事是善良的表现</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从抽象策略翻译到具体职场场景，需要新画面来展示第一次合作信任的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两人初次合作、握手或微笑点头表示信任的职场画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们把它翻译到职场里：你和同事A第一次合作，你主动选择信任他，这是善良。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 32</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>被背叛后要同等报复，体现可激怒</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示背叛和报复的对比画面，与上一画面形成冲突</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示同事A坑人后，主角在第二次合作中同样反击的紧张场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果他坑了你，你第二次就同样坑回去，这是可激怒。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 33</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>对方改正后立即宽容合作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示从冲突到和解的转折，体现宽容</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两人再次握手合作、表情释然的画面，体现不计前嫌</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果他意识到错误，第三次开始合作，你立刻不计前嫌，也合作，这是宽容。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 34</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>简单规则让对方不敢轻易背叛</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示对方理解规则后的心理变化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示同事A思考主角行为模式、露出忌惮表情的画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">而且你的行为模式非常简单，他很快就能猜到你的规则，不敢轻易惹你。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 35</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>过渡到策略应用</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡句，需要切换画面引导观众进入下一步</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示主讲人面对镜头、手势引导的过渡画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那回到我们的现实世界，怎么用这个策略呢？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 36</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>第一步：识别博弈类型</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>进入具体步骤，需要展示博弈类型对比的概念图</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两个标签：一次性博弈 vs 重复博弈，中间有问号</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第一步，识别游戏类型。问问自己：这是“一次性博弈”还是“重复博弈”？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 37</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>一次性博弈中要保护自己</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示一次性博弈的具体例子</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示网约车场景，主角谨慎表情，或手机屏幕显示订单完成</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">比如和网约车司机、一次性的交易对手，默认保护自己，不要轻易信任。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 38</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>重复博弈中要主动合作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示重复博弈的正面例子，与上一画面形成对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示团队会议、握手或长期合作场景，氛围融洽</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但如果是长期同事、合伙人、固定供应商，就主动合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 39</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>设计重复博弈来应对背叛</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示如何将大项目拆分为小阶段的概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个大项目被拆成多个小方块，每个方块有评估标记的流程图</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第二步，如果对方想坑你，你可以主动设计“重复博弈”——把大项目拆成多个小阶段，每个阶段都重新评估，增加未来互动的次数。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 40</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>具体例子：季度项目分四周复盘</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示具体应用案例，让观众更易理解</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示日历或时间轴，四周标记复盘点，箭头指向下周合作</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">比如一个季度的大项目，分成四周，每周复盘一次，这样对方知道他的每一次选择都会影响下周的合作。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 41</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>以牙还牙策略的三个关键动作：先合作、对等回击、及时原谅。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个具体的行动步骤，需要可视化展示其动态过程。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用动画或分镜展示“以牙还牙”策略的完整循环。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第三步，严格执行“以牙还牙”：第一次永远合作，对方背叛后立刻同等回击，对方改正后立刻原谅。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 42</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>行为规则必须清晰透明，让对方能预测你的反应。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个抽象原则，需要具象化展示清晰与模糊的对比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用对比画面展示清晰规则（如路标）与模糊规则（如迷雾）的差异。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第四步，保持行为清晰——让对方明确知道你的规则，不要模棱两可。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 43</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">conclusion</span>
+          <span class="kp-beat-time">2s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>进入总结阶段。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个过渡句，需要切换场景或视觉风格以提示总结开始。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面切换至总结场景，如主讲人合上书本或白板出现“总结”标题。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">最后，我们来总结一下。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 44</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">conclusion</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>被坑的根源是缺乏对博弈规则的理解，而非善良本身。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个金句，需要强有力的视觉隐喻来强化观点。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面展示一个人被棋盘上的陷阱绊倒，但棋盘上清晰写着“规则”二字，暗示他忽略了规则。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">被坑不是因为你太善良，而是因为你看不懂游戏规则。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 45</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">conclusion</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>转变方向：追求智慧而非冷酷。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个转折点，需要视觉上呈现从“冷酷”到“聪明”的意象转换。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面中，一个冰封的“冷酷”标签融化，露出下面发光的“聪明”标签。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">从今天开始，我们不是要变得冷酷，而是要变得聪明。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 46</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">conclusion</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>核心行动：区分博弈类型并主动应用策略。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是总结中的核心行动指令，需要清晰展示两个关键概念和行动路径。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用思维导图或流程图展示：一次性博弈 vs 重复博弈，并指向“以牙还牙”策略。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">学会区分一次性博弈和重复博弈，主动用“以牙还牙”去管理你的合作关系。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 47</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">conclusion</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>善良需要具备威慑力才有效。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个核心金句，需要强有力的视觉隐喻来强化记忆。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面中，一个微笑的卡通人物，但嘴里露出锋利的牙齿（非攻击性，而是坚定自信）。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">记住，在重复博弈里，最有效的善良，是有牙齿的善良。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 48</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">conclusion</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>最终定位：做一个清醒的博弈者，而非极端角色。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是全篇的收束金句，需要用一个强有力的画面来定义最终身份。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面中央，一个普通人站在棋盘前，眼神清醒而坚定，身后“圣母”和“冤大头”的阴影逐渐淡去。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你不需要当圣母，也不需要当冤大头，你只需要做一个清醒的博弈者。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-empty">
+      <div class="kp-empty-icon">◎</div>
+      <p>尚未生成图片提示词，请先运行「图片提示词生成」步骤。</p>
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div class="kp-empty">
+      <div class="kp-empty-icon">@</div>
+      <p>timeline.json 不存在。请先运行「时间线组装」步骤。</p>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            82分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本整体质量良好，逻辑清晰，案例生动，但 source_scope 存在夸大问题，且缺少显性的大问题转换和举一反三，需针对性修改后通过。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:15%"></div>
+            </div>
+            <span class="kp-dim-val">3</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:65%"></div>
+            </div>
+            <span class="kp-dim-val">13</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 为'整书分析'，但脚本实际只聚焦于囚徒困境和以牙还牙策略，未覆盖整本《博弈论》的广度，存在夸大范围的问题。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">缺少明确的'大问题→小问题'转换枢纽段落，直接从原书概念跳到生活例子，转换不够显性。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">生活判断工具不够具体，只给出了四个步骤，但缺少可自测的具体问题或思考清单。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">举一反三部分较弱，结尾未明确告诉观众该思想还能迁移到哪些其他场景。</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-danger">将 source_scope 修改为更精确的描述，如'《博弈论》中关于囚徒困境与重复博弈的合作策略'，或调整脚本内容以覆盖整书。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">在第二节和第三节之间增加一段显性的'大问题→小问题'转换，明确说明原书解决的宏观问题（人类合作如何可能）与普通人职场困境的对应关系。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">在第五节中补充一个具体的自测问题清单，例如：'问自己：这次合作未来还会重复几次？对方背叛的代价有多大？'等。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">在结尾增加一段举一反三，举例说明该思想还能用于邻里关系、长期客户维护、团队协作等场景。</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('博弈论', 103)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        <option value="visual_beats.json">visual_beats.json</option>
+        
+        
+        
+        
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

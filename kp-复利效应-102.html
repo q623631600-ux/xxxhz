@@ -1,0 +1,3086 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-复利效应.html" class="kp-bcrumb-link">复利效应</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #102</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">你有没有发现，你每天的小选择，正在悄悄决定你10年后的命运？</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>8-12分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>2345</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('复利效应', 102)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">31</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点<span class="kp-tab-count">31</span></button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词<span class="kp-tab-count">31</span></button>
+    <button class="kp-tab" data-tab="timeline" >时间线<span class="kp-tab-count">31/0</span></button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">你每天多睡10分钟、多刷15秒短视频，这些选择看着无关紧要，但10年后，它们会把你推向完全不同的位置。今天，我们就来聊聊《复利效应》这本书，看它如何揭示你命运的真相。
+
+我们都被“重大决定”骗了。从小到大，我们听到的故事都是关于“关键时刻”的：谁谁谁在某个转折点上做了正确选择，从此飞黄腾达。于是我们下意识地认为，改变命运需要一次大动作——比如辞职创业、跳槽到巨头公司、或者突然找到某个风口。但真相是，这些所谓的“大决定”，本身就是由无数个看似不起眼的小选择堆出来的。作者达伦·哈迪在《复利效应》里用一个思想实验让我们清醒：如果现在让你写一本书，你会觉得太难了，根本不可能；但如果让你每天写200个字，你会觉得很简单。同样，如果让你立刻减掉20斤，你会觉得压力巨大；但如果让你每天少吃一口饭，你会觉得轻轻松松。而10年后，这两组人的人生轨迹会完全不同。我们总是高估短期努力的效果，觉得今天做了明天就改改变；同时又严重低估长期小改变的力量，觉得每天多做一点点没什么用。这种认知偏差，正是大多数人被困在现状里的根本原因。
+
+那么，复利到底是怎么悄悄工作的？我们来算一笔数学账。假设我们有两个选择：A选项是每天进步1%，B选项是每天退步1%。看起来差别很小对吧？但一年后，1.01的365次方约等于37.8，而0.99的365次方约等于0.03。两者相差超过1000倍。这不是鸡汤，这是数学。作者用了一个非常形象的比喻：这就像滚雪球。一开始，雪球几乎看不见变化，你推了半天还是那么小一团，很多人这时候就放弃了，觉得“没用”。但如果你坚持推下去，到了某个临界点，雪球会突然变得巨大，速度也越来越快，完全超出你的想象。行为心理学里有一个原理叫“边际收益累积”：每个小选择本身带来的改变微乎其微，几乎可以被忽略，但重复叠加会产生指数级的变化。最要命的是，前期的“看不见效果”阶段，恰恰是最容易让人放弃的时候。而这时候，坚持的人和不坚持的人，已经开始走上完全不同的分岔路了。
+
+让我们把抽象的原理翻译成三个你每天都会遇到的场景，看看10年后的你会是什么样子。第一个场景：健康。每天多喝一杯奶茶，或者每天多走10分钟。一杯奶茶的热量大概300-400大卡，10分钟快走大概消耗50大卡。单看一天，差别几乎可以忽略。但10年下来，前者可能面临代谢问题、体重超标、精力下降；后者可能保持了体态匀称、精力充沛。第二个场景：职业。每天刷30分钟短视频，或者每天读20页专业书。30分钟的短视频，你得到的是一堆碎片化的、很快就忘掉的信息，甚至可能让你变得更焦虑；20页专业书，一年就是7000多页，相当于10-15本专业著作。10年后，前者可能还在原地踏步，抱怨行业不景气；后者可能已经成为公司里不可或缺的专家，甚至跳槽到更高的平台。第三个场景：关系。每天对伴侣说一句“谢谢”，或者每天抱怨一句。一句话而已，能改变什么？但10年后，前者可能拥有一段彼此滋养的亲密关系，家庭氛围温暖；后者可能陷入冷漠、疏离，甚至走向破裂。你看，今天的每一个小选择，都是在为10年后的自己投票。
+
+但问题来了：不是所有小选择都值得每天坚持。我们需要一个判断框架，来识别那些真正能产生“高复利”的行动。作者在书里给了四个标准，我把它简化成四个问题。第一：这个选择在1年后会产生可见的变化吗？比如每天读20页书，一年后你的知识储备明显不同。第二：这个选择在5年后会产生质的差异吗？比如每天早起10分钟，5年后你多出了超过300个小时，可以用来学习、运动或者规划。第三：这个选择是否容易坚持？它每天只需要5到15分钟，而不是让你像打鸡血一样咬牙坚持两小时。第四：这个选择是否正向叠加？也就是说，一个选择会促进另一个好选择。比如“每天早起10分钟”符合所有条件：它容易坚持，长期效果巨大，而且早起之后你自然会想喝水、想运动、想规划一天，从而带动一系列好习惯。而“每天刷15分钟短视频”不符合任何一条：它没有累积价值，甚至会让你越刷越焦虑，产生负复利。所以判断标准很简单：这个选择，是给你的人生加杠杆，还是在偷偷抽走你的能量？
+
+最难的部分来了：当你看不到进步的时候，怎么坚持下去？大多数人放弃，不是因为做不到，而是因为做了几天、几周没看到变化，就觉得“没用”。这种感受我们都太熟悉了。作者在《复利效应》里专门讲了这个心理陷阱。他说，复利效应的核心特征就是“前期的隐性积累”。他举了一个竹子的例子：竹子在前4年里，几乎看不出生长，只长了3厘米。但从第5年开始，它每天长30厘米，短短几周就长到15米。没有前4年的根基，就没有后面的爆发。所以，当你在坚持某个小选择却看不到效果时，那不是失败，那是在扎根。你需要的是信任这个机制，而不是相信立即的结果。这就像你往银行里存钱，前几个月看利息几乎为零，但如果你坚持存十年，复利会让你大吃一惊。我们往往太着急要结果，却忘了结果本身就是过程累积出来的。
+
+最后，让我们回到那个早晨。闹钟响了，你按掉它。这个选择，屁大点事。但如果你连续10年每天都按掉它，你的人生会发生什么？你会多睡多少分钟？不会，因为你只是把时间从清醒的早晨挪到了慌张的早晨。而如果你连续10年每天都早起10分钟，你的人生又会发生什么？10年就是3650分钟，超过60个小时——相当于两个完整的星期。你用这两个星期做了什么？可以读几十本书，可以学会一项新技能，可以每天规划当天最重要的事。答案不在天赋里，不在运气里，就在你每天的选择里。所以下次当你面临那个看似不起眼的选择时，记得问问自己：这个选择，是在为10年后的我播下种子，还是在偷偷拔掉我的根？你今天的每一个小选择，都是你10年后命运的种子。别问命运给了你什么，先问自己今天种了什么。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('复利效应', 102)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>复利效应</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>8-12分钟</dd>
+            <dt>字数</dt><dd>2345</dd>
+          </dl>
+        </div>
+        
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 痛点引入</div>
+          <p class="kp-side-card-text">你每天多睡10分钟、多刷15秒短视频，这些选择看着无关紧要，但10年后，它们会把你推向完全不同的位置。今天，我们就来聊聊《复利效应》这本书，看它如何揭示你命运的真相。</p>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">31</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批切分：2 片，总计 31 个单元</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你每天多睡10分钟、多刷15秒短视频，这些选择看着无关紧要，但10年后，它们会把你推向完全不同的位置。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">今天，我们就来聊聊《复利效应》这本书，看它如何揭示你命运的真相。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们都被“重大决定”骗了。从小到大，我们听到的故事都是关于“关键时刻”的：谁谁谁在某个转折点上做了正确选择，从此飞黄腾达。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">于是我们下意识地认为，改变命运需要一次大动作——比如辞职创业、跳槽到巨头公司、或者突然找到某个风口。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但真相是，这些所谓的“大决定”，本身就是由无数个看似不起眼的小选择堆出来的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">作者达伦·哈迪在《复利效应》里用一个思想实验让我们清醒：如果现在让你写一本书，你会觉得太难了，根本不可能；但如果让你每天写200个字，你会觉得很简单。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">同样，如果让你立刻减掉20斤，你会觉得压力巨大；但如果让你每天少吃一口饭，你会觉得轻轻松松。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而10年后，这两组人的人生轨迹会完全不同。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们总是高估短期努力的效果，觉得今天做了明天就改改变；同时又严重低估长期小改变的力量，觉得每天多做一点点没什么用。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这种认知偏差，正是大多数人被困在现状里的根本原因。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那么，复利到底是怎么悄悄工作的？我们来算一笔数学账。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">14s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">假设我们有两个选择：A选项是每天进步1%，B选项是每天退步1%。看起来差别很小对吧？但一年后，1.01的365次方约等于37.8，而0.99的365次方约等于0.03。两者相差超过1000倍。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这不是鸡汤，这是数学。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">作者用了一个非常形象的比喻：这就像滚雪球。一开始，雪球几乎看不见变化，你推了半天还是那么小一团，很多人这时候就放弃了，觉得“没用”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但如果你坚持推下去，到了某个临界点，雪球会突然变得巨大，速度也越来越快，完全超出你的想象。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">行为心理学里有一个原理叫“边际收益累积”：每个小选择本身带来的改变微乎其微，几乎可以被忽略，但重复叠加会产生指数级的变化。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">最要命的是，前期的“看不见效果”阶段，恰恰是最容易让人放弃的时候。而这时候，坚持的人和不坚持的人，已经开始走上完全不同的分岔路了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">最难的部分来了：当你看不到进步的时候，怎么坚持下去？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">大多数人放弃，不是因为做不到，而是因为做了几天、几周没看到变化，就觉得“没用”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这种感受我们都太熟悉了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">作者在《复利效应》里专门讲了这个心理陷阱。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他说，复利效应的核心特征就是“前期的隐性积累”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他举了一个竹子的例子：竹子在前4年里，几乎看不出生长，只长了3厘米。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但从第5年开始，它每天长30厘米，短短几周就长到15米。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">没有前4年的根基，就没有后面的爆发。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">所以，当你在坚持某个小选择却看不到效果时，那不是失败，那是在扎根。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你需要的是信任这个机制，而不是相信立即的结果。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这就像你往银行里存钱，前几个月看利息几乎为零，但如果你坚持存十年，复利会让你大吃一惊。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们往往太着急要结果，却忘了结果本身就是过程累积出来的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">最后，让我们回到那个早晨。闹钟响了，你按掉它。这个选择，屁大点事。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">9s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但如果你连续10年每天都按掉它，你的人生会发生什么？你会多睡多少分钟？不会，因为你只是把时间从清醒的早晨挪到了慌张的早晨。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">31</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批提取：4 批，每批 10 个单元，总计 31 个画面点</p>
+      
+    </div>
+    <div class="kp-beat-list">
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 1</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>日常小选择在长期积累下会导致巨大差异</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开篇需要抓人，用对比画面建立悬念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两个平行人生轨迹：一个因小习惯而堕落，一个因小习惯而成功</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你每天多睡10分钟、多刷15秒短视频，这些选择看着无关紧要，但10年后，它们会把你推向完全不同的位置。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 2</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">introduction</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入《复利效应》这本书作为核心内容</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从悬念过渡到主题引入，需要展示书名和作者</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示《复利效应》书籍封面，配以简洁的标题动画</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">今天，我们就来聊聊《复利效应》这本书，看它如何揭示你命运的真相。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 3</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>人们错误地认为命运由重大决定改变</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要打破观众固有认知，用视觉呈现常见误解</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个戏剧化的“关键时刻”场景（如人物站在岔路口），然后画面出现裂痕或问号，暗示这是谎言</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们都被“重大决定”骗了。从小到大，我们听到的故事都是关于“关键时刻”的：谁谁谁在某个转折点上做了正确选择，从此飞黄腾达。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 4</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>人们期待用一次大动作改变命运</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>列举具体例子，需要可视化这些“大动作”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>快速切换三个画面：辞职创业（办公室关门）、跳槽（高楼大厦）、风口（火箭起飞），表现不切实际的幻想</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">于是我们下意识地认为，改变命运需要一次大动作——比如辞职创业、跳槽到巨头公司、或者突然找到某个风口。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 5</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">insight</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>大决定是由小选择积累而成的</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>转折点，需要揭示真相，用视觉隐喻</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个金字塔或积木结构，底部是无数小方块（小选择），顶部是一个大块（大决定），强调积累过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但真相是，这些所谓的“大决定”，本身就是由无数个看似不起眼的小选择堆出来的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 6</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">12s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>思想实验：大目标分解为小行动</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化思想实验，增强说服力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>分屏对比：左边显示一本厚书和“不可能”标签，右边显示每天写200字的日历打卡，逐渐累积成书</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">作者达伦·哈迪在《复利效应》里用一个思想实验让我们清醒：如果现在让你写一本书，你会觉得太难了，根本不可能；但如果让你每天写200个字，你会觉得很简单。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 7</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">explanation</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>另一个例子：减肥目标分解为小行动</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>延续思想实验，用另一个常见例子强化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示体重秤上20斤的夸张数字（压力表情），然后切换为每天少吃一口饭的轻松场景（微笑表情）</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">同样，如果让你立刻减掉20斤，你会觉得压力巨大；但如果让你每天少吃一口饭，你会觉得轻轻松松。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 8</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">insight</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>长期积累导致人生轨迹分化</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要总结前面的对比，展示结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两条分叉的道路，一条向上（成功），一条向下（平庸），中间标注“10年”时间轴</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">而10年后，这两组人的人生轨迹会完全不同。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 9</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">problem</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>认知偏差：高估短期、低估长期</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>揭示核心认知偏差，需要清晰对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个天平：左边放“短期努力”（大砝码但倾斜），右边放“长期小改变”（小砝码但逐渐累积压垮天平），配文字说明</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们总是高估短期努力的效果，觉得今天做了明天就改改变；同时又严重低估长期小改变的力量，觉得每天多做一点点没什么用。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 10</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">summary</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>认知偏差是困住人的根本原因</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>总结收束，需要有力画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个人被锁在笼子里（笼子由“高估短期”“低估长期”的标签组成），然后镜头拉远，强调困境</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这种认知偏差，正是大多数人被困在现状里的根本原因。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 11</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入复利概念，准备用数学计算展示其工作原理。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从概念讲解过渡到具体计算，需要新画面来吸引注意力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个计算器或数学账本，暗示即将进行数学计算。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那么，复利到底是怎么悄悄工作的？我们来算一笔数学账。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 12</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">14s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>通过数学计算展示复利的巨大差异。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化数学公式和结果对比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>在屏幕上显示两个公式：1.01^365 ≈ 37.8 和 0.99^365 ≈ 0.03，并用箭头或柱状图对比差异。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">假设我们有两个选择：A选项是每天进步1%，B选项是每天退步1%。看起来差别很小对吧？但一年后，1.01的365次方约等于37.8，而0.99的365次方约等于0.03。两者相差超过1000倍。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 13</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>强调结论的客观性和科学性。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>金句需要有力度的画面来强化。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>屏幕上出现大字“数学”或“事实”，背景简洁有力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这不是鸡汤，这是数学。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 14</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>用滚雪球比喻复利初期缓慢增长。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>比喻需要具象化场景。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>动画展示一个小雪球在雪地上缓慢滚动，几乎看不出变大。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">作者用了一个非常形象的比喻：这就像滚雪球。一开始，雪球几乎看不见变化，你推了半天还是那么小一团，很多人这时候就放弃了，觉得“没用”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 15</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示复利在临界点后的爆发式增长。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示从缓慢到爆发的转折。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>动画中雪球突然变大，快速滚动，体积和速度明显增加。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但如果你坚持推下去，到了某个临界点，雪球会突然变得巨大，速度也越来越快，完全超出你的想象。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 16</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>解释边际收益累积原理。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>抽象概念需要可视化。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个阶梯状或指数曲线图，每个小台阶代表微小收益，最终形成陡峭上升。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">行为心理学里有一个原理叫“边际收益累积”：每个小选择本身带来的改变微乎其微，几乎可以被忽略，但重复叠加会产生指数级的变化。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 17</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>强调前期放弃的风险和分岔路。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示对比和分岔。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面中一条路分成两条：一条继续向上，一条向下或停滞，标注“坚持”和“放弃”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">最要命的是，前期的“看不见效果”阶段，恰恰是最容易让人放弃的时候。而这时候，坚持的人和不坚持的人，已经开始走上完全不同的分岔路了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 18</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出核心问题，引发思考。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>问题抛出需要人物思考画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物特写，表情困惑或思考，背景模糊。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">最难的部分来了：当你看不到进步的时候，怎么坚持下去？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 19</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>指出放弃的常见原因。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示放弃的心理过程。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>日历翻页动画，显示几天、几周过去，人物表情从期待变为失望，然后离开。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">大多数人放弃，不是因为做不到，而是因为做了几天、几周没看到变化，就觉得“没用”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 20</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引发共鸣，拉近与观众距离。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡句需要简洁画面。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>人物点头或微笑，表示理解，背景柔和。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这种感受我们都太熟悉了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 21</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引出《复利效应》这本书及其核心观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从之前的内容过渡到引用书籍，需要新画面来引入书籍</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示《复利效应》这本书的封面或翻开书页的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">作者在《复利效应》里专门讲了这个心理陷阱。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 22</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>解释复利效应的核心是前期看不见的积累</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>抽象概念需要可视化，从书籍封面切换到概念解释</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用动画或图表展示一个缓慢上升的曲线，前期几乎平坦，后期陡峭，突出“隐性积累”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">他说，复利效应的核心特征就是“前期的隐性积累”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 23</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>用竹子前4年生长缓慢的例子说明隐性积累</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>具体案例需要新画面来展示竹子生长的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一片竹林，特写一棵小竹笋，旁边标注“4年，3厘米”，强调缓慢</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">他举了一个竹子的例子：竹子在前4年里，几乎看不出生长，只长了3厘米。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 24</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示竹子后期爆发式生长</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>时间推进，需要新画面展示竹子快速生长的对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>动画展示竹子快速拔高，从3厘米到15米，旁边标注“每天30厘米”，形成强烈对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但从第5年开始，它每天长30厘米，短短几周就长到15米。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 25</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>总结竹子的例子，强调根基的重要性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从案例到总结，需要新画面来强化观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面分为两部分：左边是地下发达的根系，右边是高大的竹子，中间用箭头连接，文字“根基→爆发”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">没有前4年的根基，就没有后面的爆发。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 26</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>将竹子比喻应用到个人坚持上，鼓励观众</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从案例回到观众自身，需要新画面来引发共鸣</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span></span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">所以，当你在坚持某个小选择却看不到效果时，那不是失败，那是在扎根。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 27</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>强调信任复利机制而非追求即时结果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从鼓励到理性建议，需要新画面来传达信任的概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个天平，左边是“信任机制”，右边是“立即结果”，左边下沉，右边翘起，突出信任的重要性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你需要的是信任这个机制，而不是相信立即的结果。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 28</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>用银行存款的复利比喻进一步说明长期坚持的价值</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要新画面来展示银行存款的复利增长</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个存折或银行账户界面，前几行利息为0.01元，后面逐年增长，最后一行显示巨大数字，旁边有惊叹号</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这就像你往银行里存钱，前几个月看利息几乎为零，但如果你坚持存十年，复利会让你大吃一惊。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 29</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">body</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>点出观众急于求成的心理误区</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从比喻回到心理分析，需要新画面来引发反思</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>一个人焦急地看着手表，身后是一个巨大的沙漏，沙子缓慢落下，形成一座小山，文字“结果 = 过程的累积”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们往往太着急要结果，却忘了结果本身就是过程累积出来的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 30</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">outro</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>呼应开头，用闹钟的例子收束全片</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>结尾需要新画面来形成闭环，强化记忆点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>回到开头的闹钟场景，一只手按掉闹钟，但这次画面定格，旁边出现文字“屁大点事？”，然后淡出</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">最后，让我们回到那个早晨。闹钟响了，你按掉它。这个选择，屁大点事。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 31</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">9s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>长期按掉闹钟并不会让你多睡，只会让早晨变得慌张。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>这是一个假设性问题+转折结论，需要从提问过渡到揭示真相的画面，以强化冲击力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>通过视觉对比表现“按掉闹钟”的长期后果——从看似多睡到实际慌张。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但如果你连续10年每天都按掉它，你的人生会发生什么？你会多睡多少分钟？不会，因为你只是把时间从清醒的早晨挪到了慌张的早晨。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">31</span>
+        <span class="kp-summary-label">图片提示词</span>
+      </div>
+      
+      <span class="kp-summary-style-badge">现代知识类视频插画风，干净简洁，柔和光影，信息表达清晰，人物一律为外国人形象（欧美面孔），适合抖音读书类视频。横屏 16…</span>
+      
+      <div class="kp-summary-stats">
+        
+        <span class="kp-status-pill kp-pill-generated">generated: 31</span>
+        
+      </div>
+    </div>
+    <div class="kp-prompt-grid">
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 1</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>日常小选择在长期积累下会导致巨大差异</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示两个平行人生轨迹：一个因小习惯而堕落，一个因小习惯而成功</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央一条水平分割线，上方是成功轨迹：一个金发欧美男人穿着西装，站在阶梯顶端，手握奖杯，背后有阳光和向上的箭头，画面中有中文：'+10年'。下方是堕落轨迹：同一个男人穿着邋遢T恤，瘫在破沙发上刷手机，周围散落空啤酒罐，背后有向下的箭头和阴影。两人表情对比鲜明。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 2</span>
+          <span class="kp-prompt-stage">introduction</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入《复利效应》这本书作为核心内容</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示《复利效应》书籍封面，配以简洁的标题动画</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，特写一本打开的精装书，封面朝上，书名《复利效应》用粗体中文大字印在复古蓝色封面上，字体为醒目的贴纸风格。书旁边放着一杯冒着热气的咖啡和一副黑框眼镜。背景是温暖的木质书桌和模糊的书架，暖色调灯光从左侧打来。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 3</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>人们错误地认为命运由重大决定改变</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个戏剧化的“关键时刻”场景（如人物站在岔路口），然后画面出现裂痕或问号，暗示这是谎言</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发年轻男人站在岔路口，面前有两条路，一条写着'正确选择'，一条写着'错误选择'，他表情困惑地摸着下巴。背景是暖米色天空，画面中央有一个巨大的黑色裂痕穿过整个场景，裂痕旁边有一个大大的红色问号。画面中有中文：'关键选择？'和'谎言'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 4</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>人们期待用一次大动作改变命运</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>快速切换三个画面：辞职创业（办公室关门）、跳槽（高楼大厦）、风口（火箭起飞），表现不切实际的幻想</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，左侧：一个红发男人用力推开办公室玻璃门，门牌上写着'辞职创业'，表情兴奋。中间：一个棕发男人站在摩天大楼前仰望，大楼玻璃幕墙上映出'跳槽'二字。右侧：一个金色火箭正从地面起飞，箭身上写着'风口'，火箭尾部喷出火焰和星星。三个场景并排，背景是统一暖米色。画面中有中文：'辞职创业'、'跳槽'、'风口'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色、画面拥挤</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 5</span>
+          <span class="kp-prompt-stage">insight</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>大决定是由小选择积累而成的</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个金字塔或积木结构，底部是无数小方块（小选择），顶部是一个大块（大决定），强调积累过程</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个由彩色小积木块堆叠而成的金字塔结构，底部有几十个小方块，每个小方块上写着“选择”的中文，顶部是一个大积木块，上面写着“大决定”的中文。背景是暖米色，光线从顶部照射。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 6</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>思想实验：大目标分解为小行动</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>分屏对比：左边显示一本厚书和“不可能”标签，右边显示每天写200字的日历打卡，逐渐累积成书</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，分屏构图。左侧：一本厚书上面盖着一个红色印章写着“不可能”中文。右侧：一个日历页面，每一天的格子上都打着红色勾，旁边有一张纸写着“每天200字”中文。两屏之间有一条虚线连接。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 7</span>
+          <span class="kp-prompt-stage">explanation</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>另一个例子：减肥目标分解为小行动</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示体重秤上20斤的夸张数字（压力表情），然后切换为每天少吃一口饭的轻松场景（微笑表情）</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面分为左右两部分。左侧：一个金发欧美男子站在体重秤上，表情惊恐，额头冒汗。体重秤的指针指向'20斤'的醒目中文大字。右侧：同一个男子轻松地坐在餐桌前，微笑着用叉子拨开一小口米饭，表情放松。桌上只有一小碗饭。两幅画面用一条虚线隔开。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和色彩、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 8</span>
+          <span class="kp-prompt-stage">insight</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>长期积累导致人生轨迹分化</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示两条分叉的道路，一条向上（成功），一条向下（平庸），中间标注“10年”时间轴</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个岔路口，画面中央的地面上竖着一个路牌，上面写着中文大字'10年'。左边一条路向上延伸至远方，路上有阳光洒落，路尽头有一个模糊的奖杯剪影。右边一条路向下倾斜，路面灰暗，尽头是一个模糊的沙发和电视剪影。两个棕色头发的欧美年轻人分别站在两条路的起点，表情不同：左边的人充满希望，右边的人神情疲惫。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和色彩、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 9</span>
+          <span class="kp-prompt-stage">problem</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>认知偏差：高估短期、低估长期</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个天平：左边放“短期努力”（大砝码但倾斜），右边放“长期小改变”（小砝码但逐渐累积压垮天平），配文字说明</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一个老式天平，左边托盘上放着一个巨大的砝码，上面写着中文'短期'，但天平向左严重倾斜。右边托盘上放着几个小砝码，每个上面写着'长期'，小砝码正在一个个落下，天平缓慢向右回正。背景是暖米色，简洁干净。画面中有中文标签：'高估'贴在左边，'低估'贴在右边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 10</span>
+          <span class="kp-prompt-stage">summary</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>认知偏差是困住人的根本原因</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个人被锁在笼子里（笼子由“高估短期”“低估长期”的标签组成），然后镜头拉远，强调困境</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人蹲在笼子中央，双手抱头，表情沮丧困惑。笼子的铁栏杆上贴着两张巨大的标签，左边写着中文'高估短期'，右边写着中文'低估长期'。笼子外是空旷的灰绿色背景，地面有微弱的阴影。镜头从近景拉远，显得笼子很渺小。画面中有中文标签：'高估短期'、'低估长期'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、过于血腥或暴力</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 11</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入复利概念，准备用数学计算展示其工作原理。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个计算器或数学账本，暗示即将进行数学计算。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张木质旧书桌上放着一个老式机械计算器，旁边摊开一本泛黄的账本，账本上写着中文关键词“复利”和“1.01^365”，一支铅笔搁在账本上。画面中有中文：复利、1.01^365。暖色调灯光从侧面打来。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 12</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>通过数学计算展示复利的巨大差异。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>在屏幕上显示两个公式：1.01^365 ≈ 37.8 和 0.99^365 ≈ 0.03，并用箭头或柱状图对比差异。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一块黑板被分成左右两半。左边用白色粉笔写着“1.01^365 ≈ 37.8”，旁边画着一根从底部升到顶部的粗箭头，箭头顶端有一个小金币堆。右边写着“0.99^365 ≈ 0.03”，旁边画着一根从顶部掉到底部的细箭头，箭头底端有一颗很小的硬币。黑板下方有中文：每天进步1% vs 每天退步1%。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 13</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>强调结论的客观性和科学性。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>屏幕上出现大字“数学”或“事实”，背景简洁有力。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，深棕色背景前，一张复古牛皮纸上用粗体白色粉笔写着中文大字“数学”，纸张边缘有轻微烧痕。旁边放着一支旧铅笔和一副圆框眼镜。画面简洁，有力量感，光线从左侧打来。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 14</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>用滚雪球比喻复利初期缓慢增长。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>动画展示一个小雪球在雪地上缓慢滚动，几乎看不出变大。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，广阔的灰白色雪地远景，一个小雪球（拳头大小）正在缓慢向前滚动，身后留下一道细长的雪痕。雪球几乎看不出变大。画面左侧有一个穿着红色羽绒服的外国小男孩，正弯腰用力推着雪球，表情有些困惑和疲惫。天空是柔和的灰蓝色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 15</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>展示复利在临界点后的爆发式增长。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>动画中雪球突然变大，快速滚动，体积和速度明显增加。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个巨大的雪球从积雪的山坡上飞速滚下，体积庞大，后方扬起白色雪雾。雪球表面有深棕色和米色的纹理，像硬币堆叠。画面中有中文大字'临界点'，像粗体贴纸贴在雪球侧面。背景是灰蓝色天空，简洁有力。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 16</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>解释边际收益累积原理。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个阶梯状或指数曲线图，每个小台阶代表微小收益，最终形成陡峭上升。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个由浅棕色小积木块堆叠成的阶梯状结构，从左侧低矮到右侧突然陡峭升高。每个小积木块上写有中文'+1'。右侧最高处有一块积木上写着中文'指数级'。背景是暖米色，简洁干净，整体像黑板上的知识图解。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 17</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>强调前期放弃的风险和分岔路。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面中一条路分成两条：一条继续向上，一条向下或停滞，标注“坚持”和“放弃”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一条土路在画面中央分岔。左边向上的路标有中文大字'坚持'，路上有一个背着背包的外国男人背影，正向上攀登。右边向下的路标有中文大字'放弃'，路上空无一人，通向灰暗的谷底。黄昏光线，暖色调，画面底部保持干净。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 18</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出核心问题，引发思考。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>人物特写，表情困惑或思考，背景模糊。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色卷发的白人男子正面特写，眉头微皱，眼神看向斜上方，表情困惑思考。他的右手托着下巴，左手拿着一支铅笔。背景是模糊的暖色书房书架，画面底部留空。画面中无文字。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 19</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>指出放弃的常见原因。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>日历翻页动画，显示几天、几周过去，人物表情从期待变为失望，然后离开。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色头发的欧美男子坐在书桌前，面前摊开一本笔记本和一支笔。他身旁的墙上挂着一本翻开的日历，从1号翻到7号再翻到21号，日历上画着叉叉。男子原本期待的表情逐渐变成失望，他站起身，背对书桌准备离开。画面中有中文大字'没用'，像贴纸一样贴在日历旁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景、多人</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 20</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引发共鸣，拉近与观众距离。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>人物点头或微笑，表示理解，背景柔和。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美女性，双手交叉放在胸前，脸上带着温和理解的微笑，轻轻点头。背景是柔和的暖米色，没有多余元素。她的眼神直视前方，仿佛在说'我懂你'。画面干净，人物突出。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂背景、多人、悲伤表情</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 21</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引出《复利效应》这本书及其核心观点</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示《复利效应》这本书的封面或翻开书页的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一只手翻开一本硬壳精装书，书页上醒目地印着中文标题'复利效应'四个大字（粗体贴纸风格）。书页内有一张简笔曲线图，显示一条几乎平坦的线。背景是温暖的木质书桌和一杯咖啡，暖色灯光。画面中有中文：复利效应。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 22</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>解释复利效应的核心是前期看不见的积累</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用动画或图表展示一个缓慢上升的曲线，前期几乎平坦，后期陡峭，突出“隐性积累”</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个年轻欧美男子（棕色短发，穿深蓝色衬衫）站在一块立式白板旁，白板上画着一条复利增长曲线：前期几乎水平，后期急剧上升。曲线起点处画了一个放大镜，旁边用中文标注'隐性积累'（粗体贴纸风格）。男子手指着曲线平坦部分，表情认真。画面中有中文：隐性积累。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 23</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>用竹子前4年生长缓慢的例子说明隐性积累</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一片竹林，特写一棵小竹笋，旁边标注“4年，3厘米”，强调缓慢</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一片竹林，前景特写一棵矮小的竹笋，几乎与地面齐平，旁边插着一个木牌，上面用粗体中文写着“4年，3厘米”。背景是高大的竹子，形成大小对比。光线柔和，画面有等待感。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 24</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>展示竹子后期爆发式生长</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>动画展示竹子快速拔高，从3厘米到15米，旁边标注“每天30厘米”，形成强烈对比</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，同一片竹林，但视角变为仰视。一根巨大的竹子直冲画面顶部，竹节清晰可见。竹子底部有一个小木牌，上面用粗体中文写着“每天30厘米”。旁边地面有一个小人仰头惊叹，对比出竹子的高度。阳光从竹叶间洒落。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 25</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>总结竹子的例子，强调根基的重要性</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面分为两部分：左边是地下发达的根系，右边是高大的竹子，中间用箭头连接，文字“根基→爆发”</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割构图。左侧：棕发欧美男人蹲在地上，双手捧起一把泥土，泥土下露出粗壮交错的白色竹根，竹根上贴着中文标签“根基”。右侧：一棵高大的绿色竹子冲天而起，竹尖有阳光洒落，旁边有中文标签“爆发”。中间一个大箭头从左指向右。背景为暖米色渐变天空。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色彩、纯黑纯白背景、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 26</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>将竹子比喻应用到个人坚持上，鼓励观众</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>None</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，特写镜头：一个棕发欧美年轻人坐在书桌前，低着头，一只手握笔在纸上写字，另一只手伸向画面下方。他的身体下方，从地板中长出几根白色的粗壮竹根，紧紧缠绕着他的椅子腿和脚踝，竹根上贴着中文标签“扎根”。桌面上一盏暖黄色台灯照亮他的侧脸。背景是暗色调的简单房间，窗外有微光。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色彩、纯黑纯白背景、复杂背景、多人</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 27</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>强调信任复利机制而非追求即时结果</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个天平，左边是“信任机制”，右边是“立即结果”，左边下沉，右边翘起，突出信任的重要性</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个复古铜色天平，左边托盘上放着一个写有“信任机制”的厚实木牌，托盘下沉；右边托盘上放着一个写有“立即结果”的轻薄纸片，托盘高高翘起。背景是暖米色墙壁，有一束柔和光线从左侧照向天平。画面中有中文：信任机制、立即结果。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 28</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>用银行存款的复利比喻进一步说明长期坚持的价值</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个存折或银行账户界面，前几行利息为0.01元，后面逐年增长，最后一行显示巨大数字，旁边有惊叹号</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一本打开的银行存折放在深棕色木桌上，存折内页显示利息记录：第1行“0.01元”，第2行“0.05元”，中间几行数字逐渐变大，最后一行用粗体红色写着“10,000元”，旁边有一个巨大的红色惊叹号。桌旁有一只手正拿着笔指向最后一行。画面中有中文：0.01元、10,000元。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 29</span>
+          <span class="kp-prompt-stage">body</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>点出观众急于求成的心理误区</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>一个人焦急地看着手表，身后是一个巨大的沙漏，沙子缓慢落下，形成一座小山，文字“结果 = 过程的累积”</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色卷发的欧美男子站在画面中央，眉头紧锁，低头焦虑地看着左手腕上的手表。他身后是一个巨大的木质沙漏，上层的沙子正在缓缓流下，在底部堆积成一座小沙丘。沙丘旁边立着一块木牌，上面写着中文大字：“结果=过程的累积”。背景是柔和的暖米色墙面。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 30</span>
+          <span class="kp-prompt-stage">outro</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>呼应开头，用闹钟的例子收束全片</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>回到开头的闹钟场景，一只手按掉闹钟，但这次画面定格，旁边出现文字“屁大点事？”，然后淡出</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，特写画面：一只手（欧美肤色）从画面左侧伸出，手指按在一个老式圆形闹钟的顶部按钮上。闹钟显示时间为早上7:00。画面右侧有一个从闹钟里飘出的对话框，里面用粗体中文写着：“屁大点事？”。背景是极简的奶油色墙面，闹钟下方有一小块阴影。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、复杂的背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 31</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>长期按掉闹钟并不会让你多睡，只会让早晨变得慌张。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>通过视觉对比表现“按掉闹钟”的长期后果——从看似多睡到实际慌张。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分割对比。左侧：一个欧美男人躺在床上，手懒洋洋地按掉床头柜上的闹钟，闹钟显示7:00，旁边日历标注“第1天”。右侧：同一男人在昏暗的早晨，头发乱糟糟，衣服扣子扣错，疯狂跑向门口，墙上时钟显示8:30，旁边日历标注“第3650天”。画面中有中文：“多睡？”和“慌张”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">总时长</div>
+        <div style="font-size:1.5rem;font-weight:700;">6分56秒</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">画面节拍</div>
+        <div style="font-size:1.5rem;font-weight:700;">31</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">音频段</div>
+        <div style="font-size:1.5rem;font-weight:700;">7</div>
+      </div>
+    </div>
+
+    
+    
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">画面时间线（31 个节拍）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#1</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分0秒
+             -> 0分17秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">日常小选择在长期积累下会导致巨大差异</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央一条水平分割线，上方是成功轨迹：一个金发欧美男人穿着西装，站在阶梯顶端，手握奖杯，背后有阳光和向上的箭头，画面中有中文：'+10年'。下方是堕落轨迹：同一个男人穿着邋遢T恤，瘫在破沙发上刷手机，周围散落空啤酒罐，背后有
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#2</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分17秒
+             -> 0分29秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入《复利效应》这本书作为核心内容</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，特写一本打开的精装书，封面朝上，书名《复利效应》用粗体中文大字印在复古蓝色封面上，字体为醒目的贴纸风格。书旁边放着一杯冒着热气的咖啡和一副黑框眼镜。背景是温暖的木质书桌和模糊的书架，暖色调灯光从左侧打来。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#3</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分29秒
+             -> 0分49秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">人们错误地认为命运由重大决定改变</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发年轻男人站在岔路口，面前有两条路，一条写着'正确选择'，一条写着'错误选择'，他表情困惑地摸着下巴。背景是暖米色天空，画面中央有一个巨大的黑色裂痕穿过整个场景，裂痕旁边有一个大大的红色问号。画面中有中文：'关键选择？'
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#4</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分49秒
+             -> 1分7秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">人们期待用一次大动作改变命运</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，左侧：一个红发男人用力推开办公室玻璃门，门牌上写着'辞职创业'，表情兴奋。中间：一个棕发男人站在摩天大楼前仰望，大楼玻璃幕墙上映出'跳槽'二字。右侧：一个金色火箭正从地面起飞，箭身上写着'风口'，火箭尾部喷出火焰和星星。三个场
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#5</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分7秒
+             -> 1分20秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">大决定是由小选择积累而成的</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个由彩色小积木块堆叠而成的金字塔结构，底部有几十个小方块，每个小方块上写着“选择”的中文，顶部是一个大积木块，上面写着“大决定”的中文。背景是暖米色，光线从顶部照射。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#6</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分20秒
+             -> 1分40秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">思想实验：大目标分解为小行动</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，分屏构图。左侧：一本厚书上面盖着一个红色印章写着“不可能”中文。右侧：一个日历页面，每一天的格子上都打着红色勾，旁边有一张纸写着“每天200字”中文。两屏之间有一条虚线连接。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#7</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分40秒
+             -> 1分56秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">另一个例子：减肥目标分解为小行动</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面分为左右两部分。左侧：一个金发欧美男子站在体重秤上，表情惊恐，额头冒汗。体重秤的指针指向'20斤'的醒目中文大字。右侧：同一个男子轻松地坐在餐桌前，微笑着用叉子拨开一小口米饭，表情放松。桌上只有一小碗饭。两幅画面用一条虚线
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#8</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分56秒
+             -> 2分4秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">长期积累导致人生轨迹分化</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个岔路口，画面中央的地面上竖着一个路牌，上面写着中文大字'10年'。左边一条路向上延伸至远方，路上有阳光洒落，路尽头有一个模糊的奖杯剪影。右边一条路向下倾斜，路面灰暗，尽头是一个模糊的沙发和电视剪影。两个棕色头发的欧美年轻人
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#9</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分4秒
+             -> 2分24秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">认知偏差：高估短期、低估长期</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一个老式天平，左边托盘上放着一个巨大的砝码，上面写着中文'短期'，但天平向左严重倾斜。右边托盘上放着几个小砝码，每个上面写着'长期'，小砝码正在一个个落下，天平缓慢向右回正。背景是暖米色，简洁干净。画面中有中文标签：
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#10</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分24秒
+             -> 2分34秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">认知偏差是困住人的根本原因</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人蹲在笼子中央，双手抱头，表情沮丧困惑。笼子的铁栏杆上贴着两张巨大的标签，左边写着中文'高估短期'，右边写着中文'低估长期'。笼子外是空旷的灰绿色背景，地面有微弱的阴影。镜头从近景拉远，显得笼子很渺小。画面中有中
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#11</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分34秒
+             -> 2分43秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入复利概念，准备用数学计算展示其工作原理。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张木质旧书桌上放着一个老式机械计算器，旁边摊开一本泛黄的账本，账本上写着中文关键词“复利”和“1.01^365”，一支铅笔搁在账本上。画面中有中文：复利、1.01^365。暖色调灯光从侧面打来。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#12</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分43秒
+             -> 3分3秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">通过数学计算展示复利的巨大差异。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一块黑板被分成左右两半。左边用白色粉笔写着“1.01^365 ≈ 37.8”，旁边画着一根从底部升到顶部的粗箭头，箭头顶端有一个小金币堆。右边写着“0.99^365 ≈ 0.03”，旁边画着一根从顶部掉到底部的细箭头，箭头底端
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#13</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分3秒
+             -> 3分8秒
+            0分4秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">强调结论的客观性和科学性。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，深棕色背景前，一张复古牛皮纸上用粗体白色粉笔写着中文大字“数学”，纸张边缘有轻微烧痕。旁边放着一支旧铅笔和一副圆框眼镜。画面简洁，有力量感，光线从左侧打来。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#14</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分8秒
+             -> 3分28秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">用滚雪球比喻复利初期缓慢增长。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，广阔的灰白色雪地远景，一个小雪球（拳头大小）正在缓慢向前滚动，身后留下一道细长的雪痕。雪球几乎看不出变大。画面左侧有一个穿着红色羽绒服的外国小男孩，正弯腰用力推着雪球，表情有些困惑和疲惫。天空是柔和的灰蓝色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#15</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分28秒
+             -> 3分44秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">展示复利在临界点后的爆发式增长。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个巨大的雪球从积雪的山坡上飞速滚下，体积庞大，后方扬起白色雪雾。雪球表面有深棕色和米色的纹理，像硬币堆叠。画面中有中文大字'临界点'，像粗体贴纸贴在雪球侧面。背景是灰蓝色天空，简洁有力。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#16</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分44秒
+             -> 4分4秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">解释边际收益累积原理。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个由浅棕色小积木块堆叠成的阶梯状结构，从左侧低矮到右侧突然陡峭升高。每个小积木块上写有中文'+1'。右侧最高处有一块积木上写着中文'指数级'。背景是暖米色，简洁干净，整体像黑板上的知识图解。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#17</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分4秒
+             -> 4分24秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">强调前期放弃的风险和分岔路。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一条土路在画面中央分岔。左边向上的路标有中文大字'坚持'，路上有一个背着背包的外国男人背影，正向上攀登。右边向下的路标有中文大字'放弃'，路上空无一人，通向灰暗的谷底。黄昏光线，暖色调，画面底部保持干净。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#18</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分24秒
+             -> 4分33秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出核心问题，引发思考。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色卷发的白人男子正面特写，眉头微皱，眼神看向斜上方，表情困惑思考。他的右手托着下巴，左手拿着一支铅笔。背景是模糊的暖色书房书架，画面底部留空。画面中无文字。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#19</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分33秒
+             -> 4分47秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">指出放弃的常见原因。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色头发的欧美男子坐在书桌前，面前摊开一本笔记本和一支笔。他身旁的墙上挂着一本翻开的日历，从1号翻到7号再翻到21号，日历上画着叉叉。男子原本期待的表情逐渐变成失望，他站起身，背对书桌准备离开。画面中有中文大字'没用'，像
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#20</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分47秒
+             -> 4分52秒
+            0分4秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引发共鸣，拉近与观众距离。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美女性，双手交叉放在胸前，脸上带着温和理解的微笑，轻轻点头。背景是柔和的暖米色，没有多余元素。她的眼神直视前方，仿佛在说'我懂你'。画面干净，人物突出。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#21</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分52秒
+             -> 5分0秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引出《复利效应》这本书及其核心观点</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一只手翻开一本硬壳精装书，书页上醒目地印着中文标题'复利效应'四个大字（粗体贴纸风格）。书页内有一张简笔曲线图，显示一条几乎平坦的线。背景是温暖的木质书桌和一杯咖啡，暖色灯光。画面中有中文：复利效应。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#22</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分0秒
+             -> 5分9秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">解释复利效应的核心是前期看不见的积累</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个年轻欧美男子（棕色短发，穿深蓝色衬衫）站在一块立式白板旁，白板上画着一条复利增长曲线：前期几乎水平，后期急剧上升。曲线起点处画了一个放大镜，旁边用中文标注'隐性积累'（粗体贴纸风格）。男子手指着曲线平坦部分，表情认真。画面
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#23</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分9秒
+             -> 5分21秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">用竹子前4年生长缓慢的例子说明隐性积累</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一片竹林，前景特写一棵矮小的竹笋，几乎与地面齐平，旁边插着一个木牌，上面用粗体中文写着“4年，3厘米”。背景是高大的竹子，形成大小对比。光线柔和，画面有等待感。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#24</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分21秒
+             -> 5分32秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">展示竹子后期爆发式生长</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，同一片竹林，但视角变为仰视。一根巨大的竹子直冲画面顶部，竹节清晰可见。竹子底部有一个小木牌，上面用粗体中文写着“每天30厘米”。旁边地面有一个小人仰头惊叹，对比出竹子的高度。阳光从竹叶间洒落。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#25</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分32秒
+             -> 5分39秒
+            0分6秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">总结竹子的例子，强调根基的重要性</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割构图。左侧：棕发欧美男人蹲在地上，双手捧起一把泥土，泥土下露出粗壮交错的白色竹根，竹根上贴着中文标签“根基”。右侧：一棵高大的绿色竹子冲天而起，竹尖有阳光洒落，旁边有中文标签“爆发”。中间一个大箭头从左指向右。背景
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#26</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分39秒
+             -> 5分50秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">将竹子比喻应用到个人坚持上，鼓励观众</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，特写镜头：一个棕发欧美年轻人坐在书桌前，低着头，一只手握笔在纸上写字，另一只手伸向画面下方。他的身体下方，从地板中长出几根白色的粗壮竹根，紧紧缠绕着他的椅子腿和脚踝，竹根上贴着中文标签“扎根”。桌面上一盏暖黄色台灯照亮他的侧脸
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#27</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分50秒
+             -> 5分59秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">强调信任复利机制而非追求即时结果</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个复古铜色天平，左边托盘上放着一个写有“信任机制”的厚实木牌，托盘下沉；右边托盘上放着一个写有“立即结果”的轻薄纸片，托盘高高翘起。背景是暖米色墙壁，有一束柔和光线从左侧照向天平。画面中有中文：信任机制、立即结果。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#28</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分59秒
+             -> 6分14秒
+            0分15秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">用银行存款的复利比喻进一步说明长期坚持的价值</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一本打开的银行存折放在深棕色木桌上，存折内页显示利息记录：第1行“0.01元”，第2行“0.05元”，中间几行数字逐渐变大，最后一行用粗体红色写着“10,000元”，旁边有一个巨大的红色惊叹号。桌旁有一只手正拿着笔指向最后一行
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#29</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分14秒
+             -> 6分25秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">点出观众急于求成的心理误区</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色卷发的欧美男子站在画面中央，眉头紧锁，低头焦虑地看着左手腕上的手表。他身后是一个巨大的木质沙漏，上层的沙子正在缓缓流下，在底部堆积成一座小沙丘。沙丘旁边立着一块木牌，上面写着中文大字：“结果=过程的累积”。背景是柔和的
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#30</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分25秒
+             -> 6分36秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">呼应开头，用闹钟的例子收束全片</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，特写画面：一只手（欧美肤色）从画面左侧伸出，手指按在一个老式圆形闹钟的顶部按钮上。闹钟显示时间为早上7:00。画面右侧有一个从闹钟里飘出的对话框，里面用粗体中文写着：“屁大点事？”。背景是极简的奶油色墙面，闹钟下方有一小块阴影
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#31</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分36秒
+             -> 6分56秒
+            0分20秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">长期按掉闹钟并不会让你多睡，只会让早晨变得慌张。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分割对比。左侧：一个欧美男人躺在床上，手懒洋洋地按掉床头柜上的闹钟，闹钟显示7:00，旁边日历标注“第1天”。右侧：同一男人在昏暗的早晨，头发乱糟糟，衣服扣子扣错，疯狂跑向门口，墙上时钟显示8:30，旁边日历标注“第3
+        </div>
+        
+      </div>
+      
+    </div>
+    
+
+    
+    
+
+    
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            82分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本整体质量较高，核心思想清晰，结构递进，实用性强，但 source_scope 描述不够准确，缺少大→小转换枢纽和举一反三部分，需针对性修改后发布。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:65%"></div>
+            </div>
+            <span class="kp-dim-val">13</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 为'整书分析'，但脚本实际只聚焦于《复利效应》中'日常微小选择的长期累积效应'这一核心思想，并未覆盖全书其他可能内容（如具体行动步骤、案例等），因此准确性略有不足，建议改为更具体的描述。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">original_understanding 部分：脚本准确还原了复利效应的核心论点，但缺少对原书作者达伦·哈迪的论证层次（如他如何从心理学、行为学角度展开）的深入呈现，略显简化。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">big_to_small_translation 部分：虽然从日常场景切入，但缺少明确的'原书大问题→普通人小问题'的转换枢纽语句，直接从原书观点跳到生活例子，转换不够显性。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">transfer_ability 部分：结尾没有明确的'举一反三'段落，未告诉观众这个思想还能迁移到哪些其他场景（如学习、理财、社交等），只是停留在已举的例子中。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">language_safety 部分：存在少量可能引发焦虑的表达，如'你的人生会发生什么？'、'偷偷拔掉我的根'，建议调整为更中性的'我们'视角。</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-danger">source_scope 需从'整书分析'改为更具体的描述，如'《复利效应》中关于日常微小选择长期累积效应的核心思想'。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">在 big_to_small_translation 部分，增加一段显性的转换枢纽，例如：'原书要解决的核心问题是：为什么有些人能持续成功而另一些人停滞不前？把这个放到普通人的生活里，其实是在回答：为什么我们每天做的小事，最终决定了我们的命运？'</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">在结尾增加一个'举一反三'段落，例如：'这个思想不仅适用于早起和阅读，还可以迁移到理财（每天存10元）、社交（每天主动联系一个人）、技能学习（每天练习5分钟）等场景。'</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('复利效应', 102)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        <option value="visual_beats.json">visual_beats.json</option>
+        
+        
+        
+        <option value="image_prompts.json">image_prompts.json</option>
+        
+        
+        
+        <option value="timeline.json">timeline.json</option>
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

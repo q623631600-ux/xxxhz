@@ -1,0 +1,3810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-第一性原理.html" class="kp-bcrumb-link">第一性原理</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #102</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">你有没有发现，你99%的争论都是白吵？因为你们在‘不同系统’里讲‘正确的话’</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>8-12分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>2610</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('第一性原理', 102)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">40</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点<span class="kp-tab-count">40</span></button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词<span class="kp-tab-count">40</span></button>
+    <button class="kp-tab" data-tab="timeline" >时间线<span class="kp-tab-count">40/0</span></button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">你明明有理有据，对方却像听不懂人话，气得你肝疼？别急，这不是你嘴笨，而是你俩在‘不同系统’里讲着各自‘正确’的话。
+
+其实，不是对方故意跟你抬杠，也不是你表达能力有问题。真正的原因是：你们俩各自在一个完全正确的逻辑系统里，推导出了完全正确的结论。但这两个系统的“地基”——也就是你们各自的隐含假设——完全不同。如果不拆掉这个地基，吵一辈子也是白吵。
+
+《第一性原理》这本书想帮我们看懂的，正是这个真相：我们99%的争吵，本质上是两个不同系统的冲突。而想要终结这种无效争论，唯一的方法不是去证明谁对谁错，而是跳出系统，去识别对方那句“这还用说吗”背后藏着的假设。
+
+我们先来看一个经典的争吵场景。周末，丈夫说：“我们去露营吧，呼吸新鲜空气，多好。”妻子说：“你疯了吧？周末我要准备下周的汇报，哪有时间露营？”然后，战争就开始了。丈夫觉得妻子“太卷、不懂生活”，妻子觉得丈夫“太闲、不负责任”。两个人都在说对方“不讲道理”，但如果我们把他们的逻辑拆开看，你会发现：两个人都对。丈夫的推理链条是——周末应该放松和探索新鲜事物，否则就是浪费时间；露营能探索新鲜事物，所以应该去露营。妻子的推理链条是——周末应该恢复体力、准备下周的工作，否则就是不负责任；露营会占用准备时间，所以不应该去。你看，每个环节都是合理的，结论却完全相反。问题出在哪里？出在最底层的那个“应该”——也就是他们的隐含假设。丈夫假设“周末的意义是探索”，妻子假设“周末的意义是准备”。这两个假设本身没有对错，它们只是不同的人生价值观。但因为我们通常只盯着对方的结论，而不是对方的假设，争吵就永远停留在“你不对”的层面。
+
+这个现象，在数学里有一个非常形象的类比，叫作“公理化系统”。什么是公理化系统？简单说，就是从一个最底层的公理出发，推导出所有定理。比如欧几里得几何，它的公理之一是“两点之间直线最短”。基于这个公理，我们推导出了勾股定理、三角形内角和等于180度。这些定理，在欧几里得几何里是绝对正确的。但是，如果我们换一个系统——比如非欧几何——它的公理变成了“经过直线外一点，可以画无数条平行线”。那么，在这个系统里，三角形的内角和就不再是180度了，而是小于180度。你看，同样一个问题，在两个不同的公理系统里，会得到两个完全“正确”却互相矛盾的答案。欧几里得几何没错，非欧几何也没错，它们只是在各自的地基上盖出了不同的房子。
+
+我们生活中的争吵，本质上就是这种“系统之争”。你的系统里，公理是“用户需求是第一驱动力”；对方的系统里，公理是“客户回款是第一驱动力”。你推导出“必须加这个功能”，对方推导出“绝不能加这个功能”。两个结论都正确，但你们各自在自己的封闭系统里，看不到对方的边界，只看到对方在说“错话”。这就是为什么开会总是开成批斗会，为什么你明明觉得自己有理，对方却死活不认。
+
+那么，这些藏在争吵背后的“隐含假设”到底是什么？它为什么这么隐蔽？我们可以把它想象成一座房子的地基。我们平时争论的，是房子好不好看、窗户大不大，但从来不讨论地基是什么。因为地基埋在地下，我们看不见。同样，我们的隐含假设——比如“努力就会成功”“周末应该放松”“孩子必须听父母的话”——这些观念从小就植入我们的大脑，被我们视为“天经地义”“这还用说吗”。它们太自然了，以至于我们根本意识不到自己还有一个假设。就像鱼意识不到水一样。
+
+《第一性原理》里有一个概念叫“系统边界”。每个人的认知系统都是一个封闭的圆，圆内的逻辑自洽，但圆外就是盲区。我们看不到对方的边界，只看到对方在自己的圆里说“错话”。但如果我们能跳出自己的圆，去问一句：“你的隐含假设是什么？”我们就能从“系统内争吵”升级为“系统间对话”。这一步，是认知的升维。
+
+说了这么多，我们来看一个更复杂的职场案例。产品经理和运营总监在方案评审会上吵了起来。产品经理说：“这个功能必须上线，因为用户调研显示，70%的用户都想要这个功能。”运营总监说：“这个功能绝对不能上，因为上线会导致系统不稳定，影响客户的正常使用。”两个人都有数据、都有逻辑，吵得面红耳赤。但如果我们帮他们拆解一下隐含假设：产品经理的假设是“用户需求是产品决策的第一标准”；运营总监的假设是“用户体验的稳定性是第一标准”。这两个假设本身都没有错，它们只是不同的价值排序。但如果不把这两个假设摆到桌面上讨论，他们就会一直争论“上不上线”这个结论，永远吵不出结果。
+
+如果我们能先说出“我的隐含假设是XXX”，而不是直接抛出“我的结论是XXX”，争论会如何变化？产品经理可以说：“我的假设是，用户需求优先。所以我认为应该尽快上线。”运营总监可以说：“我的假设是，稳定性优先。所以我认为应该推迟。”当双方把各自的“公理”亮出来，争吵的目标就从“证明对方错了”变成“讨论哪个公理在当前场景下更适用”。甚至，他们可以共同创造一个新的公理，比如“我们的共同目标是提升用户留存率”。然后，用这个新的公理来重新推导方案：上线这个功能，是否真的能提升留存？如果会，那么稳定性风险如何化解？这样，争论就变成了协作。
+
+那具体该怎么做？我总结了三个步骤，我们可以叫它“吵架终止术”。第一步，暂停。当你感到愤怒，或者心里冒出“这还用说吗”的时候，立刻意识到：我和对方正在不同的系统里。告诉自己，现在不是比谁对，而是找对方的假设。第二步，问路。用一句万能话术问对方：“我想确认一下，我们俩的前提假设是不是不一样？你认为这件事最重要的前提是什么？”这句话的目的不是说服对方，而是把对方的“公理”请到桌面上。第三步，对齐。不是互相说服，而是共同创造一个更大的系统。可以问：“我们的共同目标是什么？”把这个共同目标作为新的公理，再重新推导方案。记住，这不是认输，而是升维。
+
+最后，我想分享一个终极启示。我们为什么总在无效争吵？因为我们把“证明自己是对的”看得比“理解对方系统”更重要。我们太害怕自己错了，所以拼命维护自己的逻辑，哪怕那个逻辑的地基已经松动了。但《第一性原理》告诉我们，真正的成长，不是在自己的系统里持续“正确”，而是有能力跳出系统，看到系统的边界，甚至主动更换自己的隐含假设。当你不再执着于证明自己是对的，你才真正开始看到什么是真的。
+
+下次再跟人吵架的时候，不妨停一下，问一句：“你的假设是什么？”你会发现，很多争论根本不需要吵，只需要被理解。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('第一性原理', 102)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>第一性原理</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>8-12分钟</dd>
+            <dt>字数</dt><dd>2610</dd>
+          </dl>
+        </div>
+        
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">开场白</div>
+          <div class="kp-side-card-mode">模式 痛点引入</div>
+          <p class="kp-side-card-text">你明明有理有据，对方却像听不懂人话，气得你肝疼？别急，这不是你嘴笨，而是你俩在‘不同系统’里讲着各自‘正确’的话。</p>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">40</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批切分：2 片，总计 40 个单元</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你明明有理有据，对方却像听不懂人话，气得你肝疼？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">别急，这不是你嘴笨，而是你俩在‘不同系统’里讲着各自‘正确’的话。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">其实，不是对方故意跟你抬杠，也不是你表达能力有问题。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">真正的原因是：你们俩各自在一个完全正确的逻辑系统里，推导出了完全正确的结论。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但这两个系统的“地基”——也就是你们各自的隐含假设——完全不同。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果不拆掉这个地基，吵一辈子也是白吵。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">《第一性原理》这本书想帮我们看懂的，正是这个真相：我们99%的争吵，本质上是两个不同系统的冲突。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而想要终结这种无效争论，唯一的方法不是去证明谁对谁错，而是跳出系统，去识别对方那句“这还用说吗”背后藏着的假设。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们先来看一个经典的争吵场景。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">周末，丈夫说：“我们去露营吧，呼吸新鲜空气，多好。”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">妻子说：“你疯了吧？周末我要准备下周的汇报，哪有时间露营？”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">然后，战争就开始了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">丈夫觉得妻子“太卷、不懂生活”，妻子觉得丈夫“太闲、不负责任”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">两个人都在说对方“不讲道理”，但如果我们把他们的逻辑拆开看，你会发现：两个人都对。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">9s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">丈夫的推理链条是——周末应该放松和探索新鲜事物，否则就是浪费时间；露营能探索新鲜事物，所以应该去露营。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">妻子的推理链条是——周末应该恢复体力、准备下周的工作，否则就是不负责任；露营会占用准备时间，所以不应该去。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你看，每个环节都是合理的，结论却完全相反。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">问题出在哪里？出在最底层的那个“应该”——也就是他们的隐含假设。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">丈夫假设“周末的意义是探索”，妻子假设“周末的意义是准备”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这两个假设本身没有对错，它们只是不同的人生价值观。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但因为我们通常只盯着对方的结论，而不是对方的假设，争吵就永远停留在“你不对”的层面。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个现象，在数学里有一个非常形象的类比，叫作“公理化系统”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">什么是公理化系统？简单说，就是从一个最底层的公理出发，推导出所有定理。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">比如欧几里得几何，它的公理之一是“两点之间直线最短”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">基于这个公理，我们推导出了勾股定理、三角形内角和等于180度。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这些定理，在欧几里得几何里是绝对正确的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但是，如果我们换一个系统——比如非欧几何——它的公理变成了“经过直线外一点，可以画无数条平行线”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那么，在这个系统里，三角形的内角和就不再是180度了，而是小于180度。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你看，同样一个问题，在两个不同的公理系统里，会得到两个完全“正确”却互相矛盾的答案。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">欧几里得几何没错，非欧几何也没错，它们只是在各自的地基上盖出了不同的房子。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">那具体该怎么做？我总结了三个步骤，我们可以叫它“吵架终止术”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#32</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第一步，暂停。当你感到愤怒，或者心里冒出“这还用说吗”的时候，立刻意识到：我和对方正在不同的系统里。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#33</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">告诉自己，现在不是比谁对，而是找对方的假设。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#34</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第二步，问路。用一句万能话术问对方：“我想确认一下，我们俩的前提假设是不是不一样？你认为这件事最重要的前提是什么？”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#35</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这句话的目的不是说服对方，而是把对方的“公理”请到桌面上。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#36</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">第三步，对齐。不是互相说服，而是共同创造一个更大的系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#37</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">可以问：“我们的共同目标是什么？”把这个共同目标作为新的公理，再重新推导方案。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#38</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">记住，这不是认输，而是升维。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#39</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">最后，我想分享一个终极启示。我们为什么总在无效争吵？因为我们把“证明自己是对的”看得比“理解对方系统”更重要。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#40</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们太害怕自己错了，所以拼命维护自己的逻辑，哪怕那个逻辑的地基已经松动了。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">40</span>
+        <span class="kp-summary-label">画面点</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批提取：4 批，每批 10 个单元，总计 40 个画面点</p>
+      
+    </div>
+    <div class="kp-beat-list">
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 1</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>描述沟通中因对方不理解而产生的愤怒情绪</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>开篇需要制造情绪共鸣，吸引观众注意力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现一个人因沟通不畅而愤怒的场景</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你明明有理有据，对方却像听不懂人话，气得你肝疼？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 2</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>指出沟通问题的本质是系统差异而非表达能力</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要从情绪转向理性分析，引入核心概念</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用视觉隐喻表现两个独立系统，各自有内部逻辑</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">别急，这不是你嘴笨，而是你俩在‘不同系统’里讲着各自‘正确’的话。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 3</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>否定常见误解，为后续解释铺垫</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要否定错误认知，引导观众接受新观点</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用人物摇头或叉号等视觉元素否定错误认知</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">其实，不是对方故意跟你抬杠，也不是你表达能力有问题。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 4</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>揭示核心原因：双方都在各自正确的系统中推导</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要清晰展示两个独立逻辑系统的并行推导过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用两个并行的流程图或思维导图展示各自推导</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">真正的原因是：你们俩各自在一个完全正确的逻辑系统里，推导出了完全正确的结论。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 5</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>指出系统差异的根本在于隐含假设不同</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要视觉化抽象概念“隐含假设”作为地基</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用建筑地基的比喻，展示两个系统不同的底层假设</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但这两个系统的“地基”——也就是你们各自的隐含假设——完全不同。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 6</span>
+          <span class="kp-beat-type kp-badge-type-warning">warning</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>强调不解决根本问题则争吵无效</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强化警示效果，突出不行动的后果</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用警示性画面表现无效争吵的循环</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">如果不拆掉这个地基，吵一辈子也是白吵。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 7</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入书籍核心观点：争吵本质是系统冲突</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要引出书籍作为权威来源，总结前文</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示书籍封面，同时用动画表现系统冲突的普遍性</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">《第一性原理》这本书想帮我们看懂的，正是这个真相：我们99%的争吵，本质上是两个不同系统的冲突。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 8</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>提出解决方案：跳出系统识别隐含假设</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要从问题转向解决方案，展示具体方法</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用人物跳出系统框架的动画，并高亮“这还用说吗”背后的假设</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">而想要终结这种无效争论，唯一的方法不是去证明谁对谁错，而是跳出系统，去识别对方那句“这还用说吗”背后藏着的假设。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 9</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>过渡句，引出具体案例</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要过渡到案例展示</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用场景切换或字幕提示进入案例</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们先来看一个经典的争吵场景。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 10</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示争吵案例中丈夫的提议</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体场景来演示理论</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用生活场景展示丈夫提议露营的画面</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">周末，丈夫说：“我们去露营吧，呼吸新鲜空气，多好。”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 11</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">conflict</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>妻子拒绝露营，强调工作优先</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>对话场景切换，需要表现妻子的反应和情绪</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展现妻子在书桌前忙碌，转头对丈夫说话，表情惊讶且不满</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">妻子说：“你疯了吧？周末我要准备下周的汇报，哪有时间露营？”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 12</span>
+          <span class="kp-beat-type kp-badge-type-transition">transition</span>
+          <span class="kp-beat-stage">conflict</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>冲突升级为争吵</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>过渡句，需要视觉上表现冲突爆发</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面从两人对峙的静态转为动态争吵，背景变暗或出现爆炸符号，强调“战争”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">然后，战争就开始了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 13</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">conflict</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>双方互相指责，立场对立</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化双方的心理活动</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>分屏画面：左边丈夫头顶气泡写“太卷”，右边妻子头顶气泡写“太闲”，中间有裂痕</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">丈夫觉得妻子“太卷、不懂生活”，妻子觉得丈夫“太闲、不负责任”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 14</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">analysis</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>双方逻辑都正确，需要拆解分析</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>引入分析视角，需要视觉上展示“拆开逻辑”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面出现一个放大镜，将两人的对话气泡拆解成逻辑链条，显示“都对”的标签</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">两个人都在说对方“不讲道理”，但如果我们把他们的逻辑拆开看，你会发现：两个人都对。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 15</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">analysis</span>
+          <span class="kp-beat-time">9s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示丈夫的完整推理链条</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化逻辑推理过程</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>白板或思维导图：从“周末应该放松”→“露营探索新鲜事物”→“应该去露营”，箭头连接，用蓝色标注</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">丈夫的推理链条是——周末应该放松和探索新鲜事物，否则就是浪费时间；露营能探索新鲜事物，所以应该去露营。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 16</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">analysis</span>
+          <span class="kp-beat-time">10s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>展示妻子的完整推理链条</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化妻子的逻辑，与丈夫形成对比</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>白板或思维导图：从“周末应该准备”→“露营占用时间”→“不应该去”，箭头连接，用红色标注，与蓝色链条并列</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">妻子的推理链条是——周末应该恢复体力、准备下周的工作，否则就是不负责任；露营会占用准备时间，所以不应该去。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 17</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">analysis</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>逻辑合理但结论矛盾，引发思考</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强调矛盾点，引导观众思考</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>两条逻辑链条并排，每个环节打勾，但最终结论处出现红色叉号对比，突出矛盾</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你看，每个环节都是合理的，结论却完全相反。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 18</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">insight</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>指出问题根源在于隐含假设</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要揭示核心概念，引导观众聚焦</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>画面放大两条链条的起点，用高亮圈出“应该”二字，旁边出现标签“隐含假设”，箭头指向</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">问题出在哪里？出在最底层的那个“应该”——也就是他们的隐含假设。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 19</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">insight</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>具体展示双方的隐含假设</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要清晰对比两个假设</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>两个并列的卡片或气泡：左边写“周末=探索”，右边写“周末=准备”，中间用“vs”连接</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">丈夫假设“周末的意义是探索”，妻子假设“周末的意义是准备”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 20</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">insight</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>总结：假设无对错，只是价值观差异</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要收束观点，传递核心信息</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>两个假设卡片逐渐融合，变成一颗心形或握手图标，下方文字“价值观不同，没有对错”</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这两个假设本身没有对错，它们只是不同的人生价值观。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 21</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>争吵停留在结论层面，忽略假设。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要从口播过渡到视觉化解释，展示争吵的根源。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现两个人争吵，画面聚焦于他们头顶的结论气泡，而忽略脚下的假设基石。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但因为我们通常只盯着对方的结论，而不是对方的假设，争吵就永远停留在“你不对”的层面。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 22</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入数学类比：公理化系统。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从生活场景切换到数学概念，需要新画面建立类比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个数学符号（如公理符号）与争吵场景的视觉连接，暗示类比关系。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这个现象，在数学里有一个非常形象的类比，叫作“公理化系统”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 23</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>解释公理化系统的定义：从公理推导定理。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要可视化抽象概念，帮助理解。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用动画展示一个金字塔结构，底部是“公理”，向上箭头指向“定理”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">什么是公理化系统？简单说，就是从一个最底层的公理出发，推导出所有定理。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 24</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">5s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>举例欧几里得几何的公理。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体例子来支撑抽象概念。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两点之间一条直线，标注“两点之间直线最短”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">比如欧几里得几何，它的公理之一是“两点之间直线最短”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 25</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>从公理推导出具体定理。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示推导结果，强化逻辑链条。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个直角三角形，标注勾股定理公式和“内角和=180°”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">基于这个公理，我们推导出了勾股定理、三角形内角和等于180度。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 26</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>强调定理在欧几里得几何中的正确性。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强调系统内部的正确性，为后续对比铺垫。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>在三角形周围出现一个绿色对勾，背景显示“欧几里得几何”标签。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这些定理，在欧几里得几何里是绝对正确的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 27</span>
+          <span class="kp-beat-type kp-badge-type-case">case</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入非欧几何及其不同公理。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要切换系统，展示对比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一条直线和外部一点，画出多条平行线，标注“非欧几何”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">但是，如果我们换一个系统——比如非欧几何——它的公理变成了“经过直线外一点，可以画无数条平行线”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 28</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">7s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>非欧几何中三角形内角和小于180度。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要展示不同公理导致的不同结果。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个曲面上的三角形，内角标注小于180°，与之前欧几里得三角形对比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那么，在这个系统里，三角形的内角和就不再是180度了，而是小于180度。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 29</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>总结：不同系统下答案矛盾但都正确。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要视觉化对比，强化核心观点。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>左右分屏，左边欧几里得三角形（内角和180°），右边非欧三角形（内角和<180°），中间一个问号。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">你看，同样一个问题，在两个不同的公理系统里，会得到两个完全“正确”却互相矛盾的答案。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 30</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">hook</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>两个系统都没错，只是地基不同。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要收束类比，用视觉隐喻强化记忆。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两栋不同风格的房子，各自建在不同的地基上，地基分别标注“欧几里得公理”和“非欧公理”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">欧几里得几何没错，非欧几何也没错，它们只是在各自的地基上盖出了不同的房子。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 31</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>引入三个步骤的方法论，名为“吵架终止术”。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>从问题抛出过渡到方法介绍，需要新画面来吸引注意力。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示“吵架终止术”的标题或三个步骤的概览。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">那具体该怎么做？我总结了三个步骤，我们可以叫它“吵架终止术”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 32</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>第一步是暂停，意识到双方处于不同系统。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>进入具体步骤，需要新画面来展示第一步。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>表现一个人暂停动作，并展示两个不同颜色的系统或圆圈代表不同假设。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第一步，暂停。当你感到愤怒，或者心里冒出“这还用说吗”的时候，立刻意识到：我和对方正在不同的系统里。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 33</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>核心是寻找对方的假设，而非争对错。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强调心态转变，从争对错转向找假设。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用文字或图标展示“找假设”与“比谁对”的对比。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">告诉自己，现在不是比谁对，而是找对方的假设。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 34</span>
+          <span class="kp-beat-type kp-badge-type-scene">scene</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>第二步是问路，使用万能话术确认前提假设。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>进入第二步，需要新画面展示具体话术。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个人问话的场景，并显示话术文字气泡。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第二步，问路。用一句万能话术问对方：“我想确认一下，我们俩的前提假设是不是不一样？你认为这件事最重要的前提是什么？”</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 35</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>话术目的是将对方的公理公开化，而非说服。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要解释话术的真正目的，避免误解。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用动画展示一个“公理”从对方脑中移到桌面上。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">这句话的目的不是说服对方，而是把对方的“公理”请到桌面上。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 36</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">4s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>第三步是对齐，共同创造更大系统。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>进入第三步，需要新画面展示对齐的概念。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示两个小系统合并成一个更大的系统。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">第三步，对齐。不是互相说服，而是共同创造一个更大的系统。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 37</span>
+          <span class="kp-beat-type kp-badge-type-framework">framework</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>通过问共同目标，将其作为新公理推导方案。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要具体展示如何对齐，包括话术和推导过程。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示对话气泡“我们的共同目标是什么？”，然后箭头指向一个共同目标图标，再推导出方案。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">可以问：“我们的共同目标是什么？”把这个共同目标作为新的公理，再重新推导方案。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 38</span>
+          <span class="kp-beat-type kp-badge-type-concept">concept</span>
+          <span class="kp-beat-stage">method</span>
+          <span class="kp-beat-time">3s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>强调对齐不是认输，而是升维。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>需要强化正面认知，避免误解。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>用文字对比“认输”和“升维”，并配上升维的视觉隐喻（如从二维到三维）。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">记住，这不是认输，而是升维。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 39</span>
+          <span class="kp-beat-type kp-badge-type-summary">summary</span>
+          <span class="kp-beat-stage">summary</span>
+          <span class="kp-beat-time">8s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>揭示无效争吵的根本原因：重证明对错，轻理解系统。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>进入总结启示阶段，需要新画面来点明核心问题。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示天平，一边是“证明自己是对的”，一边是“理解对方系统”，前者更重。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">最后，我想分享一个终极启示。我们为什么总在无效争吵？因为我们把“证明自己是对的”看得比“理解对方系统”更重要。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-beat-card">
+        <summary class="kp-beat-summary">
+          <span class="kp-beat-id">Beat 40</span>
+          <span class="kp-beat-type kp-badge-type-metaphor">metaphor</span>
+          <span class="kp-beat-stage">summary</span>
+          <span class="kp-beat-time">6s</span>
+          <span class="kp-beat-arrow">▸</span>
+        </summary>
+        <div class="kp-beat-body">
+          <div class="kp-beat-field"><span class="kp-beat-field-label">核心信息</span><span>害怕错误导致拼命维护松动逻辑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉理由</span><span>进一步深化原因，需要新画面来表现恐惧和逻辑的脆弱。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">视觉目标</span><span>展示一个人站在摇摇欲坠的逻辑地基上，但仍拼命支撑。</span></div>
+          <div class="kp-beat-field"><span class="kp-beat-field-label">覆盖文本</span><span class="kp-beat-text">我们太害怕自己错了，所以拼命维护自己的逻辑，哪怕那个逻辑的地基已经松动了。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">40</span>
+        <span class="kp-summary-label">图片提示词</span>
+      </div>
+      
+      <span class="kp-summary-style-badge">现代知识类视频插画风，干净简洁，柔和光影，信息表达清晰，人物一律为外国人形象（欧美面孔），适合抖音读书类视频。横屏 16…</span>
+      
+      <div class="kp-summary-stats">
+        
+        <span class="kp-status-pill kp-pill-generated">generated: 40</span>
+        
+      </div>
+    </div>
+    <div class="kp-prompt-grid">
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 1</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>描述沟通中因对方不理解而产生的愤怒情绪</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现一个人因沟通不畅而愤怒的场景</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位金发欧美男子站在办公桌前，双手摊开，表情愤怒而无奈，眉头紧锁，嘴微张。他面前桌上有张纸写满字，纸上有一个显眼的红色大叉。对面的空椅子象征对方。背景是简约的办公室，暖米色墙壁。画面中有中文：'有理有据'写在纸上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 2</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>指出沟通问题的本质是系统差异而非表达能力</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用视觉隐喻表现两个独立系统，各自有内部逻辑</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，两个独立的玻璃罩子并排放在深棕色桌面上，每个罩子里各坐着一个卡通人。左边罩子里的人（红发）面前放着一块写有'系统A'的牌子，右边罩子里的人（棕发）面前有'系统B'的牌子。两人都摊手，表情困惑，隔着玻璃罩互相看不见对方。背景是奶油色墙壁，画面干净。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 3</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>否定常见误解，为后续解释铺垫</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用人物摇头或叉号等视觉元素否定错误认知</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧一个人物连连摆手摇头，表情无奈，旁边飘着一个红色叉号。右侧一个人物双手一摊耸肩，表情困惑。两人之间有一道分隔线。整体色调为暖米色与深棕，黑色描边清晰。画面中有中文：'不是'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 4</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>揭示核心原因：双方都在各自正确的系统中推导</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用两个并行的流程图或思维导图展示各自推导</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右各有一个逻辑流程图。左侧：从'前提A'箭头指向'结论A'，下方标注'正确'。右侧：从'前提B'箭头指向'结论B'，下方也标注'正确'。两个流程图中间用一道虚线分隔。画面中有中文：'正确'。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 5</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>指出系统差异的根本在于隐含假设不同</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用建筑地基的比喻，展示两个系统不同的底层假设</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右各有一座房子的地基剖面图。左边地基上写着中文'假设A'，地基是方形石块堆砌，稳固扎实。右边地基上写着'假设B'，地基是三角形尖底，结构不同。两座地基之间有一条明显的裂缝。背景是淡米色，无杂物。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、渐变、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 6</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">warning</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>强调不解决根本问题则争吵无效</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用警示性画面表现无效争吵的循环</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一座裂开的房子地基，地基上压着一个大大的红色警示标志，上面写着中文'拆'。房子两侧各站一个人，面对面双手叉腰、表情愤怒，嘴巴张开像在争吵。两人中间有多个小对话气泡但都是破碎的。背景是阴天灰蓝色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、渐变、真实人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 7</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入书籍核心观点：争吵本质是系统冲突</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示书籍封面，同时用动画表现系统冲突的普遍性</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧放一本打开的《第一性原理》书籍，书页中伸出一双手。右侧是一对欧美男女面对面争吵，两人之间有一条闪电状的红色裂痕，裂痕两侧分别是蓝色和橙色的齿轮系统在转动。画面中有中文大字：'系统冲突'。暖米色背景，深棕描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 8</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>提出解决方案：跳出系统识别隐含假设</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用人物跳出系统框架的动画，并高亮“这还用说吗”背后的假设</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个欧美男人从一个大方框（代表系统）中跳出来，方框内散落着破碎的对话气泡。他手里拿着一个放大镜，放大镜对准地上一个写着'这还用说吗'的对话气泡，气泡下方露出一块基石，基石上写着'假设'。背景是柔和的灰绿色，人物有粗黑描边。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 9</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>过渡句，引出具体案例</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用场景切换或字幕提示进入案例</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一个老式电影场记板（clapperboard），板子打开状态，上面用中文写着“争吵案例”。背景是模糊的客厅轮廓，暖黄色灯光。场记板放在一张木质茶几上，旁边有一个空咖啡杯。画面简洁，聚焦于场记板。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 10</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>展示争吵案例中丈夫的提议</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用生活场景展示丈夫提议露营的画面</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，客厅沙发上，一位红棕色头发的欧美男士（约30岁，穿深蓝色格纹衬衫）身体前倾，双手张开，表情兴奋地说话。他面前茶几上放着一顶折叠好的帐篷和一张露营地图。背景是落地窗，窗外是阳光明媚的白天。画面中有中文标签贴在帐篷上：“露营”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 11</span>
+          <span class="kp-prompt-stage">conflict</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>妻子拒绝露营，强调工作优先</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展现妻子在书桌前忙碌，转头对丈夫说话，表情惊讶且不满</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一位棕发欧美女性坐在堆满文件的书桌前，转头看向画面左侧，表情惊讶且略带不满，手里拿着一支笔，电脑屏幕亮着。她身后墙上挂着一个日历，日期圈在周末。右侧半身入镜一位金发男性，表情尴尬，手里拿着一个帐篷包。画面中有中文标签：'工作'贴在文件堆上。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、纯黑背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 12</span>
+          <span class="kp-prompt-stage">conflict</span>
+          <span class="kp-prompt-type">transition</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>冲突升级为争吵</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面从两人对峙的静态转为动态争吵，背景变暗或出现爆炸符号，强调“战争”</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，特写镜头，画面中央是两团碰撞的对话气泡碎片和火星，背景是暗红与深棕的爆炸状色块。气泡碎片上写着中文大字：'你疯了吧！'和'工作！'。画面边缘能看到两人模糊的剪影手臂指向对方，充满张力。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、真实人物、纯黑背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 13</span>
+          <span class="kp-prompt-stage">conflict</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>双方互相指责，立场对立</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>分屏画面：左边丈夫头顶气泡写“太卷”，右边妻子头顶气泡写“太闲”，中间有裂痕</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央有一道竖直的黑色裂痕将画面分成左右两半。左边是一位棕发欧美男性，双手交叉胸前，表情不满，头顶对话气泡内写着中文'太卷'。右边是一位红发欧美女性，手指向左边，表情生气，头顶对话气泡内写着中文'太闲'。背景是暗红色，裂痕边缘有破碎感。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、纯黑纯白背景、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 14</span>
+          <span class="kp-prompt-stage">analysis</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>双方逻辑都正确，需要拆解分析</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面出现一个放大镜，将两人的对话气泡拆解成逻辑链条，显示“都对”的标签</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面中央是一把巨大的放大镜，镜片下有两个被拆解的对话气泡。左边气泡碎片排列成一条逻辑箭头，指向一个写有中文'都对'的标签。右边气泡碎片也排列成一条逻辑箭头，同样指向同一个'都对'标签。背景是暖米色，放大镜手柄为深棕色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、纯黑纯白背景、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 15</span>
+          <span class="kp-prompt-stage">analysis</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>展示丈夫的完整推理链条</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>白板或思维导图：从“周末应该放松”→“露营探索新鲜事物”→“应该去露营”，箭头连接，用蓝色标注</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色头发的欧美男子站在白板前，白板上用蓝色马克笔写着一个三段式推理链条：第一行写'周末=放松探索'，箭头指向第二行'露营=探索新事物'，再箭头指向第三行'应该去露营'。男子露出发觉的表情，手指着白板。画面中有中文：'放松探索'、'露营'、'应该去'。背景是简洁的家庭书房，暖色调光线。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 16</span>
+          <span class="kp-prompt-stage">analysis</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>展示妻子的完整推理链条</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>白板或思维导图：从“周末应该准备”→“露营占用时间”→“不应该去”，箭头连接，用红色标注，与蓝色链条并列</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个红棕色头发的欧美女性站在同一块白板前，白板上用红色马克笔写着一个三段式推理链条：第一行写'周末=恢复准备'，箭头指向第二行'露营=占用时间'，再箭头指向第三行'不应该去'。旁边隐约可见丈夫的蓝色链条（画面左侧）。女子双手交叉在胸前，表情坚定。画面中有中文：'恢复准备'、'占用时间'、'不应该去'。背景是同一间家庭书房。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 17</span>
+          <span class="kp-prompt-stage">analysis</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>逻辑合理但结论矛盾，引发思考</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>两条逻辑链条并排，每个环节打勾，但最终结论处出现红色叉号对比，突出矛盾</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右并排两条逻辑链条，每条由3个灰色方块用箭头连接组成，每个方块上有一个绿色对勾。左侧链条末端方块内写着中文'结论A'，右侧链条末端方块内写着中文'结论B'，两个结论方块上各有一个大大的红色叉号。两个结论方块之间有一个大大的红色问号。背景是浅米色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 18</span>
+          <span class="kp-prompt-stage">insight</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>指出问题根源在于隐含假设</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>画面放大两条链条的起点，用高亮圈出“应该”二字，旁边出现标签“隐含假设”，箭头指向</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面聚焦于一条逻辑链条的起点，一个深棕色方块上写着中文'应该'二字，字体粗大醒目。一个发光的黄色圆圈将'应该'二字高亮圈出。旁边有一个白色标签牌，上面写着中文'隐含假设'，一个细箭头从标签牌指向那个被圈出的方块。背景是暖米色，简洁干净。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 19</span>
+          <span class="kp-prompt-stage">insight</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>具体展示双方的隐含假设</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>两个并列的卡片或气泡：左边写“周末=探索”，右边写“周末=准备”，中间用“vs”连接</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，两张复古风格的卡片并排贴在深色木纹背景上。左侧卡片上写着中文'周末=探索'，卡片旁画着一个指南针和一条向远方延伸的路。右侧卡片上写着中文'周末=准备'，卡片旁画着一个日历和一支笔。两张卡片之间有一个用粗体写的中文'VS'。整体色调为暖米色和深棕色，粗黑轮廓线。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、复杂背景、人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 20</span>
+          <span class="kp-prompt-stage">insight</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>总结：假设无对错，只是价值观差异</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>两个假设卡片逐渐融合，变成一颗心形或握手图标，下方文字“价值观不同，没有对错”</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，两张来自上一画面的复古卡片从左右两侧向中间移动，即将碰在一起。在它们即将接触的中心，一个半透明的心形轮廓正在形成。画面下方有一行粗体中文'价值观不同，没有对错'，写在一条深棕色的横幅上。整体暖色调，背景是柔和的奶油色，有轻微纸张纹理。粗黑轮廓线，无人物。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、复杂背景、人物</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 21</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>争吵停留在结论层面，忽略假设。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现两个人争吵，画面聚焦于他们头顶的结论气泡，而忽略脚下的假设基石。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，两个欧美男女面对面争吵，表情激动，手指着对方。两人头顶各有一个对话气泡，气泡内写着中文大字“结论”。两人脚下各有一块方形基石，基石上写着中文小字“假设”，但基石被阴影覆盖、几乎看不见。背景是简洁的灰色室内，暖色灯光。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 22</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入数学类比：公理化系统。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个数学符号（如公理符号）与争吵场景的视觉连接，暗示类比关系。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧是上一个争吵场景的缩小剪影（两人争吵），画面右侧是一块黑板，黑板上用白色粉笔写着中文大字“公理系统”，旁边画着几个几何符号（三角形、圆形、等号）。一条虚线箭头从左侧争吵场景指向右侧黑板，表示类比关系。背景是暖米色墙壁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 23</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>解释公理化系统的定义：从公理推导定理。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用金字塔结构展示从公理到定理的推导关系。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一座三角形金字塔，底部大石块上写着中文‘公理’，向上逐层缩小，顶部石块写着中文‘定理’，左侧有一个向上的箭头从底部指向顶部。背景是暖米色，画面简洁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 24</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>举例欧几里得几何的公理。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示两点之间一条直线，标注公理内容。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一张白色纸面上有两个黑色圆点，中间用一条直线连接，旁边用粗体中文标注‘两点之间直线最短’。背景是木色桌面，画面干净，只有纸和文字。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 25</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>从公理推导出具体定理。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个直角三角形，标注勾股定理公式和“内角和=180°”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，黑板上画着一个大直角三角形，直角标着红色小方块。斜边上写着中文'c²=a²+b²'，三角形下方写着中文'内角和=180°'。旁边有一只手拿着粉笔指向公式，背景是暖米色教室。画面中有中文：c²=a²+b²、内角和=180°。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 26</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>强调定理在欧几里得几何中的正确性。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>在三角形周围出现一个绿色对勾，背景显示“欧几里得几何”标签。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个干净的直角三角形悬浮在画面中央，周围环绕一个绿色大对勾。背景是一面复古蓝色墙壁，上面贴着一张标签纸写着中文'欧几里得几何'。整体构图简洁有力，暖色调光线从左侧打来。画面中有中文：欧几里得几何。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 27</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">case</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入非欧几何及其不同公理。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一条直线和外部一点，画出多条平行线，标注“非欧几何”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色短发的欧美年轻男性站在黑板前，黑板中央画着一条水平直线，直线外有一个点，从该点画出三条不同角度的曲线穿过直线。黑板上方用中文大字写着“非欧几何”。人物穿着深蓝色衬衫，右手拿着粉笔指向黑板，表情自信。暖米色背景，画面简洁，有轻微纸张纹理。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色、人物面部模糊</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 28</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>非欧几何中三角形内角和小于180度。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个曲面上的三角形，内角标注小于180°，与之前欧几里得三角形对比。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比：左侧是一个平坦黑板上的欧几里得三角形，三个内角分别标注“60°”、“60°”、“60°”，总和写着“180°”；右侧是一个凹陷曲面上的三角形，三条边向内弯曲，三个内角分别标注“50°”、“50°”、“50°”，总和写着“150°”。曲面为灰绿色，平坦黑板为暖米色。画面下方有一张白色纸条，上面用中文写着“非欧几何”。无人物，纯几何示意。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和色、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 29</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>总结：不同系统下答案矛盾但都正确。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>左右分屏，左边欧几里得三角形（内角和180°），右边非欧三角形（内角和<180°），中间一个问号。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右分屏。左侧：一个标准的蓝色三角形，三条边平直，内角标注'180°'，下方写着'欧几里得公理'。右侧：一个向内弯曲的红色三角形，内角标注'<180°'，下方写着'非欧公理'。中间一个巨大的黑色问号，背景是暖米色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、渐变、信息图</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 30</span>
+          <span class="kp-prompt-stage">hook</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>两个系统都没错，只是地基不同。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示两栋不同风格的房子，各自建在不同的地基上，地基分别标注“欧几里得公理”和“非欧公理”。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，两栋风格迥异的房子并排。左边是一栋古典的三角顶砖房，地基是一块方正的石板，上面写着'欧几里得公理'。右边是一栋圆顶的现代玻璃屋，地基是一块弯曲的弧形石板，上面写着'非欧公理'。两栋房子都完好无损，背景是浅蓝色天空。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、高饱和度、渐变、信息图</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 31</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>引入三个步骤的方法论，名为“吵架终止术”。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示“吵架终止术”的标题或三个步骤的概览。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个打开的笔记本，纸页上写着中文标题‘吵架终止术’，下方有三个带编号的空白方框（1、2、3），旁边放着一支铅笔和一块橡皮。暖米色桌面背景，深棕色线条，画面有纸张质感。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 32</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>第一步是暂停，意识到双方处于不同系统。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>表现一个人暂停动作，并展示两个不同颜色的系统或圆圈代表不同假设。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人举起右手做出‘暂停’手势，表情专注。他面前漂浮着两个半透明的圆圈，一个蓝色一个红色，圆圈内分别有简笔画的房子和齿轮，代表不同的认知系统。背景是抽象灰色空间，画面中有中文标签‘不同系统’。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 33</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>核心是寻找对方的假设，而非争对错。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用文字或图标展示“找假设”与“比谁对”的对比。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比。左侧，两个红发外国人面对面，手指指向对方，表情愤怒，两人中间有一个红色叉号。右侧，一个金发外国人平和地微笑，手里举着一块木质小牌子，牌子上用粗黑体写着中文“找假设”。背景是简洁的浅米色墙面。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、复杂背景、高饱和度</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 34</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">scene</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>第二步是问路，使用万能话术确认前提假设。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个人问话的场景，并显示话术文字气泡。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个棕色头发的欧美男子坐在办公桌前，身体微微前倾，摊开双手，表情真诚地提问。他的面前有一个大大的白色对话气泡，气泡内用简洁粗体写着中文“前提假设不一样？”。背景是模糊的办公室书架，有暖色灯光。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、文字过多、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 35</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>话术目的是将对方的公理公开化，而非说服。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用动画展示一个“公理”从对方脑中移到桌面上。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个戴眼镜的外国男人（红棕色头发）坐在办公桌后，他的大脑位置有一颗发光的金色立方体飘出，立方体表面写着中文“公理”。金色立方体缓缓落到桌面上，桌面上有一块写着“公理”的小牌子。男人表情惊讶但放松，双手摊开。背景是暖色调的简约书房，光线从窗户照入。画面中有中文：“公理”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、纯黑纯白背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 36</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>第三步是对齐，共同创造更大系统。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示两个小系统合并成一个更大的系统。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧是一个蓝色齿轮系统（标有中文“A系统”），右侧是一个红色齿轮系统（标有中文“B系统”），中间有一双大手（欧美肤色）正在将两个齿轮系统拼合在一起，形成一个更大的金色齿轮系统（标有中文“大系统”）。背景是简单的灰色空间，光线柔和。齿轮上有清晰的黑色描边。画面中有中文：“A系统”、“B系统”、“大系统”。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、复杂背景、机械细节过多</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 37</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">framework</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>通过问共同目标，将其作为新公理推导方案。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示对话气泡“我们的共同目标是什么？”，然后箭头指向一个共同目标图标，再推导出方案。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左侧有一个大大的对话气泡，里面写着中文：“我们的共同目标是什么？”气泡右侧伸出一个箭头，指向中央一个发光的金色奖杯图标，奖杯上贴着标签“共同目标”。从奖杯又分出三个箭头，指向右侧三块写有“方案A”、“方案B”、“方案C”的木牌。背景是淡米色，简洁清晰。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 38</span>
+          <span class="kp-prompt-stage">method</span>
+          <span class="kp-prompt-type">concept</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>强调对齐不是认输，而是升维。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>用文字对比“认输”和“升维”，并配上升维的视觉隐喻（如从二维到三维）。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，画面左右对比。左侧：一张写有“认输”的红色纸片被撕碎，旁边有一个低头沮丧的小人。右侧：一个写有“升维”的金色标签贴在一个从平面纸片向上跃起、变为立体方块（3D立方体）的物体上，旁边有一个小人抬头仰望、面露惊喜。背景为暖米色。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 39</span>
+          <span class="kp-prompt-stage">summary</span>
+          <span class="kp-prompt-type">summary</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>揭示无效争吵的根本原因：重证明对错，轻理解系统。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示天平，一边是“证明自己是对的”，一边是“理解对方系统”，前者更重。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个复古木制天平，左边托盘上放着一个巨大的金色奖杯，旁边中文标签写着“证明自己是对的”，右边托盘上放着一本打开的书和一个小地球仪，旁边中文标签写着“理解对方系统”。左边托盘明显下沉，右边高高翘起。背景是浅米色墙面，有一扇窗户透进柔和光线。整体构图简洁，天平居中。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+      <div class="kp-prompt-card">
+        <div class="kp-prompt-top">
+          <span class="kp-prompt-beat-id">Beat 40</span>
+          <span class="kp-prompt-stage">summary</span>
+          <span class="kp-prompt-type">metaphor</span>
+          <span class="kp-prompt-status kp-st-generated">generated</span>
+        </div>
+        <div class="kp-prompt-core">
+          <span class="kp-prompt-core-label">core_message</span>
+          <p>害怕错误导致拼命维护松动逻辑。</p>
+        </div>
+        <div class="kp-prompt-visual">
+          <span class="kp-prompt-visual-label">visual_goal</span>
+          <p>展示一个人站在摇摇欲坠的逻辑地基上，但仍拼命支撑。</p>
+        </div>
+        <div class="kp-prompt-box">
+          <div class="kp-prompt-box-label">image_prompt</div>
+          <p>美式漫画风格，一个金发欧美男人站在一块裂成碎片的方形地基上，地基下方是深色虚空，裂缝中透出红色岩浆光。他双臂张开，拼命扶住一块刻着“我的逻辑”字样的摇摇欲坠的石板。他表情紧张，额头冒汗。背景是灰蓝色阴云，营造不稳定感。画面底部保持简洁。</p>
+        </div>
+        
+        <div class="kp-prompt-neg">
+          <span>negative:</span>
+          <p>写实照片、3D渲染、日文、韩文、荧光色、高饱和度、复杂背景</p>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">总时长</div>
+        <div style="font-size:1.5rem;font-weight:700;">7分42秒</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">画面节拍</div>
+        <div style="font-size:1.5rem;font-weight:700;">40</div>
+      </div>
+      <div class="kp-side-card" style="flex:1;min-width:120px;">
+        <div class="kp-side-card-title">音频段</div>
+        <div style="font-size:1.5rem;font-weight:700;">13</div>
+      </div>
+    </div>
+
+    
+    
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">画面时间线（40 个节拍）</div>
+    <div style="display:flex;flex-direction:column;gap:0.35rem;">
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#1</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分0秒
+             -> 0分8秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">描述沟通中因对方不理解而产生的愤怒情绪</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位金发欧美男子站在办公桌前，双手摊开，表情愤怒而无奈，眉头紧锁，嘴微张。他面前桌上有张纸写满字，纸上有一个显眼的红色大叉。对面的空椅子象征对方。背景是简约的办公室，暖米色墙壁。画面中有中文：'有理有据'写在纸上。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#2</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分8秒
+             -> 0分19秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">指出沟通问题的本质是系统差异而非表达能力</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，两个独立的玻璃罩子并排放在深棕色桌面上，每个罩子里各坐着一个卡通人。左边罩子里的人（红发）面前放着一块写有'系统A'的牌子，右边罩子里的人（棕发）面前有'系统B'的牌子。两人都摊手，表情困惑，隔着玻璃罩互相看不见对方。背景是奶
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#3</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分19秒
+             -> 0分28秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">否定常见误解，为后续解释铺垫</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧一个人物连连摆手摇头，表情无奈，旁边飘着一个红色叉号。右侧一个人物双手一摊耸肩，表情困惑。两人之间有一道分隔线。整体色调为暖米色与深棕，黑色描边清晰。画面中有中文：'不是'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#4</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分28秒
+             -> 0分41秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">揭示核心原因：双方都在各自正确的系统中推导</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右各有一个逻辑流程图。左侧：从'前提A'箭头指向'结论A'，下方标注'正确'。右侧：从'前提B'箭头指向'结论B'，下方也标注'正确'。两个流程图中间用一道虚线分隔。画面中有中文：'正确'。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#5</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分41秒
+             -> 0分52秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">指出系统差异的根本在于隐含假设不同</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右各有一座房子的地基剖面图。左边地基上写着中文'假设A'，地基是方形石块堆砌，稳固扎实。右边地基上写着'假设B'，地基是三角形尖底，结构不同。两座地基之间有一条明显的裂缝。背景是淡米色，无杂物。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#6</span>
+            <span class="kp-unit-tag">warning</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分52秒
+             -> 0分58秒
+            0分6秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">强调不解决根本问题则争吵无效</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一座裂开的房子地基，地基上压着一个大大的红色警示标志，上面写着中文'拆'。房子两侧各站一个人，面对面双手叉腰、表情愤怒，嘴巴张开像在争吵。两人中间有多个小对话气泡但都是破碎的。背景是阴天灰蓝色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#7</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            0分58秒
+             -> 1分15秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入书籍核心观点：争吵本质是系统冲突</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧放一本打开的《第一性原理》书籍，书页中伸出一双手。右侧是一对欧美男女面对面争吵，两人之间有一条闪电状的红色裂痕，裂痕两侧分别是蓝色和橙色的齿轮系统在转动。画面中有中文大字：'系统冲突'。暖米色背景，深棕描边。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#8</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分15秒
+             -> 1分34秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">提出解决方案：跳出系统识别隐含假设</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个欧美男人从一个大方框（代表系统）中跳出来，方框内散落着破碎的对话气泡。他手里拿着一个放大镜，放大镜对准地上一个写着'这还用说吗'的对话气泡，气泡下方露出一块基石，基石上写着'假设'。背景是柔和的灰绿色，人物有粗黑描边。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#9</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分34秒
+             -> 1分39秒
+            0分5秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">过渡句，引出具体案例</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一个老式电影场记板（clapperboard），板子打开状态，上面用中文写着“争吵案例”。背景是模糊的客厅轮廓，暖黄色灯光。场记板放在一张木质茶几上，旁边有一个空咖啡杯。画面简洁，聚焦于场记板。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#10</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分39秒
+             -> 1分48秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">展示争吵案例中丈夫的提议</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，客厅沙发上，一位红棕色头发的欧美男士（约30岁，穿深蓝色格纹衬衫）身体前倾，双手张开，表情兴奋地说话。他面前茶几上放着一顶折叠好的帐篷和一张露营地图。背景是落地窗，窗外是阳光明媚的白天。画面中有中文标签贴在帐篷上：“露营”。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#11</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分48秒
+             -> 1分58秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">妻子拒绝露营，强调工作优先</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一位棕发欧美女性坐在堆满文件的书桌前，转头看向画面左侧，表情惊讶且略带不满，手里拿着一支笔，电脑屏幕亮着。她身后墙上挂着一个日历，日期圈在周末。右侧半身入镜一位金发男性，表情尴尬，手里拿着一个帐篷包。画面中有中文标签：'工作'
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#12</span>
+            <span class="kp-unit-tag">transition</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            1分58秒
+             -> 2分1秒
+            0分3秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">冲突升级为争吵</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，特写镜头，画面中央是两团碰撞的对话气泡碎片和火星，背景是暗红与深棕的爆炸状色块。气泡碎片上写着中文大字：'你疯了吧！'和'工作！'。画面边缘能看到两人模糊的剪影手臂指向对方，充满张力。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#13</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分1秒
+             -> 2分12秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">双方互相指责，立场对立</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央有一道竖直的黑色裂痕将画面分成左右两半。左边是一位棕发欧美男性，双手交叉胸前，表情不满，头顶对话气泡内写着中文'太卷'。右边是一位红发欧美女性，手指向左边，表情生气，头顶对话气泡内写着中文'太闲'。背景是暗红色，裂痕边
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#14</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分12秒
+             -> 2分26秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">双方逻辑都正确，需要拆解分析</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面中央是一把巨大的放大镜，镜片下有两个被拆解的对话气泡。左边气泡碎片排列成一条逻辑箭头，指向一个写有中文'都对'的标签。右边气泡碎片也排列成一条逻辑箭头，同样指向同一个'都对'标签。背景是暖米色，放大镜手柄为深棕色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#15</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分26秒
+             -> 2分44秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">展示丈夫的完整推理链条</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色头发的欧美男子站在白板前，白板上用蓝色马克笔写着一个三段式推理链条：第一行写'周末=放松探索'，箭头指向第二行'露营=探索新事物'，再箭头指向第三行'应该去露营'。男子露出发觉的表情，手指着白板。画面中有中文：'放松探
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#16</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            2分44秒
+             -> 3分2秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">展示妻子的完整推理链条</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个红棕色头发的欧美女性站在同一块白板前，白板上用红色马克笔写着一个三段式推理链条：第一行写'周末=恢复准备'，箭头指向第二行'露营=占用时间'，再箭头指向第三行'不应该去'。旁边隐约可见丈夫的蓝色链条（画面左侧）。女子双手交
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#17</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分2秒
+             -> 3分9秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">逻辑合理但结论矛盾，引发思考</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右并排两条逻辑链条，每条由3个灰色方块用箭头连接组成，每个方块上有一个绿色对勾。左侧链条末端方块内写着中文'结论A'，右侧链条末端方块内写着中文'结论B'，两个结论方块上各有一个大大的红色叉号。两个结论方块之间有一个大大
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#18</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分9秒
+             -> 3分20秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">指出问题根源在于隐含假设</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面聚焦于一条逻辑链条的起点，一个深棕色方块上写着中文'应该'二字，字体粗大醒目。一个发光的黄色圆圈将'应该'二字高亮圈出。旁边有一个白色标签牌，上面写着中文'隐含假设'，一个细箭头从标签牌指向那个被圈出的方块。背景是暖米色，
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#19</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分20秒
+             -> 3分30秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">具体展示双方的隐含假设</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，两张复古风格的卡片并排贴在深色木纹背景上。左侧卡片上写着中文'周末=探索'，卡片旁画着一个指南针和一条向远方延伸的路。右侧卡片上写着中文'周末=准备'，卡片旁画着一个日历和一支笔。两张卡片之间有一个用粗体写的中文'VS'。整体
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#20</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分30秒
+             -> 3分39秒
+            0分8秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">总结：假设无对错，只是价值观差异</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，两张来自上一画面的复古卡片从左右两侧向中间移动，即将碰在一起。在它们即将接触的中心，一个半透明的心形轮廓正在形成。画面下方有一行粗体中文'价值观不同，没有对错'，写在一条深棕色的横幅上。整体暖色调，背景是柔和的奶油色，有轻微纸
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#21</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分39秒
+             -> 3分53秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">争吵停留在结论层面，忽略假设。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，两个欧美男女面对面争吵，表情激动，手指着对方。两人头顶各有一个对话气泡，气泡内写着中文大字“结论”。两人脚下各有一块方形基石，基石上写着中文小字“假设”，但基石被阴影覆盖、几乎看不见。背景是简洁的灰色室内，暖色灯光。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#22</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            3分53秒
+             -> 4分3秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入数学类比：公理化系统。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧是上一个争吵场景的缩小剪影（两人争吵），画面右侧是一块黑板，黑板上用白色粉笔写着中文大字“公理系统”，旁边画着几个几何符号（三角形、圆形、等号）。一条虚线箭头从左侧争吵场景指向右侧黑板，表示类比关系。背景是暖米色墙壁。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#23</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分3秒
+             -> 4分15秒
+            0分11秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">解释公理化系统的定义：从公理推导定理。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一座三角形金字塔，底部大石块上写着中文‘公理’，向上逐层缩小，顶部石块写着中文‘定理’，左侧有一个向上的箭头从底部指向顶部。背景是暖米色，画面简洁。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#24</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分15秒
+             -> 4分24秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">举例欧几里得几何的公理。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一张白色纸面上有两个黑色圆点，中间用一条直线连接，旁边用粗体中文标注‘两点之间直线最短’。背景是木色桌面，画面干净，只有纸和文字。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#25</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分24秒
+             -> 4分35秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">从公理推导出具体定理。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，黑板上画着一个大直角三角形，直角标着红色小方块。斜边上写着中文'c²=a²+b²'，三角形下方写着中文'内角和=180°'。旁边有一只手拿着粉笔指向公式，背景是暖米色教室。画面中有中文：c²=a²+b²、内角和=180°。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#26</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分35秒
+             -> 4分42秒
+            0分6秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">强调定理在欧几里得几何中的正确性。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个干净的直角三角形悬浮在画面中央，周围环绕一个绿色大对勾。背景是一面复古蓝色墙壁，上面贴着一张标签纸写着中文'欧几里得几何'。整体构图简洁有力，暖色调光线从左侧打来。画面中有中文：欧几里得几何。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#27</span>
+            <span class="kp-unit-tag">case</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分42秒
+             -> 4分59秒
+            0分16秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入非欧几何及其不同公理。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色短发的欧美年轻男性站在黑板前，黑板中央画着一条水平直线，直线外有一个点，从该点画出三条不同角度的曲线穿过直线。黑板上方用中文大字写着“非欧几何”。人物穿着深蓝色衬衫，右手拿着粉笔指向黑板，表情自信。暖米色背景，画面简洁
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#28</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            4分59秒
+             -> 5分11秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">非欧几何中三角形内角和小于180度。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比：左侧是一个平坦黑板上的欧几里得三角形，三个内角分别标注“60°”、“60°”、“60°”，总和写着“180°”；右侧是一个凹陷曲面上的三角形，三条边向内弯曲，三个内角分别标注“50°”、“50°”、“50°”，总
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#29</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分11秒
+             -> 5分25秒
+            0分14秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">总结：不同系统下答案矛盾但都正确。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右分屏。左侧：一个标准的蓝色三角形，三条边平直，内角标注'180°'，下方写着'欧几里得公理'。右侧：一个向内弯曲的红色三角形，内角标注'<180°'，下方写着'非欧公理'。中间一个巨大的黑色问号，背景是暖米色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#30</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分25秒
+             -> 5分38秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">两个系统都没错，只是地基不同。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，两栋风格迥异的房子并排。左边是一栋古典的三角顶砖房，地基是一块方正的石板，上面写着'欧几里得公理'。右边是一栋圆顶的现代玻璃屋，地基是一块弯曲的弧形石板，上面写着'非欧公理'。两栋房子都完好无损，背景是浅蓝色天空。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#31</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分38秒
+             -> 5分48秒
+            0分10秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">引入三个步骤的方法论，名为“吵架终止术”。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个打开的笔记本，纸页上写着中文标题‘吵架终止术’，下方有三个带编号的空白方框（1、2、3），旁边放着一支铅笔和一块橡皮。暖米色桌面背景，深棕色线条，画面有纸张质感。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#32</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            5分48秒
+             -> 6分6秒
+            0分17秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">第一步是暂停，意识到双方处于不同系统。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人举起右手做出‘暂停’手势，表情专注。他面前漂浮着两个半透明的圆圈，一个蓝色一个红色，圆圈内分别有简笔画的房子和齿轮，代表不同的认知系统。背景是抽象灰色空间，画面中有中文标签‘不同系统’。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#33</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分6秒
+             -> 6分13秒
+            0分7秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">核心是寻找对方的假设，而非争对错。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比。左侧，两个红发外国人面对面，手指指向对方，表情愤怒，两人中间有一个红色叉号。右侧，一个金发外国人平和地微笑，手里举着一块木质小牌子，牌子上用粗黑体写着中文“找假设”。背景是简洁的浅米色墙面。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#34</span>
+            <span class="kp-unit-tag">scene</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分13秒
+             -> 6分33秒
+            0分19秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">第二步是问路，使用万能话术确认前提假设。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个棕色头发的欧美男子坐在办公桌前，身体微微前倾，摊开双手，表情真诚地提问。他的面前有一个大大的白色对话气泡，气泡内用简洁粗体写着中文“前提假设不一样？”。背景是模糊的办公室书架，有暖色灯光。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#35</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分33秒
+             -> 6分43秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">话术目的是将对方的公理公开化，而非说服。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个戴眼镜的外国男人（红棕色头发）坐在办公桌后，他的大脑位置有一颗发光的金色立方体飘出，立方体表面写着中文“公理”。金色立方体缓缓落到桌面上，桌面上有一块写着“公理”的小牌子。男人表情惊讶但放松，双手摊开。背景是暖色调的简约书
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#36</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分43秒
+             -> 6分52秒
+            0分9秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">第三步是对齐，共同创造更大系统。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧是一个蓝色齿轮系统（标有中文“A系统”），右侧是一个红色齿轮系统（标有中文“B系统”），中间有一双大手（欧美肤色）正在将两个齿轮系统拼合在一起，形成一个更大的金色齿轮系统（标有中文“大系统”）。背景是简单的灰色空间，光
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#37</span>
+            <span class="kp-unit-tag">framework</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            6分52秒
+             -> 7分6秒
+            0分13秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">通过问共同目标，将其作为新公理推导方案。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左侧有一个大大的对话气泡，里面写着中文：“我们的共同目标是什么？”气泡右侧伸出一个箭头，指向中央一个发光的金色奖杯图标，奖杯上贴着标签“共同目标”。从奖杯又分出三个箭头，指向右侧三块写有“方案A”、“方案B”、“方案C”的
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#38</span>
+            <span class="kp-unit-tag">concept</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分6秒
+             -> 7分10秒
+            0分4秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">强调对齐不是认输，而是升维。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，画面左右对比。左侧：一张写有“认输”的红色纸片被撕碎，旁边有一个低头沮丧的小人。右侧：一个写有“升维”的金色标签贴在一个从平面纸片向上跃起、变为立体方块（3D立方体）的物体上，旁边有一个小人抬头仰望、面露惊喜。背景为暖米色。
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#39</span>
+            <span class="kp-unit-tag">summary</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分10秒
+             -> 7分29秒
+            0分18秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">揭示无效争吵的根本原因：重证明对错，轻理解系统。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个复古木制天平，左边托盘上放着一个巨大的金色奖杯，旁边中文标签写着“证明自己是对的”，右边托盘上放着一本打开的书和一个小地球仪，旁边中文标签写着“理解对方系统”。左边托盘明显下沉，右边高高翘起。背景是浅米色墙面，有一扇窗户透
+        </div>
+        
+      </div>
+      
+      <div class="kp-unit-card" style="padding:0.75rem;border-left:3px solid var(--border);margin-bottom:0.35rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <span class="kp-unit-num" style="font-weight:600;">#40</span>
+            <span class="kp-unit-tag">metaphor</span>
+          </div>
+          <div style="font-size:0.75rem;color:var(--ink-muted);white-space:nowrap;">
+            7分29秒
+             -> 7分42秒
+            0分12秒
+          </div>
+        </div>
+        
+        <div style="font-size:0.8rem;margin-top:0.3rem;">害怕错误导致拼命维护松动逻辑。</div>
+        
+        
+        <div style="font-size:0.7rem;color:var(--ink-muted);margin-top:0.2rem;background:var(--bg);padding:0.3rem 0.5rem;border-radius:4px;">
+          <span style="font-weight:500;">图片:</span> 美式漫画风格，一个金发欧美男人站在一块裂成碎片的方形地基上，地基下方是深色虚空，裂缝中透出红色岩浆光。他双臂张开，拼命扶住一块刻着“我的逻辑”字样的摇摇欲坠的石板。他表情紧张，额头冒汗。背景是灰蓝色阴云，营造不稳定感。画面底部保持简洁。
+        </div>
+        
+      </div>
+      
+    </div>
+    
+
+    
+    
+
+    
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            82分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本质量较高，核心逻辑清晰，案例生动，实用性强，但source_scope标注不准确，需修正为具体思想范围。整体通过审核。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:15%"></div>
+            </div>
+            <span class="kp-dim-val">3</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:40%"></div>
+            </div>
+            <span class="kp-dim-val">8</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:65%"></div>
+            </div>
+            <span class="kp-dim-val">13</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 标注为'整书分析'，但脚本实际只聚焦于《第一性原理》中关于'公理化系统'和'隐含假设'的单一概念，未覆盖全书其他核心内容（如第一性原理的定义、如何寻找第一性原理、创新方法论等），存在范围不准确的问题。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">原书理解维度：脚本将《第一性原理》的核心思想简化为'吵架终止术'，虽然抓住了书中关于系统边界和隐含假设的部分，但过度聚焦于人际冲突场景，弱化了原书更宏大的认知升级和创新方法论框架，有简化倾向。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">语言安全度：部分表述如'气得你肝疼'、'吵一辈子也是白吵'带有一定情绪煽动性，虽未严重违规，但可更中性。</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-danger">source_scope 需从'整书分析'改为具体思想范围，例如'《第一性原理》中关于公理化系统与隐含假设的认知冲突分析'，以准确反映脚本实际内容。</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('第一性原理', 102)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        <option value="visual_beats.json">visual_beats.json</option>
+        
+        
+        
+        <option value="image_prompts.json">image_prompts.json</option>
+        
+        
+        
+        <option value="timeline.json">timeline.json</option>
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>

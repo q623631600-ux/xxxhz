@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讲书工作流 · Web 工作台</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<div class="v0-layout">
+    <aside class="v0-sidebar" aria-label="主导航">
+        <a href="index.html" class="v0-sidebar-brand" style="text-decoration:none;">
+            <div class="v0-sidebar-logo">讲</div>
+            <div>
+                <div class="v0-sidebar-name">讲书升级Agent</div>
+                <div class="v0-sidebar-desc">内容增长 Agent</div>
+            </div>
+        </a>
+
+        <nav class="v0-nav">
+            <a href="index.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⌂</span>
+                <span>项目</span>
+            </a>
+            <a href="work.html" class="v0-nav-item">
+                <span class="v0-nav-icon">⚡</span>
+                <span>Agent 工作台</span>
+            </a>
+            <a href="dashboard.html" class="v0-nav-item">
+                <span class="v0-nav-icon">📈</span>
+                <span>数据分析</span>
+            </a>
+            <a href="growth.html" class="v0-nav-item">
+                <span class="v0-nav-icon">🧠</span>
+                <span>Agent学习</span>
+            </a>
+            <a href="feedback.html" class="v0-nav-item">
+                <span class="v0-nav-icon">💬</span>
+                <span>反馈中心</span>
+            </a>
+        </nav>
+
+        <div class="v0-sidebar-user">
+            <div class="v0-sidebar-user-inner">
+                <div class="v0-avatar">B</div>
+                <div style="line-height:1.25;">
+                    <div class="v0-user-name">Content Growth</div>
+                    <div class="v0-user-plan">Agent v2</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="v0-main">
+        <div class="v0-container">
+            
+
+
+
+
+
+
+
+
+
+
+
+<div class="v0-container" style="max-width:80rem;">
+
+  <!-- Breadcrumb -->
+  <div class="kp-breadcrumb">
+    <a href="index.html" class="kp-bcrumb-link">项目</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <a href="project-国富论.html" class="kp-bcrumb-link">国富论</a>
+    <span class="kp-bcrumb-sep">→</span>
+    <span class="kp-bcrumb-current">KP #104</span>
+  </div>
+
+  <!-- Header -->
+  <div class="kp-header">
+    <div>
+      <h1 class="kp-title">为什么你每天用时间换钱，却永远换不来自由？</h1>
+      <div class="kp-meta-row">
+        
+        <span class="kp-meta-item"><span class="kp-meta-label">章节</span>Agent选题</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">来源</span>整书分析</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">预估时长</span>15-20分钟</span>
+        <span class="kp-meta-item"><span class="kp-meta-label">字数</span>3930</span>
+        
+      </div>
+    </div>
+    <div class="kp-header-actions">
+      <a href="work.html" class="v0-btn">
+        <span class="kp-btn-icon">*</span> 回到工作台
+      </a>
+      <button class="v0-btn v0-btn-primary" onclick="runVisualWorkflow('国富论', 104)">
+        ▶ 运行视觉链路
+      </button>
+      <span id="wf-status" style="margin-left:10px;font-size:0.8125rem;color:var(--muted-foreground);"></span>
+    </div>
+  </div>
+
+  <!-- File Status -->
+  <div class="kp-file-bar">
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ script.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_safe.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ script_edited.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ quality_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ safety_check.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-ok">
+      ✓ content_units.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ visual_beats.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ image_prompts.json
+    </span>
+    
+    <span class="kp-file-badge kp-file-missing">
+      ○ timeline.json
+    </span>
+    
+  </div>
+
+  <!-- Tabs -->
+  <div class="kp-tabs">
+    <button class="kp-tab active" data-tab="script">讲稿</button>
+    <button class="kp-tab" data-tab="content-units">内容单元<span class="kp-tab-count">42</span></button>
+    <button class="kp-tab" data-tab="visual-beats">画面点</button>
+    <button class="kp-tab" data-tab="image-prompts">图片提示词</button>
+    <button class="kp-tab" data-tab="timeline" style="opacity:0.5;">时间线</button>
+    <button class="kp-tab" data-tab="review">审核</button>
+    <button class="kp-tab" data-tab="raw">原始 JSON</button>
+  </div>
+
+  <!-- ==================== TAB: 讲稿 ==================== -->
+  <div id="tab-script" class="kp-tab-content active">
+    
+    <div class="kp-script-layout">
+      <div class="kp-script-main">
+        <div class="kp-section-label">讲稿正文</div>
+        <textarea id="full-script-editor" class="kp-script-editor" rows="22">你有没有发现，我们每天都在用时间换钱，却永远换不来自由？加班到深夜，周末接私活，兼职做到手软，收入确实在涨——但只要一停下来，收入就归零。我们总以为“再努力一点”就能摆脱这个循环，但现实是，越努力越被绑死。为什么我们的劳动效率，永远无法突破时间的限制？今天要聊的这本《国富论》，不是讲经济学课本，而是想帮普通人看懂一个道理：自由不是靠卖更多时间换来的，而是靠让单位时间产出倍增获得的。看完这个，你就会明白为什么你那么努力，却始终陷在“时间换钱”的死循环里，以及到底该怎么打破它。
+
+我们大多数人，其实都处在同一种困境里。每天早出晚归，工作排得满满当当，从早忙到晚几乎没有停过。我们以为只要努力就够了，只要加班够多、接活够多，总有一天能过上想要的生活。可事实是，时间总量是有限的，一天就24小时，你不可能无限地卖时间。我们越努力，反而越觉得自己被绑死在这个循环里：不工作就没收入，一休息就焦虑。这背后，到底出了什么问题？
+
+亚当·斯密在《国富论》里给出了一个让我们意想不到的回答。我们通常以为，劳动的价值取决于劳动的时间和强度——谁更努力、谁工作时间更长，谁就能创造更多价值。但斯密告诉我们，劳动的价值首先取决于劳动的组织方式。他观察到一个现象：同样一群人，做同样的事情，只是换了一种组织方式，产出可以相差几百倍。这个现象的核心，就是我们常听到的“分工”。
+
+让我们来看一个经典案例，这个案例出自《国富论》的第一章。在18世纪的英国，有一种非常普通的行业——制针。一个工人单独制针，哪怕他再熟练，一天也做不出20枚针。但亚当·斯密亲眼看到，在一个制针工场里，10个工人分工协作：一个人抽丝，一个人拉直，一个人切断，一个人磨尖，一个人打磨针头，一个人装针尾……这样分工下来，10个人一天能生产48000枚针，平均每人4800枚。跟一个人单独制作相比，效率提升了240倍。240倍，不是10%，不是50%，是240倍。这个案例说明什么？分工不是简单地把工作分给别人，而是重新设计劳动流程，让每个人的动作变成“单一且重复”，从而让效率暴增。
+
+为什么分工能带来这种效果？亚当·斯密总结了三个底层原因。第一个叫技巧专精——当我们只做一件事时，我们越做越快，越做越熟练。比如一个只负责抽丝的工人，他每天重复同一个动作，几天后他就能找到最省力的方式，动作越来越精准。第二个叫节省时间——当我们不用在不同工作之间来回切换时，我们省下了大量的“转换成本”。想象一下，如果你同时做五件事，每换一件事就要重新进入状态、重新找工具、重新思考，这些时间加起来比你想象的多得多。第三个叫机械发明——当我们专注一个动作时，我们更容易想到改进工具。比如那个专门磨针尖的工人，他天天想着怎么让磨针更快，很可能就会发明一个更高效的磨具。这三个原因叠加在一起，让单位时间产出指数级增长，而不是线性增长。
+
+现在我们再回头看自己的生活。我们大多数人的工作方式，其实很像那个单独制针的工匠。一个人包揽所有环节：写文案、做设计、谈客户、处理售后、管财务、做推广……我们以为“全能”才安全，但亚当·斯密告诉我们，这种“自给自足”恰恰是效率最低的方式。因为我们每切换一次任务，都在付出转换成本。写了一半文案去回客户消息，回来又得重新梳理思路；设计做到一半去处理售后，回来又要重新找感觉。结果就是，我们觉得自己很忙，但产出有限。而且，我们从来没能把一件事做到极致，因为总是在各种任务之间来回跑。
+
+那么，怎么打破这个死循环？不是让我们去开工厂，而是用分工的底层逻辑重新审视自己的工作。第一步，识别你的“核心动作”——什么是你工作中最高价值的单一动作？比如，如果你是一个独立设计师，你的核心动作可能不是跟客户沟通，而是设计本身。第二步，切割掉“非核心动作”——那些重复、低价值、可以外包或被工具替代的部分，果断剥离。比如，可以请一个兼职助理来处理客户沟通和售后，把时间省下来专注设计。第三步，让核心动作专业化——只做一件事，把它做到极致，让单位时间产出最大化。同时，我们还要记住亚当·斯密另一个观点：市场范围决定分工深度。不要一开始就想做全，而是先在一个足够大的市场里深挖一个细分。比如，你不是“全能设计师”，而是“专注电商海报的设计师”，这个市场足够大，你就能越做越深。
+
+最后，让我们重新定义“自由”。自由不是不用工作，而是你的时间单价足够高，高到你可以选择什么时候工作、为谁工作。亚当·斯密在两百多年前就看透了：真正的财富增长不是靠延长劳动时间，而是靠改变劳动的组织方式。你不需要比现在更努力，你只需要比现在更“专”。当你把一件事做到极致，你的单位时间价值就会指数级增长，那时候，你就不再是“卖时间”的人，而是“卖价值”的人。这才是真正的自由。
+
+让我们再深入一层，看看亚当·斯密在《国富论》中是如何用制针工厂的案例，揭示分工如何让单位时间价值飙升的。他写道：一个没有受过训练的工人，独自制针，一天可能连一枚都做不出来。但通过分工——抽丝、拉直、切断、磨尖、装头——十个工人分工协作，一天能生产四万八千枚针，平均每人四千八百枚。效率提升了数千倍。这不是因为工人更努力了，而是因为分工让每个人只做一件事，熟能生巧，减少了切换时间，并催生了专用工具。
+
+现在，把这个逻辑映射到你自己的工作中。你每天在“制针”吗？不，你是在同时做十件事：回邮件、开会、写方案、处理客户投诉、研究市场趋势、做账……每切换一次任务，你的大脑都需要重新“热身”，这个过程平均会浪费20%的时间。这就是为什么你感觉一天忙到晚，但产出却少得可怜。你其实是在用“低效的忙碌”来掩饰“分工的缺失”。
+
+让我们用数据说话：研究表明，知识工作者每天平均只有2-3小时的“深度工作”时间，其余都被碎片化任务吞噬。而顶尖绩效者，往往只专注于一项核心任务，并把它做到极致。比如，一个顶尖的算法工程师，可能只专注于优化某一类模型，而把数据清洗、报告撰写等工作交给团队或工具。他的单位时间价值，可能是普通工程师的十倍。这不是因为他更聪明，而是因为他通过分工，让自己的核心动作变成了“高价值杠杆”。
+
+现在，我们回到你的工作场景。假设你是一个内容创作者，你的核心动作是“写作”。但现实中，你还要花大量时间在选题策划、排版、发布、回复评论、看数据报告上。这些非核心动作，虽然必要，但并不能直接提升你的写作价值。如果你能把这些切割出去——比如用AI工具自动生成初稿框架、用模板化流程处理排版、用外包助理管理社群——你的写作时间就能从每天4小时变成8小时，但产出质量会翻倍，因为你的“核心动作”被反复打磨到了极致。
+
+亚当·斯密还强调，分工的深度取决于市场范围。如果你为一个小众市场写作，比如“本地美食评论”，市场容量有限，你的分工再深，也难以为继。但如果你选择“全球电商文案”，市场无限大，你就能不断深化：从“写文案”到“写转化率最高的文案”，再到“写针对特定用户群体的高转化文案”。每一步细化，都让你的技能变得稀缺，从而提升你的时间单价。
+
+让我们用一个真实案例来佐证。我认识一位自由职业插画师，她最初什么都接：logo、海报、漫画、书籍封面。结果每单价格都在500-1000元，还经常改稿到崩溃。后来，她把自己定位为“专注儿童绘本的插画师”，只做这一件事。她花了三个月研究儿童心理学、色彩搭配和故事节奏，作品质量飙升。现在，她的单幅插画报价是5000元，客户排队预约。她的时间单价翻了5倍，但工作时间却减少了。因为她不再需要花时间谈价格、改方案、处理杂务——这些都被她外包给了一个虚拟助理。她每天只做一件事：画儿童绘本。这就是分工的力量。
+
+但很多人卡在第一步：不敢切割。他们担心“万一外包做不好怎么办？”“万一客户觉得我不够全能怎么办？”这种恐惧，恰恰是阻碍你获得自由的最大障碍。亚当·斯密早就指出，分工的前提是信任与合作。你不会自己造车，但你信任汽车制造商；你不会种粮食，但你信任农民。同样，你可以信任一个兼职助理来处理客户沟通，信任一个AI工具来生成初稿，信任一个财务软件来记账。你的时间，只应该花在那些“只有你能做，且价值最高”的事情上。
+
+我们再来算一笔账。假设你现在的时薪是100元。如果你把非核心动作切割掉，每天多出2小时做核心工作，同时核心工作的效率提升50%，那么你的时薪就能变成：100元 × 1.5（效率提升） × 1.25（时间增加）= 187.5元。但这只是开始。随着你越做越深，你的技能变得稀缺，市场愿意为你的“专业化”支付溢价。当你在细分领域成为Top 1%时，你的时薪可能达到500元、1000元甚至更高。此时，你每天工作4小时，就能赚到以前8小时的收入。剩下的时间，你用来学习、休息、陪伴家人——这才是自由。
+
+最后，让我们回到亚当·斯密的根本洞见：财富的增长，不是靠延长劳动时间，而是靠改变劳动的组织方式。你不需要比现在更努力，你只需要比现在更“专”。当你把一件事做到极致，你的单位时间价值就会指数级增长，那时候，你就不再是“卖时间”的人，而是“卖价值”的人。你卖的不是8小时，而是你独一无二的专业技能。客户买的不是你的时间，而是你解决特定问题的能力。这种能力的稀缺性，决定了你的定价权。
+
+所以，从现在开始，重新审视你的工作。问自己三个问题：我的核心动作是什么？我能否把它切割出来，做到极致？我的市场足够大，支撑我深化分工吗？答案一旦清晰，你就迈出了通往自由的第一步。记住，自由不是不用工作，而是你的时间单价足够高，高到你可以选择什么时候工作、为谁工作。这是亚当·斯密在两百多年前就告诉我们的真理，也是你改变命运的起点。</textarea>
+        <div class="kp-script-actions">
+          <button class="v0-btn v0-btn-primary" onclick="saveScript('国富论', 104)">保存修改</button>
+          <span id="save-status" class="kp-save-status"></span>
+        </div>
+      </div>
+      <aside class="kp-script-sidebar">
+        <div class="kp-side-card">
+          <div class="kp-side-card-title">讲稿信息</div>
+          <dl class="kp-side-defs">
+            <dt>书名</dt><dd>国富论</dd>
+            <dt>章节</dt><dd>Agent选题</dd>
+            <dt>来源</dt><dd class="kp-side-tag">整书分析</dd>
+            <dt>时长</dt><dd>15-20分钟</dd>
+            <dt>字数</dt><dd>3930</dd>
+          </dl>
+        </div>
+        
+        
+      </aside>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 内容单元 ==================== -->
+  <div id="tab-content-units" class="kp-tab-content">
+    
+    <div class="kp-summary">
+      <div class="kp-summary-stat">
+        <span class="kp-summary-num">42</span>
+        <span class="kp-summary-label">内容单元</span>
+      </div>
+      
+      <p class="kp-summary-desc">分批切分：2 片，总计 42 个单元</p>
+      
+    </div>
+    <div class="kp-unit-list">
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#1</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">你有没有发现，我们每天都在用时间换钱，却永远换不来自由？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#2</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">加班到深夜，周末接私活，兼职做到手软，收入确实在涨——但只要一停下来，收入就归零。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#3</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们总以为“再努力一点”就能摆脱这个循环，但现实是，越努力越被绑死。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#4</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">为什么我们的劳动效率，永远无法突破时间的限制？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#5</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">今天要聊的这本《国富论》，不是讲经济学课本，而是想帮普通人看懂一个道理：自由不是靠卖更多时间换来的，而是靠让单位时间产出倍增获得的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#6</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">看完这个，你就会明白为什么你那么努力，却始终陷在“时间换钱”的死循环里，以及到底该怎么打破它。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#7</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们大多数人，其实都处在同一种困境里。每天早出晚归，工作排得满满当当，从早忙到晚几乎没有停过。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#8</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们以为只要努力就够了，只要加班够多、接活够多，总有一天能过上想要的生活。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#9</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">可事实是，时间总量是有限的，一天就24小时，你不可能无限地卖时间。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#10</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们越努力，反而越觉得自己被绑死在这个循环里：不工作就没收入，一休息就焦虑。这背后，到底出了什么问题？</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#11</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">亚当·斯密在《国富论》里给出了一个让我们意想不到的回答。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#12</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">我们通常以为，劳动的价值取决于劳动的时间和强度——谁更努力、谁工作时间更长，谁就能创造更多价值。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#13</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但斯密告诉我们，劳动的价值首先取决于劳动的组织方式。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#14</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他观察到一个现象：同样一群人，做同样的事情，只是换了一种组织方式，产出可以相差几百倍。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#15</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">3s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个现象的核心，就是我们常听到的“分工”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#16</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">让我们来看一个经典案例，这个案例出自《国富论》的第一章。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#17</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">4s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">在18世纪的英国，有一种非常普通的行业——制针。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#18</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">一个工人单独制针，哪怕他再熟练，一天也做不出20枚针。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#19</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">14s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但亚当·斯密亲眼看到，在一个制针工场里，10个工人分工协作：一个人抽丝，一个人拉直，一个人切断，一个人磨尖，一个人打磨针头，一个人装针尾……这样分工下来，10个人一天能生产48000枚针，平均每人4800枚。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#20</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">7s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">跟一个人单独制作相比，效率提升了240倍。240倍，不是10%，不是50%，是240倍。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#21</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">9s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这个案例说明什么？分工不是简单地把工作分给别人，而是重新设计劳动流程，让每个人的动作变成“单一且重复”，从而让效率暴增。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#22</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">5s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">为什么分工能带来这种效果？亚当·斯密总结了三个底层原因。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#23</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">让我们再深入一层，看看亚当·斯密在《国富论》中是如何用制针工厂的案例，揭示分工如何让单位时间价值飙升的。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#24</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他写道：一个没有受过训练的工人，独自制针，一天可能连一枚都做不出来。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#25</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但通过分工——抽丝、拉直、切断、磨尖、装头——十个工人分工协作，一天能生产四万八千枚针，平均每人四千八百枚。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#26</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">效率提升了数千倍。这不是因为工人更努力了，而是因为分工让每个人只做一件事，熟能生巧，减少了切换时间，并催生了专用工具。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#27</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">现在，把这个逻辑映射到你自己的工作中。你每天在“制针”吗？不，你是在同时做十件事：回邮件、开会、写方案、处理客户投诉、研究市场趋势、做账……</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#28</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">每切换一次任务，你的大脑都需要重新“热身”，这个过程平均会浪费20%的时间。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#29</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">8s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这就是为什么你感觉一天忙到晚，但产出却少得可怜。你其实是在用“低效的忙碌”来掩饰“分工的缺失”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#30</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">让我们用数据说话：研究表明，知识工作者每天平均只有2-3小时的“深度工作”时间，其余都被碎片化任务吞噬。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#31</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">14s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">而顶尖绩效者，往往只专注于一项核心任务，并把它做到极致。比如，一个顶尖的算法工程师，可能只专注于优化某一类模型，而把数据清洗、报告撰写等工作交给团队或工具。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#32</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">他的单位时间价值，可能是普通工程师的十倍。这不是因为他更聪明，而是因为他通过分工，让自己的核心动作变成了“高价值杠杆”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#33</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">现在，我们回到你的工作场景。假设你是一个内容创作者，你的核心动作是“写作”。但现实中，你还要花大量时间在选题策划、排版、发布、回复评论、看数据报告上。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#34</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">这些非核心动作，虽然必要，但并不能直接提升你的写作价值。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#35</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">16s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">如果你能把这些切割出去——比如用AI工具自动生成初稿框架、用模板化流程处理排版、用外包助理管理社群——你的写作时间就能从每天4小时变成8小时，但产出质量会翻倍，因为你的“核心动作”被反复打磨到了极致。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#36</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">亚当·斯密还强调，分工的深度取决于市场范围。如果你为一个小众市场写作，比如“本地美食评论”，市场容量有限，你的分工再深，也难以为继。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#37</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">但如果你选择“全球电商文案”，市场无限大，你就能不断深化：从“写文案”到“写转化率最高的文案”，再到“写针对特定用户群体的高转化文案”。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#38</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">6s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">每一步细化，都让你的技能变得稀缺，从而提升你的时间单价。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#39</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">14s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">让我们用一个真实案例来佐证。我认识一位自由职业插画师，她最初什么都接：logo、海报、漫画、书籍封面。结果每单价格都在500-1000元，还经常改稿到崩溃。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#40</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">后来，她把自己定位为“专注儿童绘本的插画师”，只做这一件事。她花了三个月研究儿童心理学、色彩搭配和故事节奏，作品质量飙升。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#41</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">10s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">现在，她的单幅插画报价是5000元，客户排队预约。她的时间单价翻了5倍，但工作时间却减少了。</span></div>
+        </div>
+      </details>
+      
+      <details class="kp-unit-card">
+        <summary class="kp-unit-summary">
+          <span class="kp-unit-id">#42</span>
+          <span class="kp-unit-stage">explanation</span>
+          <span class="kp-unit-type">段落</span>
+          <span class="kp-unit-time">12s</span>
+          <span class="kp-unit-arrow">▸</span>
+        </summary>
+        <div class="kp-unit-body">
+          
+          
+          <div class="kp-unit-field"><span class="kp-unit-field-label">文本</span><span class="kp-unit-text">因为她不再需要花时间谈价格、改方案、处理杂务——这些都被她外包给了一个虚拟助理。她每天只做一件事：画儿童绘本。这就是分工的力量。</span></div>
+        </div>
+      </details>
+      
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 画面点 ==================== -->
+  <div id="tab-visual-beats" class="kp-tab-content">
+    
+    <div class="kp-empty">
+      <div class="kp-empty-icon">◎</div>
+      <p>尚未生成画面点，请先运行「画面点提取」步骤。</p>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 图片提示词 ==================== -->
+  <div id="tab-image-prompts" class="kp-tab-content">
+    
+    <div class="kp-empty">
+      <div class="kp-empty-icon">◎</div>
+      <p>尚未生成图片提示词，请先运行「图片提示词生成」步骤。</p>
+    </div>
+    
+  </div>
+
+  </div>
+
+  <!-- ==================== TAB: 时间线 ==================== -->
+  <div id="tab-timeline" class="kp-tab-content">
+    
+    <div class="kp-empty">
+      <div class="kp-empty-icon">@</div>
+      <p>timeline.json 不存在。请先运行「时间线组装」步骤。</p>
+    </div>
+    
+  </div>
+
+  <!-- ==================== TAB: 审核 ==================== -->
+  <div id="tab-review" class="kp-tab-content">
+    <div class="kp-review-grid">
+      <!-- 质量审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">质量审核</span>
+          <span class="kp-review-score kp-score-pass">
+            82分
+          </span>
+        </div>
+        <div class="kp-review-verdict kp-verdict-pass">
+          PASSED
+        </div>
+        
+        <p class="kp-review-conclusion">脚本整体质量较高，核心思想清晰，案例生动，实用性强，但来源准确性有偏差（整书分析 vs 仅分工），且在大问题转换、框架展开、举一反三等方面有提升空间。修改后可通过。</p>
+        
+        
+        <div class="kp-dim-table">
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">source_accuracy</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">original_understanding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">problem_awareness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">big_to_small_translation</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:50%"></div>
+            </div>
+            <span class="kp-dim-val">10</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">explanation_clarity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:65%"></div>
+            </div>
+            <span class="kp-dim-val">13</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">logic_integrity</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">progressive_structure</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:45%"></div>
+            </div>
+            <span class="kp-dim-val">9</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">thinking_framework</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">life_judgment_tool</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">transfer_ability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:20%"></div>
+            </div>
+            <span class="kp-dim-val">4</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">application_binding</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">plain_language</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">practical_value</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">length_reasonableness</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">language_safety</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:35%"></div>
+            </div>
+            <span class="kp-dim-val">7</span>
+          </div>
+          
+          <div class="kp-dim-row">
+            <span class="kp-dim-name">relatability</span>
+            <div class="kp-dim-bar-track">
+              <div class="kp-dim-bar-fill" style="width:25%"></div>
+            </div>
+            <span class="kp-dim-val">5</span>
+          </div>
+          
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title">主要问题</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-warn">source_scope 为'整书分析'，但脚本实际只聚焦于《国富论》中'分工'这一核心概念，并未覆盖全书其他重要主题（如货币、价值、地租、资本积累等），因此来源准确性有偏差。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">big_to_small_translation 部分，虽然从制针案例转换到了个人工作场景，但缺少一个明确的'原书大问题是什么'的陈述，转换枢纽不够清晰。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">thinking_framework 提炼的'三步法'（识别核心动作、切割非核心、专业化）虽然实用，但框架的展开不够深入，缺少对每一步的详细判断标准和条件说明。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">life_judgment_tool 提供的三个自测问题（核心动作是什么？能否切割？市场够大吗？）方向正确，但缺少对每个问题的简短解释和示例，可操作性有待加强。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">transfer_ability 部分，结尾没有明确告诉观众这个分工思想还能迁移到哪些其他场景（如团队管理、学习技能、家庭分工等），举一反三不足。</li>
+            
+            <li class="kp-review-list-item kp-issue-warn">language_safety 中，部分语句如'你其实是在用低效的忙碌来掩饰分工的缺失'带有轻微的价值判断和指责语气，建议改为更中性的'我们'视角。</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="kp-review-section">
+          <div class="kp-review-section-title kp-title-danger">必须修改</div>
+          <ul class="kp-review-list">
+            
+            <li class="kp-review-list-item kp-issue-danger">source_scope 应修改为'《国富论》中关于分工与效率的核心思想'，以准确反映脚本实际覆盖的内容范围。</li>
+            
+            <li class="kp-review-list-item kp-issue-danger">在脚本中增加一段明确的'大问题→小问题'转换枢纽，例如：'亚当·斯密写《国富论》时，面对的大问题是：为什么有些国家越来越富，而有些国家停滞不前？他给出的答案是分工。把这个大问题放到我们普通人的生活里，其实是在问：为什么有些人越工作越自由，而有些人越工作越被绑死？答案同样是分工。'</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+
+      <!-- 安全审核 -->
+      <div class="kp-review-card">
+        
+        <div class="kp-review-card-header">
+          <span class="kp-review-card-title">安全审核</span>
+        </div>
+        <div class="kp-empty" style="padding:1rem;">
+          <p style="font-size:0.875rem;">safety_check.json 不存在</p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB: 原始 JSON ==================== -->
+  <div id="tab-raw" class="kp-tab-content">
+    <div class="kp-raw-toolbar">
+      <select id="json-select" class="kp-raw-select" onchange="loadRawJson('国富论', 104)">
+        <option value="">-- 选择 JSON 文件 --</option>
+        
+        
+        <option value="script.json">script.json</option>
+        
+        
+        
+        
+        
+        
+        
+        <option value="quality_check.json">quality_check.json</option>
+        
+        
+        
+        
+        
+        <option value="content_units.json">content_units.json</option>
+        
+        
+        
+        
+        
+        
+        
+        
+      </select>
+    </div>
+    <pre id="raw-json-output" class="kp-json-output">请选择一个 JSON 文件</pre>
+  </div>
+
+</div>
+
+<!-- Tab switching JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var tabs = document.querySelectorAll('.kp-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = this.dataset.tab;
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      document.querySelectorAll('.kp-tab-content').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+
+// Global functions for onclick handlers
+window.runVisualWorkflow = function(bookName, kpId) {
+  var st = document.getElementById('wf-status');
+  if (st) { st.textContent = '执行中…'; st.style.color = 'var(--brand)'; }
+  fetch('/api/pipeline/' + encodeURIComponent(bookName) + '/run/visual-pipeline/' + kpId, { method: 'POST' })
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (st) {
+        if (j.success) { st.textContent = '✓ 完成'; st.style.color = 'var(--green, #22c55e)'; }
+        else { st.textContent = '失败: ' + (j.error || ''); st.style.color = 'var(--destructive)'; }
+      }
+    })
+    .catch(function(e) { if (st) { st.textContent = '请求失败'; st.style.color = 'var(--destructive)'; } });
+};
+
+window.saveScript = function(bookName, kpId) {
+  var el = document.getElementById('full-script-editor');
+  var st = document.getElementById('save-status');
+  if (!el || !st) return;
+  st.textContent = '保存中…';
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/save-script', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ full_script: el.value })
+  }).then(function(r) { return r.json(); })
+    .then(function(j) { st.textContent = j.success ? '✓ 已保存' : '保存失败'; st.style.color = j.success ? 'var(--green, #22c55e)' : 'var(--destructive)'; })
+    .catch(function() { st.textContent = '保存失败'; st.style.color = 'var(--destructive)'; });
+};
+
+window.loadRawJson = function(bookName, kpId) {
+  var sel = document.getElementById('json-select');
+  var out = document.getElementById('raw-json-output');
+  if (!sel.value) { out.textContent = '请选择一个 JSON 文件'; return; }
+  fetch('/api/project/' + encodeURIComponent(bookName) + '/kp/' + kpId + '/json/' + sel.value)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      if (j.error) { out.textContent = '错误: ' + j.error; return; }
+      out.textContent = JSON.stringify(j, null, 2);
+    })
+    .catch(function(e) { out.textContent = '加载失败: ' + e.message; });
+};
+</script>
+
+
+
+        </div>
+    </main>
+</div>
+<script src="static/app.js?v=20260629.08"></script>
+</body>
+</html>
